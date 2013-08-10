@@ -29,7 +29,7 @@ system python automake_sphinx.py
 
 dest=../../pub
 rm -rf $dest/sphinx
-cp -r _static $name.html ._part*$name.html $name2.pdf sphinx-rootdir/_build/html $dest
+cp -r css _static $name.html ._part*$name.html $name2.pdf sphinx-rootdir/_build/html $dest
 cd $dest
 mv -f html sphinx
 
