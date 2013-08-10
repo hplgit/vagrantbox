@@ -1,0 +1,15 @@
+bwarning
+GitHub
+ewarning
+tarball
+debpkg
+txt
+tarballs
+hpl
+ScientificPython
+app
+Django
+PyPi
+virtualenv
+Ubuntu
+Virtualenv
