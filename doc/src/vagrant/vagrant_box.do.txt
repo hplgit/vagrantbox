@@ -109,7 +109,7 @@ lines are supposed to list the name of Debian packages to be installed
 by `sudo apt-get install` commands. The examples above show all four
 line types. Observe in particular how we can freely add Unix commands
 to download ScientificPython from its Bitbucket repo (done in the
-`srclib` subdirectory) and install the package manually by running
+`srclib` subfolder/subdirectory) and install the package manually by running
 `setup.py` the usual way.
 
 Some examples on lines in the `install.sh` script are
@@ -184,7 +184,7 @@ packages in the Vagrant machine. More powerful tools for setting
 up complete software environments are "Chef": "http://www.opscode.com/"
 and "Puppet": "https://puppetlabs.com/".
 
-In the Vagrant machine, we create two directories:
+In the Vagrant machine, we create two folders:
 
  * `~/bin` for executable programs and scripts
  * `~/srclib` for Python packages installed locally
@@ -273,10 +273,10 @@ relevant choice. On Ubuntu, select `vagrant_x.y.z_*.deb`. See above
 for how to install `.dmg`, `.exe`, and `.deb` files.
 
 On Windows and Mac OS X, the `vagrant` command is automatically be
-available after installation (because the directory where the
+available after installation (because the folder/directory where the
 `vagrant` executable resides is placed in your `PATH` environment
 variable). This is true for many Linux systems too, otherwise you must
-add the relevant directory where the `vagrant` program was installed
+add the relevant folder where the `vagrant` program was installed
 (say `/opt/vagrant/bin`) to your `PATH` variable.
 
 !split
@@ -301,9 +301,9 @@ list, for the Vagrant machine.  This is a version of Ubuntu 12.04
 (`precise` refers to the official Ubuntu name Precise Pangolin for
 version 12.04).  Click on *Copy* to copy the URL and paste the URL in
 a new browser tab. This action should download a file `precise64.box`.
-Say you store this file in a directory `~/vagrant`.  We can now log in
+Say you store this file in a folder `~/vagrant`.  We can now log in
 to the Ubuntu precise 64 virtual machine: open some terminal window,
-make some directory (say) `vagrant_project`, to this directory, and
+make some folder (say) `vagrant_project`, to this folder, and
 type
 
 !bc sys
@@ -317,8 +317,8 @@ The second creates a central file, `Vagrantfile`, with settings for
 the Vagrant machine. The third command starts (boots) the Vagrant
 machine, and the fourth makes us log in to the Vagrant machine
 (just as the normal `ssh` command does).
-The `vagrant_project` directory where these commands are run is
-known as the *project directory* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
+The `vagrant_project` folder where these commands are run is
+known as the *project folder* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
 
 [hpl: Might be problems with ssh on Windows, see URL: "http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html". This must be tested on Windows 7.]
 
@@ -335,10 +335,10 @@ packages and Unix commands, with an associated tool `deb2sh.py`
 for automatic generation of installation scripts.
 Using these utilities,
 it is close to trivial to create a rich computing environment.
-We simply run `deb2sh.py` in the directory where our package
+We simply run `deb2sh.py` in the folder where our package
 specification `debpkg.txt`
 resides. The resulting `install.sh` must be located in the
-project directory `vagrant_project`, as
+project folder `vagrant_project`, as
 created above.
 
 There are two ways to install the software in the machine: either we
@@ -382,7 +382,7 @@ repository:
 !bc sys
 Terminal> hg clone https://code.google.com/p/scitools/
 !ec
-The result is a directory `scitools` with Python code and the standard
+The result is a folder `scitools` with Python code and the standard
 `setup.py` script. The installation is performed by
 
 !bc sys
@@ -402,13 +402,13 @@ user's customization of her Unix environment. Here is an "example":
 @@@CODE _static/.bashrc
 The handy `rsync` commands for copying files require a list of files
 to ignore, so a file "`.rsyncexclude`": "_static/.rsyncexclude" must
-be present in the home directory:
+be present in the home holder:
 
 @@@CODE _static/.rsyncexclude
 If you have these and other files on your file system, they can easily
 be copied into the Vagrant machine by placing the files in
-the project directory (where the `vagrant up` command was run and where
-the `Vagrantfile` resides). This directory is visible
+the project folder (where the `vagrant up` command was run and where
+the `Vagrantfile` resides). This folder is visible
 from the Vagrant machine as `/vagrant` (see also Section ref{vagrant:shareddir}).
 
 The work inside the Vagrant machine is now over for this time.
@@ -436,7 +436,7 @@ end
 When everything is installed, we need to package the virtual
 environment into a box in order to distribute it to other users. This
 can be done by logging out of the virtual machine and running the vagrant
-package command (in the project directory):
+package command (in the project folder):
 
 !bc sys
 Terminal> vagrant package --output ourpackage.box \
@@ -495,15 +495,15 @@ If the `Vagrantfile` does not contain the string "install.sh", the
 Terminal> bash -x /vagrant/install.sh
 !ec
 
-===== Shared directories =====
+===== Shared folders =====
 label{vagrant:shareddir}
 
-Inside the Vagrant machine, `/vagrant` is a directory shared with
+Inside the Vagrant machine, `/vagrant` is a folder shared with
 the user's file system. More precisely, `/vagrant` points to the
-*project directory* where the file `Vagrantfile` resides and where we ran the
+*project folder* where the file `Vagrantfile` resides and where we ran the
 `vagrant up` command. If users of the Vagrant machine keeps all their
-files relevant for the machine in the project directory and its
-subdirectories, all these directories will be shared between the
+files relevant for the machine in the project folder and its
+subfolders, all these folders will be shared between the
 machine and the user's file system. Normally, this feature is
 enough for efficient communication of files between the
 Vagrant machine's file system and the user's file system.
@@ -511,13 +511,13 @@ One can also set up other shared folders, see
 the Vagrant documentation for "Synced Folders": "http://docs.vagrantup.com/v2/synced-folders/basic_usage.html".
 
 Since the Vagrant machine shares folders with the host system, users
-can safely edit files in the shared folers with their favorite editor
+can safely edit files in the shared folders with their favorite editor
 on the host system. The Vagrant machine will have immediate access to
 the files.
 
 Here is a typical example. Assume that `vagrant up` and `vagrant ssh`
-were run in a directory `myubuntu`. On the host machine,
-create a subdirectory `src` of `myubuntu`. Start an editor and type in
+were run in a folder `myubuntu`. On the host machine,
+create a subfolder `src` of `myubuntu`. Start an editor and type in
 the following Python program in a file `test1.py`:
 
 !bc pypro
@@ -593,14 +593,14 @@ Terminal> sudo vagrant reload
 !ec
 *outside the Vagrant machine*.
 Then do `vagrant ssh` and take an `ls /vagrant` to see that the
-files in the project directory are visible.
+files in the project folder are visible.
 
 === Troubleshooting: "couldn't connect to display ..." ===
 
 This error message points to the problem that X11 graphics on the
 Vagrant machine cannot be shown on the host's screen.
 Make sure the line with `config.ssh.forward_x11 = true` is present
-in the file `Vagrantfile` in the project directory (see above).
+in the file `Vagrantfile` in the project folder (see above).
 Also make sure that X11 is running on the host computer (see above
 for how to do this).
 

@@ -1,0 +1,242 @@
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Documentation of Vagrant </title>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">Vagrant<span class="subtitle">4scientists</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://docs.vagrantup.com/v2/">Vagrant docs</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Problem setting " --> <li>  <a href="._part0001_vagrant_box.html#___sec0"> Problem setting </a>
+     <!-- vagrant nav toc: " Contents of the Vagrant machine " --> <li> &nbsp;  <a href="._part0001_vagrant_box.html#vagrant:contents"> Contents of the Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing Vagrant " --> <li> &nbsp;  <a href="._part0002_vagrant_box.html#vagrant:install"> Installing Vagrant </a>
+     <!-- vagrant nav toc: " Creating the Vagrant machine " --> <li>  <a href="._part0003_vagrant_box.html#___sec3"> Creating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Choice of operating system type " --> <li> &nbsp;  <a href="._part0003_vagrant_box.html#___sec4"> Choice of operating system type </a>
+     <!-- vagrant nav toc: " Installing packages " --> <li> &nbsp;  <a href="._part0004_vagrant_box.html#___sec5"> Installing packages </a>
+     <!-- vagrant nav toc: " Setting up a default environment with <code>.bashrc</code> " --> <li> &nbsp;  <a href="._part0005_vagrant_box.html#___sec6"> Setting up a default environment with <code>.bashrc</code> </a>
+     <!-- vagrant nav toc: " Adding X11 support " --> <li class="active"> &nbsp;  <a href="._part0006_vagrant_box.html#___sec7"> Adding X11 support </a>
+     <!-- vagrant nav toc: " Finalizing the machine " --> <li> &nbsp;  <a href="._part0006_vagrant_box.html#___sec8"> Finalizing the machine </a>
+     <!-- vagrant nav toc: " Operating the Vagrant machine " --> <li>  <a href="._part0007_vagrant_box.html#___sec9"> Operating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Shared folders " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#vagrant:shareddir"> Shared folders </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared folder is invisible " --> <li> &nbsp; &nbsp;  <a href="._part0007_vagrant_box.html#___sec11"> Troubleshooting: shared folder is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp; &nbsp;  <a href="._part0007_vagrant_box.html#___sec12"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Stopping the Vagrant machine " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec13"> Stopping the Vagrant machine </a>
+     <!-- vagrant nav toc: " Using VMWare Fusion " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec14"> Using VMWare Fusion </a>
+     <!-- vagrant nav toc: " Documentation of Vagrant " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec15"> Documentation of Vagrant </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Problem setting ', 1, None, '___sec0'),
+              (' Contents of the Vagrant machine ',
+               2,
+               'vagrant:contents',
+               'vagrant:contents'),
+              (' Installing Vagrant ',
+               2,
+               'vagrant:install',
+               'vagrant:install'),
+              (' Creating the Vagrant machine ', 1, None, '___sec3'),
+              (' Choice of operating system type ', 2, None, '___sec4'),
+              (' Installing packages ', 2, None, '___sec5'),
+              (' Setting up a default environment with `.bashrc` ',
+               2,
+               None,
+               '___sec6'),
+              (' Adding X11 support ', 2, None, '___sec7'),
+              (' Finalizing the machine ', 2, None, '___sec8'),
+              (' Operating the Vagrant machine ', 1, None, '___sec9'),
+              (' Shared folders ',
+               2,
+               'vagrant:shareddir',
+               'vagrant:shareddir'),
+              (' Troubleshooting: shared folder is invisible ',
+               3,
+               None,
+               '___sec11'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               3,
+               None,
+               '___sec12'),
+              (' Stopping the Vagrant machine ', 2, None, '___sec13'),
+              (' Using VMWare Fusion ', 2, None, '___sec14'),
+              (' Documentation of Vagrant ', 2, None, '___sec15')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+
+
+<a name="part0006"></a>
+<!-- !split -->
+
+<h3>Adding X11 support  <a name="___sec7"></a></h3>
+
+<p>
+We would like to adjust some preferences of the Vagrant machine.  For
+most scientific applications it is useful to enable X11 forwarding
+such that the user can see graphics launched from applications running
+in the machine. Invoke the file <a href="_static/Vagrantfile"><tt>Vagrantfile</tt></a>
+in an editor and type the line <code>config.ssh.forward_x11 = true</code> in the
+file as shown below:
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Vagrant::Config.run do |config|
+    # Enable X11 forwarding
+    config.ssh.forward_x11 = true
+end
+</pre></div>
+
+<h3>Finalizing the machine  <a name="___sec8"></a></h3>
+
+<p>
+When everything is installed, we need to package the virtual
+environment into a box in order to distribute it to other users. This
+can be done by logging out of the virtual machine and running the vagrant
+package command (in the project folder):
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant package --output ourpackage.box <span style="color: #BB6622; font-weight: bold">\</span>
+          --vagrantfile Vagrantfile
+</pre></div>
+<p>
+A real machine (containing what is listed earlier, plus the
+<a href="http://fenicsproject.org">FEniCS</a> software) is available
+from GitHub through the address <a href="http://goo.gl/h7mv4"><tt>http://goo.gl/h7mv4</tt></a>
+(note the file size: 4.7Gb!).
+
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+  <li class="previous">
+    <a href="._part0005_vagrant_box.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._part0007_vagrant_box.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  Copyright &copy 2013; Anders E. Johansen and Hans Petter Langtangen
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+

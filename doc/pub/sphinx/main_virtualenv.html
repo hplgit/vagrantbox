@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creating Virtual Python Software Environments with Virtualenv</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Creating Virtual Python Software Environments with Virtualenv" href="index.html" />
+    <link rel="prev" title="Creating Virtual Python Software Environments with Virtualenv" href="index.html" /> 
+  
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Creating Virtual Python Software Environments with Virtualenv"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Creating Virtual Python Software Environments with Virtualenv</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="creating-virtual-python-software-environments-with-virtualenv">
+<h1>Creating Virtual Python Software Environments with Virtualenv<a class="headerlink" href="#creating-virtual-python-software-environments-with-virtualenv" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Anders Johansen</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 10, 2013</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
+<p>The most difficult aspect of installing a particular software package is
+usually to get all the dependencies right. That is, the package
+requires the existence of a lot of other packages on the computer
+system. These packages also have their dependencies. In addition,
+some packages only work with certain versions of other packages.
+Getting dependencies and software versions right quickly becomes
+a challenging problem. Even more critical is the fact that
+installing a new set of packages brings in other versions of
+some software that affect the behavior of previously installed
+software on the computer system.</p>
+<p>To be specific, think of package <tt class="docutils literal"><span class="pre">a</span></tt> that depends on packages <tt class="docutils literal"><span class="pre">b</span></tt> and
+<tt class="docutils literal"><span class="pre">c</span></tt> in their respective versions 1.0 and 1.2 or newer.  Then we
+install package <tt class="docutils literal"><span class="pre">d</span></tt>, which also requires package <tt class="docutils literal"><span class="pre">c</span></tt>, but in an older
+version 0.6. Package <tt class="docutils literal"><span class="pre">c</span></tt> in v0.6 overwrites v1.2, causing package <tt class="docutils literal"><span class="pre">a</span></tt>
+to break.</p>
+<p>A good solution to the problem of incompatible dependencies, and in
+fact a good solution to handle dependencies in general, is to create
+an isolated virtual environment where we can install the packages in
+the versions we want. We can have several such isolated environments
+on our system and none of them interfere with the global software
+system. Also, we can easily delete an environment when it is no longer
+needed.</p>
+</div>
+<div class="section" id="creating-an-isolated-environment-with-virtualenv">
+<h1>Creating an isolated environment with Virtualenv<a class="headerlink" href="#creating-an-isolated-environment-with-virtualenv" title="Permalink to this headline">¶</a></h1>
+<p>Virtualenv is a tool that creates isolated Python environments. More
+precisely, it allows creating virtual environments that have different
+versions of Python and Python libraries. This makes it possible to
+test applications using different set of libraries, or checking if an
+upgrade of a library will cause errors, without affecting the computer
+system&#8217;s global Python installation with all its site-packages.</p>
+<p>Note that Virtualenv can only contain Python packages. If an
+environment needs other types of software, this software must be
+installed separately and globally on the computer system.</p>
+<p>The recommended way to install Virtualenv is from PyPi
+(the Python Package Index)
+using <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; sudo pip install virtualenv</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">pip</span></tt> tool itself can be installed from <a class="reference external" href="https://pypi.python.org/pypi/pip">pure Python source</a> via the standard <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> command.
+On Debian systems (including Ubuntu) one can install <tt class="docutils literal"><span class="pre">pip</span></tt> by <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">virtualenv</span></tt> script creates a new virtual environment in a destination directory here named <tt class="docutils literal"><span class="pre">venv</span></tt>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; virtualenv venv</span>
+</pre></div>
+</div>
+<p>By default, virtualenv will symlink to the systemâs site-packages if
+the user installs a package in the virtual environment that is already
+installed globally on the computer system. To create a totally
+isolated environment one can use the <tt class="docutils literal"><span class="pre">-âno-site-packages</span></tt> switch when
+creating the environment:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; virtualenv --no-site-packages venv</span>
+</pre></div>
+</div>
+<p>One can apply the <tt class="docutils literal"><span class="pre">-p</span></tt> flag to specify which Python executable to use
+as the <tt class="docutils literal"><span class="pre">python</span></tt> program in the environment:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; virtualenv -p /usr/bin/python2.6</span>
+</pre></div>
+</div>
+<p>The next step is to activate the virtual environment. To do this, we
+source the activation script from the <tt class="docutils literal"><span class="pre">bin</span></tt> subdirectory of the newly
+created <tt class="docutils literal"><span class="pre">venv</span></tt> directory:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cd venv/</span>
+<span class="go">Terminal&gt; source bin/activate</span>
+</pre></div>
+</div>
+<p>Successful execution of the <tt class="docutils literal"><span class="pre">activate</span></tt> script changes the prompt
+in the terminal window so
+that the prompt is prefixed with the name of the virtual environment
+one is using:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; source bin/activate</span>
+<span class="go">(venv)Terminal&gt;</span>
+</pre></div>
+</div>
+<p>Packages we install will now be installed in the
+<tt class="docutils literal"><span class="pre">lib/pythonX.Y/site-packages</span></tt> directory within the environment, where <tt class="docutils literal"><span class="pre">X.Y</span></tt>
+is the Python version.  First
+we install <tt class="docutils literal"><span class="pre">yolk</span></tt>, which is a simple tool for listing all installed
+Python packages:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; pip install yolk</span>
+<span class="go">(venv)Terminal&gt; yolk -l</span>
+</pre></div>
+</div>
+<p>The latter command lists all Python packages installed in the current
+virtualenv. At this point, there is nothing more than the essential
+tools like Python and <tt class="docutils literal"><span class="pre">pip</span></tt>, and of course yolk itself.</p>
+<p>Let us also install the Python web framework Django:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; pip install Django</span>
+</pre></div>
+</div>
+<p>Using yolk we see that the Django version we installed is 1.5.1:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; yolk -l | grep Django</span>
+<span class="go">Django          - 1.5.1        - active</span>
+</pre></div>
+</div>
+<p>Within a Virtualenv environment, the local <tt class="docutils literal"><span class="pre">python</span></tt>
+interpreter and local packages are always used:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; which python</span>
+<span class="go">/some/path/to/venv/bin/python</span>
+<span class="go">(venv)Terminal&gt; python -c &#39;import django as m; print m&#39;</span>
+<span class="go">&lt;module &#39;django&#39; from &#39;/some/path/to/venv/local/lib/...&#39;&gt;</span>
+</pre></div>
+</div>
+<p>What can be installed by <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt>? The above examples have installed
+Python packages whose names and details are present in the
+<a class="reference external" href="http://pypi.python.org/pypi">Python Package Index (PyPi)</a>.
+One can also install from tarballs as long as the root directory of the
+tarball contains a <tt class="docutils literal"><span class="pre">setup.py</span></tt> file to do the installation:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; pip install ../some/dir/package.tar.gz</span>
+<span class="go">(venv)Terminal&gt; pip install http://some.net/dir/package.tar.gz</span>
+</pre></div>
+</div>
+<p>Installation directly from the source in a version control system
+is also possible (if a <tt class="docutils literal"><span class="pre">setup.py</span></tt> resides in the root directory):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; pip install -e \</span>
+<span class="go">                hg+https://code.google.com/p/scitools#egg=scitools</span>
+<span class="go">(venv)Terminal&gt; pip install -e \</span>
+<span class="go">                git+https://github.com/hplgit/odespy.git#egg=odespy</span>
+</pre></div>
+</div>
+<p>The syntax is <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">vcs+URL#egg=packaname</span></tt>, where <tt class="docutils literal"><span class="pre">vcs</span></tt> is
+the name of the version control system (<tt class="docutils literal"><span class="pre">hg</span></tt>, <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">svn</span></tt>, <tt class="docutils literal"><span class="pre">cvs</span></tt>,
+<tt class="docutils literal"><span class="pre">bzr</span></tt>).</p>
+</div>
+<div class="section" id="creating-a-slightly-different-environment">
+<h1>Creating a slightly different environment<a class="headerlink" href="#creating-a-slightly-different-environment" title="Permalink to this headline">¶</a></h1>
+<p>Say that we have written an app for Django v1.5.1 and want to check
+that it is compatible with an earlier version of Django, e.g., v1.4.1.
+With Virtualenv this is very easy. All we need to do is
+deactivating the current virtual environment and create a new one
+where we install Django v1.4.1. Deactivation of an
+environment is done by the command deactivate:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv)Terminal&gt; deactivate</span>
+<span class="go">Terminal&gt;</span>
+</pre></div>
+</div>
+<p>Observe that deactivation removes the prompt prefix <tt class="docutils literal"><span class="pre">(venv)</span></tt>. To re-activate,
+just run <tt class="docutils literal"><span class="pre">source</span> <span class="pre">bin/activate</span></tt>.</p>
+<p>With the same procedure as before we create a new virtual environment,
+now called <tt class="docutils literal"><span class="pre">venv2</span></tt>, and source its <tt class="docutils literal"><span class="pre">activate</span></tt> file. This time we
+install a specific Django version:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; virtualenv venv2</span>
+<span class="go">Terminal&gt; cd venv2</span>
+<span class="go">Terminal&gt; source bin/activate</span>
+<span class="go">(venv2)Terminal&gt; pip install yolk Django==1.4.1</span>
+</pre></div>
+</div>
+<p>As always, <tt class="docutils literal"><span class="pre">yolk</span></tt> is our tool to assure that the correct version
+a software is installed:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv2)Terminal&gt; yolk -l | grep Django</span>
+<span class="go">Django          - 1.4.1        - active</span>
+</pre></div>
+</div>
+<p>Now we have two Python environments, <tt class="docutils literal"><span class="pre">venv</span></tt> with Django 1.5.1 and
+<tt class="docutils literal"><span class="pre">venv2</span></tt> with Django 1.4.1. This makes it easy to test how the same app
+behaves on different versions of Django without making any changes to
+the system&#8217;s configuration. Just copy the files for the app to
+a directory in the virtual environment and run.</p>
+</div>
+<div class="section" id="copying-an-environment">
+<h1>Copying an environment<a class="headerlink" href="#copying-an-environment" title="Permalink to this headline">¶</a></h1>
+<p>There is not a good and easy way to fully share a virtual environment
+across machines. The most convenient solution is first to create the
+environment and then re-install this environment in a new
+environment. A <em>requirements file</em> can be used for this cause. First
+we use <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">freeze</span></tt> to save a list of requirements to file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv2)Terminal&gt; pip freeze &gt; requirements.txt</span>
+</pre></div>
+</div>
+<p>If all the above steps in creating the <tt class="docutils literal"><span class="pre">venv2</span></tt> environment
+have been followed, the requirements file should have the following content:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Django</span><span class="o">==</span><span class="mf">1.4</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">argparse</span><span class="o">==</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">wsgiref</span><span class="o">==</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">yolk</span><span class="o">==</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>In case one has also installed a Python package from the repository of
+a version control system, the particular commit version (and of course
+the URL) is recorded as data for that package.</p>
+<p>To replicate exactly the same environment inside another Virtualenv
+environment, we create a new environment, say it is called <tt class="docutils literal"><span class="pre">venv3</span></tt>,
+copy the <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file to the <tt class="docutils literal"><span class="pre">venv3</span></tt> environment, and use
+<tt class="docutils literal"><span class="pre">pip</span></tt> to install all the packages and their versions specified in
+<tt class="docutils literal"><span class="pre">requirements.txt</span></tt> at once:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">(venv3)Terminal&gt; pip install -r requirements.txt</span>
+</pre></div>
+</div>
+<p>A <tt class="docutils literal"><span class="pre">yolk</span> <span class="pre">-l</span></tt> command can be used to check the success of the multiple installations.</p>
+<p>A word of caution is necessary here. Distributing a <tt class="docutils literal"><span class="pre">requirements.txt</span></tt>
+file produced by <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">freeze</span></tt> will not always re-create an environment
+by a simple <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></tt>.
+For example, the output from <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">freeze</span></tt> may not account for the
+fact that some packages must be installed before others.
+When creating a Python environment for doing scientific computing,
+<tt class="docutils literal"><span class="pre">numpy</span></tt> is a package that must be installed before most other
+packages. Some packages can be challenging to compile via
+<tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt> (ScientificPython is an example, although manual
+execution of <tt class="docutils literal"><span class="pre">setup.py</span></tt> runs fine).
+Also, many Python scientific computing packages depend on
+much non-Python software that cannot be installed by <tt class="docutils literal"><span class="pre">pip</span></tt>.
+For such complex environments it is recommended to create a script
+that performs the manual installation tasks, but it can utilize
+<tt class="docutils literal"><span class="pre">pip</span></tt> to as large extent as possible.</p>
+</div>
+<div class="section" id="installing-a-scientific-computing-environment">
+<h1>Installing a scientific computing environment<a class="headerlink" href="#installing-a-scientific-computing-environment" title="Permalink to this headline">¶</a></h1>
+<p>Basic Python packages for scientific computing include <tt class="docutils literal"><span class="pre">numpy</span></tt>,
+<tt class="docutils literal"><span class="pre">sympy</span></tt>, <tt class="docutils literal"><span class="pre">matplotlib</span></tt>, <tt class="docutils literal"><span class="pre">scipy</span></tt>, <tt class="docutils literal"><span class="pre">ipython</span></tt>, <tt class="docutils literal"><span class="pre">nose</span></tt>, and <tt class="docutils literal"><span class="pre">odespy</span></tt>.
+Some of these packages depend on a series of non-Python software
+packages that must be installed on the system. These and other relevant
+Debian packages are</p>
+<div class="highlight-text"><div class="highlight"><pre>gcc g++ gfortran
+libatlas-base-dev libsuitesparse-dev
+tcl8.5-dev tk8.5-dev
+subversion mercurial cvs git gitk
+libfreetype6-dev libpng-dev
+mayavi2 tcl-vtk
+libsqlite3-dev
+</pre></div>
+</div>
+<p>With this software in place, we can go on with <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt>
+of Python packages:</p>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; packages=&quot;numpy sympy matplotlib scipy ipython nose&quot;
+Terminal&gt; for p in packages; do pip install $p; done
+Terminal&gt; pip install -e \
+git+https://github.com/hplgit/odespy.git#egg=odespy
+</pre></div>
+</div>
+<p>Note that <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt> is preferred over <tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span></tt> of Debian
+packages because <tt class="docutils literal"><span class="pre">pip</span></tt> will usually install a newer version of the
+package. It also opens up the possibility for installing the
+development version directly from the package&#8217;s
+repository on (e.g.) GitHub.</p>
+<p>A <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></tt> results as usual in a list of
+the packages in the environment, but this file is not so useful.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This requirement file cannot be used to recreate the environment.
+The reason is that there is no way to impose a certain sequence
+of the packages for installation. This is demanded, because <tt class="docutils literal"><span class="pre">numpy</span></tt>
+must be installed before <tt class="docutils literal"><span class="pre">scipy</span></tt>, <tt class="docutils literal"><span class="pre">matplotlib</span></tt>, and most other
+packages for numerical computing. One must therefore provide
+a Bash script or Python program for installing the environment.
+Virtualenv is still useful for having multiple environments with
+different versions of, e.g., <tt class="docutils literal"><span class="pre">numpy</span></tt> and <tt class="docutils literal"><span class="pre">matplotlib</span></tt>, but <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt>
+via a <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file is not possible.</p>
+</div>
+<p>A Bash script for installing the environment above may look like</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="nv">apt</span><span class="o">=</span><span class="s2">&quot;yes | sudo apt-get install&quot;</span>
+<span class="nv">$apt</span> gcc g++ gfortran
+<span class="nv">$apt</span> libatlas-base-dev libsuitesparse-dev
+<span class="nv">$apt</span> tcl8.5-dev tk8.5-dev
+<span class="nv">$apt</span> subversion mercurial cvs git gitk
+<span class="nv">$apt</span> libfreetype6-dev libpng-dev
+<span class="nv">$apt</span> mayavi2 tcl-vtk
+<span class="nv">$apt</span> libsqlite3-dev
+
+<span class="nv">packages</span><span class="o">=</span><span class="s2">&quot;numpy sympy matplotlib scipy ipython nose&quot;</span>
+<span class="k">for </span>p in packages; <span class="k">do </span>pip install <span class="nv">$p</span>; <span class="k">done</span>
+pip install -e <span class="se">\</span>
+git+https://github.com/hplgit/odespy.git#egg<span class="o">=</span>odespy
+</pre></div>
+</div>
+<p>Other packages can be added to the script as well:</p>
+<div class="highlight-bash"><div class="highlight"><pre>pip install -e hg+https://code.google.com/p/scitools#egg<span class="o">=</span>scitools
+<span class="c"># Do manual install of Scientific Python</span>
+<span class="k">if</span> <span class="o">[</span> ! -d srclib <span class="o">]</span>; <span class="k">then </span>mkdir scrlib; <span class="k">fi</span>
+<span class="nb">cd </span>srclib
+hg clone https://bitbucket.org/khinsen/scientificpython
+<span class="nb">cd </span>scientificpython
+sudo python setup.py install
+<span class="nb">cd</span> ../..
+</pre></div>
+</div>
+<p>(<strong>hpl 1</strong>: Should refer to the Vagrant document for how to make
+a list of packages and then autogenerate scripts.)</p>
+<p><em>References.</em> * <a class="reference external" href="http://www.virtualenv.org/en/latest/">Virtualenv documentation</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://guide.python-distribute.org/pip.html">Pip documentation</a></li>
+</ul>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/cbc_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creating Virtual Python Software Environments with Virtualenv</a></li>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#creating-an-isolated-environment-with-virtualenv">Creating an isolated environment with Virtualenv</a></li>
+<li><a class="reference internal" href="#creating-a-slightly-different-environment">Creating a slightly different environment</a></li>
+<li><a class="reference internal" href="#copying-an-environment">Copying an environment</a></li>
+<li><a class="reference internal" href="#installing-a-scientific-computing-environment">Installing a scientific computing environment</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Creating Virtual Python Software Environments with Virtualenv</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/main_virtualenv.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Creating Virtual Python Software Environments with Virtualenv"
+             >previous</a> |</li>
+        <li><a href="index.html">Creating Virtual Python Software Environments with Virtualenv</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="wrapper">
+  <div class="footer">
+  <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
+  </div>
+</div>
+
+  </body>
+</html>

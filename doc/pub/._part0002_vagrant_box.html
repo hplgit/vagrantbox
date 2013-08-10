@@ -1,0 +1,284 @@
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Documentation of Vagrant </title>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">Vagrant<span class="subtitle">4scientists</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://docs.vagrantup.com/v2/">Vagrant docs</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Problem setting " --> <li>  <a href="._part0001_vagrant_box.html#___sec0"> Problem setting </a>
+     <!-- vagrant nav toc: " Contents of the Vagrant machine " --> <li> &nbsp;  <a href="._part0001_vagrant_box.html#vagrant:contents"> Contents of the Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing Vagrant " --> <li class="active"> &nbsp;  <a href="._part0002_vagrant_box.html#vagrant:install"> Installing Vagrant </a>
+     <!-- vagrant nav toc: " Creating the Vagrant machine " --> <li>  <a href="._part0003_vagrant_box.html#___sec3"> Creating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Choice of operating system type " --> <li> &nbsp;  <a href="._part0003_vagrant_box.html#___sec4"> Choice of operating system type </a>
+     <!-- vagrant nav toc: " Installing packages " --> <li> &nbsp;  <a href="._part0004_vagrant_box.html#___sec5"> Installing packages </a>
+     <!-- vagrant nav toc: " Setting up a default environment with <code>.bashrc</code> " --> <li> &nbsp;  <a href="._part0005_vagrant_box.html#___sec6"> Setting up a default environment with <code>.bashrc</code> </a>
+     <!-- vagrant nav toc: " Adding X11 support " --> <li> &nbsp;  <a href="._part0006_vagrant_box.html#___sec7"> Adding X11 support </a>
+     <!-- vagrant nav toc: " Finalizing the machine " --> <li> &nbsp;  <a href="._part0006_vagrant_box.html#___sec8"> Finalizing the machine </a>
+     <!-- vagrant nav toc: " Operating the Vagrant machine " --> <li>  <a href="._part0007_vagrant_box.html#___sec9"> Operating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Shared folders " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#vagrant:shareddir"> Shared folders </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared folder is invisible " --> <li> &nbsp; &nbsp;  <a href="._part0007_vagrant_box.html#___sec11"> Troubleshooting: shared folder is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp; &nbsp;  <a href="._part0007_vagrant_box.html#___sec12"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Stopping the Vagrant machine " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec13"> Stopping the Vagrant machine </a>
+     <!-- vagrant nav toc: " Using VMWare Fusion " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec14"> Using VMWare Fusion </a>
+     <!-- vagrant nav toc: " Documentation of Vagrant " --> <li> &nbsp;  <a href="._part0007_vagrant_box.html#___sec15"> Documentation of Vagrant </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Problem setting ', 1, None, '___sec0'),
+              (' Contents of the Vagrant machine ',
+               2,
+               'vagrant:contents',
+               'vagrant:contents'),
+              (' Installing Vagrant ',
+               2,
+               'vagrant:install',
+               'vagrant:install'),
+              (' Creating the Vagrant machine ', 1, None, '___sec3'),
+              (' Choice of operating system type ', 2, None, '___sec4'),
+              (' Installing packages ', 2, None, '___sec5'),
+              (' Setting up a default environment with `.bashrc` ',
+               2,
+               None,
+               '___sec6'),
+              (' Adding X11 support ', 2, None, '___sec7'),
+              (' Finalizing the machine ', 2, None, '___sec8'),
+              (' Operating the Vagrant machine ', 1, None, '___sec9'),
+              (' Shared folders ',
+               2,
+               'vagrant:shareddir',
+               'vagrant:shareddir'),
+              (' Troubleshooting: shared folder is invisible ',
+               3,
+               None,
+               '___sec11'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               3,
+               None,
+               '___sec12'),
+              (' Stopping the Vagrant machine ', 2, None, '___sec13'),
+              (' Using VMWare Fusion ', 2, None, '___sec14'),
+              (' Documentation of Vagrant ', 2, None, '___sec15')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+
+
+<a name="part0002"></a>
+<!-- !split -->
+
+<h3>Installing Vagrant <a name="vagrant:install"></a></h3>
+
+<p>
+Before going into details on how to utilize Vagrant, you need to
+have it on your host system.
+
+<p>
+Download and install <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. Choose the version
+according to the operating system on the host.
+
+<p>
+For example, if you want to build or run Vagrant machines under Mac OS X, choose
+<em>VirtualBox x.y.z for OS X hosts</em>, where <code>x.y.z</code> is the version number
+of VirtualBox. Double click the downloaded <code>.dmg</code> file to install
+Vagrant. Those who work on a Windows machines will select <em>VirtualBox
+x.y.z for Windows hosts</em>, which downloads an <code>.exe</code> file that can just
+be double clicked.
+
+<p>
+Installing VirtualBox on Ubuntu and other Linux systems
+can be challenging.
+Here is a recipe. Start with
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo apt-cache search virtualbox
+</pre></div>
+<p>
+to find a package <code>virtualbox-X</code>, where <code>X</code> denotes a particular
+version number (e.g., <code>4.2</code>). Then copy and paste the following
+commands into the terminal window:
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; wget -q <span style="color: #BB6622; font-weight: bold">\</span>
+ http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc <span style="color: #BB6622; font-weight: bold">\</span>
+ -O- | sudo apt-key add -
+Terminal&gt; sudo sh -c <span style="color: #BA2121">&#39;echo \</span>
+<span style="color: #BA2121"> &quot;deb http://download.virtualbox.org/virtualbox/debian precise contrib&quot; \</span>
+<span style="color: #BA2121"> &gt;&gt; /etc/apt/sources.list&#39;</span>
+Terminal&gt; sudo apt-get update
+Terminal&gt; sudo apt-get install virtualbox-X
+</pre></div>
+<p>
+(Recall to replace <code>X</code> by the appropriate version number.)
+You may need to run <code>sudo apt-get -f install</code> and upgrade packages.
+It is easier to work with VirtualBox
+on Mac or Windows if you run into trouble with Ubuntu.
+
+<p>
+We recommend to install VirtualBox as shown above on Ubuntu rather than
+downloading a particular <code>.deb</code> file (Debian package) from
+the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox site</a>, because
+the <code>apt-get install</code> makes it easier to get all the packages that
+VirtualBox depends.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">[<b>hpl 1</b>: <em>I didn't manage to install VB on Ubuntu. Gave up after 6 h. Tried all sorts of things, .deb first, then apt-get, the commands above. Always some mismatch of VB and the Ubuntu version.</em>]</font>
+<!-- end inline comment -->
+
+
+<p>
+Download and install <a href="http://downloads.vagrantup.com/">Vagrant</a>.
+Choose the latest version and the installation file corresponding to
+the host's operating system (where you installed VirtualBox).  On a Mac, you
+select the <code>Vagrant-x.y.z.dmg</code> file (<code>x.y.z</code> denotes the version of
+the software), on Windows the <code>Vagrant_x.y.z.msi</code> file is the
+relevant choice. On Ubuntu, select <code>vagrant_x.y.z_*.deb</code>. See above
+for how to install <code>.dmg</code>, <code>.exe</code>, and <code>.deb</code> files.
+
+<p>
+On Windows and Mac OS X, the <code>vagrant</code> command is automatically be
+available after installation (because the folder/directory where the
+<code>vagrant</code> executable resides is placed in your <code>PATH</code> environment
+variable). This is true for many Linux systems too, otherwise you must
+add the relevant folder where the <code>vagrant</code> program was installed
+(say <code>/opt/vagrant/bin</code>) to your <code>PATH</code> variable.
+
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+  <li class="previous">
+    <a href="._part0001_vagrant_box.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._part0003_vagrant_box.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  Copyright &copy 2013; Anders E. Johansen and Hans Petter Langtangen
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
