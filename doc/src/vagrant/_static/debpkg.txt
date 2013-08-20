@@ -1,3 +1,6 @@
+# The machine needs to install vagrant
+vagrant
+
 # Editors
 emacs python-mode gedit vim ispell
 
@@ -35,7 +38,6 @@ pydb python-profiler
 python-dev
 python-opengl python-pygame
 python-pdftools
-python-docutils python-sphinx python-pygments
 python-qt4 python-gtk2-dev libqt4-dev python-qt4-dev python-pmw
 python-traits python-traitsbackendqt
 python-traitsbackendwx python-traitsgui
@@ -96,15 +98,6 @@ meld xxdiff diffpdf kdiff3
 
 # Support for Norwegian
 language-pack-nb-base
-
-zenity
-# PyZenity must be installed from source
-$ if [ ! -d srclib ]; then mkdir srclib; fi
-$ cd srclib
-$ svn checkout http://pyzenity.googlecode.com/svn/trunk/ pyzenity
-$ cd pyzenity
-$ sudo python setup.py install
-$ cd ../..
 
 # SciTools must be installed from source
 $ cd srclib

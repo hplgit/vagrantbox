@@ -18,7 +18,7 @@ system doconce split_html $name
 
 # Use title and author
 name2=main_${name}
-system doconce format pdflatex $name2 DEVICE=paper
+system doconce format pdflatex $name2 --device=paper
 system doconce ptex2tex $name2 envir=minted
 pdflatex -shell-escape $name2
 pdflatex -shell-escape $name2
@@ -28,8 +28,9 @@ system doconce sphinx_dir $name2 theme=cbc
 system python automake_sphinx.py
 
 dest=../../pub
-rm -rf $dest/sphinx
-cp -r css _static $name.html ._part*$name.html $name2.pdf sphinx-rootdir/_build/html $dest
+rm -rf $dest/*-sphinx
+cp -r css _static $name.html ._part*$name.html $name2.pdf $dest
+cp -r sphinx-rootdir/_build/html $dest/${name}-sphinx
 cd $dest
 mv -f html sphinx
 

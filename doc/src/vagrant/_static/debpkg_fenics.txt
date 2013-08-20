@@ -1,3 +1,6 @@
+# Run debpkg.txt or debpkg_minimal.txt first to bring
+# in basic packages
+
 # Install FEniCS manually because of the dist-upgrade
 # FEniCS
 $ sudo add-apt-repository ppa:fenics-packages/fenics

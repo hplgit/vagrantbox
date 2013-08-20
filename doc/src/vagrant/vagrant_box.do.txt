@@ -9,19 +9,31 @@ that few in the target audience have the competence, interest, and
 patience to install all the packages on their computer with its
 particular version of the operating system.
 
-There are many working solutions to this problem, ranging from long,
-technical installation descriptions to ready-made, easy-to-install,
-tailored packages for particular platforms, e.g., Debian packages for
-Ubuntu, `.dmg` bundles for Mac, or `.exe` bundles on Windows.  Virtual
-machines (VirtualBox, VMWare Fusion) can be used if a tailored package
-is available for one operating system.  Nevertheless, the clearly best
-solution so far, in the authors' opinion, is a "Vagrant machine":
-"http://www.vagrantup.com/": you give people in your target audience a
-file, which provides a complete new "computer" with all necessary
-software involved.  This new computer lives side by side with a normal
-computer.
+There are many working solutions to this problem:
 
-The present note describes how to create and operate a Vagrant machine.
+ * Long technical installation descriptions that essentially
+   requires considerable experience with compiling and linking
+   software packages.
+ * Ready-made, easy-to-install files for particular platforms,
+   e.g., Debian packages (`.deb` files) for Linux systems like Ubuntu,
+   `.dmg` bundles for Mac, or `.exe` files on Windows.
+   It can still be quite some work for a user to install the
+   right combination of many packages.
+ * Virtual machines, such as VirtualBox and VMWare Fusion,
+   for running a particual operating system and installing
+   software packages on that system. This solution makes it easy to
+   use Debian packages in an Ubuntu system on a Mac or
+   Windows machine.
+
+A "Vagrant machine": "http://www.vagrantup.com/" is essentially a
+wrapper around VirtualBox which makes it very easy to build, distribute, and
+use a virtual machine.
+The present document describes how to create and operate a Vagrant machine.
+The target audience of the document is scientists who wants to
+spend a minimum of efforts on offering
+or using a complete computing environment with much
+sophisticated, hard-to-install mathematical software.
+
 Some nomenclature is needed: by *host* we mean the operating system
 used to build or run a Vagrant machine.
 
@@ -29,38 +41,265 @@ used to build or run a Vagrant machine.
 ======= Problem setting =======
 
 We shall work with a specific example: creating a computing
-environment for a short course on scientific computing. The challenge
-is to minimize the amount of time the audience spends on installation
-and minimize the teacher's hassle with all types of operating systems
-and their versions in the audience. To reach this goal, we shall
-create a Vagrant machine, which ensures that everybody is working in
-exactly the same computing environment.
+environment for a participants in a course on scientific computing.
+The challenge is to minimize the amount of time the audience spends on
+installation issues as well as minimize the teacher's hassle with all
+types of operating systems that might be present in the audience. An
+attractive solution to this minimization problem is to create a
+Vagrant machine, which is simply a file with a virtual redy-made
+computer that anyone in the audience can easily download and use on
+any Windows or Mac machine.  Another advantage is that all users of a
+Vagrant machine have exactly the same computing environment (unless
+they modify the machine).  The teacher can then easily debug a user
+problem inside the teacher's own Vagrant machine. Different types of
+machines can be made for different types of courses or purposes.
+For example, a research project can set up a software environment
+for its project members, as a Vagrant machine, to ensure that
+the environment is conserved for the future, which is a key principle
+for reproducible science.
 
 ===== Contents of the Vagrant machine =====
 label{vagrant:contents}
 
 The Vagrant machine needs to have an operating system. Here we choose
-Ubuntu of one main reason: software on Ubuntu can be installed as
-Debian packages, and the Debian software repository is now the richest
-repository for pre-built mathematical software.
+Ubuntu of two main reasons:
 
-#The user of the machine
-#will mostly see her own operating system and will to a limited extent
-#have intimate interaction with the Ubuntu system in the box.
+ o software on Ubuntu can be trivially installed as
+   Debian packages
+ o the Debian software repository is at the time of this writing the richest
+   repository for pre-built mathematical software.
+
+We remark that the user of the machine will mainly work with files
+and directories in the host system and only use the Ubuntu system
+to run computations.
+
+To be specific, the sample computing environment to be illustrated here
+consists of a Python-based ecosystem for scientific computing.
+Examples on basic software includes
+
+ * Text editors: `emacs`, `vim`, `gedit`
+ * Compilers: `gcc`, `g++`, `gfortran`
+ * Numerical libraries: ATLAS
+ * Python packages: `numpy`, `scipy`, `sympy`, `matplotlib`,
+   `ScientificPython`
+
+Most of these packages are in Debian and trivially installed by a
+`sudo apt-get install packagename` command, but the Python packages
+are more conveniently installed in their latest version by a `pip
+install packagename` command. A few Python packages must be installed
+directly from the source code, via the `sudo python setup.py install`
+command, if they do not exist in Debian, or if they are not supported
+by `pip install`, or if one needs to download the latest development
+version. The example will in detail illustrate these cases.
+
+More sophisticated packages like "PETSc": "http://www.mcs.anl.gov/petsc/"
+and "FEniCS": "http://fenicsproject.org", which are challenging to
+build from scratch, can trivially be added as these packages are
+available in Debian.
+
+In the Vagrant machine, we create two folders:
+
+ * `~/bin` for executable programs and scripts
+ * `~/srclib` for Python packages installed from source code
+
+We also include two useful files:
+
+ * A small, but illustrative "`~/.bashrc`": "_static/.bashrc" file for
+   setting up the Linux system.
+
+ * "`~/.rsyncexclude`": "_static/.rsyncexclude" for excluding certain
+   files when running `rsync` for copying files between machines, or
+   between machines and external disks or memory sticks.
+
+
+!split
+===== Installing Vagrant =====
+label{vagrant:install}
+
+Before going into details on how to utilize Vagrant, you need to
+have it on your host system.
+
+
+Download and install "VirtualBox":
+"https://www.virtualbox.org/wiki/Downloads". Choose the version
+according to the operating system on the host.
+
+For example, if you want to build or run Vagrant machines under Mac OS X, choose
+*VirtualBox x.y.z for OS X hosts*, where `x.y.z` is the version number
+of VirtualBox. Double click the downloaded `.dmg` file to install
+Vagrant. Those who work on a Windows machines will select *VirtualBox
+x.y.z for Windows hosts*, which downloads an `.exe` file which can just
+be double clicked to perform the installation.
+
+Installing VirtualBox on Ubuntu and other Linux systems
+can be challenging.
+# #ifdef VBINSTALL-apt-get
+Here is a recipe. Start with
+
+!bc sys
+Terminal> sudo apt-cache search virtualbox
+!ec
+to find a package `virtualbox-X`, where `X` denotes a particular
+version number (e.g., `4.2`). Then copy and paste the following
+commands into the terminal window:
+!bc sys
+Terminal> wget -q \
+ http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \
+ -O- | sudo apt-key add -
+Terminal> sudo sh -c 'echo \
+ "deb http://download.virtualbox.org/virtualbox/debian precise contrib" \
+ >> /etc/apt/sources.list'
+Terminal> sudo apt-get update
+Terminal> sudo apt-get install virtualbox-X
+!ec
+(Recall to replace `X` by the appropriate version number.)
+You may need to run `sudo apt-get -f install` and upgrade packages.
+It is easier to work with VirtualBox
+on Mac or Windows if you run into trouble with Ubuntu.
+
+We recommend to install VirtualBox as shown above on Ubuntu rather than
+downloading a particular `.deb` file (Debian package) from
+the "VirtualBox site":
+"https://www.virtualbox.org/wiki/Downloads", because
+the `apt-get install` approach above makes it easier to explicitly get all the
+packages that VirtualBox depends on.
+# #else
+click
+*Virtual box x.y.z for Linux hosts* and then the right
+Ubuntu version, say *Ubuntu 13.04*.
+(You can see the particular
+Ubuntu version in *System Settings*, *Details*, *Overview*.)
+A file
+`virtualbox-x.y.z.*.deb` (Debian package) is downloaded. Run `sudo
+dpkg -i virtualbox-x.y.z.*.deb` to install it.
+# #endif
+
+[hpl: I didn't manage to install VB on Ubuntu. Tried all sorts of things, .deb first, then apt-get, the commands above. Always some mismatch of VB and the Ubuntu version.]
+
+Download and install "Vagrant": "http://downloads.vagrantup.com/".
+Choose the latest version and the installation file corresponding to
+the host's operating system (where you installed VirtualBox).  On a Mac, you
+select the `Vagrant-x.y.z.dmg` file (`x.y.z` denotes the version of
+the software), on Windows the `Vagrant_x.y.z.msi` file is the
+relevant choice.
+On Ubuntu, select `vagrant_x.y.z_*.deb` and install it
+by `sudo dpkg -i vagrant_x.y.z_*.deb`.
+
+On Windows and Mac OS X, the `vagrant` command is automatically
+available after installation (because the directory where the
+`vagrant` executable resides is placed in your `PATH` environment
+variable).
+This is true for many Linux systems too, otherwise you must
+add the relevant folder where the `vagrant` program was installed
+(say `/opt/vagrant/bin`) to your `PATH` variable.
+
+!split
+======= Creating the Vagrant machine =======
+
+In this section we explain how to select an operating system for
+the Vagrant machine, how to install pre-compiled binary packages,
+how to install (Python) packages from source code, and how to configure
+the machine.
+
+===== Choice of operating system type =====
+
+The first step of building a Vagrant machine is to choose a plain
+version of an operating system to base the machine on. This is called
+a *base box*. A lot of pre-made base boxes for various versions of
+operating systems are available at URL: "http://www.vagrantbox.es".
+(If, for some reason, you want to build a base box with another
+operating system, there are "instructions":
+"http://docs-v1.vagrantup.com/v1/docs/base_boxes.html" for that.)  Let
+us decide on adopting *Ubuntu precise 64*, which we find down on the
+list.  This is a version of Ubuntu 12.04
+(`precise` refers to the official Ubuntu name Precise Pangolin for
+version 12.04).  Click on *Copy* to copy the URL and paste the URL in
+a new browser tab. This action should download a file `precise64.box`.
+Say you store this file in a folder `~/vagrant`.  We can now log in
+to the Ubuntu precise 64 virtual machine: open some terminal window,
+make some folder (say) `vagrant_project`, move to this folder, and
+type
+
+!bc sys
+Terminal> vagrant box add precise64 ~/vagrant/precise64.box
+Terminal> vagrant init precise64
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+The first line defines a Vagrant machine with the name `precise64`.
+The second creates an important file, `Vagrantfile`, with settings for
+the Vagrant machine. The third command starts (boots) the Vagrant
+machine, and the fourth makes us log in to the Vagrant machine
+(just as the normal `ssh` command does). The
+`vagrant_project` folder where these commands are run is
+known as the *project folder* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
+
+[hpl: There might be problems with ssh on Windows, see URL: "http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html". This must be tested on Windows 7.]
+
+!split
+===== Installing packages =====
+
+There is not much installed yet on the `precise64` machine, but
+this is an Ubuntu system where we
+can very easily install what we want via `sudo apt-get install`
+or `pip install` commands, or by downloading source code and
+performing manual installation.
+Section ref{vagrant:contents} describes a type of file for listing
+packages and Unix commands, with an associated tool `deb2sh.py`
+for automatic generation of installation scripts.
+Using these utilities,
+it is close to trivial to create a rich computing environment.
+We simply run `deb2sh.py` in the folder where our package
+specification `debpkg.txt`
+resides. The resulting `install.sh` must be located in the
+project folder `vagrant_project`, which was
+created above. If you need to build a `debpkg.txt` file and
+the files described in the next section, you must log out of the
+Vagrant machine by Ctrl-D to come back to the host system.
+
+There are two ways to install the software in the machine: either we
+do this beforehand, or we put a call to the installation script in
+the `Vagrantfile`. The difference between the methods is that
+the former strategy may result in a big machine that takes a lot of time for
+users to download, while the latter approach provides a smaller machine,
+but the `vagrant up` command that users must run, takes much time since
+it will install all the packages.
+
+To install the packages in the machine before users downloads the machine,
+run this command inside the machine:
+
+!bc sys
+Terminal> sh -x /vagrant/install.sh
+!ec
+
+The other approach inserts a line for executing `install.sh` in the
+`Vagrantfile`:
+
+!bc rbcod
+Vagrant.configure("2") do |config|
+  ...
+  config.vm.provision :shell, :path => "install.sh"
+end
+!ec
+The script will be run as part of the `vagrant up` command.
+
+!split
+===== Scripts for installing ready-made packages =====
 
 We have developed a little tool where one can list the desired Debian
-packages in a computing environment in a file with default name
+or Python packages in a computing environment in a file with default name
 `debkpg.txt`. This file may also contain plain Unix commands for
-doing other types of installation, like `pip install` and
+doing other types of installation, like `pip install`, or
 cloning of source code repositories with subsequent execution of
-a `setup.py` file. Specific examples on content are listed below.
+a `setup.py` file. Concrete examples are listed below.
 
 A little Python script "`deb2sh.py`": "_static/deb2sh.py" reads the
 installation specification in "`debpkg.txt`": "_static/debpkg.txt" and
 creates a Bash script "`install.sh`": "_static/install.sh" and an
 equivalent Python script "`install.py`": "_static/install.py" for
-running all the necessary operating system commands.  If any package
-cannot be installed successfully, the script stops. The problem must
+running all the necessary operating system commands to install
+all the packages in the correct order.  The script aborts if any package
+cannot be installed successfully. The problem must
 then be fixed, or the package must in worst case be removed (just
 comment out the install line(s) in `install.sh` or `install.py`).  The
 script can thereafter be rerun again.
@@ -100,19 +339,24 @@ $ sudo python setup.py install
 $ cd ../..
 !ec
 
-The syntax has four elements: comment lines are just copied to the
-`install.sh` and `install.py` scripts, lines starting with `$` are plain Unix
-commands and also copied to the output scripts, lines starting with
-`pip install` lists packages to be installed with `pip`,
-while all other non-blank
-lines are supposed to list the name of Debian packages to be installed
-by `sudo apt-get install` commands. The examples above show all four
-line types. Observe in particular how we can freely add Unix commands
-to download ScientificPython from its Bitbucket repo (done in the
-`srclib` subfolder/subdirectory) and install the package manually by running
-`setup.py` the usual way.
+The syntax has four elements:
 
-Some examples on lines in the `install.sh` script are
+ o comment lines are just copied to the
+   `install.sh` and `install.py` scripts,
+ o lines starting with `$` are plain Unix
+   commands and also copied to the output scripts,
+ o lines starting with
+   `pip install` lists packages to be installed with `pip`, while
+ o all other non-blank
+   lines are supposed to list the name of Debian packages to be installed
+   by `sudo apt-get install` commands.
+
+The examples above show all four line types. Observe in particular how
+we can freely add Unix commands to download `ScientificPython` from its
+Bitbucket repo (done in the `srclib` subdirectory) and
+install the package manually by running `setup.py` the usual way.
+
+Some examples on lines in the automatically generated `install.sh` script are
 
 !bc shcod
 #!/bin/bash
@@ -151,12 +395,13 @@ pip_install sympy
    installation of a package: a successful installation implies
    value of 0, while values different from 0 mean that something
    went wrong. We then abort the script with `exit 1`.
- * The `apt-get install` will prompt the user for questions for
+ * The `apt-get install` command will prompt the user for questions for
    every package, but here we use the option `-y` to automatically
-   answer `yes` to all questions.
+   rely on default answers, i.e., accepting `yes` to all questions.
 !enotice
 
-The corresponding lines in `install.py` are
+The corresponding lines in the equivalent, automatically
+generated `install.py` file look as follows.
 
 !bc pycod
 import commands, sys
@@ -175,197 +420,14 @@ system('sudo apt-get -y install ispell')
 system('pip install numpy')
 system('pip install sympy')
 !ec
-The Python script does not test the environment variable `$?`,
+The Python script does not test the Unix environment variable `$?`,
 but the first return value from the `getstatusoutput` is basically
-`$?`.
+the value of `$?`.
 
 We can use `install.sh` or `install.py` to automate installation of
 packages in the Vagrant machine. More powerful tools for setting
 up complete software environments are "Chef": "http://www.opscode.com/"
 and "Puppet": "https://puppetlabs.com/".
-
-In the Vagrant machine, we create two folders:
-
- * `~/bin` for executable programs and scripts
- * `~/srclib` for Python packages installed locally
-
-We also include two useful files:
-
- * A small, but illustrative "`~/.bashrc`": "_static/.bashrc" file for
-   setting up the Linux system.
-
- * "`~/.rsyncexclude`": "_static/.rsyncexclude" for excluding certain
-   files when running `rsync` for copying files between machines, or
-   between machines and external disks or memory sticks.
-
-
-!split
-===== Installing Vagrant =====
-label{vagrant:install}
-
-Before going into details on how to utilize Vagrant, you need to
-have it on your host system.
-
-
-Download and install "VirtualBox":
-"https://www.virtualbox.org/wiki/Downloads". Choose the version
-according to the operating system on the host.
-
-For example, if you want to build or run Vagrant machines under Mac OS X, choose
-*VirtualBox x.y.z for OS X hosts*, where `x.y.z` is the version number
-of VirtualBox. Double click the downloaded `.dmg` file to install
-Vagrant. Those who work on a Windows machines will select *VirtualBox
-x.y.z for Windows hosts*, which downloads an `.exe` file that can just
-be double clicked.
-
-# #define VBINSTALL-apt-get
-Installing VirtualBox on Ubuntu and other Linux systems
-can be challenging.
-# #ifdef VBINSTALL-apt-get
-Here is a recipe. Start with
-
-!bc sys
-Terminal> sudo apt-cache search virtualbox
-!ec
-to find a package `virtualbox-X`, where `X` denotes a particular
-version number (e.g., `4.2`). Then copy and paste the following
-commands into the terminal window:
-!bc sys
-Terminal> wget -q \
- http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \
- -O- | sudo apt-key add -
-Terminal> sudo sh -c 'echo \
- "deb http://download.virtualbox.org/virtualbox/debian precise contrib" \
- >> /etc/apt/sources.list'
-Terminal> sudo apt-get update
-Terminal> sudo apt-get install virtualbox-X
-!ec
-(Recall to replace `X` by the appropriate version number.)
-You may need to run `sudo apt-get -f install` and upgrade packages.
-It is easier to work with VirtualBox
-on Mac or Windows if you run into trouble with Ubuntu.
-
-We recommend to install VirtualBox as shown above on Ubuntu rather than
-downloading a particular `.deb` file (Debian package) from
-the "VirtualBox site":
-"https://www.virtualbox.org/wiki/Downloads", because
-the `apt-get install` makes it easier to get all the packages that
-VirtualBox depends.
-# #else
-click
-*Virtual box x.y.z for Linux hosts* and then the right
-Ubuntu version, say *Ubuntu 13.04*.
-(You can see the particular
-Ubuntu version in *System Settings*, *Details*, *Overview*.)
-A file
-`virtualbox-x.y.z.*.deb` (Debian package) is downloaded. Run `sudo
-dpkg -i virtualbox-x.y.z.*.deb` to install it.
-# #endif
-
-[hpl: I didn't manage to install VB on Ubuntu. Gave up after 6 h. Tried all sorts of things, .deb first, then apt-get, the commands above. Always some mismatch of VB and the Ubuntu version.]
-
-Download and install "Vagrant": "http://downloads.vagrantup.com/".
-Choose the latest version and the installation file corresponding to
-the host's operating system (where you installed VirtualBox).  On a Mac, you
-select the `Vagrant-x.y.z.dmg` file (`x.y.z` denotes the version of
-the software), on Windows the `Vagrant_x.y.z.msi` file is the
-relevant choice. On Ubuntu, select `vagrant_x.y.z_*.deb`. See above
-for how to install `.dmg`, `.exe`, and `.deb` files.
-
-On Windows and Mac OS X, the `vagrant` command is automatically be
-available after installation (because the folder/directory where the
-`vagrant` executable resides is placed in your `PATH` environment
-variable). This is true for many Linux systems too, otherwise you must
-add the relevant folder where the `vagrant` program was installed
-(say `/opt/vagrant/bin`) to your `PATH` variable.
-
-!split
-======= Creating the Vagrant machine =======
-
-In this section we explain how to select an operating system for
-the Vagrant machine, how to install pre-compiled binary packages,
-how to install (Python) packages from source code, and how to configure
-the machine.
-
-===== Choice of operating system type =====
-
-The first step of building a Vagrant machine is to choose a plain
-version of an operating system to base the machine on. This is called
-a *base box*. A lot of pre-made base boxes for various versions of
-operating systems are available at URL: "http://www.vagrantbox.es".
-(If, for some reason, you want to build a base box with another
-operating system, there are "instructions":
-"http://docs-v1.vagrantup.com/v1/docs/base_boxes.html" for that.)  Let
-us decide on adopting *Ubuntu precise 64*, which we find down on the
-list, for the Vagrant machine.  This is a version of Ubuntu 12.04
-(`precise` refers to the official Ubuntu name Precise Pangolin for
-version 12.04).  Click on *Copy* to copy the URL and paste the URL in
-a new browser tab. This action should download a file `precise64.box`.
-Say you store this file in a folder `~/vagrant`.  We can now log in
-to the Ubuntu precise 64 virtual machine: open some terminal window,
-make some folder (say) `vagrant_project`, to this folder, and
-type
-
-!bc sys
-Terminal> vagrant box add precise64 ~/vagrant/precise64.box
-Terminal> vagrant init precise64
-Terminal> vagrant up
-Terminal> vagrant ssh
-!ec
-The first line defines a Vagrant machine with the name `precise64`.
-The second creates a central file, `Vagrantfile`, with settings for
-the Vagrant machine. The third command starts (boots) the Vagrant
-machine, and the fourth makes us log in to the Vagrant machine
-(just as the normal `ssh` command does).
-The `vagrant_project` folder where these commands are run is
-known as the *project folder* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
-
-[hpl: Might be problems with ssh on Windows, see URL: "http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html". This must be tested on Windows 7.]
-
-!split
-===== Installing packages =====
-
-There is not much installed yet on the `precise64` machine, but
-this is an Ubuntu system where we
-can very easily install what we want via `sudo apt-get install`
-or `pip install` commands, or by downloading source code and
-performing manual installation.
-Section ref{vagrant:contents} describes a type of file for listing
-packages and Unix commands, with an associated tool `deb2sh.py`
-for automatic generation of installation scripts.
-Using these utilities,
-it is close to trivial to create a rich computing environment.
-We simply run `deb2sh.py` in the folder where our package
-specification `debpkg.txt`
-resides. The resulting `install.sh` must be located in the
-project folder `vagrant_project`, as
-created above.
-
-There are two ways to install the software in the machine: either we
-do this beforehand, or we put a call to the installation script in
-the `Vagrantfile`. The difference between the methods is that
-the former strategy may result in a big machine that takes a lot of time for
-users to download, while the latter approach provides a smaller machine,
-but the `vagrant up` command that users must run, takes much time since
-it will install all the packages.
-
-To install the packages in the machine before users downloads the machine,
-run this command inside the machine:
-
-!bc sys
-Terminal> sh -x /vagrant/install.sh
-!ec
-
-The other approach inserts a line for executing `install.sh` in the
-`Vagrantfile`:
-
-!bc rbcod
-Vagrant.configure("2") do |config|
-  ...
-  config.vm.provision :shell, :path => "install.sh"
-end
-!ec
-The script will be run as part of the `vagrant up` command.
 
 
 # #ifdef REPEAT
@@ -643,6 +705,17 @@ There are three ways to stop the virtual Vagrant machine:
  * `vagrant halt` shuts off the machine. To start it again, a full
    boot with `vagrant up` is needed.
  * The machine can be removed forever by `vagrant destroy`.
+
+===== Placing the Vagrant machine in the cloud =====
+
+There are numerous "free file hosting sites":
+"http://www.freewaregenius.com/the-best-free-send-large-files-services-ten-file-hosting-services-compared/"
+where a Vagrant machine can be stored and shared with others.
+One service that offers enough space (50 Gb) for many big Vagrant machines is
+Mega: URL: "https://mega.co.nz/". You must create a free account
+before uploading your files. Right-click on any uploaded file, choose
+*Get link*, and a window pops up with the URL to the file. You can
+distribute this link to the target audience of your file.
 
 ===== Using VMWare Fusion =====
 
