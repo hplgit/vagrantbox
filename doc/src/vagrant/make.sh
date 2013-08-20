@@ -28,14 +28,14 @@ pdflatex -shell-escape $name2
 pdflatex -shell-escape $name2
 
 #doconce sphinx_dir $name theme=agni
-system doconce sphinx_dir $name2 theme=cbc
+system doconce sphinx_dir theme=cbc dirname=sphinx-rootdir-cbc author="Anders E. Johansen and Hans Petter Langtangen" $name2
 system python automake_sphinx.py $opts
 
 # Install in pub directory
 dest=../../pub
 rm -rf $dest/*-sphinx
-cp -r css _static $name.html ._part*$name.html $name2.pdf $dest
-cp -r sphinx-rootdir/_build/html $dest/${name}-sphinx
+cp -r css $name.html ._part*$name.html $name2.pdf $dest
+cp -r sphinx-rootdir-cbc/_build/html $dest/${name}-sphinx-cbc
 cd $dest
-mv -f html sphinx
+
 

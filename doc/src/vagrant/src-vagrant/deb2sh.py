@@ -24,10 +24,12 @@ lines = f.readlines()
 f.close()
 outfile = debpkg[:-4].replace('debpkg', 'install')
 shfile = open(outfile + '.sh', 'w')
-cmd = 'sudo apt-get update'
+cmd = 'sudo apt-get update --fix-missing'
 shfile.write("""\
 #!/bin/bash
 # Automatically generated script. Based on %s.
+
+set -x  # make sure each command is printed in the terminal
 
 function apt_install {
   sudo apt-get -y install $1

@@ -1,9 +1,6 @@
 # Minimal installation for a Python ecosystem
 # for scientific computing
 
-# The machine needs to install vagrant
-vagrant
-
 # Editors
 emacs python-mode gedit vim ispell
 
@@ -26,7 +23,10 @@ python-dev
 libfreetype6-dev libpng-dev
 pip install numpy
 pip install sympy
-pip install matplotlib
+pip install cython
+swig
+#pip install matplotlib
+python-matplotlib
 pip install scipy
 pip install ipython
 pip install nose

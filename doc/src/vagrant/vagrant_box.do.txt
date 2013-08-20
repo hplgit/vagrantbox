@@ -20,7 +20,7 @@ There are many working solutions to this problem:
    It can still be quite some work for a user to install the
    right combination of many packages.
  * Virtual machines, such as VirtualBox and VMWare Fusion,
-   for running a particual operating system and installing
+   for running a particular operating system and installing
    software packages on that system. This solution makes it easy to
    use Debian packages in an Ubuntu system on a Mac or
    Windows machine.
@@ -46,7 +46,7 @@ The challenge is to minimize the amount of time the audience spends on
 installation issues as well as minimize the teacher's hassle with all
 types of operating systems that might be present in the audience. An
 attractive solution to this minimization problem is to create a
-Vagrant machine, which is simply a file with a virtual redy-made
+Vagrant machine, which is simply a file with a virtual ready-made
 computer that anyone in the audience can easily download and use on
 any Windows or Mac machine.  Another advantage is that all users of a
 Vagrant machine have exactly the same computing environment (unless
@@ -97,23 +97,23 @@ and "FEniCS": "http://fenicsproject.org", which are challenging to
 build from scratch, can trivially be added as these packages are
 available in Debian.
 
-In the Vagrant machine, we create two folders:
+In the Vagrant machine, we create two directories:
 
  * `~/bin` for executable programs and scripts
  * `~/srclib` for Python packages installed from source code
 
 We also include two useful files:
 
- * A small, but illustrative "`~/.bashrc`": "_static/.bashrc" file for
+ * A small, but illustrative "`~/.bashrc`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc" file for
    setting up the Linux system.
 
- * "`~/.rsyncexclude`": "_static/.rsyncexclude" for excluding certain
+ * "`~/.rsyncexclude`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.rsyncexclude" for excluding certain
    files when running `rsync` for copying files between machines, or
    between machines and external disks or memory sticks.
 
 
 !split
-===== Installing Vagrant =====
+===== Installing the necessary software for using Vagrant =====
 label{vagrant:install}
 
 Before going into details on how to utilize Vagrant, you need to
@@ -190,8 +190,25 @@ available after installation (because the directory where the
 `vagrant` executable resides is placed in your `PATH` environment
 variable).
 This is true for many Linux systems too, otherwise you must
-add the relevant folder where the `vagrant` program was installed
+add the relevant directory where the `vagrant` program was installed
 (say `/opt/vagrant/bin`) to your `PATH` variable.
+
+Windows computers
+does not feature an ssh-client and an X-server by default. An X-server
+is needed by many applications. Therefore, we recommend to
+install "Cygwin": "http://cygwin.com/install.html", which features both
+an ssh-client and an X-server. Cygwin also provides the Windows computer
+with a Unix environment.
+Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
+the instructions given by the installer. Only the minimal base packages from
+the Cygwin distribution are installed by default. This means that we need
+to manually select the 'X11' category during installation to install Cygwin/X.
+
+[Anders: Don't remember if the following was necessary. Need to check it next time I'm in Windows]
+
+Once installed, we need to add Cygwin's ssh client to our
+`PATH`. Cygwin is by default installed to `C:\cygwin`, so the command
+is `set PATH=%PATH%;C:\cygwin\bin`.
 
 !split
 ======= Creating the Vagrant machine =======
@@ -213,15 +230,39 @@ operating system, there are "instructions":
 us decide on adopting *Ubuntu precise 64*, which we find down on the
 list.  This is a version of Ubuntu 12.04
 (`precise` refers to the official Ubuntu name Precise Pangolin for
-version 12.04).  Click on *Copy* to copy the URL and paste the URL in
-a new browser tab. This action should download a file `precise64.box`.
-Say you store this file in a folder `~/vagrant`.  We can now log in
-to the Ubuntu precise 64 virtual machine: open some terminal window,
-make some folder (say) `vagrant_project`, move to this folder, and
-type
+version 12.04).  Click on *Copy* to copy the URL.
+You have now two choices:
+
+ o you can build and distribute a complete
+   virtual machine, or
+ o the user can download a box and then automatically install
+   a list of prescribed packages in the box.
+
+The former approach, called a *complete Vagrant machine* in the following,
+results in one big file containing the machine. The latter approach,
+referred to as a *Vagrant machine specification* results in very
+small text files to be distributed to the users.
+
+The advantage of a complete Vagrant machine is that users can download
+one big file and they immediately have an operative machine. You are also
+guaranteed that all users have identical environments. An empty
+Vagrant machine is easy to distribute, but the disadvantage is that
+a user's initialization of the machine takes (very) long time since
+a lot of packages must be downloaded and installed. Something can go
+wrong with the installation. It may also happen that different users
+get slightly different environments because they run the installation
+process of their machines at different times.
+
+===== Downloading a box to create a complete Vagrant machine =====
+
+Paste the copied URL of the chosen box in
+a new browser tab. This action should automatically
+download a file `precise64.box`.
+Say you store this file in a directory `~/vagrant`. Go to this
+directory and run
 
 !bc sys
-Terminal> vagrant box add precise64 ~/vagrant/precise64.box
+Terminal> vagrant box add precise64 precise64.box
 Terminal> vagrant init precise64
 Terminal> vagrant up
 Terminal> vagrant ssh
@@ -231,14 +272,41 @@ The second creates an important file, `Vagrantfile`, with settings for
 the Vagrant machine. The third command starts (boots) the Vagrant
 machine, and the fourth makes us log in to the Vagrant machine
 (just as the normal `ssh` command does). The
-`vagrant_project` folder where these commands are run is
-known as the *project folder* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
+`vagrant` directory where these commands are run is
+known as the *project directory* in the "Vagrant documentation": "http://docs.vagrantup.com/v2/".
 
 [hpl: There might be problems with ssh on Windows, see URL: "http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html". This must be tested on Windows 7.]
 
-!split
-===== Installing packages =====
+===== Making an empty Vagrant machine =====
 
+Make some directory (say) `~/vagrant`, move to this directory, and
+type
+
+!bc sys
+Terminal> vagrant init
+!ec
+This command creates a `Vagrantfile`. Invoke the file in a text editor
+and replace the line `config.vm.box = "base"` by
+
+!bc rbcod
+config.vm.box = URL
+!ec
+where `URL` is the copied URL of the chosen box (i.e., the URL of
+the `precise64` box in our example).
+
+Also, to enable X11 graphics, add the line
+
+!bc rbcod
+config.ssh.forward_x11 = true
+!ec
+
+
+!split
+===== Installing packages in a complete Vagrant machine =====
+label{vagrant:complete:install}
+
+This section assumes that you want to build and distribute
+a complete Vagrant machine as defined above.
 There is not much installed yet on the `precise64` machine, but
 this is an Ubuntu system where we
 can very easily install what we want via `sudo apt-get install`
@@ -249,39 +317,113 @@ packages and Unix commands, with an associated tool `deb2sh.py`
 for automatic generation of installation scripts.
 Using these utilities,
 it is close to trivial to create a rich computing environment.
-We simply run `deb2sh.py` in the folder where our package
-specification `debpkg.txt`
-resides. The resulting `install.sh` must be located in the
-project folder `vagrant_project`, which was
-created above. If you need to build a `debpkg.txt` file and
-the files described in Section ref{vagrant:bashrc}, you must log out of the
-Vagrant machine by Ctrl-D to come back to the host system.
 
-There are two ways to install the software in the machine: either we
-do this beforehand, or we put a call to the installation script in
-the `Vagrantfile`. The difference between the methods is that
-the former strategy may result in a big machine that takes a lot of time for
-users to download, while the latter approach provides a smaller machine,
-but the `vagrant up` command that users must run, takes much time since
-it will install all the packages.
-
-To install the packages in the machine before users downloads the machine,
-run this command inside the machine:
+Log out of the Vagrant machine by typing
+Ctrl-D. You are now located in the project directory on the host.
+Download "default versions": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant" of some key files:
+`deb2sh.py`, `debpkg_minimal.txt`, `.bashrc`, and `.rsyncexclude`
+(just click on the files, choose
+the *Raw* version, and right-click to save each file to disk).
+Read about the former two files in
+Section ref{vagrant:debpkg} and the latter two
+Section ref{vagrant:bashrc}. Edit the files to your users needs.
+Then run
 
 !bc sys
-Terminal> sh -x /vagrant/install.sh
+Terminal> python deb2sh.py debpkg_minimal.txt
+!ec
+to produce a Bash script `install_minimal.sh` and an equivalent
+Python script `install_minimal.py`.
+You may of course download the more comprehensive "`debpkg.txt`":
+"https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/debpkg.txt"
+file and use that file as a starting point. Running `deb2sh.py debpkg.txt`
+will then produce `install.sh` and `install.py`.
+Make sure you run all these commands in the
+project directory (`~/vagrant`).
+
+When you have edited the above files according to your users' needs,
+you are ready to copy files to the Vagrant
+machine and run the installation.
+The project directory is visible as `/vagrant` inside the Vagrant
+machine (see Section ref{vagrant:shareddir}
+for more details). The copy commands are then
+
+!bc sys
+Terminal> vagrant ssh
+Machine> cp /vagrant/.bashrc .
+Machine> cp /vagrant/.rsyncexclude .
+!ec
+Now you can run the (lengthy) installation process by
+
+!bc sys
+Machine> bash /vagrant/install_minimal.sh
+!ec
+or
+
+!bc sys
+Machine> python /vagrant/install_minimal.py
+!ec
+If something goes wrong with the installation, edit the script
+on the host system (invoke `/vagrant/install_minimal.sh` in an
+editor) and rerun the installation command inside the Vagrant
+machine.
+
+You may want to include the installation scripts in the box so that
+users can see exactly what has been installed and rerun installation
+commands if necessary (e.g., at a later stage to update the software).
+
+!bc sys
+Machine> cp /vagrant/install_minimal.sh .
+Machine> cp /vagrant/install_minimal.py .
 !ec
 
-The other alternative is implemented by inserting a line in the `Vagrantfile`
-for executing the `install.sh` script as part of the `vagrant up`
-command when the user initializes the machine:
+When everything is copied to the box and
+installed, we need to package the virtual
+environment into a box in order to distribute it to other users. This
+can be done by logging out of the virtual machine and running the
+`vagrant package` command (in the project directory):
+
+!bc sys
+Terminal> vagrant package --output ourpackage.box \
+          --vagrantfile Vagrantfile
+!ec
+
+
+#A real machine (containing what is listed earlier, plus the
+#"FEniCS": "http://fenicsproject.org" software) is available
+#from GitHub through the address URL: "http://goo.gl/h7mv4"
+#(note the file size: 4.7Gb!).
+
+!split
+===== Installing packages in an empty Vagrant machine =====
+label{vagrant:empty:install}
+
+An empty Vagrant machine is distributed to users
+as a bundle of `Vagrantfile` and an
+installation script. (You may want to distribute
+`.bashrc` and
+`.rsyncexlude` files too, as described in
+Section ref{vagrant:bashrc}, but we omit this feature
+now.)
+Read Section ref{vagrant:debpkg}
+and make a Bash installation script.
+
+To ensure that the user's initialization process of the machine
+invokes an installation of the desired packages, you need to
+add a line to `Vagrantfile` that runs the Bash script.
+Say the name of the script is `install_minimal.sh`.
+The relevant line is shown below.
 
 !bc rbcod
 Vagrant.configure("2") do |config|
   ...
-  config.vm.provision :shell, :path => "install.sh"
+  config.vm.provision :shell, :path => "install_minimal.sh"
 end
 !ec
+
+Users must now get the files `Vagrantfile` and `install_minimal.sh`
+to create a complete Vagrant machine on their computers.
+
 
 !split
 ===== Scripts for installing ready-made packages =====
@@ -294,10 +436,10 @@ doing other types of installation, like `pip install`, or
 cloning of source code repositories with subsequent execution of
 a `setup.py` file. Concrete examples are listed below.
 
-A little Python script "`deb2sh.py`": "_static/deb2sh.py" reads the
-installation specification in "`debpkg.txt`": "_static/debpkg.txt" and
-creates a Bash script "`install.sh`": "_static/install.sh" and an
-equivalent Python script "`install.py`": "_static/install.py" for
+A little Python script "`deb2sh.py`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/deb2sh.py" reads the
+installation specification in "`debpkg.txt`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/debpkg.txt" and
+creates a Bash script "`install.sh`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/install.sh" and an
+equivalent Python script "`install.py`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/install.py" for
 running all the necessary operating system commands to install
 all the packages in the correct order.  The script aborts if any package
 cannot be installed successfully. The problem must
@@ -445,7 +587,7 @@ repository:
 !bc sys
 Terminal> hg clone https://code.google.com/p/scitools/
 !ec
-The result is a folder `scitools` with Python code and the standard
+The result is a directory `scitools` with Python code and the standard
 `setup.py` script. The installation is performed by
 
 !bc sys
@@ -459,251 +601,191 @@ Now our Vagrant machine has the latest version of SciTools.
 ===== Setting up a default environment with `.bashrc` =====
 label{vagrant:bashrc}
 
-We should include a brief `.bashrc` file as a starting point for the
+We should include a brief `.bashrc` file in the Vagrant
+machine as a starting point for the
 user's customization of her Unix environment. Here is an "example":
-"_static/.bashrc":
+"https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc":
 
-@@@CODE _static/.bashrc
+@@@CODE src-vagrant/.bashrc
 The handy `rsync` commands for copying files require a list of files
-to ignore, so a file "`.rsyncexclude`": "_static/.rsyncexclude" must
+to ignore, so a file "`.rsyncexclude`": "https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.rsyncexclude" must
 be present in the home holder:
 
-@@@CODE _static/.rsyncexclude
-If you have these and other files on your file system, they can easily
-be copied into the Vagrant machine by placing the files in
-the project folder (where the `vagrant up` command was run and where
-the `Vagrantfile` resides). This folder is visible
-from the Vagrant machine as `/vagrant` (see also Section ref{vagrant:shareddir}).
+@@@CODE src-vagrant/.rsyncexclude
 
-The work inside the Vagrant machine is now over for this time.
-Logging out is done by Ctrl-D as in any Unix shell.
 
-!split
-===== Adding X11 support =====
-
-We would like to adjust some preferences of the Vagrant machine.  For
-most scientific applications it is useful to enable X11 forwarding
-such that the user can see graphics launched from applications running
-in the machine. Invoke the file "`Vagrantfile`": "_static/Vagrantfile"
-in an editor and type the line `config.ssh.forward_x11 = true` in the
-file as shown below:
-
-!bc
-Vagrant::Config.run do |config|
-    # Enable X11 forwarding
-    config.ssh.forward_x11 = true
-end
-!ec
-
-===== Finalizing the machine =====
-
-When everything is installed, we need to package the virtual
-environment into a box in order to distribute it to other users. This
-can be done by logging out of the virtual machine and running the vagrant
-package command (in the project folder):
-
-!bc sys
-Terminal> vagrant package --output ourpackage.box \
-          --vagrantfile Vagrantfile
-!ec
-A real machine (containing what is listed earlier, plus the
-"FEniCS": "http://fenicsproject.org" software) is available
-from GitHub through the address URL: "http://goo.gl/h7mv4"
-(note the file size: 4.7Gb!).
 
 !split
 ======= Operating the Vagrant machine =======
 
-The Vagrant machine `ourpackage.box`, created above, can now be
-distributed together with `Vagrantfile`
-to everyone working on a project to ensure that they all
-have the same software versions, no matter if they are using Windows,
-Mac, or Linux. Here is the user's recipe.
+For a user, the initialization of a new machine depends on
+whether it is a complete Vagrant machine or an empty Vagrant machine.
+[[[
+On a Windows computer,
+always operate the Vagrant machine from Cygwin's terminal, which has
+both an ssh-client and an X-server. The terminal can
+be started from Start - All Programs - Cygwin-X - XWin Server.
+
+===== Operating a complete Vagrant machine =====
+
+The Vagrant machine `ourpackage.box`, created
+as described in Section ref{vagrant:complete:install}, can now be
+distributed to users.
+A user must do the following steps.
 
 __Step 1.__ Install VirtualBox and Vagrant as described in
 Section ref{vagrant:install}.
 
-__Step 2.__ Run the commands
+__Step 2.__ Create a directory `vagrant` and move `ourpackage.box`
+to this directory. We also recommend to make a subdirectory
+`projects` where all files and directories to be used from
+the Vagrant machine reside. You edit files in the `vagrant/projects`
+directory tree on the host.
+
+__Step 3.__ Run the these commands from the `vagrant` directory:
 
 !bc sys
 Terminal> vagrant box add ourpackage ourpackage.box
+Terminal> vagrant init outpackage
 !ec
-[hpl: Is this command necessary for users?]
 
-[Anders: It depends. We actually should not distribute both a Vagrantfile
-and a box. We could i) distribute just a Vagrantfile (plus install scripts)
-with a lot of configurations. This Vagrantfile must contain a
-URL to a box. The user may then start with Step 3 below. Or ii) distribute just
-a box. In this case, a Vagrantfile with configurations can be added to the box
-when packing it. With this approach the step above is highly necessary, and should
-be succeeded by the command 'vagrant init ourpackage' before continuing to Step 3.]
+__Step 4.__ The last command generates a file `Vagrantfile`. Load this
+file into a text editor and add the line
+`config.ssh.forward_x11 = true` to enable X11
+graphics to be sent from the Vagrant machine to the host:
 
-__Step 3.__ Start (boot) the Vagrant machine:
+!bc
+Vagrant::Config.run do |config|
+    ...
+    config.ssh.forward_x11 = true
+end
+!ec
+Start X11 on the host as described in Section ref{vagrant:X11}.
+
+__Step 5.__ Start (boot) the Vagrant machine:
 
 !bc sys
 Terminal> vagrant up
 !ec
 
-__Step 4.__ Log in on the machine:
+__Step 5.__ Log in on the machine:
 
 !bc sys
 Terminal> vagrant ssh
 !ec
 Log out with Ctrl-D as usual in Unix terminal windows.
 
-__Step 5 (if necessary).__
-If the `Vagrantfile` does not contain the string "install.sh", the
-`install.sh` script must be run inside the box:
+===== Operating an empty Vagrant machine =====
+
+The user has the files `Vagrantfile` and some installation script,
+say `install_minimal.sh` as described in Section ref{vagrant:empty:install}.
+The user should make some directory `vagrant`, copy `Vagrantfile`
+and `install_minimal.sh` to this directory, and from this directory
+run
 
 !bc sys
-Terminal> bash -x /vagrant/install.sh
+Terminal> vagrant up
+Terminal> vagrant ssh
 !ec
+The first command takes a long time to execute since it runs the
+installation script. Log out with Ctrl-D.
 
-===== Shared folders =====
+===== Enabling X11 graphics =====
+label{vagrant:X11}
+
+Many Ubuntu applications use X11 graphics, and you want to forward the
+graphics to the host. The `Vagrantfile` must contain the line
+`config.ssh.forward_x11 = true` inside the
+`Vagrant::Config.run do |config|` block. In addition, X11 must
+run on the host.
+
+=== X11 on Mac OS X ===
+Open Finder, go to
+Applications, and then the Utilities subdirectory, and double-click `X11.app`
+to start X11.
+
+=== X11 on Windows ===
+Run all `vagrant` commands from a Cygwin terminal, started as
+Start - All Programs - Cygwin-X - XWin Server.
+
+
+===== Working with an initialized Vagrant machine =====
+
+The daily work with the Vagrant machine is very easy. Simply go to the `vagrant`
+directory where the machine resides and run
+
+!bc sys
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside the machine and can reach
+files on the host from
+`/vagrant/projects` (see the next section for more details).
+Log out with Ctrl-D and in again with `vagrant ssh`.
+
+Before closing a laptop or shutting down a computer, it is recommended
+to log out of the Vagrant machine and run `vagrant suspend`.
+
+
+===== Shared directories =====
 label{vagrant:shareddir}
 
-Inside the Vagrant machine, `/vagrant` is a folder shared with
-the user's file system. More precisely, `/vagrant` points to the
-*project folder* where the file `Vagrantfile` resides and where we ran the
-`vagrant up` command. If users of the Vagrant machine keeps all their
-files relevant for the machine in the project folder and its
-subfolders, all these folders will be shared between the
-machine and the user's file system. Normally, this feature is
-enough for efficient communication of files between the
-Vagrant machine's file system and the user's file system.
-One can also set up other shared folders, see
-the Vagrant documentation for "Synced Folders": "http://docs.vagrantup.com/v2/synced-folders/basic_usage.html".
+Inside the Vagrant machine, `/vagrant` is a directory shared with the
+user's file system. More precisely, `/vagrant` points to the *project
+directory* where the file `Vagrantfile` resides and where the `vagrant
+up` command was run. If users of the Vagrant machine keeps all their
+files relevant for the machine in the project directory and its
+subdirectories, all these directories will be shared between the machine and
+the user's file system. Normally, this feature is enough for efficient
+communication of files between the Vagrant machine's file system and
+the user's file system.  One can also set up other shared directories, see
+the Vagrant documentation for "Synced Directories":
+"http://docs.vagrantup.com/v2/synced-directories/basic_usage.html".
 
-Since the Vagrant machine shares folders with the host system, users
-can safely edit files in the shared folders with their favorite editor
+Since the Vagrant machine shares directories with the host system, users
+can safely edit files in the shared directories with their favorite editor
 on the host system. The Vagrant machine will have immediate access to
 the files.
 
 Here is a typical example. Assume that `vagrant up` and `vagrant ssh`
-were run in a folder `myubuntu`. On the host machine,
-create a subfolder `src` of `myubuntu`. Start an editor and type in
+were run in a directory `myubuntu`. On the host,
+create a subdirectory `src` of `myubuntu`. Start an editor and type in
 the following Python program in a file `test1.py`:
 
 !bc pypro
 import numpy as np
 import matplotlib.pyplot as plt
-x = np.linspace(0, 4*np.pi, 501)
-y = np.exp(-x/2.)*np.sin(x)
+x = np.linspace(0, 3, 11)
+y = np.exp(-x)
 plt.plot(x, y)
 plt.show()
 !ec
 This program will show X11 graphics on your host machine. If this machine
 runs the Linux operating system, everything is fine, but if this is a Mac
-or Windows machine, X11 must be started. On a Mac, open Finder, go to
-Applications, and then the Utilities subfolder, and double-click `X11.app`
-to start X11.
+or Windows machine, X11 must be started as described in
+Section ref{vagrant:X11}. If that is necessary, log out, start X11,
+log in again (`vagrant ssh`).
 
-Log out of the Vagrant machine (`Ctrl-D`) and log in again (`vagrant ssh`).
-Move to the `src` folder and run the `test1.py` program:
+Run the `test1.py` program:
 
 !bc sys
 Terminal> cd /vagrant
 Terminal> cd src
 Terminal> python test1.py
 !ec
-A plot of the curve $y = e^{-x/2}\sin x$ should now be seen on the screen.
+A plot of the curve $y = e^{-x}$ should now be seen on the screen.
 
-[hpl: Anders, what to do with X11 on Windows?]
 
-[Anders: hpl, could you please read the rest of this section, question everything
-that seems unclear, rewrite the some of my bad formulations and put it in a
-suitable place in the document?]
-
-In Windows neither an ssh-client nor an X-server is installed by default. However,
-both these issues can be solved by installing "Cygwin": "http://cygwin.com/install.html".
-Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" and follow
-the instructions given by the installer. Only the minimal base packages from
-the Cygwin distribution are installed by default. This means that we need
-manually to select the 'X11' category during installation to install Cygwin/X.
-
-[Anders: Don't remember if the following was necessary. Need to check it next time I'm in Windows]
-
-Once installed, we need to add Cygwin's ssh client to our
-`PATH`. Cygwin is by default installed to `C:\cygwin`, so the command
-is `set PATH=%PATH%;C:\cygwin\bin`.
-
-[Anders: hpl, here's the recipe for distributing only the
-Vagrantfile. Maybe copy this to the same place as the box?]
-
-Cygwin's terminal, which now has both an ssh-client and an X-server,
-can be started from Start - All Programs - Cygwin-X - XWin Server.  In
-this terminal we can download a Vagrantfile with all necessary
-configurations and start the Vagrant machine:
-
-!bc sys
-Terminal> wget http://dl.dropboxusercontent.com/u/13793917/Vagrantfile
-Terminal> vagrant up
-Terminal> vagrant ssh
-!ec
-
-=== Troubleshooting: shared folder is invisible ===
-
-It may happen that the `/vagrant` folder seems empty inside
-the Vagrant machine. Two steps will fix this problem. First,
-run
-
-!bc sys
-Terminal> sudo /etc/init.d/vboxadd setup
-!ec
-*inside the Vagrant machine*. Second, log out and run
-
-!bc
-Terminal> sudo vagrant reload
-!ec
-*outside the Vagrant machine*.
-Then do `vagrant ssh` and take an `ls /vagrant` to see that the
-files in the project folder are visible.
-
-=== Troubleshooting: "couldn't connect to display ..." ===
-
-This error message points to the problem that X11 graphics on the
-Vagrant machine cannot be shown on the host's screen.
-Make sure the line with `config.ssh.forward_x11 = true` is present
-in the file `Vagrantfile` in the project folder (see above).
-Also make sure that X11 is running on the host computer (see above
-for how to do this).
-
-# #ifdef EXTRA
-This is not necessary:
-
-Any files or folders the user may want to sync between his own
-computer and the virtual machine can be specified before running
-vagrant up by adding the following line to the autogenerated
-Vagrantfile:
-
-!bc sys
-config.vm.share_folder "name_of_identifier", "/path/on/virtual/machine", "/path/on/host"
-!ec
-
-The first argument is an identifier, the second is the path to where
-to mount the file or folder on the virtual machine, and the third is
-the path on the host to the actual file or folder. By syncing a
-folder, the folder becomes accessible from both the host and the
-virtual machine. This way the user can edit files with his or her
-favorite editor on the host machine. Once it is saved, it can be run
-in the terminal window accessing the virtual machine where all
-dependencies are pre-installed.
-# #endif
-
-Each time the user wants to access the virtual environment, the
-following two lines are enough:
-
-!bc
-vagrant up
-vagrant ssh
-!ec
+!split
+# #include "troubleshooting.do.txt"
 
 ===== Stopping the Vagrant machine =====
 
-There are three ways to stop the virtual Vagrant machine:
+There are three ways to stop the virtual Vagrant machine from the
+host (i.e., you must be logged out by Ctrl-D from the machine):
 
  * `vagrant suspend` sends the machine to sleep mode. Waking it up is
-   done with `vagrant resume`.
+   done with `vagrant resume` or `vagrant up`.
  * `vagrant halt` shuts off the machine. To start it again, a full
    boot with `vagrant up` is needed.
  * The machine can be removed forever by `vagrant destroy`.
@@ -733,3 +815,186 @@ Not written yet.
    "http://www.linuxjournal.com/content/introducing-vagrant" is
    technically slightly outdated, but gives much valuable additional
    information.
+
+# #ifndef SCRIPTING_BOOK
+
+======= Appendix: Condensed instructions for students =======
+
+Say you want distribute a complete Vagrant machine with the URL
+
+!bc
+
+!ec
+Here is the need-know-information for users:
+
+__Step 1.__ Download and install "VirtualBox":
+"https://www.virtualbox.org/wiki/Downloads". Choose the version
+according to the operating system on the host.
+For example, if you want to build or run Vagrant machines under Mac OS X, choose
+*VirtualBox x.y.z for OS X hosts*, where `x.y.z` is the version number
+of VirtualBox. Double click the downloaded `.dmg` file to install
+Vagrant. Those who work on a Windows machines will select *VirtualBox
+x.y.z for Windows hosts*, which downloads an `.exe` file which can just
+be double clicked to perform the installation.
+
+__Step 2.__ Download and install "Vagrant": "http://downloads.vagrantup.com/".
+Choose the latest version and the installation file corresponding to
+the host's operating system (where you installed VirtualBox).  On a Mac, you
+select the `Vagrant-x.y.z.dmg` file (`x.y.z` denotes the version of
+the software), on Windows the `Vagrant_x.y.z.msi` file is the
+relevant choice.
+On Ubuntu, select `vagrant_x.y.z_*.deb` and install it
+by `sudo dpkg -i vagrant_x.y.z_*.deb`.
+
+__Step 3 for Windows users.__ If you have a Windows machine, you should
+install "Cygwin": "http://cygwin.com/install.html".
+Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
+the instructions given by the installer. Make sure you
+manually select the 'X11' category during installation. Cygwin is
+not needed on Mac computers.
+
+__Step 4.__ Move to your home directory and make a new directory
+`vagrant` and a subdirectory `projects`:
+
+!bc sys
+Terminal> cd
+Terminal> mkdir vagrant
+Terminal> mkdir vagrant/projects
+Terminal> cd vagrant
+!ec
+All files that you run from the Vagrant machine are supposed
+to reside in `vagrant/projects` and its subdirectories.
+
+__Step 5.__ Download the file
+!bc
+URL:XXX
+!ec
+Store the file in the `vagrant` directory.
+
+__Step 6.__ Make sure you stand in the `vagrant` directory.
+Run
+
+!bc sys
+Terminal> vagrant box add XXX XXX.box
+Terminal> vagrant init XXX
+!ec
+
+__Step 7.__ The last command generates a file `Vagrantfile`. Load this
+file into a text editor and add the line
+`config.ssh.forward_x11 = true` to enable X11
+graphics to be sent from the Vagrant machine to the host:
+
+!bc
+Vagrant::Config.run do |config|
+    ...
+    config.ssh.forward_x11 = true
+end
+!ec
+Start X11 on the host by clicking Applications - Utilities - X11 on
+a Mac computer. On a Windows computer, run
+Start - All Programs - Cygwin-X - XWin Server, use the
+resulting terminal window for all Vagrant sessions, and move
+to the `vagrant` directory in this terminal window.
+
+__Step 8.__ Run
+!bc sys
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside a Ubuntu system.
+
+__Step 9.__
+Open a file `vagrant/projects/test1.py` in an editor on the host system.
+Write the following lines in the file:
+
+!bc pypro
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 3, 11)
+y = np.exp(-x)
+plt.plot(x, y)
+plt.show()
+!ec
+Save the file. Move to the terminal window with the Ubuntu (Vagrant) machine.
+Run
+
+!bc sys
+Machine> cd /vagrant/projects
+Machine> python test1.py
+!ec
+You should see a plot of $e^{-x}$ on the screen. If you encounter
+any problems, read the
+paragraphs below.
+
+=== Troubleshooting: shared directory is invisible ===
+
+It may happen that the `/vagrant` directory seems empty inside
+the Vagrant machine. Two steps will fix this problem. First,
+run
+
+!bc sys
+Machine> sudo /etc/init.d/vboxadd setup
+!ec
+inside the Vagrant machine. Second, log out and run
+
+!bc
+Terminal> sudo vagrant reload
+!ec
+outside the Vagrant machine.
+Then do `vagrant ssh` and take an `ls /vagrant` to see that the
+files in the project directory (e.g., `Vagrantfile` and the Vagrant
+box) are visible.
+
+=== Troubleshooting: "couldn't connect to display ..." ===
+
+This error message points to the problem that X11 graphics on the
+Vagrant machine cannot be shown on the host's screen.
+Make sure the line with `config.ssh.forward_x11 = true` is present
+in the file `Vagrantfile` in the project directory (see above).
+Also make sure that X11 is running on the host computer. On Mac,
+start Applications - Utilities - X11. On Windows, go to
+Start - All Programs - Cygwin-X - XWin Server. Log out of the
+Vagrant machine (Ctrl-D) and in again (`vagrant ssh`).
+
+# #ifdef EXTRA
+This is not necessary:
+
+Any files or directories the user may want to sync between his own
+computer and the virtual machine can be specified before running
+vagrant up by adding the following line to the autogenerated
+Vagrantfile:
+
+!bc sys
+config.vm.share_directory "name_of_identifier", "/path/on/virtual/machine", "/path/on/host"
+!ec
+
+The first argument is an identifier, the second is the path to where
+to mount the file or directory on the virtual machine, and the third is
+the path on the host to the actual file or directory. By syncing a
+directory, the directory becomes accessible from both the host and the
+virtual machine. This way the user can edit files with his or her
+favorite editor on the host machine. Once it is saved, it can be run
+in the terminal window accessing the virtual machine where all
+dependencies are pre-installed.
+# #endif
+
+=== Troubleshooting: Internet is not reachable ===
+
+A test if Internet is reachable is to run a `ping` command inside
+the machine, e.g.,
+
+!bc sys
+Machine> ping us.ubuntu.archive.com
+!ec
+A hanging command indicates that Internet is not reachable.
+Log out of the box, run `vagrant reload`, and
+`vagrant ssh`. Try the `ping` command again.
+
+
+
+
+
+
+
+
+# #endif
