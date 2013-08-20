@@ -244,7 +244,7 @@ this is an Ubuntu system where we
 can very easily install what we want via `sudo apt-get install`
 or `pip install` commands, or by downloading source code and
 performing manual installation.
-Section ref{vagrant:contents} describes a type of file for listing
+Section ref{vagrant:debpkg} describes a type of file for listing
 packages and Unix commands, with an associated tool `deb2sh.py`
 for automatic generation of installation scripts.
 Using these utilities,
@@ -272,8 +272,9 @@ run this command inside the machine:
 Terminal> sh -x /vagrant/install.sh
 !ec
 
-The other approach inserts a line for executing `install.sh` in the
-`Vagrantfile`:
+The other alternative is implemented by inserting a line in the `Vagrantfile`
+for executing the `install.sh` script as part of the `vagrant up`
+command when the user initializes the machine:
 
 !bc rbcod
 Vagrant.configure("2") do |config|
@@ -281,10 +282,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "install.sh"
 end
 !ec
-The script will be run as part of the `vagrant up` command.
 
 !split
 ===== Scripts for installing ready-made packages =====
+label{vagrant:debpkg}
 
 We have developed a little tool where one can list the desired Debian
 or Python packages in a computing environment in a file with default name

@@ -1,0 +1,78 @@
+# Minimal installation for a Python ecosystem
+# for scientific computing
+
+# The machine needs to install vagrant
+vagrant
+
+# Editors
+emacs python-mode gedit vim ispell
+
+# Compilers
+gcc g++ gawk f2c gfortran
+autoconf automake autotools-dev
+
+# Numerical libraries
+libatlas-base-dev libsuitesparse-dev
+
+# Version control systems
+subversion mercurial cvs git gitk bzr
+
+# Python
+idle
+python-pip
+python-dev
+# Matplotlib requires libfreetype-dev libpng-dev
+# (otherwise pip install matplotlib does not work)
+libfreetype6-dev libpng-dev
+pip install numpy
+pip install sympy
+pip install matplotlib
+pip install scipy
+pip install ipython
+pip install nose
+pip install sphinx  # installs pygments and docutils too
+pydb python-profiler
+python-dev
+
+# Gnuplot
+gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev
+
+# Drawing programs
+inkscape xfig xfig-doc transfig fig2ps
+
+# Image manipulation
+imagemagick
+netpbm mjpegtools pdftk giftrans
+gv evince smpeg-plaympeg mplayer totem
+ffmpeg libav-tools
+
+# LaTeX
+texinfo texlive
+
+# Misc
+gnome-terminal
+libreoffice unoconv libreoffice-dmaths
+
+libbz2-dev libncurses5-dev
+curl
+a2ps wdiff
+
+# Support for Norwegian
+language-pack-nb-base
+
+# SciTools must be installed from source
+$ cd srclib
+$ hg clone http://code.google.com/p/scitools
+$ cd scitools
+$ sudo python setup.py install
+$ cd ../..
+# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+
+# Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
+# Do manual install instead
+$ cd srclib
+$ hg clone https://bitbucket.org/khinsen/scientificpython
+$ cd scientificpython
+$ sudo python setup.py install
+$ cd ../..
+
