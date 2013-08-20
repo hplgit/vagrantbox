@@ -254,7 +254,7 @@ specification `debpkg.txt`
 resides. The resulting `install.sh` must be located in the
 project folder `vagrant_project`, which was
 created above. If you need to build a `debpkg.txt` file and
-the files described in the next section, you must log out of the
+the files described in Section ref{vagrant:bashrc}, you must log out of the
 Vagrant machine by Ctrl-D to come back to the host system.
 
 There are two ways to install the software in the machine: either we
@@ -457,6 +457,7 @@ Now our Vagrant machine has the latest version of SciTools.
 
 !split
 ===== Setting up a default environment with `.bashrc` =====
+label{vagrant:bashrc}
 
 We should include a brief `.bashrc` file as a starting point for the
 user's customization of her Unix environment. Here is an "example":
