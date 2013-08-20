@@ -22,7 +22,8 @@ except IndexError:
 f = open(debpkg, 'r')
 lines = f.readlines()
 f.close()
-shfile = open('install.sh', 'w')
+outfile = debpkg[:-4].replace('debpkg', 'install')
+shfile = open(outfile + '.sh', 'w')
 cmd = 'sudo apt-get update'
 shfile.write("""\
 #!/bin/bash
@@ -50,7 +51,7 @@ function pip_install {
 
 """ % (debpkg, cmd))
 
-pyfile = open('install.py', 'w')
+pyfile = open(outfile + '.py', 'w')
 pyfile.write(r'''\
 #!/usr/bin/env python
 # Automatically generated script. Based on %s.
@@ -106,4 +107,5 @@ shfile.write('echo "Everything is successfully installed!"\n')
 shfile.close()
 pyfile.write("print 'Everything is successfully installed!'\n")
 pyfile.close()
-print 'Generated install.sh and install.py with all install commands.'
+print 'Generated %s.sh and %s.py with all install commands.' % \
+      (outfile, outfile)
