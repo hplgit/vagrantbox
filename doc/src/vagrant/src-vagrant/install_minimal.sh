@@ -1,6 +1,8 @@
 #!/bin/bash
 # Automatically generated script. Based on debpkg_minimal.txt.
 
+set -x  # make sure each command is printed in the terminal
+
 function apt_install {
   sudo apt-get -y install $1
   if [ $? -ne 0 ]; then
@@ -19,13 +21,18 @@ function pip_install {
   done
 }
 
-sudo apt-get update
+function unix_command {
+  $@
+  if [ $? -ne 0 ]; then
+    echo "could not run $@ - abort"
+    exit 1
+  fi
+}
+
+sudo apt-get update --fix-missing
 
 # Minimal installation for a Python ecosystem
 # for scientific computing
-
-# The machine needs to install vagrant
-apt_install vagrant
 
 # Editors
 apt_install emacs
@@ -66,7 +73,10 @@ apt_install libfreetype6-dev
 apt_install libpng-dev
 pip_install numpy
 pip_install sympy
-pip_install matplotlib
+pip_install cython
+apt_install swig
+#pip install matplotlib
+apt_install python-matplotlib
 pip_install scipy
 pip_install ipython
 pip_install nose
@@ -122,13 +132,19 @@ apt_install wdiff
 apt_install language-pack-nb-base
 
 # SciTools must be installed from source
-if [ $? -ne 0 ]; then echo "command failed"; exit 1; fi
-
+unix_command cd srclib
+unix_command hg clone http://code.google.com/p/scitools
+unix_command cd scitools
+unix_command sudo python setup.py install
+unix_command cd ../..
 # Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
-if [ $? -ne 0 ]; then echo "command failed"; exit 1; fi
-
+unix_command cd srclib
+unix_command hg clone https://bitbucket.org/khinsen/scientificpython
+unix_command cd scientificpython
+unix_command sudo python setup.py install
+unix_command cd ../..
 
 echo "Everything is successfully installed!"

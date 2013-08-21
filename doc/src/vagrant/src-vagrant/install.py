@@ -12,10 +12,7 @@ def system(cmd):
        print output
        sys.exit(1)
 
-system('sudo apt-get update')
-# The machine needs to install vagrant
-system('sudo apt-get -y install vagrant')
-
+system('sudo apt-get update --fix-missing')
 # Editors
 system('sudo apt-get -y install emacs')
 system('sudo apt-get -y install python-mode')
@@ -62,8 +59,11 @@ sudo pip install numpy
 
 sudo pip install sympy
 
-sudo pip install matplotlib
+sudo pip install cython
 
+system('sudo apt-get -y install swig')
+#pip install matplotlib
+system('sudo apt-get -y install python-matplotlib')
 sudo pip install scipy
 
 sudo pip install ipython
@@ -97,7 +97,6 @@ system('sudo apt-get -y install python-enthoughtbase')
 system('sudo apt-get -y install python-pyface')
 system('sudo apt-get -y install pype')
 system('sudo apt-get -y install python-tagpy')
-system('sudo apt-get -y install cython')
 
 # Gnuplot
 system('sudo apt-get -y install gnuplot')

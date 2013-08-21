@@ -49,6 +49,14 @@ function pip_install {
   done
 }
 
+function unix_command {
+  $@
+  if [ $? -ne 0 ]; then
+    echo "could not run $@ - abort"
+    exit 1
+  fi
+}
+
 %s
 
 """ % (debpkg, cmd))
@@ -84,9 +92,7 @@ for line in lines:
     # Treat lines starting with $ as normal Unix commands
     if line.startswith('$'):
         cmd = line[1:].strip()
-        if 'setup.py' in cmd:
-            shfile.write("""\
-if [ $? -ne 0 ]; then echo "command failed"; exit 1; fi\n\n""")
+        shfile.write('unix_command ' + cmd + '\n')
         pyfile.write("system('%s')\n" % cmd)
         continue
     # All other lines are supposed to list either pip install

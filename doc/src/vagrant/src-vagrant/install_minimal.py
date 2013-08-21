@@ -12,12 +12,9 @@ def system(cmd):
        print output
        sys.exit(1)
 
-system('sudo apt-get update')
+system('sudo apt-get update --fix-missing')
 # Minimal installation for a Python ecosystem
 # for scientific computing
-
-# The machine needs to install vagrant
-system('sudo apt-get -y install vagrant')
 
 # Editors
 system('sudo apt-get -y install emacs')
@@ -60,8 +57,11 @@ sudo pip install numpy
 
 sudo pip install sympy
 
-sudo pip install matplotlib
+sudo pip install cython
 
+system('sudo apt-get -y install swig')
+#pip install matplotlib
+system('sudo apt-get -y install python-matplotlib')
 sudo pip install scipy
 
 sudo pip install ipython

@@ -23,10 +23,15 @@ box) are visible.
 
 This error message points to the problem that X11 graphics on the
 Vagrant machine cannot be shown on the host's screen.
-Make sure the line with `config.ssh.forward_x11 = true` is present
-in the file `Vagrantfile` in the project directory (see above).
-Also make sure that X11 is running on the host computer. On Mac,
-start Applications - Utilities - X11. On Windows, go to
+Inserting the line `config.ssh.forward_x11 = true`
+in the file `Vagrantfile` in the project directory and starting X11
+on the host are the two steps that will fix the problem.
+Unless you build a Vagrant box, the editing of `Vagrantfile` should
+not be required as a ready-made box was packaged with
+X11 forwarding (cf. the `vagrant package` command
+in Section ref{vagrant:complete:install}).
+To start X11 on Mac,
+run Applications - Utilities - X11, while on Windows, go to
 Start - All Programs - Cygwin-X - XWin Server. Log out of the
 Vagrant machine (Ctrl-D) and in again (`vagrant ssh`).
 
