@@ -954,7 +954,7 @@ Not written yet.
 Say you want distribute a complete Vagrant machine with the URL
 
 !bc
-
+http://some.where.net/path/to/course.box
 !ec
 Here is the need-know-information for users:
 

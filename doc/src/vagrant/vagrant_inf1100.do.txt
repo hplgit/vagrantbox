@@ -1,0 +1,226 @@
+TITLE: Installation of a Vagrant machine
+
+A Vagrant machine is a file that you can download and install on
+your machine, and it gives you access to a complete Ubuntu computer
+in a Mac or Windows environment. In the following,
+the prompt `Terminal>` indicates a Unix terminal window on Mac or a
+Command Prompt window on Windows (called Ledetekst in Norwegian).
+The prompt `Machine>` indicates a terminal window where Ubuntu is
+running (in a Vagrant machine).
+
+===== Installation instructions =====
+
+__Step 1.__ Download and install "VirtualBox":
+"https://www.virtualbox.org/wiki/Downloads". Choose the version
+according to the operating system on the host.
+For example, if you want to build or run Vagrant machines under Mac OS X, choose
+*VirtualBox x.y.z for OS X hosts*, where `x.y.z` is the version number
+of VirtualBox. Double click the downloaded `.dmg` file to install
+Vagrant. Those who work on a Windows machines will select *VirtualBox
+x.y.z for Windows hosts*, which downloads an `.exe` file which can just
+be double clicked to perform the installation.
+
+__Step 2.__ Download and install "Vagrant": "http://downloads.vagrantup.com/".
+Choose the latest version and the installation file corresponding to
+the host's operating system (where you installed VirtualBox).  On a Mac, you
+select the `Vagrant-x.y.z.dmg` file (`x.y.z` denotes the version of
+the software), on Windows the `Vagrant_x.y.z.msi` file is the
+relevant choice.
+On Ubuntu, select `vagrant_x.y.z_*.deb` and install it
+by `sudo dpkg -i vagrant_x.y.z_*.deb`.
+
+__Step 3 for Windows users.__ If you have a Windows machine, you should
+install "Cygwin": "http://cygwin.com/install.html".
+Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
+the instructions given by the installer. Make sure you
+manually select the 'X11' category during installation. Cygwin is
+not needed on Mac computers.
+
+__Step 4.__
+Start X11: run Applications - Utilities - X11 on a Mac,
+or Start - All Programs - Cygwin-X - XWin Server on Windows.
+
+__Step 5.__ Move to your home directory and make a new directory
+`vagrant` and a subdirectory `projects`:
+
+!bc sys
+Terminal> cd
+Terminal> mkdir vagrant
+Terminal> mkdir vagrant/projects
+Terminal> cd vagrant
+!ec
+All files that you run from the Vagrant machine are supposed
+to reside in `vagrant/projects` and its subdirectories.
+
+# https://mega.co.nz/#!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A
+
+__Step 6.__ Download "the file": "http://goo.gl/mQawXy"
+!bch
+http://goo.gl/mQawXy
+!ec
+and store it as `inf1100.box` in the `vagrant` directory.
+The file is over 4Gb and takes hours to download! Make sure you have
+a stable Internet connection and that you do not bring your computer
+to sleep before the complete file is downloaded.
+
+
+__Step 7.__ Make sure you stand in the `vagrant` directory.
+Run
+
+!bc sys
+Terminal> vagrant box add inf1100 inf1100.box
+Terminal> vagrant init inf1100
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside a fullblown Ubuntu system with all software you need
+for INF1100 and many coming courses.
+
+
+__Step 8.__
+Open a file `vagrant/projects/test1.py` in an editor on the host system
+and write the following lines in the file:
+
+!bc pypro
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 3, 11)
+y = np.exp(-x)
+plt.plot(x, y)
+plt.show()
+!ec
+Save the file. Move to the terminal window with the Ubuntu (Vagrant) machine.
+Run
+
+!bc sys
+Machine> cd /vagrant/projects
+Machine> python test1.py
+!ec
+You should see a plot of $e^{-x}$ on the screen. If you encounter
+any problems, read the
+paragraphs below.
+
+===== Troubleshooting: shared directory is invisible =====
+
+It may happen that the `/vagrant` directory seems empty inside
+the Vagrant machine. Two steps will fix this problem. First,
+run
+
+!bc sys
+Machine> sudo /etc/init.d/vboxadd setup
+!ec
+inside the Vagrant machine. Second, log out and run
+
+!bc
+Terminal> sudo vagrant reload
+!ec
+outside the Vagrant machine.
+Then do `vagrant ssh` and take an `ls /vagrant` to see that the
+files in the project directory (e.g., `Vagrantfile` and the Vagrant
+box) are visible.
+
+===== Troubleshooting: "couldn't connect to display ..." =====
+
+This error message points to the problem that X11 graphics cannot
+be shown on the host. It should be sufficient to start X11 on
+the host, see Step 4 above.
+
+===== Troubleshooting: Internet is not reachable =====
+
+A test if Internet is reachable is to run a `ping` command inside
+the machine, e.g.,
+
+!bc sys
+Machine> ping us.ubuntu.archive.com
+!ec
+A hanging command indicates that Internet is not reachable.
+Log out of the box, run `vagrant reload`, and
+`vagrant ssh`. Try the `ping` command again.
+
+===== Working with an initialized Vagrant machine =====
+
+The daily work with the Vagrant machine is very easy. Simply go to the `vagrant`
+directory where the machine resides and run
+
+!bc sys
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside the machine and can reach
+files on the host from
+`/vagrant/projects`.
+Log out with Ctrl-D and in again with `vagrant ssh`.
+Create and edit files on the host in `~/vagrant/projects` and its
+subdirectories.
+
+Before closing a laptop or shutting it down, it is recommended
+to log out of the Vagrant machine and run `vagrant suspend`.
+
+===== A typical session with writing and testing Python programs =====
+
+Here is a worked example on creating a Python program on Windows or Mac
+running it on Ubuntu.
+Go to the vagrant project directory on
+your Windows or Mac computer,
+make a new directory `mytest`, go to this directory, and
+launch a text editor, such as TextEdit on Mac or Notepad++ on Windows,
+to create a Python program `test.py`.
+The relevant Unix commands are
+
+!bc sys
+Terminal> cd ~/vagrant/projects
+Terminal> mkdir mytest
+Terminal> cd mytest
+Terminal> gedit test.py&
+!ec
+Write the following code in `test.py`:
+
+!bc pypro
+print 'Hello!"
+!ec
+Save the file.
+
+In another terminal window, go to the `vagrant` directory and
+start the vagrant machine if it is not already running:
+
+!bc sys
+Terminal> cd ~/vagrant
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside an Ubuntu machine in this terminal window.
+
+Inside Ubuntu,
+move to the `mytest` directory which is shared with your Mac or Windows
+computer:
+
+!bc sys
+Machine> cd /vagrant/projects/mytest
+!ec
+Run the `test.py` program:
+
+!bc sys
+Terminal> python test.py
+  File "test.py", line 1
+    print 'Hello!"
+                 ^
+SyntaxError: EOL while scanning string literal
+!ec
+You need to correct the bug. Go to the text editor with the `test.py`
+on your Windows or Mac computer and change the double quote to a single
+quote:
+
+!bc pycod
+print 'Hello!'
+!ec
+Go to the terminal window where the Ubuntu machine is running and rerun
+the program:
+
+!bc sys
+Machine> python test.py
+Hello!
+!ec
+You should now understand how you edit programs on your Windows or Mac
+computer and how you run the programs inside the Ubuntu
+machine in a terminal window.
+
