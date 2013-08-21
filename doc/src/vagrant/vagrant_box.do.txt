@@ -317,7 +317,7 @@ for automatic generation of installation scripts.
 Using these utilities,
 it is close to trivial to create a rich computing environment.
 
-=== Create files ===
+=== Creating files ===
 
 Make sure you are logged out of the Vagrant machine (Ctrl-D) and
 located in the project directory on the host.
@@ -977,7 +977,7 @@ You should see a plot of $e^{-x}$ on the screen. If you encounter
 any problems, read the
 paragraphs below.
 
-=== Troubleshooting: shared directory is invisible ===
+===== Troubleshooting: shared directory is invisible =====
 
 It may happen that the `/vagrant` directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
@@ -996,13 +996,13 @@ Then do `vagrant ssh` and take an `ls /vagrant` to see that the
 files in the project directory (e.g., `Vagrantfile` and the Vagrant
 box) are visible.
 
-=== Troubleshooting: "couldn't connect to display ..." ===
+===== Troubleshooting: "couldn't connect to display ..." =====
 
 This error message points to the problem that X11 graphics cannot
 be shown on the host. It should be sufficient to start X11 on
 the host, see Step 4 above.
 
-=== Troubleshooting: Internet is not reachable ===
+===== Troubleshooting: Internet is not reachable =====
 
 A test if Internet is reachable is to run a `ping` command inside
 the machine, e.g.,
