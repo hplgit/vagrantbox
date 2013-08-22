@@ -692,11 +692,13 @@ be present in the home holder:
 
 For a user, the initialization of a new machine depends on
 whether it is a complete Vagrant machine or an empty Vagrant machine.
-[[[
+
+!bwarning Important
 On a Windows computer,
 always operate the Vagrant machine from Cygwin's terminal, which has
 both an ssh-client and an X-server. The terminal can
 be started from Start - All Programs - Cygwin-X - XWin Server.
+!ewarning
 
 ===== Operating a complete Vagrant machine =====
 
@@ -753,24 +755,6 @@ Terminal> vagrant ssh
 The first command takes a long time to execute since it runs the
 installation script. Log out with Ctrl-D.
 
-===== Enabling X11 graphics =====
-label{vagrant:X11}
-
-Many Ubuntu applications use X11 graphics, and you want to forward the
-graphics to the host. The `Vagrantfile` must contain the line
-`config.ssh.forward_x11 = true` inside the
-`Vagrant::Config.run do |config|` block. In addition, X11 must
-run on the host.
-
-=== X11 on Mac OS X ===
-Open Finder, go to
-Applications, and then the Utilities subdirectory, and double-click `X11.app`
-to start X11.
-
-=== X11 on Windows ===
-Run all `vagrant` commands from a Cygwin terminal, started as
-Start - All Programs - Cygwin-X - XWin Server.
-
 
 ===== Working with an initialized Vagrant machine =====
 
@@ -785,8 +769,10 @@ You are now inside the machine and can reach
 files on the host from
 `/vagrant/projects` (see the next section for more details).
 Log out with Ctrl-D and in again with `vagrant ssh`.
+Create and edit files on the host in `~/vagrant/projects` and its
+subdirectories.
 
-Before closing a laptop or shutting down a computer, it is recommended
+Before closing a laptop or shutting it down, it is recommended
 to log out of the Vagrant machine and run `vagrant suspend`.
 
 
@@ -796,7 +782,9 @@ label{vagrant:shareddir}
 Inside the Vagrant machine, `/vagrant` is a directory shared with the
 user's file system. More precisely, `/vagrant` points to the *project
 directory* where the file `Vagrantfile` resides and where the `vagrant
-up` command was run. If users of the Vagrant machine keeps all their
+up` command was run (`~/vagrant` if you have followed the specific
+directory naming suggested in this document).
+If users of the Vagrant machine keeps all their
 files relevant for the machine in the project directory and its
 subdirectories, all these directories will be shared between the machine and
 the user's file system. Normally, this feature is enough for efficient
