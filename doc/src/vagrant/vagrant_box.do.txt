@@ -497,13 +497,22 @@ label{vagrant:empty:install}
 
 An empty Vagrant machine is distributed to users
 as a bundle of `Vagrantfile` and an
-installation script. (You may want to distribute
-`.bashrc` and
-`.rsyncexlude` files too, as described in
-Section ref{vagrant:bashrc}, but we omit this feature
-now.)
+installation script.
 Read Section ref{vagrant:debpkg}
 and make a Bash installation script.
+
+You may want to distribute
+`.bashrc` and
+`.rsyncexlude` files too, as described in
+Section ref{vagrant:bashrc}, but that is easiest done by letting
+the installation script download the files from site where they
+are available.  Relevant lines may be
+
+!bc
+$ cd $HOME
+$ wget http://tinyurl.com/m88bljf/.bashrc
+$ wget http://tinyurl.com/m88bljf/.rsyncexclude
+!ec
 
 idx{`Vagrantfile`}
 
@@ -522,7 +531,7 @@ Vagrant.configure("2") do |config|
 end
 !ec
 
-Users must now get the files `Vagrantfile` and `install_minimal.sh`
+Users must now have the files `Vagrantfile` and `install_minimal.sh`
 to create a complete Vagrant machine on their computers.
 
 
