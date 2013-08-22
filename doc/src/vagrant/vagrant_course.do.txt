@@ -67,7 +67,7 @@ to reside in `vagrant/projects` and its subdirectories.
 # https://mega.co.nz/#!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A
 
 __Step 6.__ Download "the file": "${boxurl}"
-!bch
+!bc
 ${boxurl}
 !ec
 and store it as `${course_name}.box` in the `vagrant` directory.
