@@ -70,8 +70,7 @@ sudo pip install ipython
 
 sudo pip install nose
 
-sudo pip install sphinx  # installs pygments and docutils too
-
+sudo pip install sphinx 
 sudo pip install flask
 
 sudo pip install django
@@ -179,6 +178,7 @@ system('sudo apt-get -y install kdiff3')
 # Support for Norwegian
 system('sudo apt-get -y install language-pack-nb-base')
 
+system('if [ ! -d srclib ]; then mkdir srclib; fi')
 # SciTools must be installed from source
 system('cd srclib')
 system('hg clone http://code.google.com/p/scitools')
@@ -197,4 +197,6 @@ system('cd scientificpython')
 system('sudo python setup.py install')
 system('cd ../..')
 
+system('sudo mv -f src/* srclib')
+system('sudo rm -rf src')
 print 'Everything is successfully installed!'

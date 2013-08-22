@@ -40,17 +40,15 @@ function apt_install {
 }
 
 function pip_install {
-  for p in $@; do
-    sudo pip install $p
-    if [ $? -ne 0 ]; then
-      echo "could not install $p - abort"
-      exit 1
-    fi
-  done
+  sudo pip install "$@"
+  if [ $? -ne 0 ]; then
+    echo "could not install $p - abort"
+    exit 1
+  fi
 }
 
 function unix_command {
-  $@
+  "$@"
   if [ $? -ne 0 ]; then
     echo "could not run $@ - abort"
     exit 1
@@ -89,12 +87,17 @@ for line in lines:
         shfile.write(line)
         pyfile.write(line)
         continue
+    # Strip off comments at the end of the line:
+    if '#' in line:
+        line = line.split(' # ')[0]
+
     # Treat lines starting with $ as normal Unix commands
     if line.startswith('$'):
         cmd = line[1:].strip()
         shfile.write('unix_command ' + cmd + '\n')
         pyfile.write("system('%s')\n" % cmd)
         continue
+
     # All other lines are supposed to list either pip install
     # packages or Debian package
     if 'pip install' in line:

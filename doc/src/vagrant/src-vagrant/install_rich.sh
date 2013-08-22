@@ -1,5 +1,5 @@
 #!/bin/bash
-# Automatically generated script. Based on debpkg.txt.
+# Automatically generated script. Based on debpkg_rich.txt.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -203,6 +203,35 @@ unix_command cd scientificpython
 unix_command sudo python setup.py install
 unix_command cd ../..
 
+# Doconce (must clone with https since ssh keys are not present in the box)
+unix_command cd srclib
+unix_command git clone https://github.com/hplgit/doconce.git
+unix_command cd doconce
+unix_command sudo python setup.py install
+unix_command cd ../..
+# Install Doconce dependencies not covered above
+pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
+
+pip_install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip_install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+#pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+# Ptex2tex
+unix_command cd srclib
+unix_command svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+unix_command cd ptex2tex
+unix_command sudo python setup.py install
+unix_command cd latex
+unix_command sh cp2texmf.sh
+unix_command cd ../../..
+unix_command cd ~/texmf
+unix_command mktexlsr .
+unix_command cd -
+
 unix_command sudo mv -f src/* srclib
 unix_command sudo rm -rf src
+
+# Install FEniCS manually
 echo "Everything is successfully installed!"

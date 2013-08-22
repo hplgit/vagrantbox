@@ -12,17 +12,15 @@ function apt_install {
 }
 
 function pip_install {
-  for p in $@; do
-    sudo pip install $p
-    if [ $? -ne 0 ]; then
-      echo "could not install $p - abort"
-      exit 1
-    fi
-  done
+  sudo pip install "$@"
+  if [ $? -ne 0 ]; then
+    echo "could not install $p - abort"
+    exit 1
+  fi
 }
 
 function unix_command {
-  $@
+  "$@"
   if [ $? -ne 0 ]; then
     echo "could not run $@ - abort"
     exit 1
@@ -80,7 +78,7 @@ apt_install python-matplotlib
 pip_install scipy
 pip_install ipython
 pip_install nose
-pip_install sphinx # installs pygments and docutils too
+pip_install sphinx
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev
