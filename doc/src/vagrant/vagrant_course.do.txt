@@ -68,7 +68,7 @@ to reside in `vagrant/projects` and its subdirectories.
 
 __Step 6.__ Download "the file": "${boxurl}"
 !bch
-http://goo.gl/mQawXy
+${boxurl}
 !ec
 and store it as `${course_name}.box` in the `vagrant` directory.
 The file is *big*, ${boxsize} Gb, and may take hours to download! Make sure you have
