@@ -1,3 +1,15 @@
+# Mako Variables: COURSE (INF1100 or INF5620)
+<%
+if COURSE == 'INF1100':
+    boxurl = 'http://goo.gl/mQawXy'
+    course_name = 'inf1100'
+    boxsize = '2.7'
+elif COURSE == 'INF5620':
+    boxurl = 'http://goo.gl/mQawXy'
+    course_name = 'inf5620'
+    boxsize = '3.8'
+%>
+
 TITLE: Installation of a Vagrant machine
 
 A Vagrant machine is a file that you can download and install on
@@ -54,12 +66,12 @@ to reside in `vagrant/projects` and its subdirectories.
 
 # https://mega.co.nz/#!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A
 
-__Step 6.__ Download "the file": "http://goo.gl/mQawXy"
+__Step 6.__ Download "the file": "${boxurl}"
 !bch
 http://goo.gl/mQawXy
 !ec
-and store it as `inf1100.box` in the `vagrant` directory.
-The file is over 4Gb and takes hours to download! Make sure you have
+and store it as `${course_name}.box` in the `vagrant` directory.
+The file is *big*, ${boxsize} Gb, and may take hours to download! Make sure you have
 a stable Internet connection and that you do not bring your computer
 to sleep before the complete file is downloaded.
 
@@ -68,13 +80,13 @@ __Step 7.__ Make sure you stand in the `vagrant` directory.
 Run
 
 !bc sys
-Terminal> vagrant box add inf1100 inf1100.box
-Terminal> vagrant init inf1100
+Terminal> vagrant box add ${course_name} ${course_name}.box
+Terminal> vagrant init ${course_name}
 Terminal> vagrant up
 Terminal> vagrant ssh
 !ec
-You are now inside a fullblown Ubuntu system with all software you need
-for INF1100 and many coming courses.
+You are now inside a full-blown Ubuntu system with all software you need
+for the course.
 
 
 __Step 8.__
