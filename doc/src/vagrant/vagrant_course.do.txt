@@ -234,5 +234,6 @@ Hello!
 !ec
 You should now understand how you edit programs on your Windows or Mac
 computer and how you run the programs inside the Ubuntu
-machine in a terminal window.
+machine in a terminal window. Just remember that `/vagrant` in Ubuntu
+corresponds to the directory `~/vagrant` on the Mac or Windows computer.
 
