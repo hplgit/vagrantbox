@@ -23,14 +23,15 @@ system doconce ptex2tex $name2 envir=minted
 pdflatex -shell-escape $name2
 pdflatex -shell-escape $name2
 
-#doconce sphinx_dir $name theme=agni
-system doconce sphinx_dir $name2 theme=cbc
-system python automake_sphinx.py
+theme=cbc
+#theme=agni
+system doconce sphinx_dir theme=cbc dirname=sphinx-rootdir-$theme author="Anders E. Johansen and Hans Petter Langtangen" $name2
+system python automake_sphinx.py $opts
 
 dest=../../pub
 rm -rf $dest/*-sphinx
-cp -r css _static $name.html ._part*$name.html $name2.pdf $dest
-cp -r sphinx-rootdir/_build/html $dest/${name}-sphinx
-cd $dest
-mv -f html sphinx
+cp -r css $name.html ._part*$name.html $name2.pdf $dest
+cp -r sphinx-rootdir-$theme/_build/html $dest/${name}-sphinx-$theme
+
+
 

@@ -1,6 +1,0 @@
-# Install FEniCS manually because of the dist-upgrade
-# FEniCS
-$ sudo add-apt-repository ppa:fenics-packages/fenics
-$ sudo apt-get update
-fenics
-#$ sudo apt-get dist-upgrade
