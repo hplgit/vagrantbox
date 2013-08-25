@@ -68,7 +68,7 @@ Another advantage is that all users of a Vagrant machine have exactly
 the same computing environment (unless they modify the machine).  The
 teacher can then easily debug a user problem inside the teacher's own
 Vagrant machine. And anything that the teacher demonstrates on her
-computer works out of the box and the participants' computers.
+computer works out of the box on the participants' computers.
 
 Different types of Vagrant machines can be made for different types of
 courses or purposes.  For example, a research project can set up a
@@ -230,10 +230,10 @@ idx{Cygwin installation} idx{installation of!Cygwin}
 
 Windows computers
 do not feature an ssh client and an X server by default, which are
-nedded in scientific applications. Therefore, we recommend to
+needed in scientific applications. Therefore, we recommend to
 install "Cygwin": "http://cygwin.com/install.html", which gives easy
 access to an ssh-client and an X-server on Windows computers.
-Actually, Cygwin provides extends Windows with a complete Unix environment.
+Actually, Cygwin extends Windows with a complete Unix environment.
 Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
 the instructions given by the installer. Only the minimal base packages from
 the Cygwin distribution are installed by default. This means that we need
@@ -373,8 +373,8 @@ Just click on the files, choose
 the *Raw* version, and right-click to save each file to the project
 directory.
 Read about the former two files in
-Section ref{vagrant:debpkg} and the latter two
-Section ref{vagrant:bashrc}. Edit the files to your users needs.
+Section ref{vagrant:debpkg} and the latter two in
+Section ref{vagrant:bashrc}. Edit the files to your users' needs.
 Then run
 
 !bc sys
