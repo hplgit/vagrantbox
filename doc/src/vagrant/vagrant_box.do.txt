@@ -201,7 +201,6 @@ A file
 dpkg -i virtualbox-x.y.z.*.deb` to install it.
 # #endif
 
-[hpl: I didn't manage to install VB on Ubuntu. Tried all sorts of things, .deb first, then apt-get, the commands above. Always some mismatch of VB and the Ubuntu version.]
 
 idx{Vagrant installation} idx{installation of!Vagrant}
 
@@ -486,10 +485,10 @@ Terminal> vagrant up
 Terminal> vagrant ssh
 !ec
 
-#A real machine (containing what is listed earlier, plus the
-#"FEniCS": "http://fenicsproject.org" software) is available
-#from GitHub through the address URL: "http://goo.gl/h7mv4"
-#(note the file size: 4.7Gb!).
+A real machine (containing what is listed earlier, plus the
+"FEniCS": "http://fenicsproject.org" software) can be downloaded
+from Google Drive at URL: "http://goo.gl/ta977B" (note the file size: 3.8Gb!).
+
 
 !split
 ===== Installing packages in an empty Vagrant machine =====
