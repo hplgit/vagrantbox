@@ -7,3 +7,4 @@ doconce format html $name --html_style=bloodish COURSE=INF1100 --html_output=vag
 scp vagrant_inf1100.html inf1100@login.ifi.uio.no:www_docs/
 
 doconce format html $name --html_style=bloodish COURSE=INF5620 --html_output=vagrant_inf5620
+scp vagrant_inf5620.html hpl@linux.simula.no:www_docs/tmp/

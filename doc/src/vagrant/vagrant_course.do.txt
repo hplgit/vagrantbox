@@ -1,11 +1,13 @@
 # Mako Variables: COURSE (INF1100 or INF5620)
 <%
 if COURSE == 'INF1100':
-    boxurl = 'http://goo.gl/mQawXy'
+    origurl = 'https://docs.google.com/a/simula.no/file/d/0B8qXlFGYFyhjcnFyNWxSaGo3dTg/edit?usp=sharing'
+    shorturl = 'http://goo.gl/vRkxuQ'
     course_name = 'inf1100'
     boxsize = '2.7'
 elif COURSE == 'INF5620':
-    boxurl = 'http://goo.gl/mQawXy'
+    origurl = 'https://docs.google.com/a/simula.no/file/d/0B8qXlFGYFyhjcnFyNWxSaGo3dTg/edit?usp=sharing'
+    shorturl = 'http://goo.gl/ta977B'
     course_name = 'inf5620'
     boxsize = '3.8'
 %>
@@ -64,12 +66,7 @@ Terminal> cd vagrant
 All files that you run from the Vagrant machine are supposed
 to reside in `vagrant/projects` and its subdirectories.
 
-# https://mega.co.nz/#!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A
-
-__Step 6.__ Download "the file": "${boxurl}"
-!bc
-${boxurl}
-!ec
+__Step 6.__ Download the file from URL: "${shorturl}"
 and store it as `${course_name}.box` in the `vagrant` directory.
 The file is *big*, ${boxsize} Gb, and may take hours to download! Make sure you have
 a stable Internet connection and that you do not bring your computer
