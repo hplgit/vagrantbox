@@ -43,12 +43,13 @@ relevant choice.
 On Ubuntu, select `vagrant_x.y.z_*.deb` and install it
 by `sudo dpkg -i vagrant_x.y.z_*.deb`.
 
-__Step 3 for Windows users.__ If you have a Windows machine, you should
-install "Cygwin": "http://cygwin.com/install.html".
-Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
-the instructions given by the installer. Make sure you
-manually select the 'X11' category during installation. Cygwin is
-not needed on Mac computers.
+__Step 3 for Windows users.__ If you have a Windows machine, you
+should install "Cygwin": "http://cygwin.com/install.html".  Download
+the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and
+follow the instructions given by the installer. Make sure you manually
+select the 'X11' category during installation.  Notice that
+downloading Cygwin might take one or more hours, depending on the
+speed of your network.  Cygwin is not needed on Mac computers.
 
 __Step 4.__
 Start X11: run Applications - Utilities - X11 on a Mac,

@@ -227,17 +227,18 @@ idx{Cygwin installation} idx{installation of!Cygwin}
 
 === Cygwin (only on Windows) ===
 
-Windows computers
-do not feature an ssh client and an X server by default, which are
-needed in scientific applications. Therefore, we recommend to
-install "Cygwin": "http://cygwin.com/install.html", which gives easy
-access to an ssh-client and an X-server on Windows computers.
-Actually, Cygwin extends Windows with a complete Unix environment.
-Download the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and follow
-the instructions given by the installer. Only the minimal base packages from
-the Cygwin distribution are installed by default. This means that we need
-to manually select the 'X11' category during installation to install Cygwin's
-X11 server.
+Windows computers do not feature an ssh client and an X server by
+default, which are needed in scientific applications. Therefore, we
+recommend to install "Cygwin": "http://cygwin.com/install.html", which
+gives easy access to an ssh-client and an X-server on Windows
+computers.  Actually, Cygwin extends Windows with a complete Unix
+environment.  Download the Cygwin's "setup.exe":
+"http://cygwin.com/setup.exe" file and follow the instructions given
+by the installer. Only the minimal base packages from the Cygwin
+distribution are installed by default. This means that we need to
+manually select the 'X11' category during installation to install
+Cygwin's X11 server. Notice that downloading Cygwin might take one or
+more hours, depending on the speed of your network.
 
 [Anders: Don't remember if the following was necessary. Need to check it next time I'm in Windows]
 
@@ -922,14 +923,16 @@ host (i.e., you must be logged out by Ctrl-D from the machine):
 
 ===== Placing the Vagrant machine in the cloud =====
 
-There are numerous "free file hosting sites":
-"http://www.freewaregenius.com/the-best-free-send-large-files-services-ten-file-hosting-services-compared/"
-where a Vagrant machine can be stored and shared with others.
-One service that offers enough space (50 Gb) for many big Vagrant machines is
-Mega: URL: "https://mega.co.nz/". You must create a free account
-before uploading your files. Right-click on any uploaded file, choose
-*Get link*, and a window pops up with the URL to the file. You can
-distribute this link to the target audience of your file.
+There are numerous free file hosting sites where a Vagrant machine can
+be stored and shared with others.  We have found Google Drive to be a
+viable solution. It is free, can handle large enough files, and has
+flexible functionality for sharing the machine with others. A
+potential problem with Google Drive, Sky Drive, or Dropbox is that
+other computers connected to the account start to download the big
+Vagrant machines. To prevent such actions, click on the Google Drive
+icon on all machines that synchronize the account and deselect the
+directory where you store the Vagrant machine(s).
+
 
 ===== Using VMWare Fusion =====
 

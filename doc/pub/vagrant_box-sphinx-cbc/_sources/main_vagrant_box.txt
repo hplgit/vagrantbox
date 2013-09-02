@@ -5,7 +5,7 @@ Creating Vagrant Machines for Distribution of Software Environments
 ===================================================================
 
 :Author: Hans Petter Langtangen, Anders E. Johansen
-:Date: Aug 21, 2013
+:Date: Aug 22, 2013
 
 Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
@@ -19,23 +19,21 @@ particular version of the operating system.
 
 There are many working solutions to this problem:
 
- * Long technical installation descriptions that in practice
-   require considerable experience with compiling and linking
+ * Long technical installation descriptions that essentially
+   requires considerable experience with compiling and linking
    software packages.
 
  * Ready-made, easy-to-install files for particular platforms,
    e.g., Debian packages (``.deb`` files) for Linux systems like Ubuntu,
-   ``.dmg`` bundles for Mac, or ``.exe`` files for Windows.
+   ``.dmg`` bundles for Mac, or ``.exe`` files on Windows.
    It can still be quite some work for a user to install the
-   right combination of many packages, although each package
-   gets installed by a double click.
+   right combination of many packages.
 
  * Virtual machines, such as VirtualBox and VMWare Fusion,
-   can run a particular operating system and thereby take advantage
-   of the most easy-to-use platform from an installation perspective.
-   In particular, one can run Ubuntu or other Debian-based Linux systems
-   and use the ``apt-get install`` and ``pip install`` commands
-   to make installation of packages and their dependencies trivial.
+   for running a particular operating system and installing
+   software packages on that system. This solution makes it easy to
+   use Debian packages in an Ubuntu system on a Mac or
+   Windows machine.
 
 A `Vagrant machine <http://www.vagrantup.com/>`_ is essentially a
 wrapper around VirtualBox which makes it very easy to build, distribute, and
@@ -46,16 +44,8 @@ spend a minimum of efforts on offering
 or using a complete computing environment with much
 sophisticated, hard-to-install mathematical software.
 
-
-.. index:: host
-
-.. index:: Vagrant machine
-
-
-By *host* we mean the operating system
-used to build or run a Vagrant machine. Operating system commands
-issued on the host have a prompt ``Terminal>`` while commands issued
-in the Vagrant machine feature the prompt ``Machine>``.
+Some nomenclature is needed: by *host* we mean the operating system
+used to build or run a Vagrant machine.
 
 .. !split
 
@@ -63,37 +53,22 @@ Problem setting
 ===============
 
 We shall work with a specific example: creating a computing
-environment for the participants in a course on computational X,
-where X is any science or engineering subject such as chemistry,
-physics, quantum mechanics, fluid dynamics, oceanography, and so forth.
-The challenge with courses featuring heavy computations
-is two-fold:
-
-1. to minimize the amount of time the audience spends on
-   installation issues and
-
-2. to minimize the teacher's hassle with all
-   types of operating systems that might be present on the laptops
-   in the audience.
-
-An attractive solution to this minimization problem is to create a
+environment for a participants in a course on scientific computing.
+The challenge is to minimize the amount of time the audience spends on
+installation issues as well as minimize the teacher's hassle with all
+types of operating systems that might be present in the audience. An
+attractive solution to this minimization problem is to create a
 Vagrant machine, which is simply a file with a virtual ready-made
 computer that anyone in the audience can easily download and use on
-any Windows or Mac computer.
-
-Another advantage is that all users of a Vagrant machine have exactly
-the same computing environment (unless they modify the machine).  The
-teacher can then easily debug a user problem inside the teacher's own
-Vagrant machine. And anything that the teacher demonstrates on her
-computer works out of the box on the participants' computers.
-
-Different types of Vagrant machines can be made for different types of
-courses or purposes.  For example, a research project can set up a
-software environment for its project members, as a Vagrant machine, to
-ensure that the environment is conserved for the future, which is a
-key principle for reproducible science. Users may have many Vagrant
-machines on their computers and switch between the computing
-environments.
+any Windows or Mac machine.  Another advantage is that all users of a
+Vagrant machine have exactly the same computing environment (unless
+they modify the machine).  The teacher can then easily debug a user
+problem inside the teacher's own Vagrant machine. Different types of
+machines can be made for different types of courses or purposes.
+For example, a research project can set up a software environment
+for its project members, as a Vagrant machine, to ensure that
+the environment is conserved for the future, which is a key principle
+for reproducible science.
 
 .. _vagrant:contents:
 
@@ -110,7 +85,7 @@ Ubuntu of two main reasons:
    repository for pre-built mathematical software.
 
 We remark that the user of the machine will mainly work with files
-and directories on the host system and only use the Ubuntu system
+and directories in the host system and only use the Ubuntu system
 to run computations.
 
 To be specific, the sample computing environment to be illustrated here
@@ -128,26 +103,17 @@ Examples on basic software includes
 
 Most of these packages are in Debian and trivially installed by a
 ``sudo apt-get install packagename`` command, but the Python packages
-are often more conveniently installed in their latest version by a ``pip
+are more conveniently installed in their latest version by a ``pip
 install packagename`` command. A few Python packages must be installed
-directly from the source code, via downloading followed by
-the ``sudo python setup.py install``
+directly from the source code, via the ``sudo python setup.py install``
 command, if they do not exist in Debian, or if they are not supported
 by ``pip install``, or if one needs to download the latest development
-version. The example will in detail illustrate the various cases.
+version. The example will in detail illustrate these cases.
 
-Much more sophisticated packages than those listed above,
-for instance `PETSc <http://www.mcs.anl.gov/petsc/>`_
-and `FEniCS <http://fenicsproject.org>`_, may be very challenging to
-build from scratch, but as long as Debian versions are offered
-(which is the case with PETSc and FEniCS), installation on a Debian-based
-system like Ubuntu is still just a trivial ``apt-get install`` command.
-
-
-.. index:: .bashrc file
-
-.. index:: .rsyncexclude file
-
+More sophisticated packages like `PETSc <http://www.mcs.anl.gov/petsc/>`_
+and `FEniCS <http://fenicsproject.org>`_, which are challenging to
+build from scratch, can trivially be added as these packages are
+available in Debian.
 
 In the Vagrant machine, we create two directories:
 
@@ -175,17 +141,9 @@ Before going into details on how to utilize Vagrant, you need to
 have it on your host system.
 
 
-.. index:: VirtualBox installation
-
-.. index::
-   single: installation of; VirtualBox
-
-
-VirtualBox
-~~~~~~~~~~
-
 Download and install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. Choose the version
 according to the operating system on the host.
+
 For example, if you want to build or run Vagrant machines under Mac OS X, choose
 *VirtualBox x.y.z for OS X hosts*, where ``x.y.z`` is the version number
 of VirtualBox. Double click the downloaded ``.dmg`` file to install
@@ -228,16 +186,6 @@ the `VirtualBox site <https://www.virtualbox.org/wiki/Downloads>`_, because
 the ``apt-get install`` approach above makes it easier to explicitly get all the
 packages that VirtualBox depends on.
 
-
-.. index:: Vagrant installation
-
-.. index::
-   single: installation of; Vagrant
-
-
-Vagrant
-~~~~~~~
-
 Download and install `Vagrant <http://downloads.vagrantup.com/>`_.
 Choose the latest version and the installation file corresponding to
 the host's operating system (where you installed VirtualBox).  On a Mac, you
@@ -255,27 +203,16 @@ This is true for many Linux systems too, otherwise you must
 add the relevant directory where the ``vagrant`` program was installed
 (say ``/opt/vagrant/bin``) to your ``PATH`` variable.
 
-
-.. index:: Cygwin installation
-
-.. index::
-   single: installation of; Cygwin
-
-
-Cygwin (only on Windows)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 Windows computers
-do not feature an ssh client and an X server by default, which are
-needed in scientific applications. Therefore, we recommend to
-install `Cygwin <http://cygwin.com/install.html>`_, which gives easy
-access to an ssh-client and an X-server on Windows computers.
-Actually, Cygwin extends Windows with a complete Unix environment.
+does not feature an ssh-client and an X-server by default. An X-server
+is needed by many applications. Therefore, we recommend to
+install `Cygwin <http://cygwin.com/install.html>`_, which features both
+an ssh-client and an X-server. Cygwin also provides the Windows computer
+with a Unix environment.
 Download the Cygwin's `setup.exe <http://cygwin.com/setup.exe>`_ file and follow
 the instructions given by the installer. Only the minimal base packages from
 the Cygwin distribution are installed by default. This means that we need
-to manually select the 'X11' category during installation to install Cygwin's
-X11 server.
+to manually select the 'X11' category during installation to install Cygwin/X.
 
 Once installed, we need to add Cygwin's ssh client to our
 ``PATH``. Cygwin is by default installed to ``C:\cygwin``, so the command
@@ -294,12 +231,6 @@ the machine.
 Choice of operating system type
 -------------------------------
 
-
-.. index:: base box
-
-.. index:: precise64.box (Ubuntu base box)
-
-
 The first step of building a Vagrant machine is to choose a plain
 version of an operating system to base the machine on. This is called
 a *base box*. A lot of pre-made base boxes for various versions of
@@ -311,12 +242,6 @@ list.  This is a version of Ubuntu 12.04
 (``precise`` refers to the official Ubuntu name Precise Pangolin for
 version 12.04).  Click on *Copy* to copy the URL.
 You have now two choices:
-
-
-.. index:: complete Vagrant machine
-
-.. index:: empty Vagrant machine
-
 
 1. you can build and distribute a complete
    virtual machine, or
@@ -342,16 +267,6 @@ process of their machines at different times.
 Downloading a base box to create a complete Vagrant machine
 -----------------------------------------------------------
 
-
-.. index:: vagrant box add
-
-
-.. index:: vagrant init
-
-
-.. index:: vagrant up
-
-
 Paste the copied URL of the chosen box in
 a new browser tab. This action should automatically
 download a file ``precise64.box``.
@@ -372,12 +287,6 @@ known as the *project directory* in the `Vagrant documentation <http://docs.vagr
 
 Making an empty Vagrant machine
 -------------------------------
-
-
-.. index:: vagrant init
-
-.. index:: Vagrantfile
-
 
 Make some directory (say) ``~/vagrant``, move to this directory, and
 type
@@ -438,8 +347,8 @@ Just click on the files, choose
 the *Raw* version, and right-click to save each file to the project
 directory.
 Read about the former two files in
-the section :ref:`vagrant:debpkg` and the latter two in
-the section :ref:`vagrant:bashrc`. Edit the files to your users' needs.
+the section :ref:`vagrant:debpkg` and the latter two
+the section :ref:`vagrant:bashrc`. Edit the files to your users needs.
 Then run
 
 
@@ -454,13 +363,7 @@ project directory (``~/vagrant``).
 
 You may alternatively download the more comprehensive `debpkg.txt <https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/debpkg.txt>`_
 package list and use that file as a starting point. Running ``deb2sh.py debpkg.txt``
-will produce the scripts ``install.sh`` and ``install.py``.
-
-
-.. index:: vagrant ssh
-
-.. index:: /vagrant (shared) directory
-
+will then produce ``install.sh`` and ``install.py``.
 
 Installing files and packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -510,12 +413,8 @@ commands if necessary (e.g., at a later stage to update the software).
         Machine> cp /vagrant/install_minimal.py .
 
 
-
-.. index:: X11 graphics
-
-
-Enabling X11 graphics
-~~~~~~~~~~~~~~~~~~~~~
+Enabling X11 graphics  (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is recommended that you test graphics programs and check that they
 display the graphics on the host appropriately. To this end, you
@@ -541,10 +440,6 @@ on Windows.
 A simple application just to test X11 is to run ``xterm`` from the Vagrant
 machine. A terminal window will pop up on the host.
 
-
-.. index:: vagrant package
-
-
 Packaging a new box
 ~~~~~~~~~~~~~~~~~~~
 
@@ -561,11 +456,10 @@ running the ``vagrant package`` command in the project directory:
                   --vagrantfile Vagrantfile
 
 The settings in ``Vagrantfile`` are now packed with the box. In particular,
-if X11 graphics has been enabled in ``Vagrantfile`` as described above,
-you have
-a fully functioning Ubuntu machine in ``course.box`` that will work
-seamlessly with
-X11 graphics on the host. Users can just do
+if X11 graphics has been enabled in ``Vagrantfile`` as described
+in the section :ref:`vagrant:complete:install`, you have
+a fully functioning Ubuntu machine in ``course.box`` that will work with
+X11 graphics. Users can just do
 
 
 
@@ -596,29 +490,13 @@ Installing packages in an empty Vagrant machine
 
 An empty Vagrant machine is distributed to users
 as a bundle of ``Vagrantfile`` and an
-installation script.
-Read the section :ref:`vagrant:debpkg`
-and make a Bash installation script.
-
-You may want to distribute
+installation script. (You may want to distribute
 ``.bashrc`` and
 ``.rsyncexlude`` files too, as described in
-the section :ref:`vagrant:bashrc`, but that is easiest done by letting
-the installation script download the files from site where they
-are available.  Relevant lines may be
-
-
-.. code-block:: text
-
-
-        $ cd $HOME
-        $ wget http://tinyurl.com/m88bljf/.bashrc
-        $ wget http://tinyurl.com/m88bljf/.rsyncexclude
-
-
-
-.. index:: Vagrantfile
-
+the section :ref:`vagrant:bashrc`, but we omit this feature
+now.)
+Read the section :ref:`vagrant:debpkg`
+and make a Bash installation script.
 
 To ensure that the user's initialization process of the machine
 invokes an installation of the desired packages, you need to
@@ -637,7 +515,7 @@ The relevant line is shown below:
         end
 
 
-Users must now have the files ``Vagrantfile`` and ``install_minimal.sh``
+Users must now get the files ``Vagrantfile`` and ``install_minimal.sh``
 to create a complete Vagrant machine on their computers.
 
 
@@ -647,20 +525,6 @@ to create a complete Vagrant machine on their computers.
 
 Scripts for installing ready-made packages
 ------------------------------------------
-
-
-.. index:: deb2sh.py script
-
-.. index:: debpkg.txt package lists
-
-
-.. index:: installation scripts
-
-.. index:: scripts for installing packages
-
-
-.. index:: package installation
-
 
 We have developed a little tool where one can list the desired Debian
 or Python packages in a computing environment in a file with default name
@@ -679,12 +543,6 @@ cannot be installed successfully. The problem must
 then be fixed, or the package must in worst case be removed (just
 comment out the install line(s) in the Bash or Python script).  The
 script can thereafter be rerun again.
-
-
-.. index:: sudo apt-get install
-
-.. index:: pip install
-
 
 The following is an extract of packages as they are listed
 in the mentioned ``debpkg_minimal.txt`` file:
@@ -836,25 +694,18 @@ generated ``install.py`` file look as follows.
         
         system('sudo apt-get update --fix-missing')
         
-        system('sudo apt-get -y install python-mode gedit vim ispell')
-        ...
+        system('sudo apt-get -y install ispell')[[[
         system('pip install numpy')
         system('pip install sympy')
-        system('sudo apt-get -y install scipy')
-        ...
-        system('if [ ! -d srclib ]; then mkdir srclib; fi')
-        system('cd srclib')
-        sytem('hg clone https://bitbucket.org/khinsen/scientificpython')
-        system(' cd scientificpython')
-        system('sudo python setup.py install')
 
 The Python script does not test the Unix environment variable ``$?``,
-but the first return value from the ``getstatusoutput`` function acts as
+but the first return value from the ``getstatusoutput`` is basically
 the value of ``$?``.
 
-We can use the Bash or Python script to easily automate installation
-of packages in the Vagrant machine. More powerful, industry standard
-tools for setting up complete software environments are `Chef <http://www.opscode.com/>`_ and `Puppet <https://puppetlabs.com/>`_.
+We can use ``install.sh`` or ``install.py`` to automate installation of
+packages in the Vagrant machine. More powerful tools for setting
+up complete software environments are `Chef <http://www.opscode.com/>`_
+and `Puppet <https://puppetlabs.com/>`_.
 
 
 
@@ -864,12 +715,6 @@ tools for setting up complete software environments are `Chef <http://www.opscod
 
 Setting up a default environment with ``.bashrc``
 -------------------------------------------------
-
-
-.. index:: .bashrc file
-
-.. index:: .rsyncexclude file
-
 
 We should include a brief ``.bashrc`` file in the Vagrant
 machine as a starting point for the
@@ -959,15 +804,11 @@ Operating the Vagrant machine
 
 For a user, the initialization of a new machine depends on
 whether it is a complete Vagrant machine or an empty Vagrant machine.
-
-
-.. admonition:: Important
-
-   On a Windows computer,
-   always operate the Vagrant machine from Cygwin's terminal, which has
-   both an ssh-client and an X-server. The terminal can
-   be started from Start - All Programs - Cygwin-X - XWin Server.
-
+[[[
+On a Windows computer,
+always operate the Vagrant machine from Cygwin's terminal, which has
+both an ssh-client and an X-server. The terminal can
+be started from Start - All Programs - Cygwin-X - XWin Server.
 
 Operating a complete Vagrant machine
 ------------------------------------
@@ -1033,6 +874,30 @@ run
 The first command takes a long time to execute since it runs the
 installation script. Log out with Ctrl-D.
 
+.. _vagrant:X11:
+
+Enabling X11 graphics  (2)
+--------------------------
+
+Many Ubuntu applications use X11 graphics, and you want to forward the
+graphics to the host. The ``Vagrantfile`` must contain the line
+``config.ssh.forward_x11 = true`` inside the
+``Vagrant::Config.run do |config|`` block. In addition, X11 must
+run on the host.
+
+X11 on Mac OS X
+~~~~~~~~~~~~~~~
+
+Open Finder, go to
+Applications, and then the Utilities subdirectory, and double-click ``X11.app``
+to start X11.
+
+X11 on Windows
+~~~~~~~~~~~~~~
+
+Run all ``vagrant`` commands from a Cygwin terminal, started as
+Start - All Programs - Cygwin-X - XWin Server.
+
 
 Working with an initialized Vagrant machine
 -------------------------------------------
@@ -1050,10 +915,8 @@ You are now inside the machine and can reach
 files on the host from
 ``/vagrant/projects`` (see the next section for more details).
 Log out with Ctrl-D and in again with ``vagrant ssh``.
-Create and edit files on the host in ``~/vagrant/projects`` and its
-subdirectories.
 
-Before closing a laptop or shutting it down, it is recommended
+Before closing a laptop or shutting down a computer, it is recommended
 to log out of the Vagrant machine and run ``vagrant suspend``.
 
 
@@ -1065,9 +928,7 @@ Shared directories
 Inside the Vagrant machine, ``/vagrant`` is a directory shared with the
 user's file system. More precisely, ``/vagrant`` points to the *project
 directory* where the file ``Vagrantfile`` resides and where the ``vagrant
-up`` command was run (``~/vagrant`` if you have followed the specific
-directory naming suggested in this document).
-If users of the Vagrant machine keeps all their
+up`` command was run. If users of the Vagrant machine keeps all their
 files relevant for the machine in the project directory and its
 subdirectories, all these directories will be shared between the machine and
 the user's file system. Normally, this feature is enough for efficient
@@ -1226,7 +1087,7 @@ Say you want distribute a complete Vagrant machine with the URL
 .. code-block:: text
 
 
-        http://some.where.net/path/to/course.box
+        
 
 Here is the need-know-information for users:
 
