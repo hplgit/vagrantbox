@@ -25,6 +25,7 @@ pip install numpy
 pip install sympy
 pip install cython
 swig
+#pip install pyparsing
 #pip install matplotlib
 python-matplotlib
 pip install scipy
