@@ -27,7 +27,12 @@ shfile = open(outfile + '.sh', 'w')
 cmd = 'sudo apt-get update --fix-missing'
 shfile.write("""\
 #!/bin/bash
-# Automatically generated script. Based on %s.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in %s.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -62,7 +67,12 @@ function unix_command {
 pyfile = open(outfile + '.py', 'w')
 pyfile.write(r'''\
 #!/usr/bin/env python
-# Automatically generated script. Based on %s.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in %s.
 
 import commands, sys
 
