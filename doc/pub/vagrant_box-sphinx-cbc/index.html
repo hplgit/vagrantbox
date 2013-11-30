@@ -26,8 +26,26 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
     <link rel="top" title="Creating Vagrant Machines for Distribution of Software Environments" href="#" />
-    <link rel="next" title="Creating Vagrant Machines for Distribution of Software Environments" href="main_vagrant_box.html" /> 
+    <link rel="next" title="Creating Vagrant Machines for Distribution of Software Environments" href="main_vagrant_box.html" />
+ 
   
    <style type=text/css>
      div.admonition {
@@ -80,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="main_vagrant_box.html#operating-the-vagrant-machine">Operating the Vagrant machine</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#operating-a-complete-vagrant-machine">Operating a complete Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#operating-an-empty-vagrant-machine">Operating an empty Vagrant machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#enabling-x11-graphics-2">Enabling X11 graphics  (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#working-with-an-initialized-vagrant-machine">Working with an initialized Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#shared-directories">Shared directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#troubleshooting">Troubleshooting</a></li>

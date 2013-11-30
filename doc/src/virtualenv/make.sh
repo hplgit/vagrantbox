@@ -30,7 +30,7 @@ system python automake_sphinx.py $opts
 
 dest=../../pub
 rm -rf $dest/*-sphinx
-cp -r css $name.html ._part*$name.html $name2.pdf $dest
+cp -r css $name.html ._$name*.html $name2.pdf $dest
 cp -r sphinx-rootdir-$theme/_build/html $dest/${name}-sphinx-$theme
 
 

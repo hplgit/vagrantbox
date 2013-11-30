@@ -26,8 +26,26 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
     <link rel="top" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
-    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" /> 
+    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
+ 
   
    <style type=text/css>
      div.admonition {
@@ -64,7 +82,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Anders E. Johansen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 22, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Nov 30, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -80,19 +98,21 @@ particular version of the operating system.</p>
 <p>There are many working solutions to this problem:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Long technical installation descriptions that essentially
-requires considerable experience with compiling and linking
+<li>Long technical installation descriptions that in practice
+require considerable experience with compiling and linking
 software packages.</li>
 <li>Ready-made, easy-to-install files for particular platforms,
 e.g., Debian packages (<tt class="docutils literal"><span class="pre">.deb</span></tt> files) for Linux systems like Ubuntu,
-<tt class="docutils literal"><span class="pre">.dmg</span></tt> bundles for Mac, or <tt class="docutils literal"><span class="pre">.exe</span></tt> files on Windows.
+<tt class="docutils literal"><span class="pre">.dmg</span></tt> bundles for Mac, or <tt class="docutils literal"><span class="pre">.exe</span></tt> files for Windows.
 It can still be quite some work for a user to install the
-right combination of many packages.</li>
+right combination of many packages, although each package
+gets installed by a double click.</li>
 <li>Virtual machines, such as VirtualBox and VMWare Fusion,
-for running a particular operating system and installing
-software packages on that system. This solution makes it easy to
-use Debian packages in an Ubuntu system on a Mac or
-Windows machine.</li>
+can run a particular operating system and thereby take advantage
+of the most easy-to-use platform from an installation perspective.
+In particular, one can run Ubuntu or other Debian-based Linux systems
+and use the <tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span></tt> and <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt> commands
+to make installation of packages and their dependencies trivial.</li>
 </ul>
 </div></blockquote>
 <p>A <a class="reference external" href="http://www.vagrantup.com/">Vagrant machine</a> is essentially a
@@ -103,28 +123,42 @@ The target audience of the document is scientists who wants to
 spend a minimum of efforts on offering
 or using a complete computing environment with much
 sophisticated, hard-to-install mathematical software.</p>
-<p>Some nomenclature is needed: by <em>host</em> we mean the operating system
-used to build or run a Vagrant machine.</p>
+<span class="target" id="index-0"></span><p id="index-1">By <em>host</em> we mean the operating system
+used to build or run a Vagrant machine. Operating system commands
+issued on the host have a prompt <tt class="docutils literal"><span class="pre">Terminal&gt;</span></tt> while commands issued
+in the Vagrant machine feature the prompt <tt class="docutils literal"><span class="pre">Machine&gt;</span></tt>.</p>
 </div>
 <div class="section" id="problem-setting">
 <h1>Problem setting<a class="headerlink" href="#problem-setting" title="Permalink to this headline">¶</a></h1>
 <p>We shall work with a specific example: creating a computing
-environment for a participants in a course on scientific computing.
-The challenge is to minimize the amount of time the audience spends on
-installation issues as well as minimize the teacher&#8217;s hassle with all
-types of operating systems that might be present in the audience. An
-attractive solution to this minimization problem is to create a
+environment for the participants in a course on computational X,
+where X is any science or engineering subject such as chemistry,
+physics, quantum mechanics, fluid dynamics, oceanography, and so forth.
+The challenge with courses featuring heavy computations
+is two-fold:</p>
+<ol class="arabic simple">
+<li>to minimize the amount of time the audience spends on
+installation issues and</li>
+<li>to minimize the teacher&#8217;s hassle with all
+types of operating systems that might be present on the laptops
+in the audience.</li>
+</ol>
+<p>An attractive solution to this minimization problem is to create a
 Vagrant machine, which is simply a file with a virtual ready-made
 computer that anyone in the audience can easily download and use on
-any Windows or Mac machine.  Another advantage is that all users of a
-Vagrant machine have exactly the same computing environment (unless
-they modify the machine).  The teacher can then easily debug a user
-problem inside the teacher&#8217;s own Vagrant machine. Different types of
-machines can be made for different types of courses or purposes.
-For example, a research project can set up a software environment
-for its project members, as a Vagrant machine, to ensure that
-the environment is conserved for the future, which is a key principle
-for reproducible science.</p>
+any Windows or Mac computer.</p>
+<p>Another advantage is that all users of a Vagrant machine have exactly
+the same computing environment (unless they modify the machine).  The
+teacher can then easily debug a user problem inside the teacher&#8217;s own
+Vagrant machine. And anything that the teacher demonstrates on her
+computer works out of the box on the participants&#8217; computers.</p>
+<p>Different types of Vagrant machines can be made for different types of
+courses or purposes.  For example, a research project can set up a
+software environment for its project members, as a Vagrant machine, to
+ensure that the environment is conserved for the future, which is a
+key principle for reproducible science. Users may have many Vagrant
+machines on their computers and switch between the computing
+environments.</p>
 <div class="section" id="contents-of-the-vagrant-machine">
 <span id="vagrant-contents"></span><h2>Contents of the Vagrant machine<a class="headerlink" href="#contents-of-the-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>The Vagrant machine needs to have an operating system. Here we choose
@@ -136,7 +170,7 @@ Debian packages</li>
 repository for pre-built mathematical software.</li>
 </ol>
 <p>We remark that the user of the machine will mainly work with files
-and directories in the host system and only use the Ubuntu system
+and directories on the host system and only use the Ubuntu system
 to run computations.</p>
 <p>To be specific, the sample computing environment to be illustrated here
 consists of a Python-based ecosystem for scientific computing.
@@ -152,17 +186,20 @@ Examples on basic software includes</p>
 </div></blockquote>
 <p>Most of these packages are in Debian and trivially installed by a
 <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">packagename</span></tt> command, but the Python packages
-are more conveniently installed in their latest version by a <tt class="docutils literal"><span class="pre">pip</span>
+are often more conveniently installed in their latest version by a <tt class="docutils literal"><span class="pre">pip</span>
 <span class="pre">install</span> <span class="pre">packagename</span></tt> command. A few Python packages must be installed
-directly from the source code, via the <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>
+directly from the source code, via downloading followed by
+the <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>
 command, if they do not exist in Debian, or if they are not supported
 by <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt>, or if one needs to download the latest development
-version. The example will in detail illustrate these cases.</p>
-<p>More sophisticated packages like <a class="reference external" href="http://www.mcs.anl.gov/petsc/">PETSc</a>
-and <a class="reference external" href="http://fenicsproject.org">FEniCS</a>, which are challenging to
-build from scratch, can trivially be added as these packages are
-available in Debian.</p>
-<p>In the Vagrant machine, we create two directories:</p>
+version. The example will in detail illustrate the various cases.</p>
+<p>Much more sophisticated packages than those listed above,
+for instance <a class="reference external" href="http://www.mcs.anl.gov/petsc/">PETSc</a>
+and <a class="reference external" href="http://fenicsproject.org">FEniCS</a>, may be very challenging to
+build from scratch, but as long as Debian versions are offered
+(which is the case with PETSc and FEniCS), installation on a Debian-based
+system like Ubuntu is still just a trivial <tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span></tt> command.</p>
+<span class="target" id="index-2"></span><p id="index-3">In the Vagrant machine, we create two directories:</p>
 <blockquote>
 <div><ul class="simple">
 <li><tt class="docutils literal"><span class="pre">~/bin</span></tt> for executable programs and scripts</li>
@@ -184,9 +221,11 @@ between machines and external disks or memory sticks.</li>
 <span id="vagrant-install"></span><h2>Installing the necessary software for using Vagrant<a class="headerlink" href="#installing-the-necessary-software-for-using-vagrant" title="Permalink to this headline">¶</a></h2>
 <p>Before going into details on how to utilize Vagrant, you need to
 have it on your host system.</p>
+<span class="target" id="index-4"></span><div class="section" id="virtualbox">
+<span id="index-5"></span><h3>VirtualBox<a class="headerlink" href="#virtualbox" title="Permalink to this headline">¶</a></h3>
 <p>Download and install <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. Choose the version
-according to the operating system on the host.</p>
-<p>For example, if you want to build or run Vagrant machines under Mac OS X, choose
+according to the operating system on the host.
+For example, if you want to build or run Vagrant machines under Mac OS X, choose
 <em>VirtualBox x.y.z for OS X hosts</em>, where <tt class="docutils literal"><span class="pre">x.y.z</span></tt> is the version number
 of VirtualBox. Double click the downloaded <tt class="docutils literal"><span class="pre">.dmg</span></tt> file to install
 Vagrant. Those who work on a Windows machines will select <em>VirtualBox
@@ -220,6 +259,9 @@ downloading a particular <tt class="docutils literal"><span class="pre">.deb</sp
 the <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox site</a>, because
 the <tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span></tt> approach above makes it easier to explicitly get all the
 packages that VirtualBox depends on.</p>
+<span class="target" id="index-6"></span></div>
+<div class="section" id="vagrant">
+<span id="index-7"></span><h3>Vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h3>
 <p>Download and install <a class="reference external" href="http://downloads.vagrantup.com/">Vagrant</a>.
 Choose the latest version and the installation file corresponding to
 the host&#8217;s operating system (where you installed VirtualBox).  On a Mac, you
@@ -235,19 +277,24 @@ variable).
 This is true for many Linux systems too, otherwise you must
 add the relevant directory where the <tt class="docutils literal"><span class="pre">vagrant</span></tt> program was installed
 (say <tt class="docutils literal"><span class="pre">/opt/vagrant/bin</span></tt>) to your <tt class="docutils literal"><span class="pre">PATH</span></tt> variable.</p>
-<p>Windows computers
-does not feature an ssh-client and an X-server by default. An X-server
-is needed by many applications. Therefore, we recommend to
-install <a class="reference external" href="http://cygwin.com/install.html">Cygwin</a>, which features both
-an ssh-client and an X-server. Cygwin also provides the Windows computer
-with a Unix environment.
-Download the Cygwin&#8217;s <a class="reference external" href="http://cygwin.com/setup.exe">setup.exe</a> file and follow
-the instructions given by the installer. Only the minimal base packages from
-the Cygwin distribution are installed by default. This means that we need
-to manually select the &#8216;X11&#8217; category during installation to install Cygwin/X.</p>
+<span class="target" id="index-8"></span></div>
+<div class="section" id="cygwin-only-on-windows">
+<span id="index-9"></span><h3>Cygwin (only on Windows)<a class="headerlink" href="#cygwin-only-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>Windows computers do not feature an ssh client and an X server by
+default, which are needed in scientific applications. Therefore, we
+recommend to install <a class="reference external" href="http://cygwin.com/install.html">Cygwin</a>, which
+gives easy access to an ssh-client and an X-server on Windows
+computers.  Actually, Cygwin extends Windows with a complete Unix
+environment.  Download the Cygwin&#8217;s <a class="reference external" href="http://cygwin.com/setup.exe">setup.exe</a> file and follow the instructions given
+by the installer. Only the minimal base packages from the Cygwin
+distribution are installed by default. This means that we need to
+manually select the &#8216;X11&#8217; category during installation to install
+Cygwin&#8217;s X11 server. Notice that downloading Cygwin might take one or
+more hours, depending on the speed of your network.</p>
 <p>Once installed, we need to add Cygwin&#8217;s ssh client to our
 <tt class="docutils literal"><span class="pre">PATH</span></tt>. Cygwin is by default installed to <tt class="docutils literal"><span class="pre">C:\cygwin</span></tt>, so the command
 is <tt class="docutils literal"><span class="pre">set</span> <span class="pre">PATH=%PATH%;C:\cygwin\bin</span></tt>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="creating-the-vagrant-machine">
@@ -258,7 +305,7 @@ how to install (Python) packages from source code, and how to configure
 the machine.</p>
 <div class="section" id="choice-of-operating-system-type">
 <h2>Choice of operating system type<a class="headerlink" href="#choice-of-operating-system-type" title="Permalink to this headline">¶</a></h2>
-<p>The first step of building a Vagrant machine is to choose a plain
+<span class="target" id="index-10"></span><p id="index-11">The first step of building a Vagrant machine is to choose a plain
 version of an operating system to base the machine on. This is called
 a <em>base box</em>. A lot of pre-made base boxes for various versions of
 operating systems are available at <a class="reference external" href="http://www.vagrantbox.es">http://www.vagrantbox.es</a>.
@@ -269,7 +316,7 @@ list.  This is a version of Ubuntu 12.04
 (<tt class="docutils literal"><span class="pre">precise</span></tt> refers to the official Ubuntu name Precise Pangolin for
 version 12.04).  Click on <em>Copy</em> to copy the URL.
 You have now two choices:</p>
-<ol class="arabic simple">
+<span class="target" id="index-12"></span><ol class="arabic simple" id="index-13">
 <li>you can build and distribute a complete
 virtual machine, or</li>
 <li>the user can download a box and then automatically install
@@ -291,7 +338,7 @@ process of their machines at different times.</p>
 </div>
 <div class="section" id="downloading-a-base-box-to-create-a-complete-vagrant-machine">
 <h2>Downloading a base box to create a complete Vagrant machine<a class="headerlink" href="#downloading-a-base-box-to-create-a-complete-vagrant-machine" title="Permalink to this headline">¶</a></h2>
-<p>Paste the copied URL of the chosen box in
+<span class="target" id="index-14"></span><span class="target" id="index-15"></span><p id="index-16">Paste the copied URL of the chosen box in
 a new browser tab. This action should automatically
 download a file <tt class="docutils literal"><span class="pre">precise64.box</span></tt>.
 Say you store this file in a directory <tt class="docutils literal"><span class="pre">~/vagrant</span></tt>. Go to this
@@ -308,7 +355,7 @@ known as the <em>project directory</em> in the <a class="reference external" hre
 </div>
 <div class="section" id="making-an-empty-vagrant-machine">
 <h2>Making an empty Vagrant machine<a class="headerlink" href="#making-an-empty-vagrant-machine" title="Permalink to this headline">¶</a></h2>
-<p>Make some directory (say) <tt class="docutils literal"><span class="pre">~/vagrant</span></tt>, move to this directory, and
+<span class="target" id="index-17"></span><p id="index-18">Make some directory (say) <tt class="docutils literal"><span class="pre">~/vagrant</span></tt>, move to this directory, and
 type</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant init</span>
 </pre></div>
@@ -353,8 +400,8 @@ Just click on the files, choose
 the <em>Raw</em> version, and right-click to save each file to the project
 directory.
 Read about the former two files in
-the section <a class="reference internal" href="#vagrant-debpkg"><em>Scripts for installing ready-made packages</em></a> and the latter two
-the section <a class="reference internal" href="#vagrant-bashrc"><em>Setting up a default environment with .bashrc</em></a>. Edit the files to your users needs.
+the section <a class="reference internal" href="#vagrant-debpkg"><em>Scripts for installing ready-made packages</em></a> and the latter two in
+the section <a class="reference internal" href="#vagrant-bashrc"><em>Setting up a default environment with .bashrc</em></a>. Edit the files to your users&#8217; needs.
 Then run</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; python deb2sh.py debpkg_minimal.txt</span>
 </pre></div>
@@ -365,10 +412,10 @@ Make sure you run all the commands in the
 project directory (<tt class="docutils literal"><span class="pre">~/vagrant</span></tt>).</p>
 <p>You may alternatively download the more comprehensive <a class="reference external" href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/debpkg.txt">debpkg.txt</a>
 package list and use that file as a starting point. Running <tt class="docutils literal"><span class="pre">deb2sh.py</span> <span class="pre">debpkg.txt</span></tt>
-will then produce <tt class="docutils literal"><span class="pre">install.sh</span></tt> and <tt class="docutils literal"><span class="pre">install.py</span></tt>.</p>
-</div>
+will produce the scripts <tt class="docutils literal"><span class="pre">install.sh</span></tt> and <tt class="docutils literal"><span class="pre">install.py</span></tt>.</p>
+<span class="target" id="index-19"></span></div>
 <div class="section" id="installing-files-and-packages">
-<h3>Installing files and packages<a class="headerlink" href="#installing-files-and-packages" title="Permalink to this headline">¶</a></h3>
+<span id="index-20"></span><h3>Installing files and packages<a class="headerlink" href="#installing-files-and-packages" title="Permalink to this headline">¶</a></h3>
 <p>When you have edited the above files according to your users&#8217; needs,
 you are ready to log into the Vagrant machine, copy files to the
 machine and run the installation.
@@ -401,14 +448,14 @@ commands if necessary (e.g., at a later stage to update the software).</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="enabling-x11-graphics-1">
-<h3>Enabling X11 graphics  (1)<a class="headerlink" href="#enabling-x11-graphics-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enabling-x11-graphics">
+<span id="index-21"></span><h3>Enabling X11 graphics<a class="headerlink" href="#enabling-x11-graphics" title="Permalink to this headline">¶</a></h3>
 <p>It is recommended that you test graphics programs and check that they
 display the graphics on the host appropriately. To this end, you
 need to enable X11 graphics on the host by editing the file <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt>
 in the project directory so that it includes the
 line <tt class="docutils literal"><span class="pre">config.ssh.forward_x11</span> <span class="pre">=</span> <span class="pre">true</span></tt>:</p>
-<div class="highlight-ruby"><div class="highlight"><pre><span class="ss">Vagrant</span><span class="p">:</span><span class="ss">:Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
     <span class="o">.</span><span class="n">.</span><span class="o">.</span>
     <span class="c1"># Enable X11</span>
     <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_x11</span> <span class="o">=</span> <span class="kp">true</span>
@@ -424,7 +471,7 @@ on Windows.</p>
 machine. A terminal window will pop up on the host.</p>
 </div>
 <div class="section" id="packaging-a-new-box">
-<h3>Packaging a new box<a class="headerlink" href="#packaging-a-new-box" title="Permalink to this headline">¶</a></h3>
+<span id="index-22"></span><h3>Packaging a new box<a class="headerlink" href="#packaging-a-new-box" title="Permalink to this headline">¶</a></h3>
 <p>When everything is copied to the box, installed, and tested,
 we need to package
 the installed virtual environment into a box in order to distribute it to other
@@ -435,30 +482,41 @@ running the <tt class="docutils literal"><span class="pre">vagrant</span> <span 
 </pre></div>
 </div>
 <p>The settings in <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> are now packed with the box. In particular,
-if X11 graphics has been enabled in <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> as described
-in the section <a class="reference internal" href="#vagrant-complete-install"><em>Installing packages in a complete Vagrant machine</em></a>, you have
-a fully functioning Ubuntu machine in <tt class="docutils literal"><span class="pre">course.box</span></tt> that will work with
-X11 graphics. Users can just do</p>
+if X11 graphics has been enabled in <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> as described above,
+you have
+a fully functioning Ubuntu machine in <tt class="docutils literal"><span class="pre">course.box</span></tt> that will work
+seamlessly with
+X11 graphics on the host. Users can just do</p>
 <div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant box add course course.box
 Terminal&gt; vagrant init course
 Terminal&gt; vagrant up
 Terminal&gt; vagrant ssh
 </pre></div>
 </div>
+<p>A real machine (containing what is listed earlier, plus the
+<a class="reference external" href="http://fenicsproject.org">FEniCS</a> software) can be downloaded
+from Google Drive at <a class="reference external" href="http://goo.gl/ta977B">http://goo.gl/ta977B</a> (note the file size: 3.8Gb!).</p>
 </div>
 </div>
 <div class="section" id="installing-packages-in-an-empty-vagrant-machine">
 <span id="vagrant-empty-install"></span><h2>Installing packages in an empty Vagrant machine<a class="headerlink" href="#installing-packages-in-an-empty-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>An empty Vagrant machine is distributed to users
 as a bundle of <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> and an
-installation script. (You may want to distribute
-<tt class="docutils literal"><span class="pre">.bashrc</span></tt> and
-<tt class="docutils literal"><span class="pre">.rsyncexlude</span></tt> files too, as described in
-the section <a class="reference internal" href="#vagrant-bashrc"><em>Setting up a default environment with .bashrc</em></a>, but we omit this feature
-now.)
+installation script.
 Read the section <a class="reference internal" href="#vagrant-debpkg"><em>Scripts for installing ready-made packages</em></a>
 and make a Bash installation script.</p>
-<p>To ensure that the user&#8217;s initialization process of the machine
+<p>You may want to distribute
+<tt class="docutils literal"><span class="pre">.bashrc</span></tt> and
+<tt class="docutils literal"><span class="pre">.rsyncexlude</span></tt> files too, as described in
+the section <a class="reference internal" href="#vagrant-bashrc"><em>Setting up a default environment with .bashrc</em></a>, but that is easiest done by letting
+the installation script download the files from site where they
+are available.  Relevant lines may be</p>
+<div class="highlight-text"><div class="highlight"><pre>$ cd $HOME
+$ wget http://tinyurl.com/m88bljf/.bashrc
+$ wget http://tinyurl.com/m88bljf/.rsyncexclude
+</pre></div>
+</div>
+<p id="index-23">To ensure that the user&#8217;s initialization process of the machine
 invokes an installation of the desired packages, you need to
 add a line to <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> that runs the Bash script.
 Say the name of the script is <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt>.
@@ -471,12 +529,12 @@ The relevant line is shown below:</p>
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>Users must now get the files <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> and <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt>
+<p>Users must now have the files <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> and <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt>
 to create a complete Vagrant machine on their computers.</p>
 </div>
 <div class="section" id="scripts-for-installing-ready-made-packages">
 <span id="vagrant-debpkg"></span><h2>Scripts for installing ready-made packages<a class="headerlink" href="#scripts-for-installing-ready-made-packages" title="Permalink to this headline">¶</a></h2>
-<p>We have developed a little tool where one can list the desired Debian
+<span class="target" id="index-24"></span><span class="target" id="index-25"></span><span class="target" id="index-26"></span><span class="target" id="index-27"></span><p id="index-28">We have developed a little tool where one can list the desired Debian
 or Python packages in a computing environment in a file with default name
 <tt class="docutils literal"><span class="pre">debkpg.txt</span></tt>. This file may also contain plain Unix commands for
 doing other types of installation, like <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt>, or
@@ -492,7 +550,7 @@ cannot be installed successfully. The problem must
 then be fixed, or the package must in worst case be removed (just
 comment out the install line(s) in the Bash or Python script).  The
 script can thereafter be rerun again.</p>
-<p>The following is an extract of packages as they are listed
+<span class="target" id="index-29"></span><p id="index-30">The following is an extract of packages as they are listed
 in the mentioned <tt class="docutils literal"><span class="pre">debpkg_minimal.txt</span></tt> file:</p>
 <div class="highlight-text"><div class="highlight"><pre># Minimal installation for a Python ecosystem
 # for scientific computing
@@ -552,16 +610,16 @@ script are</p>
 
 <span class="k">function </span>apt_install <span class="o">{</span>
   sudo apt-get -y install <span class="nv">$1</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 <span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;could not install $1 - abort&quot;</span>
     <span class="nb">exit </span>1
   <span class="k">fi</span>
 <span class="o">}</span>
 
 <span class="k">function </span>pip_install <span class="o">{</span>
-  <span class="k">for </span>p in <span class="nv">$@</span>; <span class="k">do</span>
+  <span class="k">for </span>p in <span class="nv">$@</span><span class="p">;</span> <span class="k">do</span>
 <span class="k">    </span>sudo pip install <span class="nv">$p</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 <span class="k">      </span><span class="nb">echo</span> <span class="s2">&quot;could not install $p - abort&quot;</span>
       <span class="nb">exit </span>1
     <span class="k">fi</span>
@@ -570,7 +628,7 @@ script are</p>
 
 <span class="k">function </span>unix_command <span class="o">{</span>
   <span class="nv">$@</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 <span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;could not run $@ - abort&quot;</span>
     <span class="nb">exit </span>1
   <span class="k">fi</span>
@@ -589,7 +647,7 @@ pip_install sympy
 apt_install scipy
 ...
 <span class="c"># ScientificPython must be installed from source</span>
-unix_command <span class="k">if</span> <span class="o">[</span> ! -d srclib <span class="o">]</span>; <span class="k">then </span>mkdir srclib; <span class="k">fi</span>
+unix_command <span class="k">if</span> <span class="o">[</span> ! -d srclib <span class="o">]</span><span class="p">;</span> <span class="k">then </span>mkdir srclib<span class="p">;</span> <span class="k">fi</span>
 unix_command <span class="nb">cd </span>srclib
 unix_command hg clone https://bitbucket.org/khinsen/scientificpython
 unix_command <span class="nb">cd </span>scientificpython
@@ -624,22 +682,29 @@ generated <tt class="docutils literal"><span class="pre">install.py</span></tt> 
 
 <span class="n">system</span><span class="p">(</span><span class="s">&#39;sudo apt-get update --fix-missing&#39;</span><span class="p">)</span>
 
-<span class="n">system</span><span class="p">(</span><span class="s">&#39;sudo apt-get -y install ispell&#39;</span><span class="p">)[[[</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39;sudo apt-get -y install python-mode gedit vim ispell&#39;</span><span class="p">)</span>
+<span class="o">...</span>
 <span class="n">system</span><span class="p">(</span><span class="s">&#39;pip install numpy&#39;</span><span class="p">)</span>
 <span class="n">system</span><span class="p">(</span><span class="s">&#39;pip install sympy&#39;</span><span class="p">)</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39;sudo apt-get -y install scipy&#39;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39;if [ ! -d srclib ]; then mkdir srclib; fi&#39;</span><span class="p">)</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39;cd srclib&#39;</span><span class="p">)</span>
+<span class="n">sytem</span><span class="p">(</span><span class="s">&#39;hg clone https://bitbucket.org/khinsen/scientificpython&#39;</span><span class="p">)</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39; cd scientificpython&#39;</span><span class="p">)</span>
+<span class="n">system</span><span class="p">(</span><span class="s">&#39;sudo python setup.py install&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The Python script does not test the Unix environment variable <tt class="docutils literal"><span class="pre">$?</span></tt>,
-but the first return value from the <tt class="docutils literal"><span class="pre">getstatusoutput</span></tt> is basically
+but the first return value from the <tt class="docutils literal"><span class="pre">getstatusoutput</span></tt> function acts as
 the value of <tt class="docutils literal"><span class="pre">$?</span></tt>.</p>
-<p>We can use <tt class="docutils literal"><span class="pre">install.sh</span></tt> or <tt class="docutils literal"><span class="pre">install.py</span></tt> to automate installation of
-packages in the Vagrant machine. More powerful tools for setting
-up complete software environments are <a class="reference external" href="http://www.opscode.com/">Chef</a>
-and <a class="reference external" href="https://puppetlabs.com/">Puppet</a>.</p>
+<p>We can use the Bash or Python script to easily automate installation
+of packages in the Vagrant machine. More powerful, industry standard
+tools for setting up complete software environments are <a class="reference external" href="http://www.opscode.com/">Chef</a> and <a class="reference external" href="https://puppetlabs.com/">Puppet</a>.</p>
 </div>
 <div class="section" id="setting-up-a-default-environment-with-bashrc">
 <span id="vagrant-bashrc"></span><h2>Setting up a default environment with <tt class="docutils literal"><span class="pre">.bashrc</span></tt><a class="headerlink" href="#setting-up-a-default-environment-with-bashrc" title="Permalink to this headline">¶</a></h2>
-<p>We should include a brief <tt class="docutils literal"><span class="pre">.bashrc</span></tt> file in the Vagrant
+<span class="target" id="index-31"></span><p id="index-32">We should include a brief <tt class="docutils literal"><span class="pre">.bashrc</span></tt> file in the Vagrant
 machine as a starting point for the
 user&#8217;s customization of her Unix environment. Here is an <a class="reference external" href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc">example</a>:</p>
 <div class="highlight-python"><pre># ~/.bashrc: executed by bash(1) for non-login shells.
@@ -715,37 +780,45 @@ be present in the home holder:</p>
 <div class="section" id="operating-the-vagrant-machine">
 <h1>Operating the Vagrant machine<a class="headerlink" href="#operating-the-vagrant-machine" title="Permalink to this headline">¶</a></h1>
 <p>For a user, the initialization of a new machine depends on
-whether it is a complete Vagrant machine or an empty Vagrant machine.
-[[[
-On a Windows computer,
+whether it is a complete Vagrant machine or an empty Vagrant machine.</p>
+<div class="admonition-important admonition">
+<p class="first admonition-title">Important</p>
+<p class="last">On a Windows computer,
 always operate the Vagrant machine from Cygwin&#8217;s terminal, which has
 both an ssh-client and an X-server. The terminal can
 be started from Start - All Programs - Cygwin-X - XWin Server.</p>
+</div>
 <div class="section" id="operating-a-complete-vagrant-machine">
 <h2>Operating a complete Vagrant machine<a class="headerlink" href="#operating-a-complete-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>The Vagrant machine <tt class="docutils literal"><span class="pre">course.box</span></tt>, created
 as described in the section <a class="reference internal" href="#vagrant-complete-install"><em>Installing packages in a complete Vagrant machine</em></a>, can now be
 distributed to users.
 A user must do the following steps.</p>
-<p><em>Step 1.</em> Install VirtualBox and Vagrant as described in
+<p><strong>Step 1.</strong>
+Install VirtualBox and Vagrant as described in
 the section <a class="reference internal" href="#vagrant-install"><em>Installing the necessary software for using Vagrant</em></a>.</p>
-<p><em>Step 2.</em> Create a directory <tt class="docutils literal"><span class="pre">vagrant</span></tt> and move <tt class="docutils literal"><span class="pre">course.box</span></tt>
+<p><strong>Step 2.</strong>
+Create a directory <tt class="docutils literal"><span class="pre">vagrant</span></tt> and move <tt class="docutils literal"><span class="pre">course.box</span></tt>
 to this directory. We also recommend to make a subdirectory
 <tt class="docutils literal"><span class="pre">projects</span></tt> where all files and directories to be used from
 the Vagrant machine reside. You edit files in the <tt class="docutils literal"><span class="pre">vagrant/projects</span></tt>
 directory tree on the host.</p>
-<p><em>Step 3.</em> Run the these commands from the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory:</p>
+<p><strong>Step 3.</strong>
+Run the these commands from the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant box add course course.box</span>
 <span class="go">Terminal&gt; vagrant init course</span>
 </pre></div>
 </div>
-<p><em>Step 4.</em> Start X11 on the host: run Applications - Utilities - X11 on a Mac,
+<p><strong>Step 4.</strong>
+Start X11 on the host: run Applications - Utilities - X11 on a Mac,
 or Start - All Programs - Cygwin-X - XWin Server on Windows.</p>
-<p><em>Step 5.</em> Start (boot) the Vagrant machine:</p>
+<p><strong>Step 5.</strong>
+Start (boot) the Vagrant machine:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant up</span>
 </pre></div>
 </div>
-<p><em>Step 5.</em> Log in on the machine:</p>
+<p><strong>Step 5.</strong>
+Log in on the machine:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant ssh</span>
 </pre></div>
 </div>
@@ -765,25 +838,6 @@ run</p>
 <p>The first command takes a long time to execute since it runs the
 installation script. Log out with Ctrl-D.</p>
 </div>
-<div class="section" id="enabling-x11-graphics-2">
-<span id="vagrant-x11"></span><h2>Enabling X11 graphics  (2)<a class="headerlink" href="#enabling-x11-graphics-2" title="Permalink to this headline">¶</a></h2>
-<p>Many Ubuntu applications use X11 graphics, and you want to forward the
-graphics to the host. The <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> must contain the line
-<tt class="docutils literal"><span class="pre">config.ssh.forward_x11</span> <span class="pre">=</span> <span class="pre">true</span></tt> inside the
-<tt class="docutils literal"><span class="pre">Vagrant::Config.run</span> <span class="pre">do</span> <span class="pre">|config|</span></tt> block. In addition, X11 must
-run on the host.</p>
-<div class="section" id="x11-on-mac-os-x">
-<h3>X11 on Mac OS X<a class="headerlink" href="#x11-on-mac-os-x" title="Permalink to this headline">¶</a></h3>
-<p>Open Finder, go to
-Applications, and then the Utilities subdirectory, and double-click <tt class="docutils literal"><span class="pre">X11.app</span></tt>
-to start X11.</p>
-</div>
-<div class="section" id="x11-on-windows">
-<h3>X11 on Windows<a class="headerlink" href="#x11-on-windows" title="Permalink to this headline">¶</a></h3>
-<p>Run all <tt class="docutils literal"><span class="pre">vagrant</span></tt> commands from a Cygwin terminal, started as
-Start - All Programs - Cygwin-X - XWin Server.</p>
-</div>
-</div>
 <div class="section" id="working-with-an-initialized-vagrant-machine">
 <h2>Working with an initialized Vagrant machine<a class="headerlink" href="#working-with-an-initialized-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>The daily work with the Vagrant machine is very easy. Simply go to the <tt class="docutils literal"><span class="pre">vagrant</span></tt>
@@ -795,8 +849,10 @@ directory where the machine resides and run</p>
 <p>You are now inside the machine and can reach
 files on the host from
 <tt class="docutils literal"><span class="pre">/vagrant/projects</span></tt> (see the next section for more details).
-Log out with Ctrl-D and in again with <tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">ssh</span></tt>.</p>
-<p>Before closing a laptop or shutting down a computer, it is recommended
+Log out with Ctrl-D and in again with <tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">ssh</span></tt>.
+Create and edit files on the host in <tt class="docutils literal"><span class="pre">~/vagrant/projects</span></tt> and its
+subdirectories.</p>
+<p>Before closing a laptop or shutting it down, it is recommended
 to log out of the Vagrant machine and run <tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">suspend</span></tt>.</p>
 </div>
 <div class="section" id="shared-directories">
@@ -804,7 +860,9 @@ to log out of the Vagrant machine and run <tt class="docutils literal"><span cla
 <p>Inside the Vagrant machine, <tt class="docutils literal"><span class="pre">/vagrant</span></tt> is a directory shared with the
 user&#8217;s file system. More precisely, <tt class="docutils literal"><span class="pre">/vagrant</span></tt> points to the <em>project
 directory</em> where the file <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> resides and where the <tt class="docutils literal"><span class="pre">vagrant</span>
-<span class="pre">up</span></tt> command was run. If users of the Vagrant machine keeps all their
+<span class="pre">up</span></tt> command was run (<tt class="docutils literal"><span class="pre">~/vagrant</span></tt> if you have followed the specific
+directory naming suggested in this document).
+If users of the Vagrant machine keeps all their
 files relevant for the machine in the project directory and its
 subdirectories, all these directories will be shared between the machine and
 the user&#8217;s file system. Normally, this feature is enough for efficient
@@ -830,7 +888,7 @@ the following Python program in a file <tt class="docutils literal"><span class=
 <p>This program will show X11 graphics on your host machine. If this machine
 runs the Linux operating system, everything is fine, but if this is a Mac
 or Windows machine, X11 must be started as described in
-the section <a class="reference internal" href="#vagrant-x11"><em>Enabling X11 graphics  (2)</em></a>. If that is necessary, log out, start X11,
+the section <em class="xref std std-ref">vagrant:X11</em>. If that is necessary, log out, start X11,
 log in again (<tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">ssh</span></tt>).</p>
 <p>Run the <tt class="docutils literal"><span class="pre">test1.py</span></tt> program:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cd /vagrant</span>
@@ -903,13 +961,15 @@ boot with <tt class="docutils literal"><span class="pre">vagrant</span> <span cl
 </div>
 <div class="section" id="placing-the-vagrant-machine-in-the-cloud">
 <h2>Placing the Vagrant machine in the cloud<a class="headerlink" href="#placing-the-vagrant-machine-in-the-cloud" title="Permalink to this headline">¶</a></h2>
-<p>There are numerous <a class="reference external" href="http://www.freewaregenius.com/the-best-free-send-large-files-services-ten-file-hosting-services-compared/">free file hosting sites</a>
-where a Vagrant machine can be stored and shared with others.
-One service that offers enough space (50 Gb) for many big Vagrant machines is
-Mega: <a class="reference external" href="https://mega.co.nz/">https://mega.co.nz/</a>. You must create a free account
-before uploading your files. Right-click on any uploaded file, choose
-<em>Get link</em>, and a window pops up with the URL to the file. You can
-distribute this link to the target audience of your file.</p>
+<p>There are numerous free file hosting sites where a Vagrant machine can
+be stored and shared with others.  We have found Google Drive to be a
+viable solution. It is free, can handle large enough files, and has
+flexible functionality for sharing the machine with others. A
+potential problem with Google Drive, Sky Drive, or Dropbox is that
+other computers connected to the account start to download the big
+Vagrant machines. To prevent such actions, click on the Google Drive
+icon on all machines that synchronize the account and deselect the
+directory where you store the Vagrant machine(s).</p>
 </div>
 <div class="section" id="using-vmware-fusion">
 <h2>Using VMWare Fusion<a class="headerlink" href="#using-vmware-fusion" title="Permalink to this headline">¶</a></h2>
@@ -931,11 +991,12 @@ information.</li>
 <div class="section" id="appendix-condensed-instructions-for-students">
 <h1>Appendix: Condensed instructions for students<a class="headerlink" href="#appendix-condensed-instructions-for-students" title="Permalink to this headline">¶</a></h1>
 <p>Say you want distribute a complete Vagrant machine with the URL</p>
-<div class="highlight-text"><div class="highlight"><pre>
+<div class="highlight-text"><div class="highlight"><pre>http://some.where.net/path/to/course.box
 </pre></div>
 </div>
 <p>Here is the need-know-information for users:</p>
-<p><em>Step 1.</em> Download and install <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. Choose the version
+<p><strong>Step 1.</strong>
+Download and install <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. Choose the version
 according to the operating system on the host.
 For example, if you want to build or run Vagrant machines under Mac OS X, choose
 <em>VirtualBox x.y.z for OS X hosts</em>, where <tt class="docutils literal"><span class="pre">x.y.z</span></tt> is the version number
@@ -943,7 +1004,8 @@ of VirtualBox. Double click the downloaded <tt class="docutils literal"><span cl
 Vagrant. Those who work on a Windows machines will select <em>VirtualBox
 x.y.z for Windows hosts</em>, which downloads an <tt class="docutils literal"><span class="pre">.exe</span></tt> file which can just
 be double clicked to perform the installation.</p>
-<p><em>Step 2.</em> Download and install <a class="reference external" href="http://downloads.vagrantup.com/">Vagrant</a>.
+<p><strong>Step 2.</strong>
+Download and install <a class="reference external" href="http://downloads.vagrantup.com/">Vagrant</a>.
 Choose the latest version and the installation file corresponding to
 the host&#8217;s operating system (where you installed VirtualBox).  On a Mac, you
 select the <tt class="docutils literal"><span class="pre">Vagrant-x.y.z.dmg</span></tt> file (<tt class="docutils literal"><span class="pre">x.y.z</span></tt> denotes the version of
@@ -951,15 +1013,18 @@ the software), on Windows the <tt class="docutils literal"><span class="pre">Vag
 relevant choice.
 On Ubuntu, select <tt class="docutils literal"><span class="pre">vagrant_x.y.z_*.deb</span></tt> and install it
 by <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">vagrant_x.y.z_*.deb</span></tt>.</p>
-<p><em>Step 3 for Windows users.</em> If you have a Windows machine, you should
+<p><strong>Step 3 for Windows users.</strong>
+If you have a Windows machine, you should
 install <a class="reference external" href="http://cygwin.com/install.html">Cygwin</a>.
 Download the Cygwin&#8217;s <a class="reference external" href="http://cygwin.com/setup.exe">setup.exe</a> file and follow
 the instructions given by the installer. Make sure you
 manually select the &#8216;X11&#8217; category during installation. Cygwin is
 not needed on Mac computers.</p>
-<p><em>Step 4.</em> Start X11: run Applications - Utilities - X11 on a Mac,
+<p><strong>Step 4.</strong>
+Start X11: run Applications - Utilities - X11 on a Mac,
 or Start - All Programs - Cygwin-X - XWin Server on Windows.</p>
-<p><em>Step 5.</em> Move to your home directory and make a new directory
+<p><strong>Step 5.</strong>
+Move to your home directory and make a new directory
 <tt class="docutils literal"><span class="pre">vagrant</span></tt> and a subdirectory <tt class="docutils literal"><span class="pre">projects</span></tt>:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cd</span>
 <span class="go">Terminal&gt; mkdir vagrant</span>
@@ -969,12 +1034,14 @@ or Start - All Programs - Cygwin-X - XWin Server on Windows.</p>
 </div>
 <p>All files that you run from the Vagrant machine are supposed
 to reside in <tt class="docutils literal"><span class="pre">vagrant/projects</span></tt> and its subdirectories.</p>
-<p><em>Step 6.</em> Download the file</p>
+<p><strong>Step 6.</strong>
+Download the file</p>
 <div class="highlight-text"><div class="highlight"><pre>http://some.where.net/path/to/course.box
 </pre></div>
 </div>
 <p>Store <tt class="docutils literal"><span class="pre">course.box</span></tt> in the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory.</p>
-<p><em>Step 7.</em> Make sure you stand in the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory.
+<p><strong>Step 7.</strong>
+Make sure you stand in the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory.
 Run</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant box add course course.box</span>
 <span class="go">Terminal&gt; vagrant init course</span>
@@ -983,7 +1050,8 @@ Run</p>
 </pre></div>
 </div>
 <p>You are now inside a Ubuntu system!</p>
-<p><em>Step 8.</em> Open a file <tt class="docutils literal"><span class="pre">vagrant/projects/test1.py</span></tt> in an editor on the host system
+<p><strong>Step 8.</strong>
+Open a file <tt class="docutils literal"><span class="pre">vagrant/projects/test1.py</span></tt> in an editor on the host system
 and write the following lines in the file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1052,7 +1120,12 @@ Log out of the box, run <tt class="docutils literal"><span class="pre">vagrant</
 <li><a class="reference internal" href="#">Creating Vagrant Machines for Distribution of Software Environments</a></li>
 <li><a class="reference internal" href="#problem-setting">Problem setting</a><ul>
 <li><a class="reference internal" href="#contents-of-the-vagrant-machine">Contents of the Vagrant machine</a></li>
-<li><a class="reference internal" href="#installing-the-necessary-software-for-using-vagrant">Installing the necessary software for using Vagrant</a></li>
+<li><a class="reference internal" href="#installing-the-necessary-software-for-using-vagrant">Installing the necessary software for using Vagrant</a><ul>
+<li><a class="reference internal" href="#virtualbox">VirtualBox</a></li>
+<li><a class="reference internal" href="#vagrant">Vagrant</a></li>
+<li><a class="reference internal" href="#cygwin-only-on-windows">Cygwin (only on Windows)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#creating-the-vagrant-machine">Creating the Vagrant machine</a><ul>
@@ -1062,7 +1135,7 @@ Log out of the box, run <tt class="docutils literal"><span class="pre">vagrant</
 <li><a class="reference internal" href="#installing-packages-in-a-complete-vagrant-machine">Installing packages in a complete Vagrant machine</a><ul>
 <li><a class="reference internal" href="#creating-files">Creating files</a></li>
 <li><a class="reference internal" href="#installing-files-and-packages">Installing files and packages</a></li>
-<li><a class="reference internal" href="#enabling-x11-graphics-1">Enabling X11 graphics  (1)</a></li>
+<li><a class="reference internal" href="#enabling-x11-graphics">Enabling X11 graphics</a></li>
 <li><a class="reference internal" href="#packaging-a-new-box">Packaging a new box</a></li>
 </ul>
 </li>
@@ -1074,11 +1147,6 @@ Log out of the box, run <tt class="docutils literal"><span class="pre">vagrant</
 <li><a class="reference internal" href="#operating-the-vagrant-machine">Operating the Vagrant machine</a><ul>
 <li><a class="reference internal" href="#operating-a-complete-vagrant-machine">Operating a complete Vagrant machine</a></li>
 <li><a class="reference internal" href="#operating-an-empty-vagrant-machine">Operating an empty Vagrant machine</a></li>
-<li><a class="reference internal" href="#enabling-x11-graphics-2">Enabling X11 graphics  (2)</a><ul>
-<li><a class="reference internal" href="#x11-on-mac-os-x">X11 on Mac OS X</a></li>
-<li><a class="reference internal" href="#x11-on-windows">X11 on Windows</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#working-with-an-initialized-vagrant-machine">Working with an initialized Vagrant machine</a></li>
 <li><a class="reference internal" href="#shared-directories">Shared directories</a></li>
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
