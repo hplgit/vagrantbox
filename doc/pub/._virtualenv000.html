@@ -1,0 +1,179 @@
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Installing a scientific computing environment </title>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">Virtualenv<span class="subtitle">4scientists</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://www.pip-installer.org/en/latest/">Virtualenv docs</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Motivation " --> <li class="active">  <a href="._virtualenv000.html#___sec0"> Motivation </a>
+     <!-- vagrant nav toc: " Creating an isolated environment with Virtualenv " --> <li>  <a href="._virtualenv001.html#___sec1"> Creating an isolated environment with Virtualenv </a>
+     <!-- vagrant nav toc: " Creating a slightly different environment " --> <li>  <a href="._virtualenv002.html#___sec2"> Creating a slightly different environment </a>
+     <!-- vagrant nav toc: " Copying an environment " --> <li>  <a href="._virtualenv003.html#___sec3"> Copying an environment </a>
+     <!-- vagrant nav toc: " Installing a scientific computing environment " --> <li>  <a href="._virtualenv004.html#___sec4"> Installing a scientific computing environment </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [(' Motivation ', 2, None, '___sec0'),
+              (' Creating an isolated environment with Virtualenv ',
+               2,
+               None,
+               '___sec1'),
+              (' Creating a slightly different environment ',
+               2,
+               None,
+               '___sec2'),
+              (' Copying an environment ', 2, None, '___sec3'),
+              (' Installing a scientific computing environment ',
+               2,
+               None,
+               '___sec4')]}
+end of tocinfo -->
+
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+<h3>Motivation  <a name="___sec0"></a></h3>
+
+<p>
+The most difficult aspect of installing a particular software package is
+usually to get all the dependencies right. That is, the package
+requires the existence of a lot of other packages on the computer
+system. These packages also have their dependencies. In addition,
+some packages only work with certain versions of other packages.
+Getting dependencies and software versions right quickly becomes
+a challenging problem. Even more critical is the fact that
+installing a new set of packages brings in other versions of
+some software that affect the behavior of previously installed
+software on the computer system.
+
+<p>
+To be specific, think of package <code>a</code> that depends on packages <code>b</code> and
+<code>c</code> in their respective versions 1.0 and 1.2 or newer.  Then we
+install package <code>d</code>, which also requires package <code>c</code>, but in an older
+version 0.6. Package <code>c</code> in v0.6 overwrites v1.2, causing package <code>a</code>
+to break.
+
+<p>
+A good solution to the problem of incompatible dependencies, and in
+fact a good solution to handle dependencies in general, is to create
+an isolated virtual environment where we can install the packages in
+the versions we want. We can have several such isolated environments
+on our system and none of them interfere with the global software
+system. Also, we can easily delete an environment when it is no longer
+needed.
+
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+
+  <li class="next">
+    <a href="._virtualenv001.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  Copyright &copy 2013; Anders E. Johansen and Hans Petter Langtangen
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+

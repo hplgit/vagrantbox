@@ -1,0 +1,437 @@
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Troubleshooting: Internet is not reachable </title>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">Vagrant<span class="subtitle">4scientists</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://docs.vagrantup.com/v2/">Vagrant docs</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Problem setting " --> <li>  <a href="._vagrant_box001.html#___sec0"> Problem setting </a>
+     <!-- vagrant nav toc: " Contents of the Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box001.html#vagrant:contents"> Contents of the Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing the necessary software for using Vagrant " --> <li> &nbsp;  <a href="._vagrant_box002.html#vagrant:install"> Installing the necessary software for using Vagrant </a>
+     <!-- vagrant nav toc: " VirtualBox " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec3"> VirtualBox </a>
+     <!-- vagrant nav toc: " Vagrant " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec4"> Vagrant </a>
+     <!-- vagrant nav toc: " Cygwin (only on Windows) " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec5"> Cygwin (only on Windows) </a>
+     <!-- vagrant nav toc: " Creating the Vagrant machine " --> <li>  <a href="._vagrant_box003.html#___sec6"> Creating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Choice of operating system type " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec7"> Choice of operating system type </a>
+     <!-- vagrant nav toc: " Downloading a base box to create a complete Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec8"> Downloading a base box to create a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Making an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec9"> Making an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing packages in a complete Vagrant machine " --> <li class="active"> &nbsp;  <a href="._vagrant_box004.html#vagrant:complete:install"> Installing packages in a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Creating files " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec11"> Creating files </a>
+     <!-- vagrant nav toc: " Installing files and packages " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec12"> Installing files and packages </a>
+     <!-- vagrant nav toc: " Enabling X11 graphics " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec13"> Enabling X11 graphics </a>
+     <!-- vagrant nav toc: " Packaging a new box " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec14"> Packaging a new box </a>
+     <!-- vagrant nav toc: " Installing packages in an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box005.html#vagrant:empty:install"> Installing packages in an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Scripts for installing ready-made packages " --> <li> &nbsp;  <a href="._vagrant_box006.html#vagrant:debpkg"> Scripts for installing ready-made packages </a>
+     <!-- vagrant nav toc: " Setting up a default environment with <code>.bashrc</code> " --> <li> &nbsp;  <a href="._vagrant_box007.html#vagrant:bashrc"> Setting up a default environment with <code>.bashrc</code> </a>
+     <!-- vagrant nav toc: " Operating the Vagrant machine " --> <li>  <a href="._vagrant_box008.html#___sec18"> Operating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Operating a complete Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec19"> Operating a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Operating an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec20"> Operating an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Working with an initialized Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec21"> Working with an initialized Vagrant machine </a>
+     <!-- vagrant nav toc: " Shared directories " --> <li> &nbsp;  <a href="._vagrant_box008.html#vagrant:shareddir"> Shared directories </a>
+     <!-- vagrant nav toc: " Troubleshooting " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec23"> Troubleshooting </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared directory is invisible " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec24"> Troubleshooting: shared directory is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec25"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Troubleshooting: Internet is not reachable " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec26"> Troubleshooting: Internet is not reachable </a>
+     <!-- vagrant nav toc: " Stopping the Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec27"> Stopping the Vagrant machine </a>
+     <!-- vagrant nav toc: " Placing the Vagrant machine in the cloud " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec28"> Placing the Vagrant machine in the cloud </a>
+     <!-- vagrant nav toc: " Using VMWare Fusion " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec29"> Using VMWare Fusion </a>
+     <!-- vagrant nav toc: " Documentation of Vagrant " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec30"> Documentation of Vagrant </a>
+     <!-- vagrant nav toc: " Appendix: Condensed instructions for students " --> <li>  <a href="._vagrant_box009.html#___sec31"> Appendix: Condensed instructions for students </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared directory is invisible " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec32"> Troubleshooting: shared directory is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec33"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Troubleshooting: Internet is not reachable " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec34"> Troubleshooting: Internet is not reachable </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Problem setting ', 1, None, '___sec0'),
+              (' Contents of the Vagrant machine ',
+               2,
+               'vagrant:contents',
+               'vagrant:contents'),
+              (' Installing the necessary software for using Vagrant ',
+               2,
+               'vagrant:install',
+               'vagrant:install'),
+              (' VirtualBox ', 3, None, '___sec3'),
+              (' Vagrant ', 3, None, '___sec4'),
+              (' Cygwin (only on Windows) ', 3, None, '___sec5'),
+              (' Creating the Vagrant machine ', 1, None, '___sec6'),
+              (' Choice of operating system type ', 2, None, '___sec7'),
+              (' Downloading a base box to create a complete Vagrant machine ',
+               2,
+               None,
+               '___sec8'),
+              (' Making an empty Vagrant machine ', 2, None, '___sec9'),
+              (' Installing packages in a complete Vagrant machine ',
+               2,
+               'vagrant:complete:install',
+               'vagrant:complete:install'),
+              (' Creating files ', 3, None, '___sec11'),
+              (' Installing files and packages ', 3, None, '___sec12'),
+              (' Enabling X11 graphics ', 3, None, '___sec13'),
+              (' Packaging a new box ', 3, None, '___sec14'),
+              (' Installing packages in an empty Vagrant machine ',
+               2,
+               'vagrant:empty:install',
+               'vagrant:empty:install'),
+              (' Scripts for installing ready-made packages ',
+               2,
+               'vagrant:debpkg',
+               'vagrant:debpkg'),
+              (' Setting up a default environment with `.bashrc` ',
+               2,
+               'vagrant:bashrc',
+               'vagrant:bashrc'),
+              (' Operating the Vagrant machine ', 1, None, '___sec18'),
+              (' Operating a complete Vagrant machine ', 2, None, '___sec19'),
+              (' Operating an empty Vagrant machine ', 2, None, '___sec20'),
+              (' Working with an initialized Vagrant machine ',
+               2,
+               None,
+               '___sec21'),
+              (' Shared directories ',
+               2,
+               'vagrant:shareddir',
+               'vagrant:shareddir'),
+              (' Troubleshooting ', 2, None, '___sec23'),
+              (' Troubleshooting: shared directory is invisible ',
+               3,
+               None,
+               '___sec24'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               3,
+               None,
+               '___sec25'),
+              (' Troubleshooting: Internet is not reachable ',
+               3,
+               None,
+               '___sec26'),
+              (' Stopping the Vagrant machine ', 2, None, '___sec27'),
+              (' Placing the Vagrant machine in the cloud ',
+               2,
+               None,
+               '___sec28'),
+              (' Using VMWare Fusion ', 2, None, '___sec29'),
+              (' Documentation of Vagrant ', 2, None, '___sec30'),
+              (' Appendix: Condensed instructions for students ',
+               1,
+               None,
+               '___sec31'),
+              (' Troubleshooting: shared directory is invisible ',
+               2,
+               None,
+               '___sec32'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               2,
+               None,
+               '___sec33'),
+              (' Troubleshooting: Internet is not reachable ',
+               2,
+               None,
+               '___sec34')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+
+
+<a name="part0004"></a>
+<!-- !split -->
+
+<h3>Installing packages in a complete Vagrant machine <a name="vagrant:complete:install"></a></h3>
+
+<p>
+This section assumes that you want to build and distribute
+a complete Vagrant machine as defined above.
+There is not much installed yet on the <code>mybox</code> machine, but
+this is an Ubuntu system where we
+can very easily install what we want via <code>sudo apt-get install</code>
+or <code>pip install</code> commands, or by downloading source code and
+performing manual installation. The section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> describes a type of file for listing
+packages and Unix commands, with an associated tool <code>deb2sh.py</code>
+for automatic generation of installation scripts.
+Using these utilities,
+it is close to trivial to create a rich computing environment.
+
+<h4>Creating files  <a name="___sec11"></a></h4>
+
+<p>
+Make sure you are logged out of the Vagrant machine (Ctrl-D) and
+located in the project directory on the host.
+Download <a href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant" target="_self">default versions</a> of some key files:
+<code>deb2sh.py</code>, <code>debpkg_minimal.txt</code>, <code>.bashrc</code>, and <code>.rsyncexclude</code>.
+Just click on the files, choose
+the <em>Raw</em> version, and right-click to save each file to the project
+directory.
+Read about the former two files in
+the section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> and the latter two in
+the section <a href="._vagrant_box007.html#vagrant:bashrc">Setting up a default environment with `.bashrc`</a>. Edit the files to your users' needs.
+Then run
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python deb2sh.py debpkg_minimal.txt
+</pre></div>
+<p>
+to produce a Bash script <code>install_minimal.sh</code> and an equivalent
+Python script <code>install_minimal.py</code>.
+Make sure you run all the commands in the
+project directory (<code>~/vagrant</code>).
+
+<p>
+You may alternatively download the more comprehensive <a href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/debpkg.txt" target="_self"><tt>debpkg.txt</tt></a>
+package list and use that file as a starting point. Running <code>deb2sh.py debpkg.txt</code>
+will produce the scripts <code>install.sh</code> and <code>install.py</code>.
+
+<h4>Installing files and packages  <a name="___sec12"></a></h4>
+
+<p>
+When you have edited the above files according to your users' needs,
+you are ready to log into the Vagrant machine, copy files to the
+machine and run the installation.
+The project directory is visible as <code>/vagrant</code> inside the Vagrant
+machine (see the section <a href="._vagrant_box008.html#vagrant:shareddir">Shared directories</a>
+for more details). The relevant login command is <code>vagrant ssh</code>, here
+followed by two copy commands:
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant ssh
+Machine&gt; cp /vagrant/.bashrc .
+Machine&gt; cp /vagrant/.rsyncexclude .
+</pre></div>
+<p>
+Now you can run the (lengthy) installation process by
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; bash /vagrant/install_minimal.sh
+</pre></div>
+<p>
+or
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; python /vagrant/install_minimal.py
+</pre></div>
+<p>
+If something goes wrong with the installation, edit the script
+on the host system (invoke <code>/vagrant/install_minimal.sh</code> in an
+editor) and rerun the installation command inside the Vagrant
+machine.
+
+<p>
+You may want to include the installation scripts in the box so that
+users can see exactly what has been installed and rerun installation
+commands if necessary (e.g., at a later stage to update the software).
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; cp /vagrant/install_minimal.sh .
+Machine&gt; cp /vagrant/install_minimal.py .
+</pre></div>
+
+<h4>Enabling X11 graphics  <a name="___sec13"></a></h4>
+
+<p>
+It is recommended that you test graphics programs and check that they
+display the graphics on the host appropriately. To this end, you
+need to enable X11 graphics on the host by editing the file <code>Vagrantfile</code>
+in the project directory so that it includes the
+line <code>config.ssh.forward_x11 = true</code>:
+
+<p>
+
+<!-- code=ruby (from !bc rbcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #880000">Vagrant</span><span style="color: #666666">::</span><span style="color: #880000">Config</span><span style="color: #666666">.</span>run <span style="color: #008000; font-weight: bold">do</span> <span style="color: #666666">|</span>config<span style="color: #666666">|</span>
+    <span style="color: #666666">.</span>.<span style="color: #666666">.</span>
+    <span style="color: #408080; font-style: italic"># Enable X11</span>
+    config<span style="color: #666666">.</span>ssh<span style="color: #666666">.</span>forward_x11 <span style="color: #666666">=</span> <span style="color: #008000">true</span>
+    <span style="color: #666666">.</span>.<span style="color: #666666">.</span>
+<span style="color: #008000; font-weight: bold">end</span>
+</pre></div>
+<p>
+To get X11 graphics to work, you must also
+start X11 on the host: run Applications - Utilities - X11
+on a Mac, or invoke Start - All Programs - Cygwin-X - XWin Server
+on Windows.
+
+<p>
+A simple application just to test X11 is to run <code>xterm</code> from the Vagrant
+machine. A terminal window will pop up on the host.
+
+<h4>Packaging a new box  <a name="___sec14"></a></h4>
+
+<p>
+When everything is copied to the box, installed, and tested,
+we need to package
+the installed virtual environment into a box in order to distribute it to other
+users. Log out of the machine and finalize the machine by
+running the <code>vagrant package</code> command in the project directory:
+
+<p>
+
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant package --output course.box <span style="color: #BB6622; font-weight: bold">\</span>
+          --vagrantfile Vagrantfile
+</pre></div>
+<p>
+The settings in <code>Vagrantfile</code> are now packed with the box. In particular,
+if X11 graphics has been enabled in <code>Vagrantfile</code> as described above,
+you have
+a fully functioning Ubuntu machine in <code>course.box</code> that will work
+seamlessly with
+X11 graphics on the host. Users can just do
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant box add course course.box
+Terminal&gt; vagrant init course
+Terminal&gt; vagrant up
+Terminal&gt; vagrant ssh
+</pre></div>
+<p>
+A real machine (containing what is listed earlier, plus the
+<a href="http://fenicsproject.org" target="_self">FEniCS</a> software) can be downloaded
+from Google Drive at <a href="http://goo.gl/ta977B" target="_self"><tt>http://goo.gl/ta977B</tt></a> (note the file size: 3.8Gb!).
+
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+  <li class="previous">
+    <a href="._vagrant_box003.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._vagrant_box005.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  Copyright &copy 2013; Anders E. Johansen and Hans Petter Langtangen
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+

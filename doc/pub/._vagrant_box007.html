@@ -1,0 +1,356 @@
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Troubleshooting: Internet is not reachable </title>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">Vagrant<span class="subtitle">4scientists</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://docs.vagrantup.com/v2/">Vagrant docs</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Problem setting " --> <li>  <a href="._vagrant_box001.html#___sec0"> Problem setting </a>
+     <!-- vagrant nav toc: " Contents of the Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box001.html#vagrant:contents"> Contents of the Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing the necessary software for using Vagrant " --> <li> &nbsp;  <a href="._vagrant_box002.html#vagrant:install"> Installing the necessary software for using Vagrant </a>
+     <!-- vagrant nav toc: " VirtualBox " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec3"> VirtualBox </a>
+     <!-- vagrant nav toc: " Vagrant " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec4"> Vagrant </a>
+     <!-- vagrant nav toc: " Cygwin (only on Windows) " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box002.html#___sec5"> Cygwin (only on Windows) </a>
+     <!-- vagrant nav toc: " Creating the Vagrant machine " --> <li>  <a href="._vagrant_box003.html#___sec6"> Creating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Choice of operating system type " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec7"> Choice of operating system type </a>
+     <!-- vagrant nav toc: " Downloading a base box to create a complete Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec8"> Downloading a base box to create a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Making an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box003.html#___sec9"> Making an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Installing packages in a complete Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box004.html#vagrant:complete:install"> Installing packages in a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Creating files " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec11"> Creating files </a>
+     <!-- vagrant nav toc: " Installing files and packages " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec12"> Installing files and packages </a>
+     <!-- vagrant nav toc: " Enabling X11 graphics " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec13"> Enabling X11 graphics </a>
+     <!-- vagrant nav toc: " Packaging a new box " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box004.html#___sec14"> Packaging a new box </a>
+     <!-- vagrant nav toc: " Installing packages in an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box005.html#vagrant:empty:install"> Installing packages in an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Scripts for installing ready-made packages " --> <li> &nbsp;  <a href="._vagrant_box006.html#vagrant:debpkg"> Scripts for installing ready-made packages </a>
+     <!-- vagrant nav toc: " Setting up a default environment with <code>.bashrc</code> " --> <li class="active"> &nbsp;  <a href="._vagrant_box007.html#vagrant:bashrc"> Setting up a default environment with <code>.bashrc</code> </a>
+     <!-- vagrant nav toc: " Operating the Vagrant machine " --> <li>  <a href="._vagrant_box008.html#___sec18"> Operating the Vagrant machine </a>
+     <!-- vagrant nav toc: " Operating a complete Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec19"> Operating a complete Vagrant machine </a>
+     <!-- vagrant nav toc: " Operating an empty Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec20"> Operating an empty Vagrant machine </a>
+     <!-- vagrant nav toc: " Working with an initialized Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box008.html#___sec21"> Working with an initialized Vagrant machine </a>
+     <!-- vagrant nav toc: " Shared directories " --> <li> &nbsp;  <a href="._vagrant_box008.html#vagrant:shareddir"> Shared directories </a>
+     <!-- vagrant nav toc: " Troubleshooting " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec23"> Troubleshooting </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared directory is invisible " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec24"> Troubleshooting: shared directory is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec25"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Troubleshooting: Internet is not reachable " --> <li> &nbsp; &nbsp;  <a href="._vagrant_box009.html#___sec26"> Troubleshooting: Internet is not reachable </a>
+     <!-- vagrant nav toc: " Stopping the Vagrant machine " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec27"> Stopping the Vagrant machine </a>
+     <!-- vagrant nav toc: " Placing the Vagrant machine in the cloud " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec28"> Placing the Vagrant machine in the cloud </a>
+     <!-- vagrant nav toc: " Using VMWare Fusion " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec29"> Using VMWare Fusion </a>
+     <!-- vagrant nav toc: " Documentation of Vagrant " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec30"> Documentation of Vagrant </a>
+     <!-- vagrant nav toc: " Appendix: Condensed instructions for students " --> <li>  <a href="._vagrant_box009.html#___sec31"> Appendix: Condensed instructions for students </a>
+     <!-- vagrant nav toc: " Troubleshooting: shared directory is invisible " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec32"> Troubleshooting: shared directory is invisible </a>
+     <!-- vagrant nav toc: " Troubleshooting: "couldn't connect to display ..." " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec33"> Troubleshooting: "couldn't connect to display ..." </a>
+     <!-- vagrant nav toc: " Troubleshooting: Internet is not reachable " --> <li> &nbsp;  <a href="._vagrant_box009.html#___sec34"> Troubleshooting: Internet is not reachable </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Problem setting ', 1, None, '___sec0'),
+              (' Contents of the Vagrant machine ',
+               2,
+               'vagrant:contents',
+               'vagrant:contents'),
+              (' Installing the necessary software for using Vagrant ',
+               2,
+               'vagrant:install',
+               'vagrant:install'),
+              (' VirtualBox ', 3, None, '___sec3'),
+              (' Vagrant ', 3, None, '___sec4'),
+              (' Cygwin (only on Windows) ', 3, None, '___sec5'),
+              (' Creating the Vagrant machine ', 1, None, '___sec6'),
+              (' Choice of operating system type ', 2, None, '___sec7'),
+              (' Downloading a base box to create a complete Vagrant machine ',
+               2,
+               None,
+               '___sec8'),
+              (' Making an empty Vagrant machine ', 2, None, '___sec9'),
+              (' Installing packages in a complete Vagrant machine ',
+               2,
+               'vagrant:complete:install',
+               'vagrant:complete:install'),
+              (' Creating files ', 3, None, '___sec11'),
+              (' Installing files and packages ', 3, None, '___sec12'),
+              (' Enabling X11 graphics ', 3, None, '___sec13'),
+              (' Packaging a new box ', 3, None, '___sec14'),
+              (' Installing packages in an empty Vagrant machine ',
+               2,
+               'vagrant:empty:install',
+               'vagrant:empty:install'),
+              (' Scripts for installing ready-made packages ',
+               2,
+               'vagrant:debpkg',
+               'vagrant:debpkg'),
+              (' Setting up a default environment with `.bashrc` ',
+               2,
+               'vagrant:bashrc',
+               'vagrant:bashrc'),
+              (' Operating the Vagrant machine ', 1, None, '___sec18'),
+              (' Operating a complete Vagrant machine ', 2, None, '___sec19'),
+              (' Operating an empty Vagrant machine ', 2, None, '___sec20'),
+              (' Working with an initialized Vagrant machine ',
+               2,
+               None,
+               '___sec21'),
+              (' Shared directories ',
+               2,
+               'vagrant:shareddir',
+               'vagrant:shareddir'),
+              (' Troubleshooting ', 2, None, '___sec23'),
+              (' Troubleshooting: shared directory is invisible ',
+               3,
+               None,
+               '___sec24'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               3,
+               None,
+               '___sec25'),
+              (' Troubleshooting: Internet is not reachable ',
+               3,
+               None,
+               '___sec26'),
+              (' Stopping the Vagrant machine ', 2, None, '___sec27'),
+              (' Placing the Vagrant machine in the cloud ',
+               2,
+               None,
+               '___sec28'),
+              (' Using VMWare Fusion ', 2, None, '___sec29'),
+              (' Documentation of Vagrant ', 2, None, '___sec30'),
+              (' Appendix: Condensed instructions for students ',
+               1,
+               None,
+               '___sec31'),
+              (' Troubleshooting: shared directory is invisible ',
+               2,
+               None,
+               '___sec32'),
+              (' Troubleshooting: "couldn\'t connect to display ..." ',
+               2,
+               None,
+               '___sec33'),
+              (' Troubleshooting: Internet is not reachable ',
+               2,
+               None,
+               '___sec34')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+
+
+<a name="part0007"></a>
+<!-- !split -->
+
+<h3>Setting up a default environment with <code>.bashrc</code> <a name="vagrant:bashrc"></a></h3>
+
+<p>
+We should include a brief <code>.bashrc</code> file in the Vagrant
+machine as a starting point for the
+user's customization of her Unix environment. Here is an <a href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc" target="_self">example</a>:
+
+<p>
+
+<!-- code=text (from !bc pro) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"># ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files for examples
+
+export PYTHONPATH=$PYTHONPATH:$HOME/pythonlib
+export PATH=$PATH:$HOME/bin
+
+# Create some aliases for rsync commands for copying files:
+rsync_basic=&quot;-rtDvz -u -e ssh -b&quot;
+rsync_excl=&quot;--exclude-from=$HOME/.rsyncexclude&quot;
+rsync_del=&quot;--suffix=.rsync~ --delete --force&quot;
+scp_rsync=&quot;rsync $rsync_basic $rsync_excl&quot;
+scp_rsync_del=&quot;$scp_rsync $rsync_del&quot;
+alias scp_rsync=&quot;$scp_rsync&quot;
+alias scp_rsync_del=&quot;$scp_rsync_del&quot;
+
+# If running interactively, then:
+if [ &quot;$PS1&quot; ]; then
+    alias ls=&#39;ls -sF&#39;
+    alias grep=&#39;grep --color=auto&#39;
+    alias fgrep=&#39;fgrep --color=auto&#39;
+    alias egrep=&#39;egrep --color=auto&#39;
+
+
+    # enable programmable completion features (you don&#39;t need to enable
+    # this, if it&#39;s already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+    if [ -f /etc/bash_completion ] &amp;&amp; ! shopt -oq posix; then
+        . /etc/bash_completion
+    fi
+
+    # set a new prompt and the directory as window title
+
+    # PROMPT_DIRTRIM=1 makes the dir in window title have 1 trailing dir name
+    # (instead of the whole path)
+    export PROMPT_DIRTRIM=1
+
+    # Let prompt in terminal window (PS1) display username, time and
+    # current working directory
+    PS1=&#39;\u:\D{%H.%M} \W&gt; &#39;
+    # Add directory info to the title bar: (often done in terminal prefs too)
+    PS1=$PS1&quot;\[\e]0;\w\a\]&quot;
+fi
+</pre></div>
+<p>
+The handy <code>rsync</code> commands for copying files require a list of files
+to ignore, so a file <a href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.rsyncexclude" target="_self"><tt>.rsyncexclude</tt></a> must
+be present in the home holder:
+
+<p>
+
+<!-- code=text (from !bc pro) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">.#*
+*.rsync~
+*.a
+*.o
+*.so
+*~
+.*~
+*.log
+*.dvi
+*.aux
+*.old
+tmp_*
+*_tmp*
+*.tmp
+tmp.*
+.tmp*
+*.tar
+*.tar.gz
+*.tgz
+*.pyc
+</pre></div>
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+  <li class="previous">
+    <a href="._vagrant_box006.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._vagrant_box008.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  Copyright &copy 2013; Anders E. Johansen and Hans Petter Langtangen
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
