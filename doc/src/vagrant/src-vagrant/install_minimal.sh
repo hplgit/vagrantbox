@@ -1,5 +1,10 @@
 #!/bin/bash
-# Automatically generated script. Based on debpkg_minimal.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in debpkg_minimal.txt.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -73,6 +78,7 @@ pip_install numpy
 pip_install sympy
 pip_install cython
 apt_install swig
+#pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
 pip_install scipy

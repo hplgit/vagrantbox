@@ -1,5 +1,10 @@
 #!/bin/bash
-# Automatically generated script. Based on debpkg_rich.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in debpkg_rich.txt.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -75,6 +80,7 @@ pip_install numpy
 pip_install sympy
 pip_install cython
 apt_install swig
+#pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
 pip_install scipy
@@ -157,6 +163,31 @@ apt_install texlive-font-utils
 apt_install latexdiff
 apt_install auctex
 
+# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+apt_install libav-tools
+apt_install ffmpeg
+apt_install libavcodec-extra-53
+apt_install libx264-dev
+#x264 h264enc
+# Animations: players
+apt_install mplayer
+apt_install gnome-mplayer
+apt_install mencoder
+apt_install totem
+apt_install totem-plugins
+apt_install totem-mozilla
+apt_install vlc
+apt_install browser-plugin-vlc
+apt_install gxine
+apt_install python-pyxine
+apt_install xine-plugin
+apt_install libxine2-dev
+apt_install libxine2-all-plugins
+apt_install gxine-plugin
+apt_install libxine2-ffmpeg
+apt_install swfdec-gnome
+apt_install flashplugin-installer
+
 # Misc
 apt_install pandoc
 apt_install konsole
@@ -184,6 +215,9 @@ apt_install kdiff3
 
 # Support for Norwegian
 apt_install language-pack-nb-base
+
+
+# Download source code and install in srclib subdirectory
 
 unix_command if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
@@ -230,8 +264,13 @@ unix_command cd ~/texmf
 unix_command mktexlsr .
 unix_command cd -
 
+# Clean up
 unix_command sudo mv -f src/* srclib
-unix_command sudo rm -rf src
+unix_command sudo rm -rf src build
+unix_command sudo find srclib -name build -exec rm -rf {} \;
+unix_command cd
+unix_command sudo rm -rf .matplotlib
+unix_command mkdir .matplotlib
 
 # Install FEniCS manually
 echo "Everything is successfully installed!"

@@ -80,6 +80,21 @@ texlive-font-utils
 latexdiff
 auctex
 
+# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+libav-tools
+ffmpeg
+libavcodec-extra-53
+libx264-dev
+#x264 h264enc
+# Animations: players
+mplayer gnome-mplayer
+mencoder
+totem totem-plugins totem-mozilla
+vlc browser-plugin-vlc
+gxine python-pyxine xine-plugin libxine2-dev libxine2-all-plugins
+gxine-plugin libxine2-ffmpeg
+swfdec-gnome flashplugin-installer
+
 # Misc
 pandoc
 konsole gnome-terminal
@@ -98,6 +113,9 @@ meld xxdiff diffpdf kdiff3
 
 # Support for Norwegian
 language-pack-nb-base
+
+
+# Download source code and install in srclib subdirectory
 
 $ if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source

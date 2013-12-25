@@ -65,8 +65,7 @@ function unix_command {
 """ % (debpkg, cmd))
 
 pyfile = open(outfile + '.py', 'w')
-pyfile.write(r'''\
-#!/usr/bin/env python
+pyfile.write(r'''#!/usr/bin/env python
 # Automatically generated script by
 # vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
 # where vagrantbox is the directory arising from
@@ -115,7 +114,8 @@ for line in lines:
             line = ' '.join(line.split()[1:])  # get rid of (wrong) $ prefix
         cmd = 'pip_install ' + ' '.join(line.split()[2:])
         shfile.write(cmd + '\n')
-        pyfile.write('sudo ' + line + '\n')
+        cmd = 'sudo ' + line.strip()
+        pyfile.write("system('%s')\n" % cmd)
     else:
         # Debian package names
         packages = line.split()

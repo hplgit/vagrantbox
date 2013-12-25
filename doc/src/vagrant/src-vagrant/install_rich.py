@@ -1,6 +1,10 @@
-\
 #!/usr/bin/env python
-# Automatically generated script. Based on debpkg_rich.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in debpkg_rich.txt.
 
 import commands, sys
 
@@ -55,28 +59,20 @@ system('sudo apt-get -y install python-dev')
 # (otherwise pip install matplotlib does not work)
 system('sudo apt-get -y install libfreetype6-dev')
 system('sudo apt-get -y install libpng-dev')
-sudo pip install numpy
-
-sudo pip install sympy
-
-sudo pip install cython
-
+system('sudo pip install numpy')
+system('sudo pip install sympy')
+system('sudo pip install cython')
 system('sudo apt-get -y install swig')
+#pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
-sudo pip install scipy
-
-sudo pip install ipython
-
-sudo pip install nose
-
-sudo pip install sphinx 
-sudo pip install flask
-
-sudo pip install django
-
-sudo pip install mako
-
+system('sudo pip install scipy')
+system('sudo pip install ipython')
+system('sudo pip install nose')
+system('sudo pip install sphinx')
+system('sudo pip install flask')
+system('sudo pip install django')
+system('sudo pip install mako')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
@@ -150,6 +146,31 @@ system('sudo apt-get -y install texlive-font-utils')
 system('sudo apt-get -y install latexdiff')
 system('sudo apt-get -y install auctex')
 
+# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+system('sudo apt-get -y install libav-tools')
+system('sudo apt-get -y install ffmpeg')
+system('sudo apt-get -y install libavcodec-extra-53')
+system('sudo apt-get -y install libx264-dev')
+#x264 h264enc
+# Animations: players
+system('sudo apt-get -y install mplayer')
+system('sudo apt-get -y install gnome-mplayer')
+system('sudo apt-get -y install mencoder')
+system('sudo apt-get -y install totem')
+system('sudo apt-get -y install totem-plugins')
+system('sudo apt-get -y install totem-mozilla')
+system('sudo apt-get -y install vlc')
+system('sudo apt-get -y install browser-plugin-vlc')
+system('sudo apt-get -y install gxine')
+system('sudo apt-get -y install python-pyxine')
+system('sudo apt-get -y install xine-plugin')
+system('sudo apt-get -y install libxine2-dev')
+system('sudo apt-get -y install libxine2-all-plugins')
+system('sudo apt-get -y install gxine-plugin')
+system('sudo apt-get -y install libxine2-ffmpeg')
+system('sudo apt-get -y install swfdec-gnome')
+system('sudo apt-get -y install flashplugin-installer')
+
 # Misc
 system('sudo apt-get -y install pandoc')
 system('sudo apt-get -y install konsole')
@@ -178,6 +199,9 @@ system('sudo apt-get -y install kdiff3')
 # Support for Norwegian
 system('sudo apt-get -y install language-pack-nb-base')
 
+
+# Download source code and install in srclib subdirectory
+
 system('if [ ! -d srclib ]; then mkdir srclib; fi')
 # SciTools must be installed from source
 system('cd srclib')
@@ -187,8 +211,7 @@ system('sudo python setup.py install')
 system('cd ../..')
 # Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
-sudo pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy
-
+system('sudo pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy')
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
 system('cd srclib')
@@ -204,19 +227,13 @@ system('cd doconce')
 system('sudo python setup.py install')
 system('cd ../..')
 # Install Doconce dependencies not covered above
-sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
+system('sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish')
 
-sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
-
-
-sudo pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
-
-sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-
-sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
-
-sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-
+system('sudo pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme')
+system('sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme')
+system('sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized')
+system('sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs')
 #pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
 # Ptex2tex
 system('cd srclib')
@@ -230,8 +247,13 @@ system('cd ~/texmf')
 system('mktexlsr .')
 system('cd -')
 
+# Clean up
 system('sudo mv -f src/* srclib')
-system('sudo rm -rf src')
+system('sudo rm -rf src build')
+system('sudo find srclib -name build -exec rm -rf {} \;')
+system('cd')
+system('sudo rm -rf .matplotlib')
+system('mkdir .matplotlib')
 
 # Install FEniCS manually
 print 'Everything is successfully installed!'
