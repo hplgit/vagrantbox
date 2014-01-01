@@ -24,14 +24,6 @@ function pip_install {
   fi
 }
 
-function unix_command {
-  "$@"
-  if [ $? -ne 0 ]; then
-    echo "could not run $@ - abort"
-    exit 1
-  fi
-}
-
 sudo apt-get update --fix-missing
 
 # Editors
@@ -102,8 +94,6 @@ apt_install libqt4-dev
 apt_install python-qt4-dev
 apt_install python-pmw
 apt_install python-traits
-apt_install python-traitsbackendqt
-apt_install python-traitsbackendwx
 apt_install python-traitsgui
 apt_install python-enthoughtbase
 apt_install python-pyface
@@ -141,20 +131,13 @@ apt_install pdftk
 apt_install giftrans
 apt_install gv
 apt_install evince
-apt_install smpeg-plaympeg
-apt_install mplayer
-apt_install totem
-apt_install ffmpeg
-apt_install libav-tools
 
 # LaTeX
 apt_install texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
-unix_command ubuntu_version=`lsb_release -r | awl '{print $2}'`
-unix_command if [ $ubuntu_version = "12.04" ]; then
-unix_command sudo add-apt-repository ppa:texlive-backports/ppa
-unix_command sudo apt-get update
-unix_command fi
+# (let if tests be on one line)
+ubuntu_version=`lsb_release -r | awk '{print $2}'`
+if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
 apt_install texlive
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
@@ -183,19 +166,19 @@ apt_install python-pyxine
 apt_install xine-plugin
 apt_install libxine2-dev
 apt_install libxine2-all-plugins
-apt_install gxine-plugin
+apt_install gxineplugin
 apt_install libxine2-ffmpeg
 apt_install swfdec-gnome
 apt_install flashplugin-installer
 
 # Misc
+apt_install unity-tweak-tool
 apt_install pandoc
 apt_install konsole
 apt_install gnome-terminal
 apt_install libreoffice
 apt_install unoconv
 apt_install libreoffice-dmaths
-
 apt_install libbz2-dev
 apt_install libncurses5-dev
 apt_install swig
@@ -207,9 +190,8 @@ apt_install apt-file
 apt_install apturl
 apt_install libssl-dev
 apt_install openssh-server
-apt_install gconf-editor
 apt_install meld
-apt_install xxdiff
+apt_install fldiff
 apt_install diffpdf
 apt_install kdiff3
 
@@ -219,30 +201,30 @@ apt_install language-pack-nb-base
 
 # Download source code and install in srclib subdirectory
 
-unix_command if [ ! -d srclib ]; then mkdir srclib; fi
+if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
-unix_command cd srclib
-unix_command hg clone http://code.google.com/p/scitools
-unix_command cd scitools
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone http://code.google.com/p/scitools
+cd scitools
+sudo python setup.py install
+cd ../..
 # Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
 pip_install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
-unix_command cd srclib
-unix_command hg clone https://bitbucket.org/khinsen/scientificpython
-unix_command cd scientificpython
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone https://bitbucket.org/khinsen/scientificpython
+cd scientificpython
+sudo python setup.py install
+cd ../..
 
 # Doconce (must clone with https since ssh keys are not present in the box)
-unix_command cd srclib
-unix_command git clone https://github.com/hplgit/doconce.git
-unix_command cd doconce
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+git clone https://github.com/hplgit/doconce.git
+cd doconce
+sudo python setup.py install
+cd ../..
 # Install Doconce dependencies not covered above
 pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
@@ -253,24 +235,24 @@ pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sph
 pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
 #pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
 # Ptex2tex
-unix_command cd srclib
-unix_command svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
-unix_command cd ptex2tex
-unix_command sudo python setup.py install
-unix_command cd latex
-unix_command sh cp2texmf.sh
-unix_command cd ../../..
-unix_command cd ~/texmf
-unix_command mktexlsr .
-unix_command cd -
+cd srclib
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install
+cd latex
+sh cp2texmf.sh
+cd ../../..
+cd ~/texmf
+mktexlsr .
+cd -
 
 # Clean up
-unix_command sudo mv -f src/* srclib
-unix_command sudo rm -rf src build
-unix_command sudo find srclib -name build -exec rm -rf {} \;
-unix_command cd
-unix_command sudo rm -rf .matplotlib
-unix_command mkdir .matplotlib
+sudo mv -f src/* srclib
+sudo rm -rf src build
+sudo find srclib -name build -exec rm -rf {} \;
+cd
+sudo rm -rf .matplotlib
+mkdir .matplotlib
 
 # Install FEniCS manually
 echo "Everything is successfully installed!"

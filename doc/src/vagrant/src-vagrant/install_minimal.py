@@ -6,14 +6,18 @@
 
 # The script is based on packages listed in debpkg_minimal.txt.
 
-import commands, sys
+import subprocess, sys
 
 def system(cmd):
     """Run system command cmd."""
-    failure, output = commands.getstatusoutput(cmd)
-    if failure:
+    print cmd
+    try:
+        output = subprocess.check_output(cmd, shell=True,
+                                         stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
        print 'Command\n  %s\nfailed.' % cmd
-       print output
+       print 'Return code:', e.returncode
+       print e.output
        sys.exit(1)
 
 system('sudo apt-get update --fix-missing')
@@ -119,19 +123,6 @@ system('sudo apt-get -y install wdiff')
 system('sudo apt-get -y install language-pack-nb-base')
 
 # SciTools must be installed from source
-system('cd srclib')
-system('hg clone http://code.google.com/p/scitools')
-system('cd scitools')
-system('sudo python setup.py install')
-system('cd ../..')
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
-# Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
-# Do manual install instead
-system('cd srclib')
-system('hg clone https://bitbucket.org/khinsen/scientificpython')
-system('cd scientificpython')
-system('sudo python setup.py install')
-system('cd ../..')
 
 print 'Everything is successfully installed!'
