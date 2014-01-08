@@ -155,6 +155,10 @@ $ cd ../../..
 $ cd ~/texmf
 $ mktexlsr .  # update database for tex packages
 $ cd -
+# Not strictly necessary (only for creating modified reveal.js styles)
+nodejs
+$ sudo gem install grunt
+$ sudo gem install sass
 
 # Clean up
 $ sudo mv -f src/* srclib
