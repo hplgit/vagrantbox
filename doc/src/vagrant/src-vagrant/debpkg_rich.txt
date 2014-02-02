@@ -24,7 +24,6 @@ libfreetype6-dev libpng-dev
 pip install numpy
 pip install sympy
 pip install cython
-swig
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
@@ -40,8 +39,7 @@ python-dev
 python-opengl python-pygame
 python-pdftools
 python-qt4 python-gtk2-dev libqt4-dev python-qt4-dev python-pmw
-python-traits python-traitsbackendqt
-python-traitsbackendwx python-traitsgui
+python-traits python-traitsgui
 python-enthoughtbase python-pyface
 pype
 python-tagpy
@@ -61,17 +59,14 @@ inkscape xfig xfig-doc transfig fig2ps
 # Image manipulation
 imagemagick
 netpbm mjpegtools pdftk giftrans
-gv evince smpeg-plaympeg mplayer totem
-ffmpeg libav-tools
+gv evince
 
 # LaTeX
 texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
-$ ubuntu_version=`lsb_release -r | awl '{print $2}'`
-$ if [ $ubuntu_version = "12.04" ]; then
-$   sudo add-apt-repository ppa:texlive-backports/ppa
-$   sudo apt-get update
-$ fi
+# (let if tests be on one line)
+#$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
 texlive
 texlive-extra-utils
 texlive-latex-extra
@@ -80,11 +75,26 @@ texlive-font-utils
 latexdiff
 auctex
 
+# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+libav-tools
+ffmpeg
+libavcodec-extra-53
+libx264-dev
+#x264 h264enc
+# Animations: players
+mplayer gnome-mplayer
+mencoder
+totem totem-plugins totem-mozilla
+vlc browser-plugin-vlc
+gxine python-pyxine xine-plugin libxine2-dev libxine2-all-plugins
+gxineplugin libxine2-ffmpeg
+swfdec-gnome flashplugin-installer
+
 # Misc
+unity-tweak-tool
 pandoc
 konsole gnome-terminal
 libreoffice unoconv libreoffice-dmaths
-
 libbz2-dev libncurses5-dev
 swig
 curl
@@ -93,11 +103,13 @@ jhead
 apt-file apturl
 libssl-dev
 openssh-server
-gconf-editor
-meld xxdiff diffpdf kdiff3
+meld fldiff diffpdf kdiff3
 
 # Support for Norwegian
 language-pack-nb-base
+
+
+# Download source code and install in srclib subdirectory
 
 $ if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
@@ -143,6 +155,13 @@ $ cd ../../..
 $ cd ~/texmf
 $ mktexlsr .  # update database for tex packages
 $ cd -
+
+# Not strictly necessary (only for creating modified reveal.js styles)
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get install nodejs
+# remove a conflicting install of npm that I had tried earlier
+$ sudo apt-get update && sudo apt-get -y dist-upgrade
+$ sudo npm install -g grunt grunt-cli grunt-contrib-clean grunt-replace grunt-contrib-concat grunt-contrib-watch grunt-contrib-jasmine grunt-contrib-connect grunt-saucelabs grunt-gitinfo
 
 # Clean up
 $ sudo mv -f src/* srclib

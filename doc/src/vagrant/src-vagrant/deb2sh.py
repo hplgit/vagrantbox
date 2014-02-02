@@ -53,21 +53,12 @@ function pip_install {
   fi
 }
 
-function unix_command {
-  "$@"
-  if [ $? -ne 0 ]; then
-    echo "could not run $@ - abort"
-    exit 1
-  fi
-}
-
 %s
 
 """ % (debpkg, cmd))
 
 pyfile = open(outfile + '.py', 'w')
-pyfile.write(r'''\
-#!/usr/bin/env python
+pyfile.write(r'''#!/usr/bin/env python
 # Automatically generated script by
 # vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
 # where vagrantbox is the directory arising from
@@ -75,18 +66,36 @@ pyfile.write(r'''\
 
 # The script is based on packages listed in %s.
 
-import commands, sys
+import subprocess, sys
 
 def system(cmd):
     """Run system command cmd."""
-    failure, output = commands.getstatusoutput(cmd)
-    if failure:
+    print cmd
+    try:
+        output = subprocess.check_output(cmd, shell=True,
+                                         stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
        print 'Command\n  %%s\nfailed.' %% cmd
-       print output
+       print 'Return code:', e.returncode
+       print e.output
        sys.exit(1)
 
 system('%s')
 ''' % (debpkg, cmd))
+
+unix_commands = []
+
+def run_unix_commands():
+    """Run all everything on the stack unix_commands as a script."""
+    global unix_commands
+    cmd = '\n'.join(unix_commands)
+    pyfile.write('''cmd = """
+%s
+"""
+system(cmd)
+''' % cmd)
+    unix_commands = []
+
 
 for line in lines:
     if line.strip() == '':
@@ -96,7 +105,10 @@ for line in lines:
     # Copy comment lines verbatim
     if line.startswith('#'):
         shfile.write(line)
-        pyfile.write(line)
+        if unix_commands:
+            unix_commands.append(line)
+        else:
+            pyfile.write(line)
         continue
     # Strip off comments at the end of the line:
     if '#' in line:
@@ -105,8 +117,8 @@ for line in lines:
     # Treat lines starting with $ as normal Unix commands
     if line.startswith('$'):
         cmd = line[1:].strip()
-        shfile.write('unix_command ' + cmd + '\n')
-        pyfile.write("system('%s')\n" % cmd)
+        shfile.write(cmd + '\n')
+        unix_commands.append(cmd)
         continue
 
     # All other lines are supposed to list either pip install
@@ -116,9 +128,14 @@ for line in lines:
             line = ' '.join(line.split()[1:])  # get rid of (wrong) $ prefix
         cmd = 'pip_install ' + ' '.join(line.split()[2:])
         shfile.write(cmd + '\n')
-        pyfile.write('sudo ' + line + '\n')
+        if unix_commands:
+            run_unix_commands()  # empty stack of previous unix commands
+        cmd = 'sudo ' + line.strip()
+        pyfile.write("system('%s')\n" % cmd)
     else:
         # Debian package names
+        if unix_commands:
+            run_unix_commands()  # empty stack and get ready for apt-get
         packages = line.split()
         for package in packages:
             shfile.write('apt_install ' + package + '\n')

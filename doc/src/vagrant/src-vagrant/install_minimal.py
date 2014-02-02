@@ -1,15 +1,23 @@
-\
 #!/usr/bin/env python
-# Automatically generated script. Based on debpkg_minimal.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
 
-import commands, sys
+# The script is based on packages listed in debpkg_minimal.txt.
+
+import subprocess, sys
 
 def system(cmd):
     """Run system command cmd."""
-    failure, output = commands.getstatusoutput(cmd)
-    if failure:
+    print cmd
+    try:
+        output = subprocess.check_output(cmd, shell=True,
+                                         stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
        print 'Command\n  %s\nfailed.' % cmd
-       print output
+       print 'Return code:', e.returncode
+       print e.output
        sys.exit(1)
 
 system('sudo apt-get update --fix-missing')
@@ -53,22 +61,17 @@ system('sudo apt-get -y install python-dev')
 # (otherwise pip install matplotlib does not work)
 system('sudo apt-get -y install libfreetype6-dev')
 system('sudo apt-get -y install libpng-dev')
-sudo pip install numpy
-
-sudo pip install sympy
-
-sudo pip install cython
-
+system('sudo pip install numpy')
+system('sudo pip install sympy')
+system('sudo pip install cython')
 system('sudo apt-get -y install swig')
+#pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
-sudo pip install scipy
-
-sudo pip install ipython
-
-sudo pip install nose
-
-sudo pip install sphinx 
+system('sudo pip install scipy')
+system('sudo pip install ipython')
+system('sudo pip install nose')
+system('sudo pip install sphinx')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
@@ -120,19 +123,6 @@ system('sudo apt-get -y install wdiff')
 system('sudo apt-get -y install language-pack-nb-base')
 
 # SciTools must be installed from source
-system('cd srclib')
-system('hg clone http://code.google.com/p/scitools')
-system('cd scitools')
-system('sudo python setup.py install')
-system('cd ../..')
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
-# Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
-# Do manual install instead
-system('cd srclib')
-system('hg clone https://bitbucket.org/khinsen/scientificpython')
-system('cd scientificpython')
-system('sudo python setup.py install')
-system('cd ../..')
 
 print 'Everything is successfully installed!'

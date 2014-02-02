@@ -1,5 +1,10 @@
 #!/bin/bash
-# Automatically generated script. Based on debpkg_minimal.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in debpkg_minimal.txt.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -15,14 +20,6 @@ function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
-    exit 1
-  fi
-}
-
-function unix_command {
-  "$@"
-  if [ $? -ne 0 ]; then
-    echo "could not run $@ - abort"
     exit 1
   fi
 }
@@ -73,6 +70,7 @@ pip_install numpy
 pip_install sympy
 pip_install cython
 apt_install swig
+#pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
 pip_install scipy
@@ -130,19 +128,19 @@ apt_install wdiff
 apt_install language-pack-nb-base
 
 # SciTools must be installed from source
-unix_command cd srclib
-unix_command hg clone http://code.google.com/p/scitools
-unix_command cd scitools
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone http://code.google.com/p/scitools
+cd scitools
+sudo python setup.py install
+cd ../..
 # Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
-unix_command cd srclib
-unix_command hg clone https://bitbucket.org/khinsen/scientificpython
-unix_command cd scientificpython
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone https://bitbucket.org/khinsen/scientificpython
+cd scientificpython
+sudo python setup.py install
+cd ../..
 
 echo "Everything is successfully installed!"
