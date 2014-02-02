@@ -65,6 +65,7 @@ pyfile.write(r'''#!/usr/bin/env python
 # git clone git@github.com:hplgit/vagrantbox.git
 
 # The script is based on packages listed in %s.
+
 logfile = 'tmp_output.log'  # store all output of all operating system commands
 f = open(logfile, 'w'); f.close()  # touch logfile so it can be appended
 
