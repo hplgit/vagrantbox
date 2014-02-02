@@ -46,7 +46,7 @@ function apt_install {
 }
 
 function pip_install {
-  sudo pip install "$@"
+  sudo pip install "$@" | tee -a tmp_output.log
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
@@ -65,6 +65,8 @@ pyfile.write(r'''#!/usr/bin/env python
 # git clone git@github.com:hplgit/vagrantbox.git
 
 # The script is based on packages listed in %s.
+logfile = 'tmp_output.log'  # store all output of all operating system commands
+f = open(logfile, 'w'); f.close()  # touch logfile so it can be appended
 
 import subprocess, sys
 
@@ -75,10 +77,12 @@ def system(cmd):
         output = subprocess.check_output(cmd, shell=True,
                                          stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-       print 'Command\n  %%s\nfailed.' %% cmd
-       print 'Return code:', e.returncode
-       print e.output
-       sys.exit(1)
+        print 'Command\n  %%s\nfailed.' %% cmd
+        print 'Return code:', e.returncode
+        print e.output
+        sys.exit(1)
+    print output
+    f = open(logfile, 'a'); f.write(output); f.close()
 
 system('%s')
 ''' % (debpkg, cmd))
