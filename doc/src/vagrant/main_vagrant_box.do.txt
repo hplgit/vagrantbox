@@ -3,4 +3,10 @@ AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Resear
 AUTHOR: Anders E. Johansen at Center for Biomedical Computing, Simula Research Laboratory
 DATE: today
 
+<%
+shorturl = 'http://some.net/some/address'
+course_name = 'course'
+boxsize = 'X'
+%>
+
 # #include "vagrant_box.do.txt"

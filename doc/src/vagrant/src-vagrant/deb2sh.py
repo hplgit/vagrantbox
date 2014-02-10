@@ -35,10 +35,9 @@ shfile.write("""\
 # The script is based on packages listed in %s.
 
 set -x  # make sure each command is printed in the terminal
-touch tmp_output.log  # log file containing the output of all commands
 
 function apt_install {
-  sudo apt-get -y install $1 | tee -a tmp_output.log
+  sudo apt-get -y install $1
   if [ $? -ne 0 ]; then
     echo "could not install $1 - abort"
     exit 1
@@ -46,7 +45,7 @@ function apt_install {
 }
 
 function pip_install {
-  sudo pip install "$@" | tee -a tmp_output.log
+  sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
