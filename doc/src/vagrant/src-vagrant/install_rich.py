@@ -6,6 +6,9 @@
 
 # The script is based on packages listed in debpkg_rich.txt.
 
+logfile = 'tmp_output.log'  # store all output of all operating system commands
+f = open(logfile, 'w'); f.close()  # touch logfile so it can be appended
+
 import subprocess, sys
 
 def system(cmd):
@@ -15,10 +18,12 @@ def system(cmd):
         output = subprocess.check_output(cmd, shell=True,
                                          stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-       print 'Command\n  %s\nfailed.' % cmd
-       print 'Return code:', e.returncode
-       print e.output
-       sys.exit(1)
+        print 'Command\n  %s\nfailed.' % cmd
+        print 'Return code:', e.returncode
+        print e.output
+        sys.exit(1)
+    print output
+    f = open(logfile, 'a'); f.write(output); f.close()
 
 system('sudo apt-get update --fix-missing')
 # Editors
@@ -66,7 +71,6 @@ system('sudo apt-get -y install libpng-dev')
 system('sudo pip install numpy')
 system('sudo pip install sympy')
 system('sudo pip install cython')
-system('sudo apt-get -y install swig')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
@@ -77,6 +81,8 @@ system('sudo pip install sphinx')
 system('sudo pip install flask')
 system('sudo pip install django')
 system('sudo pip install mako')
+system('sudo pip install flake8')
+system('sudo pip install pylint')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
@@ -131,11 +137,8 @@ system('sudo apt-get -y install evince')
 system('sudo apt-get -y install texinfo')
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
 # (let if tests be on one line)
-cmd = """
-ubuntu_version=`lsb_release -r | awk '{print $2}'`
-if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
-"""
-system(cmd)
+#$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
 system('sudo apt-get -y install texlive')
 system('sudo apt-get -y install texlive-extra-utils')
 system('sudo apt-get -y install texlive-latex-extra')
@@ -243,6 +246,7 @@ system('sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.sola
 system('sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs')
 #pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
 # Ptex2tex
+
 
 
 print 'Everything is successfully installed!'

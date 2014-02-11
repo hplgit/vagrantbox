@@ -71,7 +71,6 @@ apt_install libpng-dev
 pip_install numpy
 pip_install sympy
 pip_install cython
-apt_install swig
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
@@ -82,6 +81,8 @@ pip_install sphinx
 pip_install flask
 pip_install django
 pip_install mako
+pip_install flake8
+pip_install pylint
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev
@@ -136,8 +137,8 @@ apt_install evince
 apt_install texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
 # (let if tests be on one line)
-ubuntu_version=`lsb_release -r | awk '{print $2}'`
-if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
+#$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
 apt_install texlive
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
@@ -245,6 +246,13 @@ cd ../../..
 cd ~/texmf
 mktexlsr .
 cd -
+
+# Not strictly necessary (only for creating modified reveal.js styles)
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get install nodejs
+# remove a conflicting install of npm that I had tried earlier
+sudo apt-get update && sudo apt-get -y dist-upgrade
+sudo npm install -g grunt grunt-cli grunt-contrib-clean grunt-replace grunt-contrib-concat grunt-contrib-watch grunt-contrib-jasmine grunt-contrib-connect grunt-saucelabs grunt-gitinfo
 
 # Clean up
 sudo mv -f src/* srclib
