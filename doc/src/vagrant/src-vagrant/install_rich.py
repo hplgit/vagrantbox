@@ -63,6 +63,7 @@ system('sudo apt-get -y install bzr')
 # Python
 system('sudo apt-get -y install idle')
 system('sudo apt-get -y install python-pip')
+system('sudo apt-get -y install python-setuptools')
 system('sudo apt-get -y install python-dev')
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -74,6 +75,7 @@ system('sudo pip install cython')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
+system('sudo apt-get -y install ipython-notebook')
 system('sudo pip install scipy')
 system('sudo pip install ipython')
 system('sudo pip install nose')
@@ -86,6 +88,7 @@ system('sudo pip install pylint')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
+system('sudo apt-get -y install spyder')
 system('sudo apt-get -y install python-opengl')
 system('sudo apt-get -y install python-pygame')
 system('sudo apt-get -y install python-pdftools')

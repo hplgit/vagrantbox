@@ -63,6 +63,7 @@ apt_install bzr
 # Python
 apt_install idle
 apt_install python-pip
+apt_install python-setuptools
 apt_install python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -74,6 +75,7 @@ pip_install cython
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
+apt_install ipython-notebook
 pip_install scipy
 pip_install ipython
 pip_install nose
@@ -86,6 +88,7 @@ pip_install pylint
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev
+apt_install spyder
 apt_install python-opengl
 apt_install python-pygame
 apt_install python-pdftools

@@ -6,6 +6,9 @@
 
 # The script is based on packages listed in debpkg_minimal.txt.
 
+logfile = 'tmp_output.log'  # store all output of all operating system commands
+f = open(logfile, 'w'); f.close()  # touch logfile so it can be appended
+
 import subprocess, sys
 
 def system(cmd):
@@ -15,10 +18,12 @@ def system(cmd):
         output = subprocess.check_output(cmd, shell=True,
                                          stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-       print 'Command\n  %s\nfailed.' % cmd
-       print 'Return code:', e.returncode
-       print e.output
-       sys.exit(1)
+        print 'Command\n  %s\nfailed.' % cmd
+        print 'Return code:', e.returncode
+        print e.output
+        sys.exit(1)
+    print output
+    f = open(logfile, 'a'); f.write(output); f.close()
 
 system('sudo apt-get update --fix-missing')
 # Minimal installation for a Python ecosystem
@@ -56,6 +61,7 @@ system('sudo apt-get -y install bzr')
 # Python
 system('sudo apt-get -y install idle')
 system('sudo apt-get -y install python-pip')
+system('sudo apt-get -y install python-setuptools')
 system('sudo apt-get -y install python-dev')
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -68,6 +74,7 @@ system('sudo apt-get -y install swig')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
+system('sudo apt-get -y install ipython-notebook')
 system('sudo pip install scipy')
 system('sudo pip install ipython')
 system('sudo pip install nose')
@@ -75,6 +82,7 @@ system('sudo pip install sphinx')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
+system('sudo apt-get -y install spyder')
 
 # Gnuplot
 system('sudo apt-get -y install gnuplot')

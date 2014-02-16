@@ -17,6 +17,7 @@ subversion mercurial cvs git gitk bzr
 # Python
 idle
 python-pip
+python-setuptools
 python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -28,12 +29,14 @@ swig
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
+ipython-notebook
 pip install scipy
 pip install ipython
 pip install nose
 pip install sphinx  # installs pygments and docutils too
 pydb python-profiler
 python-dev
+spyder
 
 # Gnuplot
 gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev

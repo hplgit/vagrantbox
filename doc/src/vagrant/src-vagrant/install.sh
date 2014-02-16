@@ -1,5 +1,10 @@
 #!/bin/bash
-# Automatically generated script. Based on debpkg.txt.
+# Automatically generated script by
+# vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
+# where vagrantbox is the directory arising from
+# git clone git@github.com:hplgit/vagrantbox.git
+
+# The script is based on packages listed in debpkg.txt.
 
 set -x  # make sure each command is printed in the terminal
 
@@ -15,14 +20,6 @@ function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
-    exit 1
-  fi
-}
-
-function unix_command {
-  "$@"
-  if [ $? -ne 0 ]; then
-    echo "could not run $@ - abort"
     exit 1
   fi
 }
@@ -144,11 +141,11 @@ apt_install libav-tools
 # LaTeX
 apt_install texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
-unix_command ubuntu_version=`lsb_release -r | awl '{print $2}'`
-unix_command if [ $ubuntu_version = "12.04" ]; then
-unix_command sudo add-apt-repository ppa:texlive-backports/ppa
-unix_command sudo apt-get update
-unix_command fi
+ubuntu_version=`lsb_release -r | awl '{print $2}'`
+if [ $ubuntu_version = "12.04" ]; then
+sudo add-apt-repository ppa:texlive-backports/ppa
+sudo apt-get update
+fi
 apt_install texlive
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
@@ -185,24 +182,29 @@ apt_install kdiff3
 # Support for Norwegian
 apt_install language-pack-nb-base
 
-unix_command if [ ! -d srclib ]; then mkdir srclib; fi
+if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
-unix_command cd srclib
-unix_command hg clone http://code.google.com/p/scitools
-unix_command cd scitools
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone http://code.google.com/p/scitools
+cd scitools
+sudo python setup.py install
+cd ../..
 # Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
 
 pip_install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
-unix_command cd srclib
-unix_command hg clone https://bitbucket.org/khinsen/scientificpython
-unix_command cd scientificpython
-unix_command sudo python setup.py install
-unix_command cd ../..
+cd srclib
+hg clone https://bitbucket.org/khinsen/scientificpython
+cd scientificpython
+sudo python setup.py install
+cd ../..
 
-unix_command sudo mv -f src/* srclib
-unix_command sudo rm -rf src
+# Clean up
+sudo mv -f src/* srclib
+sudo rm -rf src build
+sudo find srclib -name build -exec rm -rf {} \;
+cd
+sudo rm -rf .matplotlib
+mkdir .matplotlib
 echo "Everything is successfully installed!"
