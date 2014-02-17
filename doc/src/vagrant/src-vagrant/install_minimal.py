@@ -74,9 +74,9 @@ system('sudo apt-get -y install swig')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
-system('sudo apt-get -y install ipython-notebook')
 system('sudo pip install scipy')
-system('sudo pip install ipython')
+#ipython-notebook  # too old version in debian
+system('sudo pip install ipython --upgrade')
 system('sudo pip install nose')
 system('sudo pip install sphinx')
 system('sudo apt-get -y install pydb')

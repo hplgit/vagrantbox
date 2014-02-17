@@ -28,9 +28,9 @@ pip install cython
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
-ipython-notebook
+#ipython-notebook  # too old version in debian
+pip install ipython --upgrade  # ensure latest version if already installed
 pip install scipy
-pip install ipython
 pip install nose
 pip install sphinx  # installs pygments and docutils too
 pip install flask

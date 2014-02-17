@@ -74,9 +74,9 @@ apt_install swig
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
-apt_install ipython-notebook
 pip_install scipy
-pip_install ipython
+#ipython-notebook  # too old version in debian
+pip_install ipython --upgrade
 pip_install nose
 pip_install sphinx
 apt_install pydb

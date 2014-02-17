@@ -75,9 +75,9 @@ system('sudo pip install cython')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
-system('sudo apt-get -y install ipython-notebook')
+#ipython-notebook  # too old version in debian
+system('sudo pip install ipython --upgrade')
 system('sudo pip install scipy')
-system('sudo pip install ipython')
 system('sudo pip install nose')
 system('sudo pip install sphinx')
 system('sudo pip install flask')

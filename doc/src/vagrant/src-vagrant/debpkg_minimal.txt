@@ -29,9 +29,9 @@ swig
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
-ipython-notebook
 pip install scipy
-pip install ipython
+#ipython-notebook  # too old version in debian
+pip install ipython --upgrade  # ensure latest version if already installed
 pip install nose
 pip install sphinx  # installs pygments and docutils too
 pydb python-profiler

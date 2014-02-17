@@ -75,9 +75,9 @@ pip_install cython
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
-apt_install ipython-notebook
+#ipython-notebook  # too old version in debian
+pip_install ipython --upgrade
 pip_install scipy
-pip_install ipython
 pip_install nose
 pip_install sphinx
 pip_install flask
