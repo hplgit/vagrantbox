@@ -30,6 +30,8 @@ pip install cython
 python-matplotlib
 #ipython-notebook  # too old version in debian
 pip install ipython --upgrade  # ensure latest version if already installed
+pip install tornado --upgrade
+pip install pyzmq --upgrade
 pip install scipy
 pip install nose
 pip install sphinx  # installs pygments and docutils too
@@ -77,6 +79,7 @@ texlive-extra-utils
 texlive-latex-extra
 texlive-math-extra
 texlive-font-utils
+texlive-humanities
 latexdiff
 auctex
 

@@ -77,6 +77,8 @@ pip_install cython
 apt_install python-matplotlib
 #ipython-notebook  # too old version in debian
 pip_install ipython --upgrade
+pip_install tornado --upgrade
+pip_install pyzmq --upgrade
 pip_install scipy
 pip_install nose
 pip_install sphinx
@@ -147,6 +149,7 @@ apt_install texlive-extra-utils
 apt_install texlive-latex-extra
 apt_install texlive-math-extra
 apt_install texlive-font-utils
+apt_install texlive-humanities
 apt_install latexdiff
 apt_install auctex
 

@@ -77,6 +77,8 @@ apt_install python-matplotlib
 pip_install scipy
 #ipython-notebook  # too old version in debian
 pip_install ipython --upgrade
+pip_install tornado --upgrade
+pip_install pyzmq --upgrade
 pip_install nose
 pip_install sphinx
 apt_install pydb

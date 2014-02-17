@@ -32,6 +32,8 @@ python-matplotlib
 pip install scipy
 #ipython-notebook  # too old version in debian
 pip install ipython --upgrade  # ensure latest version if already installed
+pip install tornado --upgrade
+pip install pyzmq --upgrade
 pip install nose
 pip install sphinx  # installs pygments and docutils too
 pydb python-profiler
