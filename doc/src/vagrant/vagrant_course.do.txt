@@ -27,7 +27,7 @@ Vagrant machine).
 
 ===== Installation instructions =====
 
-# #install "vagrant_install.do.txt"
+# #include "vagrant_install.do.txt"
 
 ===== Troubleshooting: shared directory is invisible =====
 
