@@ -81,6 +81,7 @@ pip_install tornado --upgrade
 pip_install pyzmq --upgrade
 pip_install scipy
 pip_install nose
+pip_install pytest
 pip_install sphinx
 pip_install flask
 pip_install django

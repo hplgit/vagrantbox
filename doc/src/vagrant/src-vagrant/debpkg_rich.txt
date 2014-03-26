@@ -34,6 +34,7 @@ pip install tornado --upgrade
 pip install pyzmq --upgrade
 pip install scipy
 pip install nose
+pip install pytest
 pip install sphinx  # installs pygments and docutils too
 pip install flask
 pip install django

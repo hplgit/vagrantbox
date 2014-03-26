@@ -80,6 +80,7 @@ pip_install ipython --upgrade
 pip_install tornado --upgrade
 pip_install pyzmq --upgrade
 pip_install nose
+pip_install pytest
 pip_install sphinx
 apt_install pydb
 apt_install python-profiler
