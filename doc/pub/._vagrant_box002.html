@@ -27,8 +27,9 @@ Footer at the end:
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
+
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -255,8 +256,8 @@ Here is a recipe. Start with
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo apt-cache search virtualbox
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; sudo apt-cache search virtualbox</span>
 </pre></div>
 <p>
 to find a package <code>virtualbox-X</code>, where <code>X</code> denotes a particular
@@ -264,15 +265,15 @@ version number (e.g., <code>4.2</code>). Then copy and paste the following
 commands into the terminal window:
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; wget -q <span style="color: #BB6622; font-weight: bold">\</span>
- http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc <span style="color: #BB6622; font-weight: bold">\</span>
- -O- | sudo apt-key add -
-Terminal&gt; sudo sh -c <span style="color: #BA2121">&#39;echo \</span>
-<span style="color: #BA2121"> &quot;deb http://download.virtualbox.org/virtualbox/debian precise contrib&quot; \</span>
-<span style="color: #BA2121"> &gt;&gt; /etc/apt/sources.list&#39;</span>
-Terminal&gt; sudo apt-get update
-Terminal&gt; sudo apt-get install virtualbox-X
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; wget -q \</span>
+<span style="color: #888888"> http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \</span>
+<span style="color: #888888"> -O- | sudo apt-key add -</span>
+<span style="color: #888888">Terminal&gt; sudo sh -c &#39;echo \</span>
+<span style="color: #888888"> &quot;deb http://download.virtualbox.org/virtualbox/debian precise contrib&quot; \</span>
+<span style="color: #888888"> &gt;&gt; /etc/apt/sources.list&#39;</span>
+<span style="color: #888888">Terminal&gt; sudo apt-get update</span>
+<span style="color: #888888">Terminal&gt; sudo apt-get install virtualbox-X</span>
 </pre></div>
 <p>
 (Recall to replace <code>X</code> by the appropriate version number.)

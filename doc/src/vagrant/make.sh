@@ -35,7 +35,7 @@ system python automake_sphinx.py $opts
 # Install in pub directory
 dest=../../pub
 rm -rf $dest/${name}-sphinx-$theme
-cp -r css $name.html ._$name*.html $name2.pdf $dest
+cp -r $name.html ._$name*.html $name2.pdf $dest
 cp -r sphinx-rootdir-$theme/_build/html $dest/${name}-sphinx-$theme
 
 

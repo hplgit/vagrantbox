@@ -5,7 +5,7 @@ Creating Vagrant Machines for Distribution of Software Environments
 ===================================================================
 
 :Author: Hans Petter Langtangen, Anders E. Johansen
-:Date: Nov 30, 2013
+:Date: Apr 10, 2014
 
 Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
@@ -208,11 +208,11 @@ commands into the terminal window:
 
 .. code-block:: console
 
-        Terminal> wget -q \
-         http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \
+        Terminal> wget -q \ 
+         http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \ 
          -O- | sudo apt-key add -
-        Terminal> sudo sh -c 'echo \
-         "deb http://download.virtualbox.org/virtualbox/debian precise contrib" \
+        Terminal> sudo sh -c 'echo \ 
+         "deb http://download.virtualbox.org/virtualbox/debian precise contrib" \ 
          >> /etc/apt/sources.list'
         Terminal> sudo apt-get update
         Terminal> sudo apt-get install virtualbox-X
@@ -558,7 +558,7 @@ running the ``vagrant package`` command in the project directory:
 
 .. code-block:: console
 
-        Terminal> vagrant package --output course.box \
+        Terminal> vagrant package --output course.box \ 
                   --vagrantfile Vagrantfile
 
 The settings in ``Vagrantfile`` are now packed with the box. In particular,
@@ -875,7 +875,8 @@ machine as a starting point for the
 user's customization of her Unix environment. Here is an `example <https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc>`_:
 
 
-.. code-block:: python
+.. code-block:: text
+
 
         # ~/.bashrc: executed by bash(1) for non-login shells.
         # see /usr/share/doc/bash/examples/startup-files for examples
@@ -925,7 +926,8 @@ to ignore, so a file `.rsyncexclude <https://github.com/hplgit/vagrantbox/tree/m
 be present in the home holder:
 
 
-.. code-block:: python
+.. code-block:: text
+
 
         .#*
         *.rsync~
@@ -1240,110 +1242,8 @@ Say you want distribute a complete Vagrant machine with the URL
 
 Here is the need-know-information for users:
 
-**Step 1.**
-Download and install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. Choose the version
-according to the operating system on the host.
-For example, if you want to build or run Vagrant machines under Mac OS X, choose
-*VirtualBox x.y.z for OS X hosts*, where ``x.y.z`` is the version number
-of VirtualBox. Double click the downloaded ``.dmg`` file to install
-Vagrant. Those who work on a Windows machines will select *VirtualBox
-x.y.z for Windows hosts*, which downloads an ``.exe`` file which can just
-be double clicked to perform the installation.
+.. #install "vagrant_install.do.txt"
 
-**Step 2.**
-Download and install `Vagrant <http://downloads.vagrantup.com/>`_.
-Choose the latest version and the installation file corresponding to
-the host's operating system (where you installed VirtualBox).  On a Mac, you
-select the ``Vagrant-x.y.z.dmg`` file (``x.y.z`` denotes the version of
-the software), on Windows the ``Vagrant_x.y.z.msi`` file is the
-relevant choice.
-On Ubuntu, select ``vagrant_x.y.z_*.deb`` and install it
-by ``sudo dpkg -i vagrant_x.y.z_*.deb``.
-
-**Step 3 for Windows users.**
-If you have a Windows machine, you should
-install `Cygwin <http://cygwin.com/install.html>`_.
-Download the Cygwin's `setup.exe <http://cygwin.com/setup.exe>`_ file and follow
-the instructions given by the installer. Make sure you
-manually select the 'X11' category during installation. Cygwin is
-not needed on Mac computers.
-
-**Step 4.**
-Start X11: run Applications - Utilities - X11 on a Mac,
-or Start - All Programs - Cygwin-X - XWin Server on Windows.
-
-**Step 5.**
-Move to your home directory and make a new directory
-``vagrant`` and a subdirectory ``projects``:
-
-
-.. code-block:: console
-
-        Terminal> cd
-        Terminal> mkdir vagrant
-        Terminal> mkdir vagrant/projects
-        Terminal> cd vagrant
-
-All files that you run from the Vagrant machine are supposed
-to reside in ``vagrant/projects`` and its subdirectories.
-
-**Step 6.**
-Download the file
-
-.. code-block:: text
-
-
-        http://some.where.net/path/to/course.box
-
-Store ``course.box`` in the ``vagrant`` directory.
-
-.. `<https://mega.co.nz/#>`_!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A
-
-.. store as inf1100.box
-
-
-
-**Step 7.**
-Make sure you stand in the ``vagrant`` directory.
-Run
-
-
-.. code-block:: console
-
-        Terminal> vagrant box add course course.box
-        Terminal> vagrant init course
-        Terminal> vagrant up
-        Terminal> vagrant ssh
-
-You are now inside a Ubuntu system!
-
-
-**Step 8.**
-Open a file ``vagrant/projects/test1.py`` in an editor on the host system
-and write the following lines in the file:
-
-
-.. code-block:: python
-
-        import numpy as np
-        import matplotlib.pyplot as plt
-        x = np.linspace(0, 3, 11)
-        y = np.exp(-x)
-        plt.plot(x, y)
-        plt.show()
-
-Save the file. Move to the terminal window with the Ubuntu (Vagrant) machine.
-Run
-
-
-.. code-block:: console
-
-        Machine> cd /vagrant/projects
-        Machine> python test1.py
-
-You should see a plot of :math:`e^{-x}` on the screen. If you encounter
-any problems, read the
-paragraphs below.
 
 Troubleshooting: shared directory is invisible  (2)
 ---------------------------------------------------

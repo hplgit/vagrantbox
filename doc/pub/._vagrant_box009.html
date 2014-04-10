@@ -27,8 +27,9 @@ Footer at the end:
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
+
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -241,8 +242,8 @@ run
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; sudo /etc/init.d/vboxadd setup
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; sudo /etc/init.d/vboxadd setup</span>
 </pre></div>
 <p>
 inside the Vagrant machine. Second, log out and run
@@ -283,8 +284,8 @@ the machine, e.g.,
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; ping us.ubuntu.archive.com
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; ping us.ubuntu.archive.com</span>
 </pre></div>
 <p>
 A hanging command indicates that Internet is not reachable.
@@ -351,118 +352,7 @@ Say you want distribute a complete Vagrant machine with the URL
 Here is the need-know-information for users:
 
 <p>
-<b>Step 1.</b>
-Download and install <a href="https://www.virtualbox.org/wiki/Downloads" target="_self">VirtualBox</a>. Choose the version
-according to the operating system on the host.
-For example, if you want to build or run Vagrant machines under Mac OS X, choose
-<em>VirtualBox x.y.z for OS X hosts</em>, where <code>x.y.z</code> is the version number
-of VirtualBox. Double click the downloaded <code>.dmg</code> file to install
-Vagrant. Those who work on a Windows machines will select <em>VirtualBox
-x.y.z for Windows hosts</em>, which downloads an <code>.exe</code> file which can just
-be double clicked to perform the installation.
-
-<p>
-<b>Step 2.</b>
-Download and install <a href="http://downloads.vagrantup.com/" target="_self">Vagrant</a>.
-Choose the latest version and the installation file corresponding to
-the host's operating system (where you installed VirtualBox).  On a Mac, you
-select the <code>Vagrant-x.y.z.dmg</code> file (<code>x.y.z</code> denotes the version of
-the software), on Windows the <code>Vagrant_x.y.z.msi</code> file is the
-relevant choice.
-On Ubuntu, select <code>vagrant_x.y.z_*.deb</code> and install it
-by <code>sudo dpkg -i vagrant_x.y.z_*.deb</code>.
-
-<p>
-<b>Step 3 for Windows users.</b>
-If you have a Windows machine, you should
-install <a href="http://cygwin.com/install.html" target="_self">Cygwin</a>.
-Download the Cygwin's <a href="http://cygwin.com/setup.exe" target="_self">setup.exe</a> file and follow
-the instructions given by the installer. Make sure you
-manually select the 'X11' category during installation. Cygwin is
-not needed on Mac computers.
-
-<p>
-<b>Step 4.</b>
-Start X11: run Applications - Utilities - X11 on a Mac,
-or Start - All Programs - Cygwin-X - XWin Server on Windows.
-
-<p>
-<b>Step 5.</b>
-Move to your home directory and make a new directory
-<code>vagrant</code> and a subdirectory <code>projects</code>:
-
-<p>
-
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; <span style="color: #008000">cd</span>
-Terminal&gt; mkdir vagrant
-Terminal&gt; mkdir vagrant/projects
-Terminal&gt; <span style="color: #008000">cd </span>vagrant
-</pre></div>
-<p>
-All files that you run from the Vagrant machine are supposed
-to reside in <code>vagrant/projects</code> and its subdirectories.
-
-<p>
-<b>Step 6.</b>
-Download the file
-<p>
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http://some.where.net/path/to/course.box
-</pre></div>
-<p>
-Store <code>course.box</code> in the <code>vagrant</code> directory.
-
-<p>
-<!-- <a href="https://mega.co.nz/#" target="_self"><tt>https://mega.co.nz/#</tt></a>!IYdBVQyJ!OuGdgTjoavPWpzlJ9horewybhLtnXnMn1DCYfvPh1_A -->
-<!-- store as inf1100.box -->
-
-<p>
-<b>Step 7.</b>
-Make sure you stand in the <code>vagrant</code> directory.
-Run
-
-<p>
-
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant box add course course.box
-Terminal&gt; vagrant init course
-Terminal&gt; vagrant up
-Terminal&gt; vagrant ssh
-</pre></div>
-<p>
-You are now inside a Ubuntu system!
-
-<p>
-<b>Step 8.</b>
-Open a file <code>vagrant/projects/test1.py</code> in an editor on the host system
-and write the following lines in the file:
-
-<p>
-
-<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
-x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">3</span>, <span style="color: #666666">11</span>)
-y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x)
-plt<span style="color: #666666">.</span>plot(x, y)
-plt<span style="color: #666666">.</span>show()
-</pre></div>
-<p>
-Save the file. Move to the terminal window with the Ubuntu (Vagrant) machine.
-Run
-
-<p>
-
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; <span style="color: #008000">cd</span> /vagrant/projects
-Machine&gt; python test1.py
-</pre></div>
-<p>
-You should see a plot of \( e^{-x} \) on the screen. If you encounter
-any problems, read the
-paragraphs below.
+<!-- #install "vagrant_install.do.txt" -->
 
 <h3>Troubleshooting: shared directory is invisible  <a name="___sec32"></a></h3>
 
@@ -473,8 +363,8 @@ run
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; sudo /etc/init.d/vboxadd setup
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; sudo /etc/init.d/vboxadd setup</span>
 </pre></div>
 <p>
 inside the Vagrant machine. Second, log out and run
@@ -505,8 +395,8 @@ the machine, e.g.,
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; ping us.ubuntu.archive.com
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; ping us.ubuntu.archive.com</span>
 </pre></div>
 <p>
 A hanging command indicates that Internet is not reachable.

@@ -27,8 +27,9 @@ Footer at the end:
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
+
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -135,8 +136,8 @@ using <a href="https://pypi.python.org/pypi/pip" target="_self"><tt>pip</tt></a>
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo pip install virtualenv
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; sudo pip install virtualenv</span>
 </pre></div>
 <p>
 The <code>pip</code> tool itself can be installed from <a href="https://pypi.python.org/pypi/pip" target="_self">pure Python source</a> via the standard <code>sudo python setup.py install</code> command.
@@ -147,8 +148,8 @@ The <code>virtualenv</code> script creates a new virtual environment in a destin
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv venv
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv venv</span>
 </pre></div>
 <p>
 By default, virtualenv will symlink to the system&#8217;s site-packages if
@@ -159,8 +160,8 @@ creating the environment:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv --no-site-packages venv
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv --no-site-packages venv</span>
 </pre></div>
 <p>
 One can apply the <code>-p</code> flag to specify which Python executable to use
@@ -168,8 +169,8 @@ as the <code>python</code> program in the environment:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv -p /usr/bin/python2.6
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv -p /usr/bin/python2.6</span>
 </pre></div>
 <p>
 The next step is to activate the virtual environment. To do this, we
@@ -178,9 +179,9 @@ created <code>venv</code> directory:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; <span style="color: #008000">cd </span>venv/
-Terminal&gt; <span style="color: #008000">source </span>bin/activate
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; cd venv/</span>
+<span style="color: #888888">Terminal&gt; source bin/activate</span>
 </pre></div>
 <p>
 Successful execution of the <code>activate</code> script changes the prompt
@@ -190,9 +191,9 @@ one is using:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; <span style="color: #008000">source </span>bin/activate
-<span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt;
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; source bin/activate</span>
+<span style="color: #888888">(venv)Terminal&gt;</span>
 </pre></div>
 <p>
 Packages we install will now be installed in the
@@ -203,9 +204,9 @@ Python packages:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install yolk
-<span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; yolk -l
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install yolk</span>
+<span style="color: #888888">(venv)Terminal&gt; yolk -l</span>
 </pre></div>
 <p>
 The latter command lists all Python packages installed in the current
@@ -217,17 +218,17 @@ Let us also install the Python web framework Django:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install Django
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install Django</span>
 </pre></div>
 <p>
 Using yolk we see that the Django version we installed is 1.5.1:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; yolk -l | grep Django
-Django          - 1.5.1        - active
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; yolk -l | grep Django</span>
+<span style="color: #888888">Django          - 1.5.1        - active</span>
 </pre></div>
 <p>
 Within a Virtualenv environment, the local <code>python</code>
@@ -235,11 +236,11 @@ interpreter and local packages are always used:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; which python
-/some/path/to/venv/bin/python
-<span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; python -c <span style="color: #BA2121">&#39;import django as m; print m&#39;</span>
-&lt;module <span style="color: #BA2121">&#39;django&#39;</span> from <span style="color: #BA2121">&#39;/some/path/to/venv/local/lib/...&#39;</span>&gt;
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; which python</span>
+<span style="color: #888888">/some/path/to/venv/bin/python</span>
+<span style="color: #888888">(venv)Terminal&gt; python -c &#39;import django as m; print m&#39;</span>
+<span style="color: #888888">&lt;module &#39;django&#39; from &#39;/some/path/to/venv/local/lib/...&#39;&gt;</span>
 </pre></div>
 <p>
 What can be installed by <code>pip install</code>? The above examples have installed
@@ -250,9 +251,9 @@ tarball contains a <code>setup.py</code> file to do the installation:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install ../some/dir/package.tar.gz
-<span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install http://some.net/dir/package.tar.gz
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install ../some/dir/package.tar.gz</span>
+<span style="color: #888888">(venv)Terminal&gt; pip install http://some.net/dir/package.tar.gz</span>
 </pre></div>
 <p>
 Installation directly from the source in a version control system
@@ -260,11 +261,11 @@ is also possible (if a <code>setup.py</code> resides in the root directory):
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install -e <span style="color: #BB6622; font-weight: bold">\</span>
-                hg+https://code.google.com/p/scitools#egg<span style="color: #666666">=</span>scitools
-<span style="color: #666666">(</span>venv<span style="color: #666666">)</span>Terminal&gt; pip install -e <span style="color: #BB6622; font-weight: bold">\</span>
-                git+https://github.com/hplgit/odespy.git#egg<span style="color: #666666">=</span>odespy
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install -e \</span>
+<span style="color: #888888">                hg+https://code.google.com/p/scitools#egg=scitools</span>
+<span style="color: #888888">(venv)Terminal&gt; pip install -e \</span>
+<span style="color: #888888">                git+https://github.com/hplgit/odespy.git#egg=odespy</span>
 </pre></div>
 <p>
 The syntax is <code>pip install -e vcs+URL#egg=packaname</code>, where <code>vcs</code> is

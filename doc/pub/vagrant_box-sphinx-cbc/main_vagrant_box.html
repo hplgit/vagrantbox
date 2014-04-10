@@ -26,26 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
-
-        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
-
-        <style type="text/css">
-                .sagecell .CodeMirror-scroll {
-                        overflow-y: hidden;
-                        overflow-x: auto;
-                }
-                .sagecell .CodeMirror {
-                        height: auto;
-                }
-        </style>
-
-    
     <link rel="top" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
-    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
- 
+    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" /> 
   
    <style type=text/css>
      div.admonition {
@@ -82,7 +64,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Anders E. Johansen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Nov 30, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Apr 10, 2014</td>
 </tr>
 </tbody>
 </table>
@@ -707,31 +689,31 @@ tools for setting up complete software environments are <a class="reference exte
 <span class="target" id="index-31"></span><p id="index-32">We should include a brief <tt class="docutils literal"><span class="pre">.bashrc</span></tt> file in the Vagrant
 machine as a starting point for the
 user&#8217;s customization of her Unix environment. Here is an <a class="reference external" href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc">example</a>:</p>
-<div class="highlight-python"><pre># ~/.bashrc: executed by bash(1) for non-login shells.
+<div class="highlight-text"><div class="highlight"><pre># ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files for examples
 
 export PYTHONPATH=$PYTHONPATH:$HOME/pythonlib
 export PATH=$PATH:$HOME/bin
 
 # Create some aliases for rsync commands for copying files:
-rsync_basic="-rtDvz -u -e ssh -b"
-rsync_excl="--exclude-from=$HOME/.rsyncexclude"
-rsync_del="--suffix=.rsync~ --delete --force"
-scp_rsync="rsync $rsync_basic $rsync_excl"
-scp_rsync_del="$scp_rsync $rsync_del"
-alias scp_rsync="$scp_rsync"
-alias scp_rsync_del="$scp_rsync_del"
+rsync_basic=&quot;-rtDvz -u -e ssh -b&quot;
+rsync_excl=&quot;--exclude-from=$HOME/.rsyncexclude&quot;
+rsync_del=&quot;--suffix=.rsync~ --delete --force&quot;
+scp_rsync=&quot;rsync $rsync_basic $rsync_excl&quot;
+scp_rsync_del=&quot;$scp_rsync $rsync_del&quot;
+alias scp_rsync=&quot;$scp_rsync&quot;
+alias scp_rsync_del=&quot;$scp_rsync_del&quot;
 
 # If running interactively, then:
-if [ "$PS1" ]; then
-    alias ls='ls -sF'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+if [ &quot;$PS1&quot; ]; then
+    alias ls=&#39;ls -sF&#39;
+    alias grep=&#39;grep --color=auto&#39;
+    alias fgrep=&#39;fgrep --color=auto&#39;
+    alias egrep=&#39;egrep --color=auto&#39;
 
 
-    # enable programmable completion features (you don't need to enable
-    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # enable programmable completion features (you don&#39;t need to enable
+    # this, if it&#39;s already enabled in /etc/bash.bashrc and /etc/profile
     # sources /etc/bash.bashrc).
     if [ -f /etc/bash_completion ] &amp;&amp; ! shopt -oq posix; then
         . /etc/bash_completion
@@ -745,34 +727,35 @@ if [ "$PS1" ]; then
 
     # Let prompt in terminal window (PS1) display username, time and
     # current working directory
-    PS1='\u:\D{%H.%M} \W&gt; '
+    PS1=&#39;\u:\D{%H.%M} \W&gt; &#39;
     # Add directory info to the title bar: (often done in terminal prefs too)
-    PS1=$PS1"\[\e]0;\w\a\]"
-fi</pre>
+    PS1=$PS1&quot;\[\e]0;\w\a\]&quot;
+fi
+</pre></div>
 </div>
 <p>The handy <tt class="docutils literal"><span class="pre">rsync</span></tt> commands for copying files require a list of files
 to ignore, so a file <a class="reference external" href="https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.rsyncexclude">.rsyncexclude</a> must
 be present in the home holder:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="o">.</span><span class="c">#*</span>
-<span class="o">*.</span><span class="n">rsync</span><span class="o">~</span>
-<span class="o">*.</span><span class="n">a</span>
-<span class="o">*.</span><span class="n">o</span>
-<span class="o">*.</span><span class="n">so</span>
-<span class="o">*~</span>
-<span class="o">.*~</span>
-<span class="o">*.</span><span class="n">log</span>
-<span class="o">*.</span><span class="n">dvi</span>
-<span class="o">*.</span><span class="n">aux</span>
-<span class="o">*.</span><span class="n">old</span>
-<span class="n">tmp_</span><span class="o">*</span>
-<span class="o">*</span><span class="n">_tmp</span><span class="o">*</span>
-<span class="o">*.</span><span class="n">tmp</span>
-<span class="n">tmp</span><span class="o">.*</span>
-<span class="o">.</span><span class="n">tmp</span><span class="o">*</span>
-<span class="o">*.</span><span class="n">tar</span>
-<span class="o">*.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="o">*.</span><span class="n">tgz</span>
-<span class="o">*.</span><span class="n">pyc</span>
+<div class="highlight-text"><div class="highlight"><pre>.#*
+*.rsync~
+*.a
+*.o
+*.so
+*~
+.*~
+*.log
+*.dvi
+*.aux
+*.old
+tmp_*
+*_tmp*
+*.tmp
+tmp.*
+.tmp*
+*.tar
+*.tar.gz
+*.tgz
+*.pyc
 </pre></div>
 </div>
 </div>
@@ -995,81 +978,6 @@ information.</li>
 </pre></div>
 </div>
 <p>Here is the need-know-information for users:</p>
-<p><strong>Step 1.</strong>
-Download and install <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. Choose the version
-according to the operating system on the host.
-For example, if you want to build or run Vagrant machines under Mac OS X, choose
-<em>VirtualBox x.y.z for OS X hosts</em>, where <tt class="docutils literal"><span class="pre">x.y.z</span></tt> is the version number
-of VirtualBox. Double click the downloaded <tt class="docutils literal"><span class="pre">.dmg</span></tt> file to install
-Vagrant. Those who work on a Windows machines will select <em>VirtualBox
-x.y.z for Windows hosts</em>, which downloads an <tt class="docutils literal"><span class="pre">.exe</span></tt> file which can just
-be double clicked to perform the installation.</p>
-<p><strong>Step 2.</strong>
-Download and install <a class="reference external" href="http://downloads.vagrantup.com/">Vagrant</a>.
-Choose the latest version and the installation file corresponding to
-the host&#8217;s operating system (where you installed VirtualBox).  On a Mac, you
-select the <tt class="docutils literal"><span class="pre">Vagrant-x.y.z.dmg</span></tt> file (<tt class="docutils literal"><span class="pre">x.y.z</span></tt> denotes the version of
-the software), on Windows the <tt class="docutils literal"><span class="pre">Vagrant_x.y.z.msi</span></tt> file is the
-relevant choice.
-On Ubuntu, select <tt class="docutils literal"><span class="pre">vagrant_x.y.z_*.deb</span></tt> and install it
-by <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">vagrant_x.y.z_*.deb</span></tt>.</p>
-<p><strong>Step 3 for Windows users.</strong>
-If you have a Windows machine, you should
-install <a class="reference external" href="http://cygwin.com/install.html">Cygwin</a>.
-Download the Cygwin&#8217;s <a class="reference external" href="http://cygwin.com/setup.exe">setup.exe</a> file and follow
-the instructions given by the installer. Make sure you
-manually select the &#8216;X11&#8217; category during installation. Cygwin is
-not needed on Mac computers.</p>
-<p><strong>Step 4.</strong>
-Start X11: run Applications - Utilities - X11 on a Mac,
-or Start - All Programs - Cygwin-X - XWin Server on Windows.</p>
-<p><strong>Step 5.</strong>
-Move to your home directory and make a new directory
-<tt class="docutils literal"><span class="pre">vagrant</span></tt> and a subdirectory <tt class="docutils literal"><span class="pre">projects</span></tt>:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cd</span>
-<span class="go">Terminal&gt; mkdir vagrant</span>
-<span class="go">Terminal&gt; mkdir vagrant/projects</span>
-<span class="go">Terminal&gt; cd vagrant</span>
-</pre></div>
-</div>
-<p>All files that you run from the Vagrant machine are supposed
-to reside in <tt class="docutils literal"><span class="pre">vagrant/projects</span></tt> and its subdirectories.</p>
-<p><strong>Step 6.</strong>
-Download the file</p>
-<div class="highlight-text"><div class="highlight"><pre>http://some.where.net/path/to/course.box
-</pre></div>
-</div>
-<p>Store <tt class="docutils literal"><span class="pre">course.box</span></tt> in the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory.</p>
-<p><strong>Step 7.</strong>
-Make sure you stand in the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory.
-Run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant box add course course.box</span>
-<span class="go">Terminal&gt; vagrant init course</span>
-<span class="go">Terminal&gt; vagrant up</span>
-<span class="go">Terminal&gt; vagrant ssh</span>
-</pre></div>
-</div>
-<p>You are now inside a Ubuntu system!</p>
-<p><strong>Step 8.</strong>
-Open a file <tt class="docutils literal"><span class="pre">vagrant/projects/test1.py</span></tt> in an editor on the host system
-and write the following lines in the file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Save the file. Move to the terminal window with the Ubuntu (Vagrant) machine.
-Run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; cd /vagrant/projects</span>
-<span class="go">Machine&gt; python test1.py</span>
-</pre></div>
-</div>
-<p>You should see a plot of <span class="math">\(e^{-x}\)</span> on the screen. If you encounter
-any problems, read the
-paragraphs below.</p>
 <div class="section" id="troubleshooting-shared-directory-is-invisible-2">
 <h2>Troubleshooting: shared directory is invisible  (2)<a class="headerlink" href="#troubleshooting-shared-directory-is-invisible-2" title="Permalink to this headline">¶</a></h2>
 <p>It may happen that the <tt class="docutils literal"><span class="pre">/vagrant</span></tt> directory seems empty inside

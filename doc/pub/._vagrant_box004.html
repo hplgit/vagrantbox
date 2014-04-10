@@ -27,8 +27,9 @@ Footer at the end:
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
+
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -239,7 +240,8 @@ There is not much installed yet on the <code>mybox</code> machine, but
 this is an Ubuntu system where we
 can very easily install what we want via <code>sudo apt-get install</code>
 or <code>pip install</code> commands, or by downloading source code and
-performing manual installation. The section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> describes a type of file for listing
+performing manual installation.
+The section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> describes a type of file for listing
 packages and Unix commands, with an associated tool <code>deb2sh.py</code>
 for automatic generation of installation scripts.
 Using these utilities,
@@ -256,14 +258,14 @@ Just click on the files, choose
 the <em>Raw</em> version, and right-click to save each file to the project
 directory.
 Read about the former two files in
-the section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> and the latter two in
-the section <a href="._vagrant_box007.html#vagrant:bashrc">Setting up a default environment with `.bashrc`</a>. Edit the files to your users' needs.
+The section <a href="._vagrant_box006.html#vagrant:debpkg">Scripts for installing ready-made packages</a> and the latter two in
+The section <a href="._vagrant_box007.html#vagrant:bashrc">Setting up a default environment with `.bashrc`</a>. Edit the files to your users' needs.
 Then run
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python deb2sh.py debpkg_minimal.txt
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; python deb2sh.py debpkg_minimal.txt</span>
 </pre></div>
 <p>
 to produce a Bash script <code>install_minimal.sh</code> and an equivalent
@@ -289,26 +291,26 @@ followed by two copy commands:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant ssh
-Machine&gt; cp /vagrant/.bashrc .
-Machine&gt; cp /vagrant/.rsyncexclude .
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; vagrant ssh</span>
+<span style="color: #888888">Machine&gt; cp /vagrant/.bashrc .</span>
+<span style="color: #888888">Machine&gt; cp /vagrant/.rsyncexclude .</span>
 </pre></div>
 <p>
 Now you can run the (lengthy) installation process by
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; bash /vagrant/install_minimal.sh
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; bash /vagrant/install_minimal.sh</span>
 </pre></div>
 <p>
 or
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; python /vagrant/install_minimal.py
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; python /vagrant/install_minimal.py</span>
 </pre></div>
 <p>
 If something goes wrong with the installation, edit the script
@@ -323,9 +325,9 @@ commands if necessary (e.g., at a later stage to update the software).
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; cp /vagrant/install_minimal.sh .
-Machine&gt; cp /vagrant/install_minimal.py .
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Machine&gt; cp /vagrant/install_minimal.sh .</span>
+<span style="color: #888888">Machine&gt; cp /vagrant/install_minimal.py .</span>
 </pre></div>
 
 <h4>Enabling X11 graphics  <a name="___sec13"></a></h4>
@@ -368,9 +370,9 @@ running the <code>vagrant package</code> command in the project directory:
 
 <p>
 
-<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant package --output course.box <span style="color: #BB6622; font-weight: bold">\</span>
-          --vagrantfile Vagrantfile
+<!-- code=console (from !bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; vagrant package --output course.box \</span>
+<span style="color: #888888">          --vagrantfile Vagrantfile</span>
 </pre></div>
 <p>
 The settings in <code>Vagrantfile</code> are now packed with the box. In particular,
