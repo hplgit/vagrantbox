@@ -65,17 +65,17 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Anders E. Johansen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Apr 10, 2014</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 14, 2014</td>
 </tr>
 </tbody>
 </table>
 <p>Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
 to compile and link successfully on a system. Those who frequently
-need to make sure their target audience, consisting typically of
-students, collaborators, or customers, has a certain set of packages
-installed on their system, run into a serious problem due to the fact
-that few in the target audience have the competence, interest, and
+need to make sure their target audience (consisting typically of
+students, collaborators, or customers) has a certain set of packages
+installed on their system, run into a serious problem when
+few in the target audience have the competence, interest, and
 patience to install all the packages on their computer with its
 particular version of the operating system.</p>
 <p>There are many working solutions to this problem:</p>
@@ -90,7 +90,7 @@ e.g., Debian packages (<tt class="docutils literal"><span class="pre">.deb</span
 It can still be quite some work for a user to install the
 right combination of many packages, although each package
 gets installed by a double click.</li>
-<li>Virtual machines, such as VirtualBox and VMWare Fusion,
+<li>Virtual machines, such as VirtualBox, Parallels, and VMWare Fusion,
 can run a particular operating system and thereby take advantage
 of the most easy-to-use platform from an installation perspective.
 In particular, one can run Ubuntu or other Debian-based Linux systems
@@ -142,6 +142,9 @@ ensure that the environment is conserved for the future, which is a
 key principle for reproducible science. Users may have many Vagrant
 machines on their computers and switch between the computing
 environments.</p>
+<div class="figure">
+<img alt="_images/vm_icon.png" src="_images/vm_icon.png" style="width: 100px;" />
+</div>
 <div class="section" id="contents-of-the-vagrant-machine">
 <span id="vagrant-contents"></span><h2>Contents of the Vagrant machine<a class="headerlink" href="#contents-of-the-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>The Vagrant machine needs to have an operating system. Here we choose
@@ -217,20 +220,20 @@ be double clicked to perform the installation.</p>
 <p>Installing VirtualBox on Ubuntu and other Linux systems
 can be challenging.
 Here is a recipe. Start with</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; sudo apt-cache search virtualbox</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; sudo apt-cache search virtualbox
 </pre></div>
 </div>
 <p>to find a package <tt class="docutils literal"><span class="pre">virtualbox-X</span></tt>, where <tt class="docutils literal"><span class="pre">X</span></tt> denotes a particular
 version number (e.g., <tt class="docutils literal"><span class="pre">4.2</span></tt>). Then copy and paste the following
 commands into the terminal window:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; wget -q \</span>
-<span class="go"> http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \</span>
-<span class="go"> -O- | sudo apt-key add -</span>
-<span class="go">Terminal&gt; sudo sh -c &#39;echo \</span>
-<span class="go"> &quot;deb http://download.virtualbox.org/virtualbox/debian precise contrib&quot; \</span>
-<span class="go"> &gt;&gt; /etc/apt/sources.list&#39;</span>
-<span class="go">Terminal&gt; sudo apt-get update</span>
-<span class="go">Terminal&gt; sudo apt-get install virtualbox-X</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; wget -q \
+ http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \
+ -O- | sudo apt-key add -
+Terminal&gt; sudo sh -c &#39;echo \
+ &quot;deb http://download.virtualbox.org/virtualbox/debian precise contrib&quot; \
+ &gt;&gt; /etc/apt/sources.list&#39;
+Terminal&gt; sudo apt-get update
+Terminal&gt; sudo apt-get install virtualbox-X
 </pre></div>
 </div>
 <p>(Recall to replace <tt class="docutils literal"><span class="pre">X</span></tt> by the appropriate version number.)
@@ -326,9 +329,9 @@ a new browser tab. This action should automatically
 download a file <tt class="docutils literal"><span class="pre">precise64.box</span></tt>.
 Say you store this file in a directory <tt class="docutils literal"><span class="pre">~/vagrant</span></tt>. Go to this
 directory and run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant box add mybox precise64.box</span>
-<span class="go">Terminal&gt; vagrant init mybox</span>
-<span class="go">Terminal&gt; vagrant up</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant box add mybox precise64.box
+Terminal&gt; vagrant init mybox
+Terminal&gt; vagrant up
 </pre></div>
 </div>
 <p>The result is now an initialized Vagrant machine <tt class="docutils literal"><span class="pre">mybox</span></tt> which you
@@ -340,7 +343,7 @@ known as the <em>project directory</em> in the <a class="reference external" hre
 <h2>Making an empty Vagrant machine<a class="headerlink" href="#making-an-empty-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-17"></span><p id="index-18">Make some directory (say) <tt class="docutils literal"><span class="pre">~/vagrant</span></tt>, move to this directory, and
 type</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant init</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant init
 </pre></div>
 </div>
 <p>This command creates a <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt>. Invoke the file in a text editor
@@ -386,7 +389,7 @@ Read about the former two files in
 the section <a class="reference internal" href="#vagrant-debpkg"><em>Scripts for installing ready-made packages</em></a> and the latter two in
 the section <a class="reference internal" href="#vagrant-bashrc"><em>Setting up a default environment with .bashrc</em></a>. Edit the files to your users&#8217; needs.
 Then run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; python deb2sh.py debpkg_minimal.txt</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; python deb2sh.py debpkg_minimal.txt
 </pre></div>
 </div>
 <p>to produce a Bash script <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt> and an equivalent
@@ -406,17 +409,17 @@ The project directory is visible as <tt class="docutils literal"><span class="pr
 machine (see the section <a class="reference internal" href="#vagrant-shareddir"><em>Shared directories</em></a>
 for more details). The relevant login command is <tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">ssh</span></tt>, here
 followed by two copy commands:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant ssh</span>
-<span class="go">Machine&gt; cp /vagrant/.bashrc .</span>
-<span class="go">Machine&gt; cp /vagrant/.rsyncexclude .</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant ssh
+Machine&gt; cp /vagrant/.bashrc .
+Machine&gt; cp /vagrant/.rsyncexclude .
 </pre></div>
 </div>
 <p>Now you can run the (lengthy) installation process by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; bash /vagrant/install_minimal.sh</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; bash /vagrant/install_minimal.sh
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; python /vagrant/install_minimal.py</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; python /vagrant/install_minimal.py
 </pre></div>
 </div>
 <p>If something goes wrong with the installation, edit the script
@@ -426,8 +429,8 @@ machine.</p>
 <p>You may want to include the installation scripts in the box so that
 users can see exactly what has been installed and rerun installation
 commands if necessary (e.g., at a later stage to update the software).</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; cp /vagrant/install_minimal.sh .</span>
-<span class="go">Machine&gt; cp /vagrant/install_minimal.py .</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; cp /vagrant/install_minimal.sh .
+Machine&gt; cp /vagrant/install_minimal.py .
 </pre></div>
 </div>
 </div>
@@ -460,8 +463,8 @@ we need to package
 the installed virtual environment into a box in order to distribute it to other
 users. Log out of the machine and finalize the machine by
 running the <tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">package</span></tt> command in the project directory:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant package --output course.box \</span>
-<span class="go">          --vagrantfile Vagrantfile</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant package --output course.box \
+          --vagrantfile Vagrantfile
 </pre></div>
 </div>
 <p>The settings in <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> are now packed with the box. In particular,
@@ -789,8 +792,8 @@ the Vagrant machine reside. You edit files in the <tt class="docutils literal"><
 directory tree on the host.</p>
 <p><strong>Step 3.</strong>
 Run the these commands from the <tt class="docutils literal"><span class="pre">vagrant</span></tt> directory:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant box add course course.box</span>
-<span class="go">Terminal&gt; vagrant init course</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant box add course course.box
+Terminal&gt; vagrant init course
 </pre></div>
 </div>
 <p><strong>Step 4.</strong>
@@ -798,12 +801,12 @@ Start X11 on the host: run Applications - Utilities - X11 on a Mac,
 or Start - All Programs - Cygwin-X - XWin Server on Windows.</p>
 <p><strong>Step 5.</strong>
 Start (boot) the Vagrant machine:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant up</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant up
 </pre></div>
 </div>
 <p><strong>Step 5.</strong>
 Log in on the machine:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant ssh</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant ssh
 </pre></div>
 </div>
 <p>Log out with Ctrl-D as usual in Unix terminal windows.</p>
@@ -815,8 +818,8 @@ say <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt
 The user should make some directory <tt class="docutils literal"><span class="pre">vagrant</span></tt>, copy <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt>
 and <tt class="docutils literal"><span class="pre">install_minimal.sh</span></tt> to this directory, and from this directory
 run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant up</span>
-<span class="go">Terminal&gt; vagrant ssh</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant up
+Terminal&gt; vagrant ssh
 </pre></div>
 </div>
 <p>The first command takes a long time to execute since it runs the
@@ -826,8 +829,8 @@ installation script. Log out with Ctrl-D.</p>
 <h2>Working with an initialized Vagrant machine<a class="headerlink" href="#working-with-an-initialized-vagrant-machine" title="Permalink to this headline">¶</a></h2>
 <p>The daily work with the Vagrant machine is very easy. Simply go to the <tt class="docutils literal"><span class="pre">vagrant</span></tt>
 directory where the machine resides and run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; vagrant up</span>
-<span class="go">Terminal&gt; vagrant ssh</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; vagrant up
+Terminal&gt; vagrant ssh
 </pre></div>
 </div>
 <p>You are now inside the machine and can reach
@@ -875,9 +878,9 @@ or Windows machine, X11 must be started as described in
 the section <em class="xref std std-ref">vagrant:X11</em>. If that is necessary, log out, start X11,
 log in again (<tt class="docutils literal"><span class="pre">vagrant</span> <span class="pre">ssh</span></tt>).</p>
 <p>Run the <tt class="docutils literal"><span class="pre">test1.py</span></tt> program:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cd /vagrant</span>
-<span class="go">Terminal&gt; cd src</span>
-<span class="go">Terminal&gt; python test1.py</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; cd /vagrant
+Terminal&gt; cd src
+Terminal&gt; python test1.py
 </pre></div>
 </div>
 <p>A plot of the curve <span class="math">\(y = e^{-x}\)</span> should now be seen on the screen.</p>
@@ -889,7 +892,7 @@ log in again (<tt class="docutils literal"><span class="pre">vagrant</span> <spa
 <p>It may happen that the <tt class="docutils literal"><span class="pre">/vagrant</span></tt> directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
 run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; sudo /etc/init.d/vboxadd setup</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; sudo /etc/init.d/vboxadd setup
 </pre></div>
 </div>
 <p>inside the Vagrant machine. Second, log out and run</p>
@@ -921,7 +924,7 @@ Vagrant machine (Ctrl-D) and in again (<tt class="docutils literal"><span class=
 <h3>Troubleshooting: Internet is not reachable  (1)<a class="headerlink" href="#troubleshooting-internet-is-not-reachable-1" title="Permalink to this headline">¶</a></h3>
 <p>A test if Internet is reachable is to run a <tt class="docutils literal"><span class="pre">ping</span></tt> command inside
 the machine, e.g.,</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; ping us.ubuntu.archive.com</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; ping us.ubuntu.archive.com
 </pre></div>
 </div>
 <p>A hanging command indicates that Internet is not reachable.
@@ -984,7 +987,7 @@ information.</li>
 <p>It may happen that the <tt class="docutils literal"><span class="pre">/vagrant</span></tt> directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
 run</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; sudo /etc/init.d/vboxadd setup</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; sudo /etc/init.d/vboxadd setup
 </pre></div>
 </div>
 <p>inside the Vagrant machine. Second, log out and run</p>
@@ -1006,7 +1009,7 @@ the host, see Step 4 above.</p>
 <h2>Troubleshooting: Internet is not reachable  (2)<a class="headerlink" href="#troubleshooting-internet-is-not-reachable-2" title="Permalink to this headline">¶</a></h2>
 <p>A test if Internet is reachable is to run a <tt class="docutils literal"><span class="pre">ping</span></tt> command inside
 the machine, e.g.,</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Machine&gt; ping us.ubuntu.archive.com</span>
+<div class="highlight-text"><div class="highlight"><pre>Machine&gt; ping us.ubuntu.archive.com
 </pre></div>
 </div>
 <p>A hanging command indicates that Internet is not reachable.
