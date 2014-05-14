@@ -5,15 +5,15 @@ Creating Vagrant Machines for Distribution of Software Environments
 ===================================================================
 
 :Author: Hans Petter Langtangen, Anders E. Johansen
-:Date: Apr 10, 2014
+:Date: May 14, 2014
 
 Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
 to compile and link successfully on a system. Those who frequently
-need to make sure their target audience, consisting typically of
-students, collaborators, or customers, has a certain set of packages
-installed on their system, run into a serious problem due to the fact
-that few in the target audience have the competence, interest, and
+need to make sure their target audience (consisting typically of
+students, collaborators, or customers) has a certain set of packages
+installed on their system, run into a serious problem when
+few in the target audience have the competence, interest, and
 patience to install all the packages on their computer with its
 particular version of the operating system.
 
@@ -30,7 +30,7 @@ There are many working solutions to this problem:
    right combination of many packages, although each package
    gets installed by a double click.
 
- * Virtual machines, such as VirtualBox and VMWare Fusion,
+ * Virtual machines, such as VirtualBox, Parallels, and VMWare Fusion,
    can run a particular operating system and thereby take advantage
    of the most easy-to-use platform from an installation perspective.
    In particular, one can run Ubuntu or other Debian-based Linux systems
@@ -94,6 +94,12 @@ ensure that the environment is conserved for the future, which is a
 key principle for reproducible science. Users may have many Vagrant
 machines on their computers and switch between the computing
 environments.
+
+
+.. figure:: vm_icon.png
+   :width: 100
+
+
 
 .. _vagrant:contents:
 
@@ -198,7 +204,7 @@ can be challenging.
 Here is a recipe. Start with
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> sudo apt-cache search virtualbox
 
@@ -206,7 +212,7 @@ to find a package ``virtualbox-X``, where ``X`` denotes a particular
 version number (e.g., ``4.2``). Then copy and paste the following
 commands into the terminal window:
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> wget -q \ 
          http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \ 
@@ -360,7 +366,7 @@ Say you store this file in a directory ``~/vagrant``. Go to this
 directory and run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant box add mybox precise64.box
         Terminal> vagrant init mybox
@@ -384,7 +390,7 @@ Make some directory (say) ``~/vagrant``, move to this directory, and
 type
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant init
 
@@ -444,7 +450,7 @@ the section :ref:`vagrant:bashrc`. Edit the files to your users' needs.
 Then run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> python deb2sh.py debpkg_minimal.txt
 
@@ -475,7 +481,7 @@ for more details). The relevant login command is ``vagrant ssh``, here
 followed by two copy commands:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant ssh
         Machine> cp /vagrant/.bashrc .
@@ -484,14 +490,14 @@ followed by two copy commands:
 Now you can run the (lengthy) installation process by
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> bash /vagrant/install_minimal.sh
 
 or
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> python /vagrant/install_minimal.py
 
@@ -505,7 +511,7 @@ users can see exactly what has been installed and rerun installation
 commands if necessary (e.g., at a later stage to update the software).
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> cp /vagrant/install_minimal.sh .
         Machine> cp /vagrant/install_minimal.py .
@@ -556,7 +562,7 @@ users. Log out of the machine and finalize the machine by
 running the ``vagrant package`` command in the project directory:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant package --output course.box \ 
                   --vagrantfile Vagrantfile
@@ -995,7 +1001,7 @@ directory tree on the host.
 Run the these commands from the ``vagrant`` directory:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant box add course course.box
         Terminal> vagrant init course
@@ -1009,7 +1015,7 @@ or Start - All Programs - Cygwin-X - XWin Server on Windows.
 Start (boot) the Vagrant machine:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant up
 
@@ -1018,7 +1024,7 @@ Start (boot) the Vagrant machine:
 Log in on the machine:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant ssh
 
@@ -1034,7 +1040,7 @@ and ``install_minimal.sh`` to this directory, and from this directory
 run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant up
         Terminal> vagrant ssh
@@ -1050,7 +1056,7 @@ The daily work with the Vagrant machine is very easy. Simply go to the ``vagrant
 directory where the machine resides and run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> vagrant up
         Terminal> vagrant ssh
@@ -1113,7 +1119,7 @@ log in again (``vagrant ssh``).
 Run the ``test1.py`` program:
 
 
-.. code-block:: console
+.. code-block:: text
 
         Terminal> cd /vagrant
         Terminal> cd src
@@ -1135,7 +1141,7 @@ the Vagrant machine. Two steps will fix this problem. First,
 run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> sudo /etc/init.d/vboxadd setup
 
@@ -1177,7 +1183,7 @@ A test if Internet is reachable is to run a ``ping`` command inside
 the machine, e.g.,
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> ping us.ubuntu.archive.com
 
@@ -1253,7 +1259,7 @@ the Vagrant machine. Two steps will fix this problem. First,
 run
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> sudo /etc/init.d/vboxadd setup
 
@@ -1284,7 +1290,7 @@ A test if Internet is reachable is to run a ``ping`` command inside
 the machine, e.g.,
 
 
-.. code-block:: console
+.. code-block:: text
 
         Machine> ping us.ubuntu.archive.com
 
