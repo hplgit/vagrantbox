@@ -2,10 +2,10 @@
 Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
 to compile and link successfully on a system. Those who frequently
-need to make sure their target audience, consisting typically of
-students, collaborators, or customers, has a certain set of packages
-installed on their system, run into a serious problem due to the fact
-that few in the target audience have the competence, interest, and
+need to make sure their target audience (consisting typically of
+students, collaborators, or customers) has a certain set of packages
+installed on their system, run into a serious problem when
+few in the target audience have the competence, interest, and
 patience to install all the packages on their computer with its
 particular version of the operating system.
 
@@ -20,7 +20,7 @@ There are many working solutions to this problem:
    It can still be quite some work for a user to install the
    right combination of many packages, although each package
    gets installed by a double click.
- * Virtual machines, such as VirtualBox and VMWare Fusion,
+ * Virtual machines, such as VirtualBox, Parallels, and VMWare Fusion,
    can run a particular operating system and thereby take advantage
    of the most easy-to-use platform from an installation perspective.
    In particular, one can run Ubuntu or other Debian-based Linux systems
@@ -77,6 +77,8 @@ ensure that the environment is conserved for the future, which is a
 key principle for reproducible science. Users may have many Vagrant
 machines on their computers and switch between the computing
 environments.
+
+FIGURE: [fig/vm_icon, width=200 frac=0.4]
 
 ===== Contents of the Vagrant machine =====
 label{vagrant:contents}

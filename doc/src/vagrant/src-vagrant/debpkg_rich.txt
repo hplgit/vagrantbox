@@ -59,6 +59,9 @@ gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev
 # Plotting and visualization programs
 grace dx dx-doc mayavi2 tcl-vtk
 
+# "Matlab"
+octave oactave-splines octave-symbolic octave-specfun octave-optim octave-odepkg octave-audio
+
 # Databases
 libsqlite3-dev
 
