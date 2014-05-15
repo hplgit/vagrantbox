@@ -9,3 +9,8 @@ $ sudo apt-get install fenics
 fenics
 #$ sudo apt-get dist-upgrade
 # If you encounter problems with GRUB, just ignore it and continue.
+
+# dolfin-adjoint
+sudo apt-add-repository ppa:libadjoint/ppa
+sudo apt-get update
+sudo apt-get install python-dolfin-adjoint
