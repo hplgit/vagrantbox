@@ -42,12 +42,55 @@ system('sudo apt-get -y install gfortran')
 system('sudo apt-get -y install autoconf')
 system('sudo apt-get -y install automake')
 system('sudo apt-get -y install autotools-dev')
+system('sudo apt-get -y install cmake')
 
 # Numerical libraries
 system('sudo apt-get -y install libatlas-base-dev')
 system('sudo apt-get -y install libsuitesparse-dev')
 
+# Software development
+system('sudo apt-get -y install pkg-config')
+system('sudo apt-get -y install flex')
+system('sudo apt-get -y install bison')
+system('sudo apt-get -y install libboost-dev')
+system('sudo apt-get -y install libboost-filesystem-dev')
+system('sudo apt-get -y install libboost-iostreams-dev')
+system('sudo apt-get -y install libboost-program-options-dev')
+system('sudo apt-get -y install libboost-thread-dev')
+system('sudo apt-get -y install libboost-math-dev')
+system('sudo apt-get -y install libboost-timer-dev')
+system('sudo apt-get -y install libboost-chrono-dev')
+system('sudo apt-get -y install libcln-dev')
+system('sudo apt-get -y install libmpfr-dev')
+system('sudo apt-get -y install libcppunit-dev')
+system('sudo apt-get -y install libopenmpi-dev')
+system('sudo apt-get -y install openmpi-bin')
+system('sudo apt-get -y install libptscotch-dev')
+system('sudo apt-get -y install libxml2-dev')
+system('sudo apt-get -y install libhwloc-dev')
+system('sudo apt-get -y install libhdf5-openmpi-dev')
+system('sudo apt-get -y install libeigen3-dev')
+system('sudo apt-get -y install libcgal-dev')
+system('sudo apt-get -y install libpcre3-dev')
+system('sudo apt-get -y install gccxml')
+
+# SWIG 3.0.0
+system('sudo apt-get -y install wget')
+
+cmd = """
+mkdir -p ~/srclib
+cd ~/srclib
+wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
+tar zxf swig-3.0.0.tar.gz
+cd swig-3.0.0
+./configure
+make
+sudo make install
+cd ..
 # Tcl/Tk
+
+"""
+system(cmd)
 system('sudo apt-get -y install tcl8.5-dev')
 system('sudo apt-get -y install tk8.5-dev')
 system('sudo apt-get -y install blt-dev')
@@ -101,11 +144,13 @@ system('sudo apt-get -y install libqt4-dev')
 system('sudo apt-get -y install python-qt4-dev')
 system('sudo apt-get -y install python-pmw')
 system('sudo apt-get -y install python-traits')
-system('sudo apt-get -y install python-traitsgui')
+system('sudo apt-get -y install python-traitsui')
 system('sudo apt-get -y install python-enthoughtbase')
 system('sudo apt-get -y install python-pyface')
 system('sudo apt-get -y install pype')
 system('sudo apt-get -y install python-tagpy')
+system('sudo apt-get -y install python-ply')
+system('sudo apt-get -y install python-netcdf')
 
 # Gnuplot
 system('sudo apt-get -y install gnuplot')
@@ -119,6 +164,17 @@ system('sudo apt-get -y install dx')
 system('sudo apt-get -y install dx-doc')
 system('sudo apt-get -y install mayavi2')
 system('sudo apt-get -y install tcl-vtk')
+system('sudo apt-get -y install python-vtk')
+system('sudo apt-get -y install libvtk5-dev')
+
+# "Matlab"
+system('sudo apt-get -y install octave')
+system('sudo apt-get -y install octave-splines')
+system('sudo apt-get -y install octave-symbolic')
+system('sudo apt-get -y install octave-specfun')
+system('sudo apt-get -y install octave-optim')
+system('sudo apt-get -y install octave-odepkg')
+system('sudo apt-get -y install octave-audio')
 
 # Databases
 system('sudo apt-get -y install libsqlite3-dev')
@@ -144,8 +200,9 @@ system('sudo apt-get -y install texinfo')
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
 # (let if tests be on one line)
 #$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
-#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository -y ppa:texlive-backports/ppa; sudo apt-get update; fi
 system('sudo apt-get -y install texlive')
+system('sudo apt-get -y install latex-beamer')
 system('sudo apt-get -y install texlive-extra-utils')
 system('sudo apt-get -y install texlive-latex-extra')
 system('sudo apt-get -y install texlive-math-extra')
@@ -156,8 +213,8 @@ system('sudo apt-get -y install auctex')
 
 # Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
 system('sudo apt-get -y install libav-tools')
-system('sudo apt-get -y install ffmpeg')
-system('sudo apt-get -y install libavcodec-extra-53')
+#ffmpeg
+system('sudo apt-get -y install libavcodec-extra-54')
 system('sudo apt-get -y install libx264-dev')
 #x264 h264enc
 # Animations: players
@@ -177,7 +234,8 @@ system('sudo apt-get -y install libxine2-all-plugins')
 system('sudo apt-get -y install gxineplugin')
 system('sudo apt-get -y install libxine2-ffmpeg')
 system('sudo apt-get -y install swfdec-gnome')
-system('sudo apt-get -y install flashplugin-installer')
+# FIXME: this package requires multiverse to be enabled in sources.list
+#flashplugin-installer
 
 # Misc
 system('sudo apt-get -y install unity-tweak-tool')
@@ -189,7 +247,6 @@ system('sudo apt-get -y install unoconv')
 system('sudo apt-get -y install libreoffice-dmaths')
 system('sudo apt-get -y install libbz2-dev')
 system('sudo apt-get -y install libncurses5-dev')
-system('sudo apt-get -y install swig')
 system('sudo apt-get -y install curl')
 system('sudo apt-get -y install a2ps')
 system('sudo apt-get -y install wdiff')
@@ -253,6 +310,7 @@ system('sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.sola
 system('sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs')
 #pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
 # Ptex2tex
+
 
 
 
