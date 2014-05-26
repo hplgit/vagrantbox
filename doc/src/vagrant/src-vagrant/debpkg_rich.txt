@@ -126,6 +126,8 @@ libav-tools
 #ffmpeg
 libavcodec-extra-54
 libx264-dev
+# libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
+libavcodec-extra-54
 #x264 h264enc
 # Animations: players
 mplayer gnome-mplayer
@@ -225,4 +227,3 @@ $ sudo apt-get -y autoremove
 
 # Install FEniCS manually via apt-get, run fenics_apt.sh,
 # or via full compile with Dorsal, run fenics_dorsal.sh
-
