@@ -4,9 +4,39 @@ emacs python-mode gedit vim ispell
 # Compilers
 gcc g++ gawk f2c gfortran
 autoconf automake autotools-dev
+cmake
 
 # Numerical libraries
 libatlas-base-dev libsuitesparse-dev
+
+# Software development
+pkg-config
+flex bison
+libboost-dev libboost-filesystem-dev libboost-iostreams-dev libboost-program-options-dev libboost-thread-dev libboost-math-dev libboost-timer-dev libboost-chrono-dev
+libcln-dev
+libmpfr-dev
+libcppunit-dev
+libopenmpi-dev openmpi-bin
+libptscotch-dev
+libxml2-dev
+libhwloc-dev
+libhdf5-openmpi-dev
+libeigen3-dev
+libcgal-dev
+libpcre3-dev
+gccxml
+
+# SWIG 3.0.0
+wget
+$ mkdir -p ~/srclib
+$ cd ~/srclib
+$ wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
+$ tar zxf swig-3.0.0.tar.gz
+$ cd swig-3.0.0
+$ ./configure
+$ make
+$ sudo make install
+$ cd ..
 
 # Tcl/Tk
 tcl8.5-dev tk8.5-dev blt-dev
@@ -47,19 +77,21 @@ spyder
 python-opengl python-pygame
 python-pdftools
 python-qt4 python-gtk2-dev libqt4-dev python-qt4-dev python-pmw
-python-traits python-traitsgui
+python-traits python-traitsui
 python-enthoughtbase python-pyface
 pype
 python-tagpy
+python-ply
+python-netcdf
 
 # Gnuplot
 gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev
 
 # Plotting and visualization programs
-grace dx dx-doc mayavi2 tcl-vtk
+grace dx dx-doc mayavi2 tcl-vtk python-vtk libvtk5-dev
 
 # "Matlab"
-octave oactave-splines octave-symbolic octave-specfun octave-optim octave-odepkg octave-audio
+octave octave-splines octave-symbolic octave-specfun octave-optim octave-odepkg octave-audio
 
 # Databases
 libsqlite3-dev
@@ -77,8 +109,9 @@ texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
 # (let if tests be on one line)
 #$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
-#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository -y ppa:texlive-backports/ppa; sudo apt-get update; fi
 texlive
+latex-beamer
 texlive-extra-utils
 texlive-latex-extra
 texlive-math-extra
@@ -89,8 +122,8 @@ auctex
 
 # Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
 libav-tools
-ffmpeg
-libavcodec-extra-53
+#ffmpeg
+libavcodec-extra-54
 libx264-dev
 #x264 h264enc
 # Animations: players
@@ -100,7 +133,9 @@ totem totem-plugins totem-mozilla
 vlc browser-plugin-vlc
 gxine python-pyxine xine-plugin libxine2-dev libxine2-all-plugins
 gxineplugin libxine2-ffmpeg
-swfdec-gnome flashplugin-installer
+swfdec-gnome
+# FIXME: this package requires multiverse to be enabled in sources.list
+#flashplugin-installer
 
 # Misc
 unity-tweak-tool
@@ -108,7 +143,6 @@ pandoc
 konsole gnome-terminal
 libreoffice unoconv libreoffice-dmaths
 libbz2-dev libncurses5-dev
-swig
 curl
 a2ps wdiff
 jhead
@@ -168,9 +202,11 @@ $ cd ~/texmf
 $ mktexlsr .  # update database for tex packages
 $ cd -
 
-# Not strictly necessary (only for creating modified reveal.js styles)
-$ sudo add-apt-repository ppa:chris-lea/node.js
-$ sudo apt-get install nodejs
+# Not strictly necessary (only for creating modified reveal.js styles
+# for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,
+# but the installation is trickier than described on that page...)
+$ sudo add-apt-repository -y ppa:chris-lea/node.js
+$ sudo apt-get -y install nodejs
 # remove a conflicting install of npm that I had tried earlier
 $ sudo apt-get update && sudo apt-get -y dist-upgrade
 $ sudo npm install -g grunt grunt-cli grunt-contrib-clean grunt-replace grunt-contrib-concat grunt-contrib-watch grunt-contrib-jasmine grunt-contrib-connect grunt-saucelabs grunt-gitinfo
@@ -182,5 +218,10 @@ $ sudo find srclib -name build -exec rm -rf {} \;
 $ cd
 $ sudo rm -rf .matplotlib
 $ mkdir .matplotlib
+$ sudo apt-get clean
+$ sudo apt-get autoclean
+$ sudo apt-get -y autoremove
 
-# Install FEniCS manually
+# Install FEniCS manually via apt-get, run fenics_apt.sh,
+# or via full compile with Dorsal, run fenics_dorsal.sh
+

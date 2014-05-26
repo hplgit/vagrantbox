@@ -42,10 +42,49 @@ apt_install gfortran
 apt_install autoconf
 apt_install automake
 apt_install autotools-dev
+apt_install cmake
 
 # Numerical libraries
 apt_install libatlas-base-dev
 apt_install libsuitesparse-dev
+
+# Software development
+apt_install pkg-config
+apt_install flex
+apt_install bison
+apt_install libboost-dev
+apt_install libboost-filesystem-dev
+apt_install libboost-iostreams-dev
+apt_install libboost-program-options-dev
+apt_install libboost-thread-dev
+apt_install libboost-math-dev
+apt_install libboost-timer-dev
+apt_install libboost-chrono-dev
+apt_install libcln-dev
+apt_install libmpfr-dev
+apt_install libcppunit-dev
+apt_install libopenmpi-dev
+apt_install openmpi-bin
+apt_install libptscotch-dev
+apt_install libxml2-dev
+apt_install libhwloc-dev
+apt_install libhdf5-openmpi-dev
+apt_install libeigen3-dev
+apt_install libcgal-dev
+apt_install libpcre3-dev
+apt_install gccxml
+
+# SWIG 3.0.0
+apt_install wget
+mkdir -p ~/srclib
+cd ~/srclib
+wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
+tar zxf swig-3.0.0.tar.gz
+cd swig-3.0.0
+./configure
+make
+sudo make install
+cd ..
 
 # Tcl/Tk
 apt_install tcl8.5-dev
@@ -101,11 +140,13 @@ apt_install libqt4-dev
 apt_install python-qt4-dev
 apt_install python-pmw
 apt_install python-traits
-apt_install python-traitsgui
+apt_install python-traitsui
 apt_install python-enthoughtbase
 apt_install python-pyface
 apt_install pype
 apt_install python-tagpy
+apt_install python-ply
+apt_install python-netcdf
 
 # Gnuplot
 apt_install gnuplot
@@ -119,6 +160,17 @@ apt_install dx
 apt_install dx-doc
 apt_install mayavi2
 apt_install tcl-vtk
+apt_install python-vtk
+apt_install libvtk5-dev
+
+# "Matlab"
+apt_install octave
+apt_install octave-splines
+apt_install octave-symbolic
+apt_install octave-specfun
+apt_install octave-optim
+apt_install octave-odepkg
+apt_install octave-audio
 
 # Databases
 apt_install libsqlite3-dev
@@ -144,8 +196,9 @@ apt_install texinfo
 # These lines are only necessary for Ubuntu 12.04 to install texlive 2012
 # (let if tests be on one line)
 #$ ubuntu_version=`lsb_release -r | awk '{print $2}'`
-#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository ppa:texlive-backports/ppa; sudo apt-get update; fi
+#$ if [ $ubuntu_version = "12.04" ]; then sudo add-apt-repository -y ppa:texlive-backports/ppa; sudo apt-get update; fi
 apt_install texlive
+apt_install latex-beamer
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
 apt_install texlive-math-extra
@@ -156,8 +209,8 @@ apt_install auctex
 
 # Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
 apt_install libav-tools
-apt_install ffmpeg
-apt_install libavcodec-extra-53
+#ffmpeg
+apt_install libavcodec-extra-54
 apt_install libx264-dev
 #x264 h264enc
 # Animations: players
@@ -177,7 +230,8 @@ apt_install libxine2-all-plugins
 apt_install gxineplugin
 apt_install libxine2-ffmpeg
 apt_install swfdec-gnome
-apt_install flashplugin-installer
+# FIXME: this package requires multiverse to be enabled in sources.list
+#flashplugin-installer
 
 # Misc
 apt_install unity-tweak-tool
@@ -189,7 +243,6 @@ apt_install unoconv
 apt_install libreoffice-dmaths
 apt_install libbz2-dev
 apt_install libncurses5-dev
-apt_install swig
 apt_install curl
 apt_install a2ps
 apt_install wdiff
@@ -254,9 +307,11 @@ cd ~/texmf
 mktexlsr .
 cd -
 
-# Not strictly necessary (only for creating modified reveal.js styles)
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get install nodejs
+# Not strictly necessary (only for creating modified reveal.js styles
+# for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,
+# but the installation is trickier than described on that page...)
+sudo add-apt-repository -y ppa:chris-lea/node.js
+sudo apt-get -y install nodejs
 # remove a conflicting install of npm that I had tried earlier
 sudo apt-get update && sudo apt-get -y dist-upgrade
 sudo npm install -g grunt grunt-cli grunt-contrib-clean grunt-replace grunt-contrib-concat grunt-contrib-watch grunt-contrib-jasmine grunt-contrib-connect grunt-saucelabs grunt-gitinfo
@@ -268,6 +323,11 @@ sudo find srclib -name build -exec rm -rf {} \;
 cd
 sudo rm -rf .matplotlib
 mkdir .matplotlib
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get -y autoremove
 
-# Install FEniCS manually
+# Install FEniCS manually via apt-get, run fenics_apt.sh,
+# or via full compile with Dorsal, run fenics_dorsal.sh
+
 echo "Everything is successfully installed!"
