@@ -1,0 +1,23 @@
+# Run debpkg.txt or debpkg_minimal.txt or debpkg_rich.txt to
+# generate install scripts, run these to first to bring in basic packages
+
+# Install FEniCS manually because of the dist-upgrade.
+# The add repository command is also interactive.
+# FEniCS
+$ sudo add-apt-repository ppa:fenics-packages/fenics
+$ sudo apt-get update
+$ sudo apt-get install fenics
+#fenics
+#$ sudo apt-get dist-upgrade
+# If you encounter problems with GRUB, just ignore it and continue.
+
+# dolfin-adjoint
+sudo apt-add-repository ppa:libadjoint/ppa
+sudo apt-get update
+sudo apt-get install python-dolfin-adjoint
+
+$ cd srclib
+$ git clone https://github.com/funsim/moola.git
+$ cd moola
+$ sudo python setup.py install
+$ cd ../..

@@ -71,6 +71,7 @@ pip install django
 pip install mako
 pip install flake8
 pip install pylint
+pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
 pydb python-profiler
 python-dev
 spyder
