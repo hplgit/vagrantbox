@@ -1,3 +1,3 @@
 #!/bin/sh
 doconce clean
-rm -rf automake_* latex_figs *-rootdir* vagrant_inf*.html
+rm -rf automake_* latex_figs *-rootdir* vagrant_*.html
