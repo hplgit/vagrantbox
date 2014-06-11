@@ -65,7 +65,7 @@ for the course.
 
 
 __Step 8.__
-Open a file `vagrant/projects/test1.py` in an editor on the host system
+Open a file `vagrant/projects/test1.py` in a *text editor* on the host system
 and write the following lines in the file:
 
 !bc pypro
@@ -84,5 +84,4 @@ Machine> cd /vagrant/projects
 Machine> python test1.py
 !ec
 You should see a plot of $e^{-x}$ on the screen. If you encounter
-any problems, read the
-paragraphs below.
+any problems, read the *Troubleshooting* sections below.

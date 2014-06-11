@@ -1,0 +1,94 @@
+The daily work with the Vagrant machine is very easy. Simply go to the `vagrant`
+directory where the machine resides and run
+
+!bc sys
+Terminal> vagrant up
+Terminal> vagrant ssh
+!ec
+You are now inside the machine and can reach
+files on the host from
+`/vagrant/projects` (see the next section for more details).
+Log out with Ctrl-D and in again with `vagrant ssh`.
+Create and edit files on the host in `~/vagrant/projects` and its
+subdirectories.
+
+Before closing a laptop or shutting it down, it is recommended
+to log out of the Vagrant machine and run `vagrant suspend`.
+
+
+===== Shared directories =====
+label{vagrant:shareddir}
+
+Inside the Vagrant machine, `/vagrant` is a directory shared with the
+user's file system. More precisely, `/vagrant` points to the *project
+directory* where the file `Vagrantfile` resides and where the `vagrant
+up` command was run (`~/vagrant` if you have followed the specific
+directory naming suggested in this document).
+If users of the Vagrant machine keeps all their
+files relevant for the machine in the project directory and its
+subdirectories, all these directories will be shared between the machine and
+the user's file system. Normally, this feature is enough for efficient
+communication of files between the Vagrant machine's file system and
+the user's file system.  One can also set up other shared directories, see
+the Vagrant documentation for "Synced Directories":
+"http://docs.vagrantup.com/v2/synced-directories/basic_usage.html".
+
+Since the Vagrant machine shares directories with the host system, users
+can safely edit files in the shared directories with their favorite editor
+on the host system. The Vagrant machine will have immediate access to
+the files.
+
+Here is a typical example. Assume that `vagrant up` and `vagrant ssh`
+were run in a directory `myubuntu`. On the host,
+create a subdirectory `src` of `myubuntu`. Start an editor and type in
+the following Python program in a file `test1.py`:
+
+!bc pypro
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 3, 11)
+y = np.exp(-x)
+plt.plot(x, y)
+plt.show()
+!ec
+This program will show X11 graphics on your host machine. If this machine
+runs the Linux operating system, everything is fine, but if this is a Mac
+or Windows machine, X11 must be started as described in
+Section ref{vagrant:X11}. If that is necessary, log out, start X11,
+log in again (`vagrant ssh`).
+
+Run the `test1.py` program:
+
+!bc sys
+Terminal> cd /vagrant
+Terminal> cd src
+Terminal> python test1.py
+!ec
+A plot of the curve $y = e^{-x}$ should now be seen on the screen.
+
+
+!split
+# #include "troubleshooting.do.txt"
+
+===== Stopping the Vagrant machine =====
+
+There are three ways to stop the virtual Vagrant machine from the
+host (i.e., you must be logged out by Ctrl-D from the machine):
+
+ * `vagrant suspend` sends the machine to sleep mode. Waking it up is
+   done with `vagrant up`.
+ * `vagrant halt` shuts off the machine. To start it again, a full
+   boot with `vagrant up` is needed.
+ * The machine can be removed forever by `vagrant destroy`.
+
+===== Placing the Vagrant machine in the cloud =====
+
+There are numerous free file hosting sites where a Vagrant machine can
+be stored and shared with others.  We have found Google Drive to be a
+viable solution. It is free, can handle large enough files, and has
+flexible functionality for sharing the machine with others. A
+potential problem with Google Drive, Sky Drive, or Dropbox is that
+other computers connected to the account start to download the big
+Vagrant machines. To prevent such actions, click on the Google Drive
+icon on all machines that synchronize the account and deselect the
+directory where you store the Vagrant machine(s).

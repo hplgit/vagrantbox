@@ -24,9 +24,9 @@ AUTHOR: Hans Petter Langtangen Email:hpl@simula.no at Center for Biomedical Comp
 DATE: today
 
 A Vagrant machine is a file that you can download and install on
-your machine to get access to a complete Ubuntu computer
-in a Mac or Windows environment. You work write programs in your
-host system (Mac or Windows), but run them in a Ubuntu
+your laptop to get access to a complete Ubuntu computer
+in a Mac or Windows environment. You write programs in your
+host system (Mac or Windows), but run them in an Ubuntu
 environment.
 
 In the following, the prompt `Terminal>` indicates a Unix terminal
@@ -37,6 +37,10 @@ Vagrant machine).
 ===== Installation instructions =====
 
 # #include "vagrant_install.do.txt"
+
+===== Working with the Vagrant machine =====
+
+# #include "vagrant_work.do.txt"
 
 ===== Troubleshooting: shared directory is invisible =====
 
