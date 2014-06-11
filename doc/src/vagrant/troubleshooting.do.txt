@@ -1,4 +1,5 @@
 ===== Troubleshooting =====
+label{vagrant:trouble}
 
 === Troubleshooting: shared directory is invisible ===
 

@@ -17,6 +17,8 @@ elif [ $course = "INF5620" ]; then
 scp vagrant_${course}.html hpl@linux.simula.no:www_docs/tmp/
 elif [ $course = "simula_summer_course" ]; then
 scp vagrant_${course}.html hpl@linux.simula.no:www_docs/tmp/
+elif [ $course = "scientific_computing" ]; then
+touch vagrant_${course}.html  # nothing to be done
 else
 echo "Illegal command line argument $course"
 fi
