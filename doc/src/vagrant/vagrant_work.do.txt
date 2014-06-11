@@ -80,15 +80,3 @@ host (i.e., you must be logged out by Ctrl-D from the machine):
  * `vagrant halt` shuts off the machine. To start it again, a full
    boot with `vagrant up` is needed.
  * The machine can be removed forever by `vagrant destroy`.
-
-===== Placing the Vagrant machine in the cloud =====
-
-There are numerous free file hosting sites where a Vagrant machine can
-be stored and shared with others.  We have found Google Drive to be a
-viable solution. It is free, can handle large enough files, and has
-flexible functionality for sharing the machine with others. A
-potential problem with Google Drive, Sky Drive, or Dropbox is that
-other computers connected to the account start to download the big
-Vagrant machines. To prevent such actions, click on the Google Drive
-icon on all machines that synchronize the account and deselect the
-directory where you store the Vagrant machine(s).
