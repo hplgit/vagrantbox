@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -27,10 +27,28 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
     <link rel="top" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
-    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" /> 
+    <link rel="prev" title="Creating Vagrant Machines for Distribution of Software Environments" href="index.html" />
+ 
   
-   <style type=text/css>
+   <style type="text/css">
      div.admonition {
        background-color: whiteSmoke;
        border: 1px solid #bababa;
@@ -65,7 +83,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Anders E. Johansen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 14, 2014</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 11, 2014</td>
 </tr>
 </tbody>
 </table>
@@ -143,7 +161,7 @@ key principle for reproducible science. Users may have many Vagrant
 machines on their computers and switch between the computing
 environments.</p>
 <div class="figure">
-<img alt="_images/vm_icon.png" src="_images/vm_icon.png" style="width: 100px;" />
+<a class="reference internal image-reference" href="_images/vm_icon.png"><img alt="_images/vm_icon.png" src="_images/vm_icon.png" style="width: 200px;" /></a>
 </div>
 <div class="section" id="contents-of-the-vagrant-machine">
 <span id="vagrant-contents"></span><h2>Contents of the Vagrant machine<a class="headerlink" href="#contents-of-the-vagrant-machine" title="Permalink to this headline">¶</a></h2>
@@ -441,7 +459,7 @@ display the graphics on the host appropriately. To this end, you
 need to enable X11 graphics on the host by editing the file <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt>
 in the project directory so that it includes the
 line <tt class="docutils literal"><span class="pre">config.ssh.forward_x11</span> <span class="pre">=</span> <span class="pre">true</span></tt>:</p>
-<div class="highlight-ruby"><div class="highlight"><pre><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="ss">Vagrant</span><span class="p">:</span><span class="ss">:Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
     <span class="o">.</span><span class="n">.</span><span class="o">.</span>
     <span class="c1"># Enable X11</span>
     <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_x11</span> <span class="o">=</span> <span class="kp">true</span>
@@ -596,16 +614,16 @@ script are</p>
 
 <span class="k">function </span>apt_install <span class="o">{</span>
   sudo apt-get -y install <span class="nv">$1</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
 <span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;could not install $1 - abort&quot;</span>
     <span class="nb">exit </span>1
   <span class="k">fi</span>
 <span class="o">}</span>
 
 <span class="k">function </span>pip_install <span class="o">{</span>
-  <span class="k">for </span>p in <span class="nv">$@</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for </span>p in <span class="nv">$@</span>; <span class="k">do</span>
 <span class="k">    </span>sudo pip install <span class="nv">$p</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
 <span class="k">      </span><span class="nb">echo</span> <span class="s2">&quot;could not install $p - abort&quot;</span>
       <span class="nb">exit </span>1
     <span class="k">fi</span>
@@ -614,7 +632,7 @@ script are</p>
 
 <span class="k">function </span>unix_command <span class="o">{</span>
   <span class="nv">$@</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then</span>
 <span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;could not run $@ - abort&quot;</span>
     <span class="nb">exit </span>1
   <span class="k">fi</span>
@@ -633,7 +651,7 @@ pip_install sympy
 apt_install scipy
 ...
 <span class="c"># ScientificPython must be installed from source</span>
-unix_command <span class="k">if</span> <span class="o">[</span> ! -d srclib <span class="o">]</span><span class="p">;</span> <span class="k">then </span>mkdir srclib<span class="p">;</span> <span class="k">fi</span>
+unix_command <span class="k">if</span> <span class="o">[</span> ! -d srclib <span class="o">]</span>; <span class="k">then </span>mkdir srclib; <span class="k">fi</span>
 unix_command <span class="nb">cd </span>srclib
 unix_command hg clone https://bitbucket.org/khinsen/scientificpython
 unix_command <span class="nb">cd </span>scientificpython
