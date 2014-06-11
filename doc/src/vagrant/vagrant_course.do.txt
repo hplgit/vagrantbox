@@ -1,18 +1,27 @@
-# Mako Variables: COURSE (INF1100 or INF5620)
+# Mako Variables: COURSE (INF1100, INF5620, ...)
 <%
 if COURSE == 'INF1100':
     origurl = 'https://docs.google.com/a/simula.no/file/d/0B8qXlFGYFyhjcnFyNWxSaGo3dTg/edit?usp=sharing'
     shorturl = 'http://goo.gl/vRkxuQ'
-    course_name = 'inf1100'
     boxsize = '2.7'
+    boxname = 'inf1100.box'
 elif COURSE == 'INF5620':
     origurl = 'https://docs.google.com/a/simula.no/file/d/0B8qXlFGYFyhjcnFyNWxSaGo3dTg/edit?usp=sharing'
     shorturl = 'http://goo.gl/ta977B'
-    course_name = 'inf5620'
     boxsize = '3.8'
+    boxname = 'inf5620.box'
+elif COURSE == 'simula_summer_course':
+    shorturl = 'http://goo.gl/nSeBCg'
+    boxsize = '5'
+    boxname = 'ubuntu-14.04-amd64.box'
+    origurl = 'https://drive.google.com/folderview?id=0B5-JTGlbVBscYnBHSDR4Q2RYWE0&usp=sharing'
+else:
+    print 'Illegal value of COURSE:', COURSE; import sys; sys.exit(1)
 %>
 
 TITLE: Installation of a Vagrant machine
+AUTHOR: Hans Petter Langtangen Email:hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
+DATE: today
 
 A Vagrant machine is a file that you can download and install on
 your machine to get access to a complete Ubuntu computer
@@ -153,4 +162,3 @@ You should now understand how you edit programs on your Windows or Mac
 computer and how you run the programs inside the Ubuntu
 machine in a terminal window. Just remember that `/vagrant` in Ubuntu
 corresponds to the directory `~/vagrant` on the Mac or Windows computer.
-
