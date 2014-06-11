@@ -10,28 +10,12 @@ Automatically generated HTML file from Doconce source
 
 
 
-<style type="text/css">
-    /* bloodish style */
-
-    body {
-      font-family: Helvetica, Verdana, Arial, Sans-serif;
-      color: #404040;
-      background: #ffffff;
-    }
-    h1 { font-size: 1.8em;  color: #8A0808; }
-    h2 { font-size: 1.6em;  color: #8A0808; }
-    h3 { font-size: 1.4em;  color: #8A0808; }
-    h4 { color: #8A0808; }
-    a { color: #8A0808; text-decoration:none; }
-    tt { font-family: "Courier New", Courier; }
-    
-    p { text-indent: 0px; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-
-div { text-align: justify; text-justify: inter-word; }
-</style>
+<!-- Bootstrap style: bootstrap_bloodish -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://raw.github.com/hplgit/doconce/master/bundled/html_styles/style_bootstrap/css/bootstrap_bloodish.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
 
 </head>
 
@@ -43,7 +27,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'vagrant:shareddir',
                'vagrant:shareddir'),
-              (' Troubleshooting ', 2, None, '___sec3'),
+              (' Troubleshooting ', 2, 'vagrant:trouble', 'vagrant:trouble'),
               (' Troubleshooting: shared directory is invisible ',
                3,
                None,
@@ -60,27 +44,7 @@ div { text-align: justify; text-justify: inter-word; }
               (' Placing the Vagrant machine in the cloud ',
                2,
                None,
-               '___sec8'),
-              (' Troubleshooting: shared directory is invisible ',
-               2,
-               None,
-               '___sec9'),
-              (' Troubleshooting: "couldn\'t connect to display ..." ',
-               2,
-               None,
-               '___sec10'),
-              (' Troubleshooting: Internet is not reachable ',
-               2,
-               None,
-               '___sec11'),
-              (' Working with an initialized Vagrant machine ',
-               2,
-               None,
-               '___sec12'),
-              (' A typical session with writing and testing Python programs ',
-               2,
-               None,
-               '___sec13')]}
+               '___sec8')]}
 end of tocinfo -->
 
 <body>
@@ -105,12 +69,49 @@ MathJax.Hub.Config({
 
 
     
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="vagrant_INF1100.html">Installation of a Vagrant machine</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: "Installation instructions" --> <li><a href="#___sec0" style="font-size: 80%;"><b>Installation instructions</b></a></li>
+     <!-- navigation toc: "Working with the Vagrant machine" --> <li><a href="#___sec1" style="font-size: 80%;"><b>Working with the Vagrant machine</b></a></li>
+     <!-- navigation toc: "Shared directories" --> <li><a href="#vagrant:shareddir" style="font-size: 80%;"><b>Shared directories</b></a></li>
+     <!-- navigation toc: "Troubleshooting" --> <li><a href="#vagrant:trouble" style="font-size: 80%;"><b>Troubleshooting</b></a></li>
+     <!-- navigation toc: "Troubleshooting: shared directory is invisible" --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: shared directory is invisible</a></li>
+     <!-- navigation toc: "Troubleshooting: "couldn't connect to display ..."" --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: "couldn't connect to display ..."</a></li>
+     <!-- navigation toc: "Troubleshooting: Internet is not reachable" --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: Internet is not reachable</a></li>
+     <!-- navigation toc: "Stopping the Vagrant machine" --> <li><a href="#___sec7" style="font-size: 80%;"><b>Stopping the Vagrant machine</b></a></li>
+     <!-- navigation toc: "Placing the Vagrant machine in the cloud" --> <li><a href="#___sec8" style="font-size: 80%;"><b>Placing the Vagrant machine in the cloud</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
 <!-- ------------------- main content ---------------------- -->
 
 <!-- Mako Variables: COURSE (INF1100, INF5620, ...) -->
 
 <title>Installation of a Vagrant machine</title>
 
+<div class="jumbotron">
 <center><h1>Installation of a Vagrant machine</h1></center>  <!-- document title -->
 
 <p>
@@ -136,15 +137,23 @@ host system (Mac or Windows), but run them in an Ubuntu
 environment.
 
 <p>
-In the following, the prompt <code>Terminal></code> indicates a Unix terminal
-window on Mac or a Command Prompt window on Windows.  The prompt
-<code>Machine></code> indicates a terminal window where Ubuntu is running (in a
-Vagrant machine).
+
+
+</div> <!-- end jumbotron -->
 
 <h2>Installation instructions  <a name="___sec0"></a></h2>
 
 <!-- Needs definition of mako variables <a href="http://goo.gl/vRkxuQ" target="_self"><tt>http://goo.gl/vRkxuQ</tt></a>, INF1100, -->
 <!-- 2.7, inf1100.box -->
+
+<p>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notation.</b>
+In the following, the prompt <code>Terminal></code> indicates a Unix terminal
+window on Mac or a Command Prompt window on Windows.  The prompt
+<code>Machine></code> indicates a terminal window where Ubuntu is running (in a
+Vagrant machine).
+</div>
+
 
 <p>
 <b>Step 1.</b>
@@ -252,7 +261,7 @@ Machine&gt; python test1.py
 </pre></div>
 <p>
 You should see a plot of \( e^{-x} \) on the screen. If you encounter
-any problems, read the <em>Troubleshooting</em> sections below.
+any problems, read the section <a href="#vagrant:trouble">Troubleshooting</a>.
 
 <h2>Working with the Vagrant machine  <a name="___sec1"></a></h2>
 
@@ -337,7 +346,7 @@ A plot of the curve \( y = e^{-x} \) should now be seen on the screen.
 <p>
 <!-- !split -->
 
-<h2>Troubleshooting  <a name="___sec3"></a></h2>
+<h2>Troubleshooting <a name="vagrant:trouble"></a></h2>
 
 <h3>Troubleshooting: shared directory is invisible  <a name="___sec4"></a></h3>
 
@@ -420,168 +429,18 @@ Vagrant machines. To prevent such actions, click on the Google Drive
 icon on all machines that synchronize the account and deselect the
 directory where you store the Vagrant machine(s).
 
-<h2>Troubleshooting: shared directory is invisible  <a name="___sec9"></a></h2>
-
-It may happen that the <code>/vagrant</code> directory seems empty inside
-the Vagrant machine. Two steps will fix this problem. First,
-run
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; sudo /etc/init.d/vboxadd setup
-</pre></div>
-<p>
-inside the Vagrant machine. Second, log out and run
-
-<p>
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo vagrant reload
-</pre></div>
-<p>
-outside the Vagrant machine.
-Then do <code>vagrant ssh</code> and take an <code>ls /vagrant</code> to see that the
-files in the project directory (e.g., <code>Vagrantfile</code> and the Vagrant
-box) are visible.
-
-<h2>Troubleshooting: "couldn't connect to display ..."  <a name="___sec10"></a></h2>
-
-This error message points to the problem that X11 graphics cannot
-be shown on the host. It should be sufficient to start X11 on
-the host, see Step 4 above.
-
-<h2>Troubleshooting: Internet is not reachable  <a name="___sec11"></a></h2>
-
-A test if Internet is reachable is to run a <code>ping</code> command inside
-the machine, e.g.,
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; ping us.ubuntu.archive.com
-</pre></div>
-<p>
-A hanging command indicates that Internet is not reachable.
-Log out of the box, run <code>vagrant reload</code>, and
-<code>vagrant ssh</code>. Try the <code>ping</code> command again.
-
-<h2>Working with an initialized Vagrant machine  <a name="___sec12"></a></h2>
-
-The daily work with the Vagrant machine is very easy. Simply go to the <code>vagrant</code>
-directory where the machine resides and run
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant up
-Terminal&gt; vagrant ssh
-</pre></div>
-<p>
-You are now inside the machine and can reach
-files on the host from
-<code>/vagrant/projects</code>.
-Log out with Ctrl-D and in again with <code>vagrant ssh</code>.
-Create and edit files on the host in <code>~/vagrant/projects</code> and its
-subdirectories.
-
-<p>
-Before closing a laptop or shutting it down, it is recommended
-to log out of the Vagrant machine and run <code>vagrant suspend</code>.
-
-<h2>A typical session with writing and testing Python programs  <a name="___sec13"></a></h2>
-
-Here is a worked example on creating a Python program on Windows or Mac
-running it on Ubuntu.
-Go to the vagrant project directory on
-your Windows or Mac computer,
-make a new directory <code>mytest</code>, go to this directory, and
-launch a text editor, such as TextEdit on Mac or Notepad++ on Windows,
-to create a Python program <code>test.py</code>.
-The relevant Unix commands are
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd ~/vagrant/projects
-Terminal&gt; mkdir mytest
-Terminal&gt; cd mytest
-Terminal&gt; gedit test.py&amp;
-</pre></div>
-<p>
-Write the following code in <code>test.py</code>:
-
-<p>
-
-<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Hello!&quot;</span>
-</pre></div>
-<p>
-Save the file.
-
-<p>
-In another terminal window, go to the <code>vagrant</code> directory and
-start the vagrant machine if it is not already running:
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd ~/vagrant
-Terminal&gt; vagrant up
-Terminal&gt; vagrant ssh
-</pre></div>
-<p>
-You are now inside an Ubuntu machine in this terminal window.
-
-<p>
-Inside Ubuntu,
-move to the <code>mytest</code> directory which is shared with your Mac or Windows
-computer:
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; cd /vagrant/projects/mytest
-</pre></div>
-<p>
-Run the <code>test.py</code> program:
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python test.py
-  File &quot;test.py&quot;, line 1
-    print &#39;Hello!&quot;
-                 ^
-SyntaxError: EOL while scanning string literal
-</pre></div>
-<p>
-You need to correct the bug. Go to the text editor with the <code>test.py</code>
-on your Windows or Mac computer and change the double quote to a single
-quote:
-
-<p>
-
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Hello!&#39;</span>
-</pre></div>
-<p>
-Go to the terminal window where the Ubuntu machine is running and rerun
-the program:
-
-<p>
-
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; python test.py
-Hello!
-</pre></div>
-<p>
-You should now understand how you edit programs on your Windows or Mac
-computer and how you run the programs inside the Ubuntu
-machine in a terminal window. Just remember that <code>/vagrant</code> in Ubuntu
-corresponds to the directory <code>~/vagrant</code> on the Mac or Windows computer.
-
 <!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
 
 
 </body>
