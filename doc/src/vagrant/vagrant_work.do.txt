@@ -53,8 +53,8 @@ plt.show()
 !ec
 This program will show X11 graphics on your host machine. If this machine
 runs the Linux operating system, everything is fine, but if this is a Mac
-or Windows machine, X11 must be started as described in
-Section ref{vagrant:X11}. If that is necessary, log out, start X11,
+or Windows machine, X11 must be started as described in Step 4 of
+the installation instructions. If that is necessary, log out, start X11,
 log in again (`vagrant ssh`).
 
 Run the `test1.py` program:

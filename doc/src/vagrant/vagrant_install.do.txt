@@ -29,8 +29,8 @@ downloading Cygwin might take one or more hours, depending on the
 speed of your network.  Cygwin is not needed on Mac computers.
 
 __Step 4.__
-Start X11: run Applications - Utilities - X11 on a Mac,
-or Start - All Programs - Cygwin-X - XWin Server on Windows.
+Start X11: run *Applications - Utilities - X11* on a Mac,
+or *Start - All Programs - Cygwin-X - XWin Server* on Windows.
 
 __Step 5.__ Move to your home directory and make a new directory
 `vagrant` and a subdirectory `projects`:
