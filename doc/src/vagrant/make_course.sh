@@ -9,7 +9,7 @@ else
 course=$1
 fi
 
-doconce format html $name --html_style=bloodish COURSE=$course --html_output=vagrant_$course
+doconce format html $name --html_style=bootstrap_bloodish COURSE=$course --html_output=vagrant_$course
 
 if [ $course = "INF1100" ]; then
 scp vagrant_${course}.html inf1100@login.ifi.uio.no:www_docs/
@@ -17,6 +17,8 @@ elif [ $course = "INF5620" ]; then
 scp vagrant_${course}.html hpl@linux.simula.no:www_docs/tmp/
 elif [ $course = "simula_summer_course" ]; then
 scp vagrant_${course}.html hpl@linux.simula.no:www_docs/tmp/
+elif [ $course = "scientific_computing" ]; then
+touch vagrant_${course}.html  # nothing to be done
 else
 echo "Illegal command line argument $course"
 fi

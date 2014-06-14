@@ -1,6 +1,13 @@
 # Needs definition of mako variables ${shorturl}, ${COURSE},
 # ${boxsize}, ${boxname}
 
+!bnotice Notation
+In the following, the prompt `Terminal>` indicates a Unix terminal
+window on Mac or a Command Prompt window on Windows.  The prompt
+`Machine>` indicates a terminal window where Ubuntu is running (in a
+Vagrant machine).
+!enotice
+
 __Step 1.__ Download and install "VirtualBox":
 "https://www.virtualbox.org/wiki/Downloads". Choose the version
 according to the operating system on the host.
@@ -29,8 +36,8 @@ downloading Cygwin might take one or more hours, depending on the
 speed of your network.  Cygwin is not needed on Mac computers.
 
 __Step 4.__
-Start X11: run Applications - Utilities - X11 on a Mac,
-or Start - All Programs - Cygwin-X - XWin Server on Windows.
+Start X11: run *Applications - Utilities - X11* on a Mac,
+or *Start - All Programs - Cygwin-X - XWin Server* on Windows.
 
 __Step 5.__ Move to your home directory and make a new directory
 `vagrant` and a subdirectory `projects`:
@@ -65,7 +72,7 @@ for the course.
 
 
 __Step 8.__
-Open a file `vagrant/projects/test1.py` in an editor on the host system
+Open a file `vagrant/projects/test1.py` in a *text editor* on the host system
 and write the following lines in the file:
 
 !bc pypro
@@ -84,5 +91,4 @@ Machine> cd /vagrant/projects
 Machine> python test1.py
 !ec
 You should see a plot of $e^{-x}$ on the screen. If you encounter
-any problems, read the
-paragraphs below.
+any problems, read Section ref{vagrant:trouble}.
