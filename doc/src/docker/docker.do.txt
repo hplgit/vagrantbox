@@ -1,0 +1,12 @@
+"Docker": "http://www.docker.com/" is a tool for packaging applications
+with all their dependencies such that the applications can be run
+on ``any'' computing platform. Docker differs from a normal virtual
+machine in that "it does not include a full guest operating system": "http://www.docker.com/whatisdocker/".
+
+Readings:
+
+ o "Understanding Docker": "https://docs.docker.com/introduction/understanding-docker/".
+ o "Installing Docker": "https://docs.docker.com/installation/#installation".
+   Scientists will often prefer to" work with Docker on Ubuntu": "https://docs.docker.com/installation/ubuntulinux/".
+ o "The Docker User Guide": "https://docs.docker.com/userguide/".
+
