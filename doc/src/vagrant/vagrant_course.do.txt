@@ -14,6 +14,7 @@ elif COURSE in ('simula_summer_course', 'scientific_computing'):
     shorturl = 'http://goo.gl/nSeBCg'
     boxsize = '5'
     boxname = 'ubuntu-14.04-amd64.box'
+    # The URL of the collection of Vagrant, VMWare and VirtualBox machines
     origurl = 'https://drive.google.com/folderview?id=0B5-JTGlbVBscYnBHSDR4Q2RYWE0&usp=sharing'
 else:
     print 'Illegal value of COURSE:', COURSE; import sys; sys.exit(1)
