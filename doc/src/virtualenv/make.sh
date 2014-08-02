@@ -13,7 +13,7 @@ function system {
 # Build various formats
 name=virtualenv
 system doconce spellcheck -d .dict4spell $name.do.txt
-system doconce format html $name --html_style=bootstrap --html_template=template.html
+system doconce format html $name --html_style=bootstrap --html_template=template.html --html_toc_depth=2 --html_toc_indent=0
 system doconce split_html $name
 
 # Use title and author

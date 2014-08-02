@@ -74,8 +74,8 @@ Different types of Vagrant machines can be made for different types of
 courses or purposes.  For example, a research project can set up a
 software environment for its project members, as a Vagrant machine, to
 ensure that the environment is conserved for the future, which is a
-key principle for reproducible science. Users may have many Vagrant
-machines on their computers and switch between the computing
+key principle for replicable science. Users may have many Vagrant
+machines on their computers and switch between these computing
 environments.
 
 FIGURE: [fig/vm_icon, width=200 frac=0.4]
@@ -92,8 +92,8 @@ Ubuntu of two main reasons:
    repository for pre-built mathematical software.
 
 We remark that the user of the machine will mainly work with files
-and directories on the host system and only use the Ubuntu system
-to run computations.
+and directories on the host system (Mac or Windows)
+and only use the Ubuntu system to run computations.
 
 To be specific, the sample computing environment to be illustrated here
 consists of a Python-based ecosystem for scientific computing.
