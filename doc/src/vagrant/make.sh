@@ -17,7 +17,7 @@ opts="-DVBINSTALL-apt-get --skip_inline_comments"
 
 system doconce spellcheck -d .dict4spell $name.do.txt
 
-system doconce format html $name --html_style=bootstrap --html_template=template.html $opts
+system doconce format html $name --html_style=bootstrap --html_template=template.html --html_toc_depth=1 --html_toc_indent=0 $opts
 system doconce split_html $name
 
 # Use title and author
