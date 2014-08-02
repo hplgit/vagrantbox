@@ -14,9 +14,9 @@ according to the operating system on the host.
 For example, if you want to build or run Vagrant machines under Mac OS X, choose
 *VirtualBox x.y.z for OS X hosts*, where `x.y.z` is the version number
 of VirtualBox. Double click the downloaded `.dmg` file to install
-Vagrant. Those who work on a Windows machines will select *VirtualBox
-x.y.z for Windows hosts*, which downloads an `.exe` file which can just
-be double clicked to perform the installation.
+VirtualBox. Those who work on a Windows machine will select *VirtualBox
+x.y.z for Windows hosts*, which downloads an `.exe` file to be
+double clicked to perform the installation.
 
 __Step 2.__ Download and install "Vagrant": "http://downloads.vagrantup.com/".
 Choose the latest version and the installation file corresponding to
