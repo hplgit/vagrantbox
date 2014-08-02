@@ -1,29 +1,5 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
@@ -60,20 +36,11 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 
 
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
+<!-- Here goes the table of contents in the sidebar -->
 <div class="row">
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
           <!-- navigation toc: "Problem setting" --> <li><a href="._vagrant_box001.html#___sec0" style="font-size: 80%;"><b>Problem setting</b></a></li>
      <!-- navigation toc: "Contents of the Vagrant machine" --> <li><a href="._vagrant_box001.html#vagrant:contents" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Contents of the Vagrant machine</a></li>
      <!-- navigation toc: "Installing the necessary software for using Vagrant" --> <li><a href="._vagrant_box002.html#vagrant:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing the necessary software for using Vagrant</a></li>
@@ -82,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- navigation toc: "Downloading a base box to create a complete Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Downloading a base box to create a complete Vagrant machine</a></li>
      <!-- navigation toc: "Making an empty Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Making an empty Vagrant machine</a></li>
      <!-- navigation toc: "Installing packages in a complete Vagrant machine" --> <li><a href="._vagrant_box004.html#vagrant:complete:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in a complete Vagrant machine</a></li>
-     <!-- navigation toc: "Installing packages in an empty Vagrant machine" --> <li><a href="._vagrant_box005.html#vagrant:empty:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in an empty Vagrant machine</a></li>
+     <!-- navigation toc: "Installing packages in an empty Vagrant machine" --> <li><a href=#vagrant:empty:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in an empty Vagrant machine</a></li>
      <!-- navigation toc: "Scripts for installing ready-made packages" --> <li><a href="._vagrant_box006.html#vagrant:debpkg" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Scripts for installing ready-made packages</a></li>
      <!-- navigation toc: "Setting up a default environment with `.bashrc`" --> <li><a href="._vagrant_box007.html#vagrant:bashrc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Setting up a default environment with `.bashrc`</a></li>
      <!-- navigation toc: "Operating the Vagrant machine" --> <li><a href="._vagrant_box008.html#___sec18" style="font-size: 80%;"><b>Operating the Vagrant machine</b></a></li>
@@ -212,16 +179,20 @@ MathJax.Hub.Config({
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 
 
 
 <a name="part0005"></a>
+<!-- begin top navigation -->
+<a href="._vagrant_box004.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box006.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end top navigation -->
+
+<p>
 <!-- !split -->
 
-<h2>Installing packages in an empty Vagrant machine <a name="vagrant:empty:install"></a></h2>
+<h2 id="vagrant:empty:install">Installing packages in an empty Vagrant machine<a name="vagrant:empty:install"></a></h2>
 
 An empty Vagrant machine is distributed to users
 as a bundle of <code>Vagrantfile</code> and an
@@ -253,7 +224,7 @@ The relevant line is shown below:
 
 <p>
 
-<!-- code=ruby (from !bc rbcod) typeset with pygments style "default" -->
+<!-- code=ruby (!bc rbcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #880000">Vagrant</span><span style="color: #666666">.</span>configure(<span style="color: #BA2121">&quot;2&quot;</span>) <span style="color: #008000; font-weight: bold">do</span> <span style="color: #666666">|</span>config<span style="color: #666666">|</span>
   <span style="color: #666666">.</span>.<span style="color: #666666">.</span>
   <span style="color: #408080; font-style: italic"># Run installation</span>
@@ -267,32 +238,14 @@ to create a complete Vagrant machine on their computers.
 
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._vagrant_box004.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box006.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end bottom navigation -->
+
 <!-- ------------------- end of main content --------------- -->
 
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
-<ul class="pager">
-  <li class="previous">
-    <a href="._vagrant_box004.html">&larr; Prev</a>
-  </li>
-
-  <li class="next">
-    <a href="._vagrant_box006.html">Next &rarr;</a>
-  </li>
-
-</ul>
 
  </div>
 
@@ -304,6 +257,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 

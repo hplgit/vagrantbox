@@ -55,6 +55,7 @@ libfreetype6-dev libpng-dev
 pip install numpy
 pip install sympy
 pip install cython
+pip install numexpr
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib

@@ -1,29 +1,5 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
@@ -60,23 +36,14 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 
 
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
+<!-- Here goes the table of contents in the sidebar -->
 <div class="row">
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
           <!-- navigation toc: "Problem setting" --> <li><a href="._vagrant_box001.html#___sec0" style="font-size: 80%;"><b>Problem setting</b></a></li>
      <!-- navigation toc: "Contents of the Vagrant machine" --> <li><a href="._vagrant_box001.html#vagrant:contents" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Contents of the Vagrant machine</a></li>
-     <!-- navigation toc: "Installing the necessary software for using Vagrant" --> <li><a href="._vagrant_box002.html#vagrant:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing the necessary software for using Vagrant</a></li>
+     <!-- navigation toc: "Installing the necessary software for using Vagrant" --> <li><a href=#vagrant:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing the necessary software for using Vagrant</a></li>
      <!-- navigation toc: "Creating the Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec6" style="font-size: 80%;"><b>Creating the Vagrant machine</b></a></li>
      <!-- navigation toc: "Choice of operating system type" --> <li><a href="._vagrant_box003.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Choice of operating system type</a></li>
      <!-- navigation toc: "Downloading a base box to create a complete Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Downloading a base box to create a complete Vagrant machine</a></li>
@@ -212,21 +179,25 @@ MathJax.Hub.Config({
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 
 
 
 <a name="part0002"></a>
+<!-- begin top navigation -->
+<a href="._vagrant_box001.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box003.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end top navigation -->
+
+<p>
 <!-- !split -->
 
-<h2>Installing the necessary software for using Vagrant <a name="vagrant:install"></a></h2>
+<h2 id="vagrant:install">Installing the necessary software for using Vagrant<a name="vagrant:install"></a></h2>
 
 Before going into details on how to utilize Vagrant, you need to
 have it on your host system.
 
-<h3>VirtualBox  <a name="___sec3"></a></h3>
+<h3 id="___sec3">VirtualBox <a name="___sec3"></a></h3>
 
 Download and install <a href="https://www.virtualbox.org/wiki/Downloads" target="_self">VirtualBox</a>. Choose the version
 according to the operating system on the host.
@@ -244,7 +215,7 @@ Here is a recipe. Start with
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo apt-cache search virtualbox
 </pre></div>
 <p>
@@ -253,7 +224,7 @@ version number (e.g., <code>4.2</code>). Then copy and paste the following
 commands into the terminal window:
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; wget -q \
  http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc \
  -O- | sudo apt-key add -
@@ -276,7 +247,7 @@ the <a href="https://www.virtualbox.org/wiki/Downloads" target="_self">VirtualBo
 the <code>apt-get install</code> approach above makes it easier to explicitly get all the
 packages that VirtualBox depends on.
 
-<h3>Vagrant  <a name="___sec4"></a></h3>
+<h3 id="___sec4">Vagrant <a name="___sec4"></a></h3>
 
 Download and install <a href="http://downloads.vagrantup.com/" target="_self">Vagrant</a>.
 Choose the latest version and the installation file corresponding to
@@ -296,7 +267,7 @@ This is true for many Linux systems too, otherwise you must
 add the relevant directory where the <code>vagrant</code> program was installed
 (say <code>/opt/vagrant/bin</code>) to your <code>PATH</code> variable.
 
-<h3>Cygwin (only on Windows)  <a name="___sec5"></a></h3>
+<h3 id="___sec5">Cygwin (only on Windows) <a name="___sec5"></a></h3>
 
 Windows computers do not feature an ssh client and an X server by
 default, which are needed in scientific applications. Therefore, we
@@ -317,32 +288,14 @@ is <code>set PATH=%PATH%;C:\cygwin\bin</code>.
 
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._vagrant_box001.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box003.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end bottom navigation -->
+
 <!-- ------------------- end of main content --------------- -->
 
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
-<ul class="pager">
-  <li class="previous">
-    <a href="._vagrant_box001.html">&larr; Prev</a>
-  </li>
-
-  <li class="next">
-    <a href="._vagrant_box003.html">Next &rarr;</a>
-  </li>
-
-</ul>
 
  </div>
 
@@ -354,6 +307,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 
