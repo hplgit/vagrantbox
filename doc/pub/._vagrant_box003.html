@@ -1,29 +1,5 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
@@ -60,27 +36,18 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 
 
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
+<!-- Here goes the table of contents in the sidebar -->
 <div class="row">
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
           <!-- navigation toc: "Problem setting" --> <li><a href="._vagrant_box001.html#___sec0" style="font-size: 80%;"><b>Problem setting</b></a></li>
      <!-- navigation toc: "Contents of the Vagrant machine" --> <li><a href="._vagrant_box001.html#vagrant:contents" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Contents of the Vagrant machine</a></li>
      <!-- navigation toc: "Installing the necessary software for using Vagrant" --> <li><a href="._vagrant_box002.html#vagrant:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing the necessary software for using Vagrant</a></li>
-     <!-- navigation toc: "Creating the Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec6" style="font-size: 80%;"><b>Creating the Vagrant machine</b></a></li>
-     <!-- navigation toc: "Choice of operating system type" --> <li><a href="._vagrant_box003.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Choice of operating system type</a></li>
-     <!-- navigation toc: "Downloading a base box to create a complete Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Downloading a base box to create a complete Vagrant machine</a></li>
-     <!-- navigation toc: "Making an empty Vagrant machine" --> <li><a href="._vagrant_box003.html#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Making an empty Vagrant machine</a></li>
+     <!-- navigation toc: "Creating the Vagrant machine" --> <li><a href=#___sec6" style="font-size: 80%;"><b>Creating the Vagrant machine</b></a></li>
+     <!-- navigation toc: "Choice of operating system type" --> <li><a href=#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Choice of operating system type</a></li>
+     <!-- navigation toc: "Downloading a base box to create a complete Vagrant machine" --> <li><a href=#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Downloading a base box to create a complete Vagrant machine</a></li>
+     <!-- navigation toc: "Making an empty Vagrant machine" --> <li><a href=#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Making an empty Vagrant machine</a></li>
      <!-- navigation toc: "Installing packages in a complete Vagrant machine" --> <li><a href="._vagrant_box004.html#vagrant:complete:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in a complete Vagrant machine</a></li>
      <!-- navigation toc: "Installing packages in an empty Vagrant machine" --> <li><a href="._vagrant_box005.html#vagrant:empty:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in an empty Vagrant machine</a></li>
      <!-- navigation toc: "Scripts for installing ready-made packages" --> <li><a href="._vagrant_box006.html#vagrant:debpkg" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Scripts for installing ready-made packages</a></li>
@@ -212,23 +179,27 @@ MathJax.Hub.Config({
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 
 
 
 <a name="part0003"></a>
+<!-- begin top navigation -->
+<a href="._vagrant_box002.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box004.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end top navigation -->
+
+<p>
 <!-- !split -->
 
-<h1>Creating the Vagrant machine  <a name="___sec6"></a></h1>
+<h1 id="___sec6">Creating the Vagrant machine <a name="___sec6"></a></h1>
 
 In this section we explain how to select an operating system for
 the Vagrant machine, how to install pre-compiled binary packages,
 how to install (Python) packages from source code, and how to configure
 the machine.
 
-<h2>Choice of operating system type  <a name="___sec7"></a></h2>
+<h2 id="___sec7">Choice of operating system type <a name="___sec7"></a></h2>
 
 The first step of building a Vagrant machine is to choose a plain
 version of an operating system to base the machine on. This is called
@@ -265,7 +236,7 @@ wrong with the installation. It may also happen that different users
 get slightly different environments because they run the installation
 process of their machines at different times.
 
-<h2>Downloading a base box to create a complete Vagrant machine  <a name="___sec8"></a></h2>
+<h2 id="___sec8">Downloading a base box to create a complete Vagrant machine <a name="___sec8"></a></h2>
 
 Paste the copied URL of the chosen box in
 a new browser tab. This action should automatically
@@ -275,7 +246,7 @@ directory and run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant box add mybox precise64.box
 Terminal&gt; vagrant init mybox
 Terminal&gt; vagrant up
@@ -286,14 +257,14 @@ can log into. The
 <code>vagrant</code> directory where these commands are run is
 known as the <em>project directory</em> in the <a href="http://docs.vagrantup.com/v2/" target="_self">Vagrant documentation</a>.
 
-<h2>Making an empty Vagrant machine  <a name="___sec9"></a></h2>
+<h2 id="___sec9">Making an empty Vagrant machine <a name="___sec9"></a></h2>
 
 Make some directory (say) <code>~/vagrant</code>, move to this directory, and
 type
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant init
 </pre></div>
 <p>
@@ -304,7 +275,7 @@ enable X11 graphics. The <code>Vagrantfile</code> looks something like
 
 <p>
 
-<!-- code=ruby (from !bc rbcod) typeset with pygments style "default" -->
+<!-- code=ruby (!bc rbcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #880000">Vagrant</span><span style="color: #666666">.</span>configure(<span style="color: #BA2121">&quot;2&quot;</span>) <span style="color: #008000; font-weight: bold">do</span> <span style="color: #666666">|</span>config<span style="color: #666666">|</span>
   <span style="color: #408080; font-style: italic"># All Vagrant configuration is done here. The most common configuration</span>
   <span style="color: #408080; font-style: italic"># options are documented and commented below. For a complete reference,</span>
@@ -318,32 +289,14 @@ enable X11 graphics. The <code>Vagrantfile</code> looks something like
 </pre></div>
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._vagrant_box002.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box004.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end bottom navigation -->
+
 <!-- ------------------- end of main content --------------- -->
 
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
-<ul class="pager">
-  <li class="previous">
-    <a href="._vagrant_box002.html">&larr; Prev</a>
-  </li>
-
-  <li class="next">
-    <a href="._vagrant_box004.html">Next &rarr;</a>
-  </li>
-
-</ul>
 
  </div>
 
@@ -355,6 +308,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 
