@@ -209,6 +209,12 @@ $ cd ~/texmf
 $ mktexlsr .  # update database for tex packages
 $ cd -
 
+# mdframed.sty (in texlive, but is often needed in the newest version)
+$ git clone https://github.com/marcodaniel/mdframed
+$ make localinstall
+$ cd ..
+$ rm -rf mdframed
+
 # Not strictly necessary (only for creating modified reveal.js styles
 # for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,
 # but the installation is trickier than described on that page...)
