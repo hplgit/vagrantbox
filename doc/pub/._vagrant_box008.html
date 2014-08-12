@@ -1,29 +1,5 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
@@ -60,20 +36,11 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 
 
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
+<!-- Here goes the table of contents in the sidebar -->
 <div class="row">
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
           <!-- navigation toc: "Problem setting" --> <li><a href="._vagrant_box001.html#___sec0" style="font-size: 80%;"><b>Problem setting</b></a></li>
      <!-- navigation toc: "Contents of the Vagrant machine" --> <li><a href="._vagrant_box001.html#vagrant:contents" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Contents of the Vagrant machine</a></li>
      <!-- navigation toc: "Installing the necessary software for using Vagrant" --> <li><a href="._vagrant_box002.html#vagrant:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing the necessary software for using Vagrant</a></li>
@@ -85,11 +52,11 @@ h1, h2, h3, h4, h5, h6 {
      <!-- navigation toc: "Installing packages in an empty Vagrant machine" --> <li><a href="._vagrant_box005.html#vagrant:empty:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Installing packages in an empty Vagrant machine</a></li>
      <!-- navigation toc: "Scripts for installing ready-made packages" --> <li><a href="._vagrant_box006.html#vagrant:debpkg" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Scripts for installing ready-made packages</a></li>
      <!-- navigation toc: "Setting up a default environment with `.bashrc`" --> <li><a href="._vagrant_box007.html#vagrant:bashrc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Setting up a default environment with `.bashrc`</a></li>
-     <!-- navigation toc: "Operating the Vagrant machine" --> <li><a href="._vagrant_box008.html#___sec18" style="font-size: 80%;"><b>Operating the Vagrant machine</b></a></li>
-     <!-- navigation toc: "Operating a complete Vagrant machine" --> <li><a href="._vagrant_box008.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Operating a complete Vagrant machine</a></li>
-     <!-- navigation toc: "Operating an empty Vagrant machine" --> <li><a href="._vagrant_box008.html#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Operating an empty Vagrant machine</a></li>
-     <!-- navigation toc: "Working with an initialized Vagrant machine" --> <li><a href="._vagrant_box008.html#___sec21" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Working with an initialized Vagrant machine</a></li>
-     <!-- navigation toc: "Shared directories" --> <li><a href="._vagrant_box008.html#vagrant:shareddir" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Shared directories</a></li>
+     <!-- navigation toc: "Operating the Vagrant machine" --> <li><a href=#___sec18" style="font-size: 80%;"><b>Operating the Vagrant machine</b></a></li>
+     <!-- navigation toc: "Operating a complete Vagrant machine" --> <li><a href=#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Operating a complete Vagrant machine</a></li>
+     <!-- navigation toc: "Operating an empty Vagrant machine" --> <li><a href=#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Operating an empty Vagrant machine</a></li>
+     <!-- navigation toc: "Working with an initialized Vagrant machine" --> <li><a href=#___sec21" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Working with an initialized Vagrant machine</a></li>
+     <!-- navigation toc: "Shared directories" --> <li><a href=#vagrant:shareddir" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Shared directories</a></li>
      <!-- navigation toc: "Troubleshooting" --> <li><a href="._vagrant_box009.html#vagrant:trouble" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting</a></li>
      <!-- navigation toc: "Stopping the Vagrant machine" --> <li><a href="._vagrant_box009.html#___sec27" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Stopping the Vagrant machine</a></li>
      <!-- navigation toc: "Placing the Vagrant machine in the cloud" --> <li><a href="._vagrant_box009.html#___sec28" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Placing the Vagrant machine in the cloud</a></li>
@@ -212,16 +179,20 @@ MathJax.Hub.Config({
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 
 
 
 <a name="part0008"></a>
+<!-- begin top navigation -->
+<a href="._vagrant_box007.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box009.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end top navigation -->
+
+<p>
 <!-- !split -->
 
-<h1>Operating the Vagrant machine  <a name="___sec18"></a></h1>
+<h1 id="___sec18">Operating the Vagrant machine <a name="___sec18"></a></h1>
 
 For a user, the initialization of a new machine depends on
 whether it is a complete Vagrant machine or an empty Vagrant machine.
@@ -235,7 +206,7 @@ be started from Start - All Programs - Cygwin-X - XWin Server.
 </div>
 
 
-<h2>Operating a complete Vagrant machine  <a name="___sec19"></a></h2>
+<h2 id="___sec19">Operating a complete Vagrant machine <a name="___sec19"></a></h2>
 
 The Vagrant machine <code>course.box</code>, created
 as described in the section <a href="._vagrant_box004.html#vagrant:complete:install">Installing packages in a complete Vagrant machine</a>, can now be
@@ -261,7 +232,7 @@ Run the these commands from the <code>vagrant</code> directory:
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant box add course course.box
 Terminal&gt; vagrant init course
 </pre></div>
@@ -276,7 +247,7 @@ Start (boot) the Vagrant machine:
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant up
 </pre></div>
 <p>
@@ -285,13 +256,13 @@ Log in on the machine:
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant ssh
 </pre></div>
 <p>
 Log out with Ctrl-D as usual in Unix terminal windows.
 
-<h2>Operating an empty Vagrant machine  <a name="___sec20"></a></h2>
+<h2 id="___sec20">Operating an empty Vagrant machine <a name="___sec20"></a></h2>
 
 The user has the files <code>Vagrantfile</code> and some installation script,
 say <code>install_minimal.sh</code> as described in the section <a href="._vagrant_box005.html#vagrant:empty:install">Installing packages in an empty Vagrant machine</a>.
@@ -301,7 +272,7 @@ run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant up
 Terminal&gt; vagrant ssh
 </pre></div>
@@ -309,14 +280,14 @@ Terminal&gt; vagrant ssh
 The first command takes a long time to execute since it runs the
 installation script. Log out with Ctrl-D.
 
-<h2>Working with an initialized Vagrant machine  <a name="___sec21"></a></h2>
+<h2 id="___sec21">Working with an initialized Vagrant machine <a name="___sec21"></a></h2>
 
 The daily work with the Vagrant machine is very easy. Simply go to the <code>vagrant</code>
 directory where the machine resides and run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant up
 Terminal&gt; vagrant ssh
 </pre></div>
@@ -332,7 +303,7 @@ subdirectories.
 Before closing a laptop or shutting it down, it is recommended
 to log out of the Vagrant machine and run <code>vagrant suspend</code>.
 
-<h2>Shared directories <a name="vagrant:shareddir"></a></h2>
+<h2 id="vagrant:shareddir">Shared directories<a name="vagrant:shareddir"></a></h2>
 
 Inside the Vagrant machine, <code>/vagrant</code> is a directory shared with the
 user's file system. More precisely, <code>/vagrant</code> points to the <em>project
@@ -361,7 +332,7 @@ the following Python program in a file <code>test1.py</code>:
 
 <p>
 
-<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">3</span>, <span style="color: #666666">11</span>)
@@ -381,7 +352,7 @@ Run the <code>test1.py</code> program:
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd /vagrant
 Terminal&gt; cd src
 Terminal&gt; python test1.py
@@ -391,32 +362,14 @@ A plot of the curve \( y = e^{-x} \) should now be seen on the screen.
 
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._vagrant_box007.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/prev1.png" border=0 alt="&laquo; Previous"></a>
+
+<a href="._vagrant_box009.html"><img src="http://hplgit.github.io/doconce/bundled/html_images/next1.png" border=0 alt="Next &raquo;"></a>
+<!-- end bottom navigation -->
+
 <!-- ------------------- end of main content --------------- -->
 
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
-<ul class="pager">
-  <li class="previous">
-    <a href="._vagrant_box007.html">&larr; Prev</a>
-  </li>
-
-  <li class="next">
-    <a href="._vagrant_box009.html">Next &rarr;</a>
-  </li>
-
-</ul>
 
  </div>
 
@@ -428,6 +381,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 
