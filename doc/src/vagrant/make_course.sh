@@ -10,6 +10,7 @@ course=$1
 fi
 
 doconce format html $name --html_style=bootstrap_bloodish COURSE=$course --html_output=vagrant_$course
+doconce format rst $name COURSE=$course
 
 if [ $course = "INF1100" ]; then
 scp vagrant_${course}.html inf1100@login.ifi.uio.no:www_docs/

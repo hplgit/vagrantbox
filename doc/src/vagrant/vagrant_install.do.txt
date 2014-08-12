@@ -28,7 +28,7 @@ On Ubuntu, select `vagrant_x.y.z_*.deb` and install it
 by `sudo dpkg -i vagrant_x.y.z_*.deb`.
 
 __Step 3 for Windows users.__ If you have a Windows machine, you
-should install "Cygwin": "http://cygwin.com/install.html".  Download
+must install "Cygwin": "http://cygwin.com/install.html".  Download
 the Cygwin's "setup.exe": "http://cygwin.com/setup.exe" file and
 follow the instructions given by the installer. Make sure you manually
 select the 'X11' category during installation.  Notice that
@@ -51,11 +51,30 @@ Terminal> cd vagrant
 All files that you run from the Vagrant machine are supposed
 to reside in `vagrant/projects` and its subdirectories.
 
-__Step 6.__ Download the file from URL: "${shorturl}" and store it as
+__Step 6.__
+% if COURSE == '1100':
+We have two alternative Vagrant boxes for the INF1100/MAT-INF1100L
+course, one small box running Ubuntu 13.04,
+`${boxname}` (${boxsize} Gb)
+found at URL: "${shorturl}", and one newer and much richer box running
+Ubuntu 14.04, `ubuntu-14.04-amd64.box` (5 Gb)
+found at URL: "http://goo.gl/nSeBCg". Download one of these
+files.
+% elif COURSE == '5620':
+We have two alternative Vagrant boxes for the INF5620
+course, one box running Ubuntu 13.04,
+`${boxname}` (${boxsize} Gb)
+found at URL: "${shorturl}", and one newer and richer box running
+Ubuntu 14.04, `ubuntu-14.04-amd64.box` (5 Gb)
+found at URL: "http://goo.gl/nSeBCg". Download one of these
+files.
+% else:
+Download the file from  and store it as
 `${boxname}` in the `vagrant` directory.  The file is *big*,
-${boxsize} Gb, and may take hours to download. Make sure you have a
-stable Internet connection and that you do not bring your computer to
-sleep before the complete file is downloaded.
+${boxsize} Gb, and may take hours to download.
+% endif
+Make sure you have a stable Internet connection and that you do not
+bring your computer to sleep before the complete file is downloaded.
 
 
 __Step 7.__ Make sure you stand in the `vagrant` directory.
