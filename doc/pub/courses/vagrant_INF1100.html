@@ -58,9 +58,6 @@ MathJax.Hub.Config({
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 
 
 
@@ -80,14 +77,14 @@ MathJax.Hub.Config({
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: "Installation instructions" --> <li><a href="#___sec0" style="font-size: 80%;"><b>Installation instructions</b></a></li>
-     <!-- navigation toc: "Working with the Vagrant machine" --> <li><a href="#___sec1" style="font-size: 80%;"><b>Working with the Vagrant machine</b></a></li>
-     <!-- navigation toc: "Shared directories" --> <li><a href="#vagrant:shareddir" style="font-size: 80%;"><b>Shared directories</b></a></li>
-     <!-- navigation toc: "Troubleshooting" --> <li><a href="#vagrant:trouble" style="font-size: 80%;"><b>Troubleshooting</b></a></li>
-     <!-- navigation toc: "Troubleshooting: shared directory is invisible" --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: shared directory is invisible</a></li>
-     <!-- navigation toc: "Troubleshooting: "couldn't connect to display ..."" --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: "couldn't connect to display ..."</a></li>
-     <!-- navigation toc: "Troubleshooting: Internet is not reachable" --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: Internet is not reachable</a></li>
-     <!-- navigation toc: "Stopping the Vagrant machine" --> <li><a href="#___sec7" style="font-size: 80%;"><b>Stopping the Vagrant machine</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Installation instructions</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;"><b>Working with the Vagrant machine</b></a></li>
+     <!-- navigation toc: --> <li><a href="#vagrant:shareddir" style="font-size: 80%;"><b>Shared directories</b></a></li>
+     <!-- navigation toc: --> <li><a href="#vagrant:trouble" style="font-size: 80%;"><b>Troubleshooting</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: shared directory is invisible</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: "couldn't connect to display ..."</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Troubleshooting: Internet is not reachable</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Stopping the Vagrant machine</b></a></li>
 
         </ul>
       </li>
@@ -123,7 +120,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>Jun 11, 2014</h4></center> <!-- date -->
+<center><h4>Aug 11, 2014</h4></center> <!-- date -->
 <p>
 A Vagrant machine is a file that you can download and install on
 your laptop to get access to a complete Ubuntu computer
@@ -131,12 +128,7 @@ in a Mac or Windows environment. You write programs in your
 host system (Mac or Windows), but run them in an Ubuntu
 environment.
 
-<p>
-
-
-</div> <!-- end jumbotron -->
-
-<h2>Installation instructions  <a name="___sec0"></a></h2>
+<h2 id="___sec0">Installation instructions <a name="___sec0"></a></h2>
 
 <!-- Needs definition of mako variables <a href="http://goo.gl/vRkxuQ" target="_self"><tt>http://goo.gl/vRkxuQ</tt></a>, INF1100, -->
 <!-- 2.7, inf1100.box -->
@@ -157,9 +149,9 @@ according to the operating system on the host.
 For example, if you want to build or run Vagrant machines under Mac OS X, choose
 <em>VirtualBox x.y.z for OS X hosts</em>, where <code>x.y.z</code> is the version number
 of VirtualBox. Double click the downloaded <code>.dmg</code> file to install
-Vagrant. Those who work on a Windows machines will select <em>VirtualBox
-x.y.z for Windows hosts</em>, which downloads an <code>.exe</code> file which can just
-be double clicked to perform the installation.
+VirtualBox. Those who work on a Windows machine will select <em>VirtualBox
+x.y.z for Windows hosts</em>, which downloads an <code>.exe</code> file to be
+double clicked to perform the installation.
 
 <p>
 <b>Step 2.</b>
@@ -175,7 +167,7 @@ by <code>sudo dpkg -i vagrant_x.y.z_*.deb</code>.
 <p>
 <b>Step 3 for Windows users.</b>
 If you have a Windows machine, you
-should install <a href="http://cygwin.com/install.html" target="_self">Cygwin</a>.  Download
+must install <a href="http://cygwin.com/install.html" target="_self">Cygwin</a>.  Download
 the Cygwin's <a href="http://cygwin.com/setup.exe" target="_self">setup.exe</a> file and
 follow the instructions given by the installer. Make sure you manually
 select the 'X11' category during installation.  Notice that
@@ -194,7 +186,7 @@ Move to your home directory and make a new directory
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd
 Terminal&gt; mkdir vagrant
 Terminal&gt; mkdir vagrant/projects
@@ -206,11 +198,11 @@ to reside in <code>vagrant/projects</code> and its subdirectories.
 
 <p>
 <b>Step 6.</b>
-Download the file from <a href="http://goo.gl/vRkxuQ" target="_self"><tt>http://goo.gl/vRkxuQ</tt></a> and store it as
+Download the file from  and store it as
 <code>inf1100.box</code> in the <code>vagrant</code> directory.  The file is <em>big</em>,
-2.7 Gb, and may take hours to download. Make sure you have a
-stable Internet connection and that you do not bring your computer to
-sleep before the complete file is downloaded.
+2.7 Gb, and may take hours to download.
+Make sure you have a stable Internet connection and that you do not
+bring your computer to sleep before the complete file is downloaded.
 
 <p>
 <b>Step 7.</b>
@@ -219,7 +211,7 @@ Run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant box add INF1100 inf1100.box
 Terminal&gt; vagrant init INF1100
 Terminal&gt; vagrant up
@@ -236,7 +228,7 @@ and write the following lines in the file:
 
 <p>
 
-<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">3</span>, <span style="color: #666666">11</span>)
@@ -250,7 +242,7 @@ Run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; cd /vagrant/projects
 Machine&gt; python test1.py
 </pre></div>
@@ -258,14 +250,14 @@ Machine&gt; python test1.py
 You should see a plot of \( e^{-x} \) on the screen. If you encounter
 any problems, read the section <a href="#vagrant:trouble">Troubleshooting</a>.
 
-<h2>Working with the Vagrant machine  <a name="___sec1"></a></h2>
+<h2 id="___sec1">Working with the Vagrant machine <a name="___sec1"></a></h2>
 
 The daily work with the Vagrant machine is very easy. Simply go to the <code>vagrant</code>
 directory where the machine resides and run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; vagrant up
 Terminal&gt; vagrant ssh
 </pre></div>
@@ -281,7 +273,7 @@ subdirectories.
 Before closing a laptop or shutting it down, it is recommended
 to log out of the Vagrant machine and run <code>vagrant suspend</code>.
 
-<h2>Shared directories <a name="vagrant:shareddir"></a></h2>
+<h2 id="vagrant:shareddir">Shared directories<a name="vagrant:shareddir"></a></h2>
 
 Inside the Vagrant machine, <code>/vagrant</code> is a directory shared with the
 user's file system. More precisely, <code>/vagrant</code> points to the <em>project
@@ -310,7 +302,7 @@ the following Python program in a file <code>test1.py</code>:
 
 <p>
 
-<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">3</span>, <span style="color: #666666">11</span>)
@@ -330,7 +322,7 @@ Run the <code>test1.py</code> program:
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd /vagrant
 Terminal&gt; cd src
 Terminal&gt; python test1.py
@@ -339,11 +331,14 @@ Terminal&gt; python test1.py
 A plot of the curve \( y = e^{-x} \) should now be seen on the screen.
 
 <p>
+<!-- potential-jumbotron-button -->
+</div> <!-- end jumbotron -->
+
 <!-- !split -->
 
-<h2>Troubleshooting <a name="vagrant:trouble"></a></h2>
+<h2 id="vagrant:trouble">Troubleshooting<a name="vagrant:trouble"></a></h2>
 
-<h3>Troubleshooting: shared directory is invisible  <a name="___sec4"></a></h3>
+<h3 id="___sec4">Troubleshooting: shared directory is invisible <a name="___sec4"></a></h3>
 
 It may happen that the <code>/vagrant</code> directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
@@ -351,7 +346,7 @@ run
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; sudo /etc/init.d/vboxadd setup
 </pre></div>
 <p>
@@ -368,7 +363,7 @@ Then do <code>vagrant ssh</code> and take an <code>ls /vagrant</code> to see tha
 files in the project directory (e.g., <code>Vagrantfile</code> and the Vagrant
 box) are visible.
 
-<h3>Troubleshooting: "couldn't connect to display ..."  <a name="___sec5"></a></h3>
+<h3 id="___sec5">Troubleshooting: "couldn't connect to display ..." <a name="___sec5"></a></h3>
 
 This error message points to the problem that X11 graphics on the
 Vagrant machine cannot be shown on the host's screen.
@@ -384,14 +379,14 @@ run Applications - Utilities - X11, while on Windows, go to
 Start - All Programs - Cygwin-X - XWin Server. Log out of the
 Vagrant machine (Ctrl-D) and in again (<code>vagrant ssh</code>).
 
-<h3>Troubleshooting: Internet is not reachable  <a name="___sec6"></a></h3>
+<h3 id="___sec6">Troubleshooting: Internet is not reachable <a name="___sec6"></a></h3>
 
 A test if Internet is reachable is to run a <code>ping</code> command inside
 the machine, e.g.,
 
 <p>
 
-<!-- code=text (from !bc sys) typeset with pygments style "default" -->
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Machine&gt; ping us.ubuntu.archive.com
 </pre></div>
 <p>
@@ -399,7 +394,7 @@ A hanging command indicates that Internet is not reachable.
 Log out of the box, run <code>vagrant reload</code>, and
 <code>vagrant ssh</code>. Try the <code>ping</code> command again.
 
-<h2>Stopping the Vagrant machine  <a name="___sec7"></a></h2>
+<h2 id="___sec7">Stopping the Vagrant machine <a name="___sec7"></a></h2>
 
 There are three ways to stop the virtual Vagrant machine from the
 host (i.e., you must be logged out by Ctrl-D from the machine):
