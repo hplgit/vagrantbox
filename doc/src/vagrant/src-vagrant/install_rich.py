@@ -115,6 +115,7 @@ system('sudo apt-get -y install libpng-dev')
 system('sudo pip install numpy')
 system('sudo pip install sympy')
 system('sudo pip install cython')
+system('sudo pip install numexpr')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
@@ -131,6 +132,7 @@ system('sudo pip install django')
 system('sudo pip install mako')
 system('sudo pip install flake8')
 system('sudo pip install pylint')
+system('sudo pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
@@ -205,6 +207,7 @@ system('sudo apt-get -y install texlive')
 system('sudo apt-get -y install latex-beamer')
 system('sudo apt-get -y install texlive-extra-utils')
 system('sudo apt-get -y install texlive-latex-extra')
+system('sudo apt-get -y install texlive-latex-recommended')
 system('sudo apt-get -y install texlive-math-extra')
 system('sudo apt-get -y install texlive-font-utils')
 system('sudo apt-get -y install texlive-humanities')
@@ -216,6 +219,8 @@ system('sudo apt-get -y install libav-tools')
 #ffmpeg
 system('sudo apt-get -y install libavcodec-extra-54')
 system('sudo apt-get -y install libx264-dev')
+# libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
+system('sudo apt-get -y install libavcodec-extra-54')
 #x264 h264enc
 # Animations: players
 system('sudo apt-get -y install mplayer')
@@ -301,6 +306,9 @@ cd ../..
 
 """
 system(cmd)
+system('sudo pip install paver')
+system('sudo pip install sphinxcontrib-paverutils')
+system('sudo pip install diff_match_patch')
 system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
 system('sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish')
 

@@ -116,6 +116,7 @@ texlive
 latex-beamer
 texlive-extra-utils
 texlive-latex-extra
+texlive-latex-recommended
 texlive-math-extra
 texlive-font-utils
 texlive-humanities
