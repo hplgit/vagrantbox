@@ -111,6 +111,7 @@ apt_install libpng-dev
 pip_install numpy
 pip_install sympy
 pip_install cython
+pip_install numexpr
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
@@ -127,6 +128,7 @@ pip_install django
 pip_install mako
 pip_install flake8
 pip_install pylint
+pip_install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev
@@ -201,6 +203,7 @@ apt_install texlive
 apt_install latex-beamer
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
+apt_install texlive-latex-recommended
 apt_install texlive-math-extra
 apt_install texlive-font-utils
 apt_install texlive-humanities
@@ -212,6 +215,8 @@ apt_install libav-tools
 #ffmpeg
 apt_install libavcodec-extra-54
 apt_install libx264-dev
+# libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
+apt_install libavcodec-extra-54
 #x264 h264enc
 # Animations: players
 apt_install mplayer
@@ -287,6 +292,9 @@ cd doconce
 sudo python setup.py install
 cd ../..
 # Install Doconce dependencies not covered above
+pip_install paver
+pip_install sphinxcontrib-paverutils
+pip_install diff_match_patch
 pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
 
@@ -306,6 +314,12 @@ cd ../../..
 cd ~/texmf
 mktexlsr .
 cd -
+
+# mdframed.sty (in texlive, but is often needed in the newest version)
+git clone https://github.com/marcodaniel/mdframed
+make localinstall
+cd ..
+rm -rf mdframed
 
 # Not strictly necessary (only for creating modified reveal.js styles
 # for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,
@@ -329,5 +343,4 @@ sudo apt-get -y autoremove
 
 # Install FEniCS manually via apt-get, run fenics_apt.sh,
 # or via full compile with Dorsal, run fenics_dorsal.sh
-
 echo "Everything is successfully installed!"
