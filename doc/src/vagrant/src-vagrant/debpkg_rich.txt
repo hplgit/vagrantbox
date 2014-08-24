@@ -1,3 +1,7 @@
+# Install downloaded source code in ~/srclib
+# cd
+$ if [ ! -d srclib ]; then mkdir srclib; fi
+
 # Editors
 emacs python-mode gedit vim ispell
 
@@ -28,8 +32,7 @@ gccxml
 
 # SWIG 3.0.0
 wget
-$ mkdir -p ~/srclib
-$ cd ~/srclib
+$ cd srclib
 $ wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
 $ tar zxf swig-3.0.0.tar.gz
 $ cd swig-3.0.0
@@ -162,7 +165,6 @@ language-pack-nb-base
 
 # Download source code and install in srclib subdirectory
 
-$ if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 $ cd srclib
 $ hg clone http://code.google.com/p/scitools
