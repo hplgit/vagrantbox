@@ -26,7 +26,15 @@ def system(cmd):
     f = open(logfile, 'a'); f.write(output); f.close()
 
 system('sudo apt-get update --fix-missing')
+# Install downloaded source code in ~/srclib
+# cd
+
+cmd = """
+if [ ! -d srclib ]; then mkdir srclib; fi
 # Editors
+
+"""
+system(cmd)
 system('sudo apt-get -y install emacs')
 system('sudo apt-get -y install python-mode')
 system('sudo apt-get -y install gedit')
@@ -78,8 +86,7 @@ system('sudo apt-get -y install gccxml')
 system('sudo apt-get -y install wget')
 
 cmd = """
-mkdir -p ~/srclib
-cd ~/srclib
+cd srclib
 wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
 tar zxf swig-3.0.0.tar.gz
 cd swig-3.0.0
@@ -206,6 +213,7 @@ system('sudo apt-get -y install texlive')
 system('sudo apt-get -y install latex-beamer')
 system('sudo apt-get -y install texlive-extra-utils')
 system('sudo apt-get -y install texlive-latex-extra')
+system('sudo apt-get -y install texlive-latex-recommended')
 system('sudo apt-get -y install texlive-math-extra')
 system('sudo apt-get -y install texlive-font-utils')
 system('sudo apt-get -y install texlive-humanities')
@@ -269,11 +277,9 @@ system('sudo apt-get -y install language-pack-nb-base')
 
 # Download source code and install in srclib subdirectory
 
-
-cmd = """
-if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 
+cmd = """
 cd srclib
 hg clone http://code.google.com/p/scitools
 cd scitools

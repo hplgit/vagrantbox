@@ -26,6 +26,10 @@ function pip_install {
 
 sudo apt-get update --fix-missing
 
+# Install downloaded source code in ~/srclib
+# cd
+if [ ! -d srclib ]; then mkdir srclib; fi
+
 # Editors
 apt_install emacs
 apt_install python-mode
@@ -76,8 +80,7 @@ apt_install gccxml
 
 # SWIG 3.0.0
 apt_install wget
-mkdir -p ~/srclib
-cd ~/srclib
+cd srclib
 wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
 tar zxf swig-3.0.0.tar.gz
 cd swig-3.0.0
@@ -202,6 +205,7 @@ apt_install texlive
 apt_install latex-beamer
 apt_install texlive-extra-utils
 apt_install texlive-latex-extra
+apt_install texlive-latex-recommended
 apt_install texlive-math-extra
 apt_install texlive-font-utils
 apt_install texlive-humanities
@@ -265,7 +269,6 @@ apt_install language-pack-nb-base
 
 # Download source code and install in srclib subdirectory
 
-if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 cd srclib
 hg clone http://code.google.com/p/scitools
