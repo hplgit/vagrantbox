@@ -111,6 +111,7 @@ apt_install libpng-dev
 pip_install numpy
 pip_install sympy
 pip_install cython
+pip_install numexpr
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
@@ -212,6 +213,8 @@ apt_install libav-tools
 #ffmpeg
 apt_install libavcodec-extra-54
 apt_install libx264-dev
+# libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
+apt_install libavcodec-extra-54
 #x264 h264enc
 # Animations: players
 apt_install mplayer
@@ -280,13 +283,16 @@ cd scientificpython
 sudo python setup.py install
 cd ../..
 
-# Doconce (must clone with https since ssh keys are not present in the box)
+# DocOnce (must clone with https since ssh keys are not present in the box)
 cd srclib
 git clone https://github.com/hplgit/doconce.git
-cd doconce
-sudo python setup.py install
-cd ../..
-# Install Doconce dependencies not covered above
+if [ $? -ne 0 ]; then exit; fi
+if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
+
+# Install DocOnce dependencies not covered above
+pip_install paver
+pip_install sphinxcontrib-paverutils
+pip_install diff_match_patch
 pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
 
@@ -294,7 +300,11 @@ pip_install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
 pip_install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
 pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
 pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-#pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+
+pip_install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
+#pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
+pip_install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
+
 # Ptex2tex
 cd srclib
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
@@ -306,6 +316,10 @@ cd ../../..
 cd ~/texmf
 mktexlsr .
 cd -
+
+# mdframed.sty (in texlive, but is often needed in the newest version)
+git clone https://github.com/marcodaniel/mdframed
+if [ -d mdframed ]; then cd mdframed; make localinstall; cd ..; fi
 
 # Not strictly necessary (only for creating modified reveal.js styles
 # for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,
@@ -329,5 +343,4 @@ sudo apt-get -y autoremove
 
 # Install FEniCS manually via apt-get, run fenics_apt.sh,
 # or via full compile with Dorsal, run fenics_dorsal.sh
-
 echo "Everything is successfully installed!"
