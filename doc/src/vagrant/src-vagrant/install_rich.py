@@ -289,20 +289,20 @@ system('sudo pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy'
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
 
+
 cmd = """
 cd srclib
 hg clone https://bitbucket.org/khinsen/scientificpython
 cd scientificpython
 sudo python setup.py install
 cd ../..
-# Doconce (must clone with https since ssh keys are not present in the box)
+# DocOnce (must clone with https since ssh keys are not present in the box)
 
 cd srclib
 git clone https://github.com/hplgit/doconce.git
-cd doconce
-sudo python setup.py install
-cd ../..
-# Install Doconce dependencies not covered above
+if [ $? -ne 0 ]; then exit; fi
+if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
+# Install DocOnce dependencies not covered above
 
 """
 system(cmd)
@@ -316,7 +316,11 @@ system('sudo pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=
 system('sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme')
 system('sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized')
 system('sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs')
-#pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+
+system('sudo pip install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce')
+#pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
+system('sudo pip install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console')
+
 # Ptex2tex
 
 
