@@ -26,6 +26,10 @@ function pip_install {
 
 sudo apt-get update --fix-missing
 
+# Install downloaded source code in ~/srclib
+# cd
+if [ ! -d srclib ]; then mkdir srclib; fi
+
 # Editors
 apt_install emacs
 apt_install python-mode
@@ -76,8 +80,7 @@ apt_install gccxml
 
 # SWIG 3.0.0
 apt_install wget
-mkdir -p ~/srclib
-cd ~/srclib
+cd srclib
 wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
 tar zxf swig-3.0.0.tar.gz
 cd swig-3.0.0
@@ -128,7 +131,6 @@ pip_install django
 pip_install mako
 pip_install flake8
 pip_install pylint
-pip_install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev
@@ -267,7 +269,6 @@ apt_install language-pack-nb-base
 
 # Download source code and install in srclib subdirectory
 
-if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 cd srclib
 hg clone http://code.google.com/p/scitools
@@ -288,17 +289,10 @@ cd ../..
 # DocOnce (must clone with https since ssh keys are not present in the box)
 cd srclib
 git clone https://github.com/hplgit/doconce.git
-<<<<<<< HEAD
-cd doconce
-sudo python setup.py install
-cd ../..
-# Install Doconce dependencies not covered above
-=======
 if [ $? -ne 0 ]; then exit; fi
 if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
 
 # Install DocOnce dependencies not covered above
->>>>>>> master
 pip_install paver
 pip_install sphinxcontrib-paverutils
 pip_install diff_match_patch
@@ -328,13 +322,7 @@ cd -
 
 # mdframed.sty (in texlive, but is often needed in the newest version)
 git clone https://github.com/marcodaniel/mdframed
-<<<<<<< HEAD
-make localinstall
-cd ..
-rm -rf mdframed
-=======
 if [ -d mdframed ]; then cd mdframed; make localinstall; cd ..; fi
->>>>>>> master
 
 # Not strictly necessary (only for creating modified reveal.js styles
 # for HTML5 slides, see https://github.com/hakimel/reveal.js/#installation,

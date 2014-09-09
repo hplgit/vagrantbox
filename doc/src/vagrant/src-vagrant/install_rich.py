@@ -26,7 +26,15 @@ def system(cmd):
     f = open(logfile, 'a'); f.write(output); f.close()
 
 system('sudo apt-get update --fix-missing')
+# Install downloaded source code in ~/srclib
+# cd
+
+cmd = """
+if [ ! -d srclib ]; then mkdir srclib; fi
 # Editors
+
+"""
+system(cmd)
 system('sudo apt-get -y install emacs')
 system('sudo apt-get -y install python-mode')
 system('sudo apt-get -y install gedit')
@@ -78,8 +86,7 @@ system('sudo apt-get -y install gccxml')
 system('sudo apt-get -y install wget')
 
 cmd = """
-mkdir -p ~/srclib
-cd ~/srclib
+cd srclib
 wget -N http://downloads.sourceforge.net/swig/swig-3.0.0.tar.gz
 tar zxf swig-3.0.0.tar.gz
 cd swig-3.0.0
@@ -132,7 +139,6 @@ system('sudo pip install django')
 system('sudo pip install mako')
 system('sudo pip install flake8')
 system('sudo pip install pylint')
-system('sudo pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
@@ -271,11 +277,9 @@ system('sudo apt-get -y install language-pack-nb-base')
 
 # Download source code and install in srclib subdirectory
 
-
-cmd = """
-if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 
+cmd = """
 cd srclib
 hg clone http://code.google.com/p/scitools
 cd scitools
