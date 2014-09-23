@@ -17,7 +17,7 @@ function apt_install {
 }
 
 function pip_install {
-  sudo pip install "$@"
+  sudo pip install --upgrade "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
@@ -28,6 +28,10 @@ sudo apt-get update --fix-missing
 
 # Minimal installation for a Python ecosystem
 # for scientific computing
+
+# Install downloaded source code in ~/srclib
+# cd
+if [ ! -d srclib ]; then mkdir srclib; fi
 
 # Editors
 apt_install emacs
