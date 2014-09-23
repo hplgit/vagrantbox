@@ -29,7 +29,15 @@ system('sudo apt-get update --fix-missing')
 # Minimal installation for a Python ecosystem
 # for scientific computing
 
+# Install downloaded source code in ~/srclib
+# cd
+
+cmd = """
+if [ ! -d srclib ]; then mkdir srclib; fi
 # Editors
+
+"""
+system(cmd)
 system('sudo apt-get -y install emacs')
 system('sudo apt-get -y install python-mode')
 system('sudo apt-get -y install gedit')
