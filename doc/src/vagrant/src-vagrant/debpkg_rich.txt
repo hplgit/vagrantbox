@@ -55,7 +55,11 @@ python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
 libfreetype6-dev libpng-dev
-pip install numpy
+# ScientificPython does not work with numpy version >= 1.9
+# (FEniCS depends on ScientificPython, SciTools too)
+#pip install numpy
+# Alternative: patch newer numpy with the oldnumeric and numarray modules
+pip install numpy==1.8.2
 pip install sympy
 pip install cython
 pip install numexpr
