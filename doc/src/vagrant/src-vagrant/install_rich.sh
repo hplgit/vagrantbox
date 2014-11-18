@@ -111,7 +111,11 @@ apt_install python-dev
 # (otherwise pip install matplotlib does not work)
 apt_install libfreetype6-dev
 apt_install libpng-dev
-pip_install numpy
+# ScientificPython does not work with numpy version >= 1.9
+# (FEniCS depends on ScientificPython, SciTools too)
+#pip install numpy
+# Alternative: patch newer numpy with the oldnumeric and numarray modules
+pip_install numpy==1.8.2
 pip_install sympy
 pip_install cython
 pip_install numexpr

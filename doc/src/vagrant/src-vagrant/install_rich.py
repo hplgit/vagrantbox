@@ -119,7 +119,11 @@ system('sudo apt-get -y install python-dev')
 # (otherwise pip install matplotlib does not work)
 system('sudo apt-get -y install libfreetype6-dev')
 system('sudo apt-get -y install libpng-dev')
-system('sudo pip install numpy')
+# ScientificPython does not work with numpy version >= 1.9
+# (FEniCS depends on ScientificPython, SciTools too)
+#pip install numpy
+# Alternative: patch newer numpy with the oldnumeric and numarray modules
+system('sudo pip install numpy==1.8.2')
 system('sudo pip install sympy')
 system('sudo pip install cython')
 system('sudo pip install numexpr')
