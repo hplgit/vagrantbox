@@ -1,11 +1,11 @@
-.. Automatically generated Sphinx-extended reStructuredText file from Doconce source
+.. Automatically generated reST file from Doconce source
    (https://github.com/hplgit/doconce/)
 
 Creating Vagrant Machines for Distribution of Software Environments
 ===================================================================
 
 :Author: Hans Petter Langtangen, Anders E. Johansen
-:Date: Jun 11, 2014
+:Date: May 14, 2014
 
 Scientific software soon gets very complicated to install because
 packages build on numerous other packages, some of which may be hard
@@ -46,9 +46,11 @@ spend a minimum of efforts on offering
 or using a complete computing environment with much
 sophisticated, hard-to-install mathematical software.
 
+
 .. index:: host
 
 .. index:: Vagrant machine
+
 
 By *host* we mean the operating system
 used to build or run a Vagrant machine. Operating system commands
@@ -93,8 +95,11 @@ key principle for reproducible science. Users may have many Vagrant
 machines on their computers and switch between the computing
 environments.
 
+
 .. figure:: vm_icon.png
-   :width: 200
+   :width: 100
+
+
 
 .. _vagrant:contents:
 
@@ -144,9 +149,11 @@ build from scratch, but as long as Debian versions are offered
 (which is the case with PETSc and FEniCS), installation on a Debian-based
 system like Ubuntu is still just a trivial ``apt-get install`` command.
 
+
 .. index:: .bashrc file
 
 .. index:: .rsyncexclude file
+
 
 In the Vagrant machine, we create two directories:
 
@@ -173,10 +180,12 @@ Installing the necessary software for using Vagrant
 Before going into details on how to utilize Vagrant, you need to
 have it on your host system.
 
+
 .. index:: VirtualBox installation
 
 .. index::
    single: installation of; VirtualBox
+
 
 VirtualBox
 ~~~~~~~~~~
@@ -193,6 +202,7 @@ be double clicked to perform the installation.
 Installing VirtualBox on Ubuntu and other Linux systems
 can be challenging.
 Here is a recipe. Start with
+
 
 .. code-block:: text
 
@@ -224,10 +234,13 @@ the `VirtualBox site <https://www.virtualbox.org/wiki/Downloads>`_, because
 the ``apt-get install`` approach above makes it easier to explicitly get all the
 packages that VirtualBox depends on.
 
+
+
 .. index:: Vagrant installation
 
 .. index::
    single: installation of; Vagrant
+
 
 Vagrant
 ~~~~~~~
@@ -249,10 +262,12 @@ This is true for many Linux systems too, otherwise you must
 add the relevant directory where the ``vagrant`` program was installed
 (say ``/opt/vagrant/bin``) to your ``PATH`` variable.
 
+
 .. index:: Cygwin installation
 
 .. index::
    single: installation of; Cygwin
+
 
 Cygwin (only on Windows)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -286,9 +301,11 @@ the machine.
 Choice of operating system type
 -------------------------------
 
+
 .. index:: base box
 
 .. index:: precise64.box (Ubuntu base box)
+
 
 The first step of building a Vagrant machine is to choose a plain
 version of an operating system to base the machine on. This is called
@@ -302,9 +319,11 @@ list.  This is a version of Ubuntu 12.04
 version 12.04).  Click on *Copy* to copy the URL.
 You have now two choices:
 
+
 .. index:: complete Vagrant machine
 
 .. index:: empty Vagrant machine
+
 
 1. you can build and distribute a complete
    virtual machine, or
@@ -330,17 +349,22 @@ process of their machines at different times.
 Downloading a base box to create a complete Vagrant machine
 -----------------------------------------------------------
 
+
 .. index:: vagrant box add
+
 
 .. index:: vagrant init
 
+
 .. index:: vagrant up
+
 
 Paste the copied URL of the chosen box in
 a new browser tab. This action should automatically
 download a file ``precise64.box``.
 Say you store this file in a directory ``~/vagrant``. Go to this
 directory and run
+
 
 .. code-block:: text
 
@@ -356,12 +380,15 @@ known as the *project directory* in the `Vagrant documentation <http://docs.vagr
 Making an empty Vagrant machine
 -------------------------------
 
+
 .. index:: vagrant init
 
 .. index:: Vagrantfile
 
+
 Make some directory (say) ``~/vagrant``, move to this directory, and
 type
+
 
 .. code-block:: text
 
@@ -371,6 +398,7 @@ This command creates a ``Vagrantfile``. Invoke the file in a text editor
 and replace the line ``config.vm.box = "base"`` by the URL to the
 base box and add another line ``config.ssh.forward_x11 = true`` to
 enable X11 graphics. The ``Vagrantfile`` looks something like
+
 
 .. code-block:: ruby
 
@@ -384,6 +412,8 @@ enable X11 graphics. The ``Vagrantfile`` looks something like
           config.ssh.forward_x11 = true
           ...
         end
+
+
 
 .. !split
 
@@ -419,6 +449,7 @@ the section :ref:`vagrant:debpkg` and the latter two in
 the section :ref:`vagrant:bashrc`. Edit the files to your users' needs.
 Then run
 
+
 .. code-block:: text
 
         Terminal> python deb2sh.py debpkg_minimal.txt
@@ -432,9 +463,11 @@ You may alternatively download the more comprehensive `debpkg.txt <https://githu
 package list and use that file as a starting point. Running ``deb2sh.py debpkg.txt``
 will produce the scripts ``install.sh`` and ``install.py``.
 
+
 .. index:: vagrant ssh
 
 .. index:: /vagrant (shared) directory
+
 
 Installing files and packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -447,6 +480,7 @@ machine (see the section :ref:`vagrant:shareddir`
 for more details). The relevant login command is ``vagrant ssh``, here
 followed by two copy commands:
 
+
 .. code-block:: text
 
         Terminal> vagrant ssh
@@ -455,11 +489,13 @@ followed by two copy commands:
 
 Now you can run the (lengthy) installation process by
 
+
 .. code-block:: text
 
         Machine> bash /vagrant/install_minimal.sh
 
 or
+
 
 .. code-block:: text
 
@@ -474,12 +510,16 @@ You may want to include the installation scripts in the box so that
 users can see exactly what has been installed and rerun installation
 commands if necessary (e.g., at a later stage to update the software).
 
+
 .. code-block:: text
 
         Machine> cp /vagrant/install_minimal.sh .
         Machine> cp /vagrant/install_minimal.py .
 
+
+
 .. index:: X11 graphics
+
 
 Enabling X11 graphics
 ~~~~~~~~~~~~~~~~~~~~~
@@ -489,6 +529,7 @@ display the graphics on the host appropriately. To this end, you
 need to enable X11 graphics on the host by editing the file ``Vagrantfile``
 in the project directory so that it includes the
 line ``config.ssh.forward_x11 = true``:
+
 
 .. code-block:: ruby
 
@@ -507,7 +548,9 @@ on Windows.
 A simple application just to test X11 is to run ``xterm`` from the Vagrant
 machine. A terminal window will pop up on the host.
 
+
 .. index:: vagrant package
+
 
 Packaging a new box
 ~~~~~~~~~~~~~~~~~~~
@@ -517,6 +560,7 @@ we need to package
 the installed virtual environment into a box in order to distribute it to other
 users. Log out of the machine and finalize the machine by
 running the ``vagrant package`` command in the project directory:
+
 
 .. code-block:: text
 
@@ -530,16 +574,21 @@ a fully functioning Ubuntu machine in ``course.box`` that will work
 seamlessly with
 X11 graphics on the host. Users can just do
 
+
+
 .. code-block:: text
+
 
         Terminal> vagrant box add course course.box
         Terminal> vagrant init course
         Terminal> vagrant up
         Terminal> vagrant ssh
 
+
 A real machine (containing what is listed earlier, plus the
 `FEniCS <http://fenicsproject.org>`_ software) can be downloaded
 from Google Drive at `<http://goo.gl/ta977B>`_ (note the file size: 3.8Gb!).
+
 
 .. !split
 
@@ -561,19 +610,25 @@ the section :ref:`vagrant:bashrc`, but that is easiest done by letting
 the installation script download the files from site where they
 are available.  Relevant lines may be
 
+
 .. code-block:: text
+
 
         $ cd $HOME
         $ wget http://tinyurl.com/m88bljf/.bashrc
         $ wget http://tinyurl.com/m88bljf/.rsyncexclude
 
+
+
 .. index:: Vagrantfile
+
 
 To ensure that the user's initialization process of the machine
 invokes an installation of the desired packages, you need to
 add a line to ``Vagrantfile`` that runs the Bash script.
 Say the name of the script is ``install_minimal.sh``.
 The relevant line is shown below:
+
 
 .. code-block:: ruby
 
@@ -584,8 +639,10 @@ The relevant line is shown below:
           ...
         end
 
+
 Users must now have the files ``Vagrantfile`` and ``install_minimal.sh``
 to create a complete Vagrant machine on their computers.
+
 
 .. !split
 
@@ -594,15 +651,19 @@ to create a complete Vagrant machine on their computers.
 Scripts for installing ready-made packages
 ------------------------------------------
 
+
 .. index:: deb2sh.py script
 
 .. index:: debpkg.txt package lists
+
 
 .. index:: installation scripts
 
 .. index:: scripts for installing packages
 
+
 .. index:: package installation
+
 
 We have developed a little tool where one can list the desired Debian
 or Python packages in a computing environment in a file with default name
@@ -622,14 +683,18 @@ then be fixed, or the package must in worst case be removed (just
 comment out the install line(s) in the Bash or Python script).  The
 script can thereafter be rerun again.
 
+
 .. index:: sudo apt-get install
 
 .. index:: pip install
 
+
 The following is an extract of packages as they are listed
 in the mentioned ``debpkg_minimal.txt`` file:
 
+
 .. code-block:: text
+
 
         # Minimal installation for a Python ecosystem
         # for scientific computing
@@ -665,6 +730,7 @@ in the mentioned ``debpkg_minimal.txt`` file:
         $ sudo python setup.py install
         $ cd ../..
 
+
 The syntax has four elements:
 
 1. comment lines are just copied to the
@@ -687,6 +753,7 @@ install the package manually by running ``setup.py`` the usual way.
 
 Some examples on lines in the automatically generated ``install_minimal.sh``
 script are
+
 
 .. code-block:: bash
 
@@ -739,6 +806,7 @@ script are
         unix_command sudo python setup.py install
 
 
+
 .. note::
    
     * Installation commands may fail. Therefore we have made separate
@@ -757,6 +825,7 @@ script are
 
 The corresponding lines in the equivalent, automatically
 generated ``install.py`` file look as follows.
+
 
 .. code-block:: python
 
@@ -792,6 +861,8 @@ We can use the Bash or Python script to easily automate installation
 of packages in the Vagrant machine. More powerful, industry standard
 tools for setting up complete software environments are `Chef <http://www.opscode.com/>`_ and `Puppet <https://puppetlabs.com/>`_.
 
+
+
 .. !split
 
 .. _vagrant:bashrc:
@@ -799,15 +870,19 @@ tools for setting up complete software environments are `Chef <http://www.opscod
 Setting up a default environment with ``.bashrc``
 -------------------------------------------------
 
+
 .. index:: .bashrc file
 
 .. index:: .rsyncexclude file
+
 
 We should include a brief ``.bashrc`` file in the Vagrant
 machine as a starting point for the
 user's customization of her Unix environment. Here is an `example <https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.bashrc>`_:
 
+
 .. code-block:: text
+
 
         # ~/.bashrc: executed by bash(1) for non-login shells.
         # see /usr/share/doc/bash/examples/startup-files for examples
@@ -856,7 +931,9 @@ The handy ``rsync`` commands for copying files require a list of files
 to ignore, so a file `.rsyncexclude <https://github.com/hplgit/vagrantbox/tree/master/doc/src/vagrant/src-vagrant/.rsyncexclude>`_ must
 be present in the home holder:
 
+
 .. code-block:: text
+
 
         .#*
         *.rsync~
@@ -878,6 +955,9 @@ be present in the home holder:
         *.tar.gz
         *.tgz
         *.pyc
+
+
+
 
 .. !split
 
@@ -920,10 +1000,12 @@ directory tree on the host.
 **Step 3.**
 Run the these commands from the ``vagrant`` directory:
 
+
 .. code-block:: text
 
         Terminal> vagrant box add course course.box
         Terminal> vagrant init course
+
 
 **Step 4.**
 Start X11 on the host: run Applications - Utilities - X11 on a Mac,
@@ -932,12 +1014,15 @@ or Start - All Programs - Cygwin-X - XWin Server on Windows.
 **Step 5.**
 Start (boot) the Vagrant machine:
 
+
 .. code-block:: text
 
         Terminal> vagrant up
 
+
 **Step 5.**
 Log in on the machine:
+
 
 .. code-block:: text
 
@@ -954,6 +1039,7 @@ The user should make some directory ``vagrant``, copy ``Vagrantfile``
 and ``install_minimal.sh`` to this directory, and from this directory
 run
 
+
 .. code-block:: text
 
         Terminal> vagrant up
@@ -962,11 +1048,13 @@ run
 The first command takes a long time to execute since it runs the
 installation script. Log out with Ctrl-D.
 
+
 Working with an initialized Vagrant machine
 -------------------------------------------
 
 The daily work with the Vagrant machine is very easy. Simply go to the ``vagrant``
 directory where the machine resides and run
+
 
 .. code-block:: text
 
@@ -982,6 +1070,7 @@ subdirectories.
 
 Before closing a laptop or shutting it down, it is recommended
 to log out of the Vagrant machine and run ``vagrant suspend``.
+
 
 .. _vagrant:shareddir:
 
@@ -1011,6 +1100,7 @@ were run in a directory ``myubuntu``. On the host,
 create a subdirectory ``src`` of ``myubuntu``. Start an editor and type in
 the following Python program in a file ``test1.py``:
 
+
 .. code-block:: python
 
         import numpy as np
@@ -1028,6 +1118,7 @@ log in again (``vagrant ssh``).
 
 Run the ``test1.py`` program:
 
+
 .. code-block:: text
 
         Terminal> cd /vagrant
@@ -1035,6 +1126,7 @@ Run the ``test1.py`` program:
         Terminal> python test1.py
 
 A plot of the curve :math:`y = e^{-x}` should now be seen on the screen.
+
 
 .. !split
 
@@ -1048,13 +1140,16 @@ It may happen that the ``/vagrant`` directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
 run
 
+
 .. code-block:: text
 
         Machine> sudo /etc/init.d/vboxadd setup
 
 inside the Vagrant machine. Second, log out and run
 
+
 .. code-block:: text
+
 
         Terminal> sudo vagrant reload
 
@@ -1080,11 +1175,13 @@ run Applications - Utilities - X11, while on Windows, go to
 Start - All Programs - Cygwin-X - XWin Server. Log out of the
 Vagrant machine (Ctrl-D) and in again (``vagrant ssh``).
 
+
 Troubleshooting: Internet is not reachable  (1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A test if Internet is reachable is to run a ``ping`` command inside
 the machine, e.g.,
+
 
 .. code-block:: text
 
@@ -1121,10 +1218,12 @@ Vagrant machines. To prevent such actions, click on the Google Drive
 icon on all machines that synchronize the account and deselect the
 directory where you store the Vagrant machine(s).
 
+
 Using VMWare Fusion
 -------------------
 
 Not written yet.
+
 
 Documentation of Vagrant
 ------------------------
@@ -1141,13 +1240,16 @@ Appendix: Condensed instructions for students
 
 Say you want distribute a complete Vagrant machine with the URL
 
+
 .. code-block:: text
+
 
         http://some.where.net/path/to/course.box
 
 Here is the need-know-information for users:
 
 .. #install "vagrant_install.do.txt"
+
 
 Troubleshooting: shared directory is invisible  (2)
 ---------------------------------------------------
@@ -1156,13 +1258,16 @@ It may happen that the ``/vagrant`` directory seems empty inside
 the Vagrant machine. Two steps will fix this problem. First,
 run
 
+
 .. code-block:: text
 
         Machine> sudo /etc/init.d/vboxadd setup
 
 inside the Vagrant machine. Second, log out and run
 
+
 .. code-block:: text
+
 
         Terminal> sudo vagrant reload
 
@@ -1183,6 +1288,7 @@ Troubleshooting: Internet is not reachable  (2)
 
 A test if Internet is reachable is to run a ``ping`` command inside
 the machine, e.g.,
+
 
 .. code-block:: text
 

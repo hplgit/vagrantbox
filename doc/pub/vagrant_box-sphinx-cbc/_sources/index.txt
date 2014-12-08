@@ -7,7 +7,7 @@ Creating Vagrant Machines for Distribution of Software Environments
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    main_vagrant_box
 
