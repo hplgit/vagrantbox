@@ -58,6 +58,7 @@ libfreetype6-dev libpng-dev
 # ScientificPython does not work with numpy version >= 1.9
 # (FEniCS depends on ScientificPython, SciTools too)
 #pip install numpy
+# ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 pip install numpy==1.8.2
 pip install sympy
