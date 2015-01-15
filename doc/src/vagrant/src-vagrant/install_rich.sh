@@ -219,10 +219,10 @@ apt_install auctex
 # Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
 apt_install libav-tools
 #ffmpeg
-apt_install libavcodec-extra-54
-apt_install libx264-dev
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
-apt_install libavcodec-extra-54
+# do sudo apt-cache search libavcodec-extra to see the current number
+apt_install libavcodec-extra-56
+apt_install libx264-dev
 #x264 h264enc
 # Animations: players
 apt_install mplayer

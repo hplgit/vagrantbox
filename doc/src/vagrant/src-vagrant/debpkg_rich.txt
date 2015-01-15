@@ -132,10 +132,10 @@ auctex
 # Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
 libav-tools
 #ffmpeg
-libavcodec-extra-54
-libx264-dev
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
-libavcodec-extra-54
+# do sudo apt-cache search libavcodec-extra to see the current number
+libavcodec-extra-56
+libx264-dev
 #x264 h264enc
 # Animations: players
 mplayer gnome-mplayer
