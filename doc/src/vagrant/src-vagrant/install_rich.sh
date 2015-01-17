@@ -114,6 +114,7 @@ apt_install libpng-dev
 # ScientificPython does not work with numpy version >= 1.9
 # (FEniCS depends on ScientificPython, SciTools too)
 #pip install numpy
+# ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 pip_install numpy==1.8.2
 pip_install sympy
@@ -309,6 +310,7 @@ pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sph
 pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
 
 pip_install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
+pip_install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
 #pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
 pip_install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
 
