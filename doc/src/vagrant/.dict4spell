@@ -1,4 +1,4 @@
-replicable
+Babun
 Vagrantfile
 gl
 inf
@@ -6,6 +6,7 @@ TextEdit
 ssh
 hpl
 PETSc
+Langtangen
 elif
 Bitbucket
 GitHub
@@ -18,15 +19,14 @@ Ledetekst
 deselect
 SciTools
 pre
-boxsize
 Mega
 subfolder
 Dropbox
-Cygwin
+replicable
 boxurl
 Cygwin's
 XWin
-Langtangen
+boxsize
 Ubuntu
 Informatics
 Pangolin
@@ -36,4 +36,5 @@ subfolders
 Simula
 repo
 ScientificPython
+Cygwin
 VirtualBox

@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
+        URL_ROOT:    '',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -27,26 +27,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
-
-        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
-
-        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
-
-        <style type="text/css">
-                .sagecell .CodeMirror-scroll {
-                        overflow-y: hidden;
-                        overflow-x: auto;
-                }
-                .sagecell .CodeMirror {
-                        height: auto;
-                }
-        </style>
-
-    
     <link rel="top" title="Creating Vagrant Machines for Distribution of Software Environments" href="#" />
-    <link rel="next" title="Creating Vagrant Machines for Distribution of Software Environments" href="main_vagrant_box.html" />
- 
+    <link rel="next" title="Creating Vagrant Machines for Distribution of Software Environments" href="main_vagrant_box.html" /> 
   
    <style type="text/css">
      div.admonition {
@@ -83,14 +65,25 @@
 <li class="toctree-l1"><a class="reference internal" href="main_vagrant_box.html">Creating Vagrant Machines for Distribution of Software Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main_vagrant_box.html#problem-setting">Problem setting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#contents-of-the-vagrant-machine">Contents of the Vagrant machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#installing-the-necessary-software-for-using-vagrant">Installing the necessary software for using Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#installing-the-necessary-software-for-using-vagrant">Installing the necessary software for using Vagrant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#virtualbox">VirtualBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#vagrant">Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#cygwin-only-on-windows">Cygwin (only on Windows)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="main_vagrant_box.html#creating-the-vagrant-machine">Creating the Vagrant machine</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#choice-of-operating-system-type">Choice of operating system type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#downloading-a-base-box-to-create-a-complete-vagrant-machine">Downloading a base box to create a complete Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#making-an-empty-vagrant-machine">Making an empty Vagrant machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#installing-packages-in-a-complete-vagrant-machine">Installing packages in a complete Vagrant machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#installing-packages-in-a-complete-vagrant-machine">Installing packages in a complete Vagrant machine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#creating-files">Creating files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#installing-files-and-packages">Installing files and packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#enabling-x11-graphics">Enabling X11 graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#packaging-a-new-box">Packaging a new box</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#installing-packages-in-an-empty-vagrant-machine">Installing packages in an empty Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#scripts-for-installing-ready-made-packages">Scripts for installing ready-made packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#setting-up-a-default-environment-with-bashrc">Setting up a default environment with <tt class="docutils literal"><span class="pre">.bashrc</span></tt></a></li>
@@ -101,7 +94,12 @@
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#operating-an-empty-vagrant-machine">Operating an empty Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#working-with-an-initialized-vagrant-machine">Working with an initialized Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#shared-directories">Shared directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#troubleshooting-shared-directory-is-invisible-1">Troubleshooting: shared directory is invisible  (1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#troubleshooting-couldn-t-connect-to-display-1">Troubleshooting: &#8220;couldn&#8217;t connect to display ...&#8221;  (1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main_vagrant_box.html#troubleshooting-internet-is-not-reachable-1">Troubleshooting: Internet is not reachable  (1)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#stopping-the-vagrant-machine">Stopping the Vagrant machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#placing-the-vagrant-machine-in-the-cloud">Placing the Vagrant machine in the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main_vagrant_box.html#using-vmware-fusion">Using VMWare Fusion</a></li>
