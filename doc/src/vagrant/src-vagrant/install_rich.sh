@@ -227,17 +227,17 @@ apt_install libx264-dev
 # Animations: players
 apt_install mplayer
 apt_install gnome-mplayer
-apt_install mencoder
+#mencoder # not in Ubuntu any longer
 apt_install totem
 apt_install totem-plugins
 apt_install totem-mozilla
 apt_install vlc
 apt_install browser-plugin-vlc
 apt_install gxine
-apt_install python-pyxine
 apt_install xine-plugin
 apt_install libxine2-dev
 apt_install libxine2-all-plugins
+#python-pyxine
 apt_install gxineplugin
 apt_install libxine2-ffmpeg
 apt_install swfdec-gnome
@@ -266,6 +266,8 @@ apt_install meld
 apt_install fldiff
 apt_install diffpdf
 apt_install kdiff3
+#preprocess
+pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 
 # Support for Norwegian
 apt_install language-pack-nb-base

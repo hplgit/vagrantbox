@@ -139,10 +139,11 @@ libx264-dev
 #x264 h264enc
 # Animations: players
 mplayer gnome-mplayer
-mencoder
+#mencoder # not in Ubuntu any longer
 totem totem-plugins totem-mozilla
 vlc browser-plugin-vlc
-gxine python-pyxine xine-plugin libxine2-dev libxine2-all-plugins
+gxine xine-plugin libxine2-dev libxine2-all-plugins
+#python-pyxine
 gxineplugin libxine2-ffmpeg
 swfdec-gnome
 # FIXME: this package requires multiverse to be enabled in sources.list
@@ -161,6 +162,8 @@ apt-file apturl
 libssl-dev
 openssh-server
 meld fldiff diffpdf kdiff3
+#preprocess
+pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 
 # Support for Norwegian
 language-pack-nb-base

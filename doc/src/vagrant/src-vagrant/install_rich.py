@@ -235,17 +235,17 @@ system('sudo apt-get -y install libx264-dev')
 # Animations: players
 system('sudo apt-get -y install mplayer')
 system('sudo apt-get -y install gnome-mplayer')
-system('sudo apt-get -y install mencoder')
+#mencoder # not in Ubuntu any longer
 system('sudo apt-get -y install totem')
 system('sudo apt-get -y install totem-plugins')
 system('sudo apt-get -y install totem-mozilla')
 system('sudo apt-get -y install vlc')
 system('sudo apt-get -y install browser-plugin-vlc')
 system('sudo apt-get -y install gxine')
-system('sudo apt-get -y install python-pyxine')
 system('sudo apt-get -y install xine-plugin')
 system('sudo apt-get -y install libxine2-dev')
 system('sudo apt-get -y install libxine2-all-plugins')
+#python-pyxine
 system('sudo apt-get -y install gxineplugin')
 system('sudo apt-get -y install libxine2-ffmpeg')
 system('sudo apt-get -y install swfdec-gnome')
@@ -274,6 +274,8 @@ system('sudo apt-get -y install meld')
 system('sudo apt-get -y install fldiff')
 system('sudo apt-get -y install diffpdf')
 system('sudo apt-get -y install kdiff3')
+#preprocess
+system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
 
 # Support for Norwegian
 system('sudo apt-get -y install language-pack-nb-base')
