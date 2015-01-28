@@ -116,7 +116,8 @@ apt_install libpng-dev
 #pip install numpy
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
-pip_install numpy==1.8.2
+#pip install numpy==1.8.2
+pip_install numpy
 pip_install sympy
 pip_install cython
 pip_install numexpr
@@ -136,6 +137,7 @@ pip_install django
 pip_install mako
 pip_install flake8
 pip_install pylint
+pip_install dill
 apt_install pydb
 apt_install python-profiler
 apt_install python-dev

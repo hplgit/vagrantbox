@@ -124,7 +124,8 @@ system('sudo apt-get -y install libpng-dev')
 #pip install numpy
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
-system('sudo pip install numpy==1.8.2')
+#pip install numpy==1.8.2
+system('sudo pip install numpy')
 system('sudo pip install sympy')
 system('sudo pip install cython')
 system('sudo pip install numexpr')
@@ -144,6 +145,7 @@ system('sudo pip install django')
 system('sudo pip install mako')
 system('sudo pip install flake8')
 system('sudo pip install pylint')
+system('sudo pip install dill')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo apt-get -y install python-dev')
