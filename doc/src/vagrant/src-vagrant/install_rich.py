@@ -299,14 +299,22 @@ cd ../..
 """
 system(cmd)
 system('sudo pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy')
+
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead
+
 
 
 cmd = """
 cd srclib
 hg clone https://bitbucket.org/khinsen/scientificpython
 cd scientificpython
+sudo python setup.py install
+cd ../..
+cd srclib
+curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
+tar xvf gnuplot-py-1.8.tar.gz
+cd gnuplot-py-1.8
 sudo python setup.py install
 cd ../..
 # DocOnce (must clone with https since ssh keys are not present in the box)
