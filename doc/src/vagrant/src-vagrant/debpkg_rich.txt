@@ -96,7 +96,8 @@ python-ply
 python-netcdf
 
 # Gnuplot
-gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev
+# (Note that gnuplot in Debian is no longer compiled with xwWidgets)
+gnuplot gnuplot-doc gnuplot-x11 gnuplot-tex python-gnuplot python-wxgtk2.8 libwxgtk2.8-dev liblualib50-dev
 
 # Plotting and visualization programs
 grace dx dx-doc mayavi2 tcl-vtk python-vtk libvtk5-dev
@@ -192,12 +193,12 @@ $ cd scientificpython
 $ sudo python setup.py install
 $ cd ../..
 
-$ cd srclib
-$ curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
-$ tar xvf gnuplot-py-1.8.tar.gz
-$ cd gnuplot-py-1.8
-$ sudo python setup.py install
-$ cd ../..
+#$ cd srclib
+#$ curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
+#$ tar xvf gnuplot-py-1.8.tar.gz
+#$ cd gnuplot-py-1.8
+#$ sudo python setup.py install
+#$ cd ../..
 
 # DocOnce (must clone with https since ssh keys are not present in the box)
 $ cd srclib

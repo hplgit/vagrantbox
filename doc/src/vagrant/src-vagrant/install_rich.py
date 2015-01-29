@@ -168,9 +168,14 @@ system('sudo apt-get -y install python-ply')
 system('sudo apt-get -y install python-netcdf')
 
 # Gnuplot
+# (Note that gnuplot in Debian is no longer compiled with xwWidgets)
 system('sudo apt-get -y install gnuplot')
 system('sudo apt-get -y install gnuplot-doc')
 system('sudo apt-get -y install gnuplot-x11')
+system('sudo apt-get -y install gnuplot-tex')
+system('sudo apt-get -y install python-gnuplot')
+system('sudo apt-get -y install python-wxgtk2.8')
+system('sudo apt-get -y install libwxgtk2.8-dev')
 system('sudo apt-get -y install liblualib50-dev')
 
 # Plotting and visualization programs
@@ -311,12 +316,18 @@ hg clone https://bitbucket.org/khinsen/scientificpython
 cd scientificpython
 sudo python setup.py install
 cd ../..
-cd srclib
-curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
-tar xvf gnuplot-py-1.8.tar.gz
-cd gnuplot-py-1.8
-sudo python setup.py install
-cd ../..
+#$ cd srclib
+
+#$ curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
+
+#$ tar xvf gnuplot-py-1.8.tar.gz
+
+#$ cd gnuplot-py-1.8
+
+#$ sudo python setup.py install
+
+#$ cd ../..
+
 # DocOnce (must clone with https since ssh keys are not present in the box)
 
 cd srclib
