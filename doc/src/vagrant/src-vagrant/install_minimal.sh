@@ -94,8 +94,11 @@ apt_install spyder
 # Gnuplot
 apt_install gnuplot
 apt_install gnuplot-doc
-apt_install gnuplot-x11
+apt_install gnuplot-qt
+apt_install python-gnuplot
 apt_install liblualib50-dev
+#gnuplot-x11
+
 
 # Drawing programs
 apt_install inkscape
@@ -152,5 +155,4 @@ hg clone https://bitbucket.org/khinsen/scientificpython
 cd scientificpython
 sudo python setup.py install
 cd ../..
-
 echo "Everything is successfully installed!"

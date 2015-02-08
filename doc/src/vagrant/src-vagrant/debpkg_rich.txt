@@ -61,10 +61,10 @@ libfreetype6-dev libpng-dev
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 #pip install numpy==1.8.2
-pip install numpy
-pip install sympy
-pip install cython
-pip install numexpr
+pip install numpy --upgrade
+pip install sympy --upgrade
+pip install cython --upgrade
+pip install numexpr  --upgrade
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
@@ -72,17 +72,20 @@ python-matplotlib
 pip install ipython --upgrade  # ensure latest version if already installed
 pip install tornado --upgrade
 pip install pyzmq --upgrade
-pip install scipy
+pip install scipy --upgrade
 pip install nose
 pip install pytest
-pip install sphinx  # installs pygments and docutils too
-pip install flask
+pip install sphinx --upgrade  # installs pygments and docutils too
+pip install flask --upgrade
 pip install django
 pip install mako
 pip install flake8
 pip install pylint
 pip install dill
 pydb python-profiler
+pip install psutil
+pip install memory_profiler --upgrade
+pip install line_profiler --upgrade
 python-dev
 spyder
 python-opengl python-pygame
@@ -95,12 +98,18 @@ python-tagpy
 python-ply
 python-netcdf
 
-# Gnuplot
-# (Note that gnuplot in Debian is no longer compiled with xwWidgets)
-gnuplot gnuplot-doc gnuplot-x11 gnuplot-tex python-gnuplot python-wxgtk2.8 libwxgtk2.8-dev liblualib50-dev
+# Gnuplot (use qt backend)
+gnuplot gnuplot-doc gnuplot-qt python-gnuplot python-wxgtk2.8 libwxgtk2.8-dev liblualib50-dev
+#gnuplot-x11
+
+# Pytave
+#$ add-apt-repository ppa:johannr/test-ppa
+#$ apt-get update
+#python-pytave
 
 # Plotting and visualization programs
-grace dx dx-doc mayavi2 tcl-vtk python-vtk libvtk5-dev
+grace dx dx-doc tcl-vtk python-vtk libvtk5-dev
+pip install mayavi --upgrade
 
 # "Matlab"
 octave octave-splines octave-symbolic octave-specfun octave-optim octave-odepkg octave-audio

@@ -46,7 +46,9 @@ python-dev
 spyder
 
 # Gnuplot
-gnuplot gnuplot-doc gnuplot-x11 liblualib50-dev
+gnuplot gnuplot-doc gnuplot-qt python-gnuplot liblualib50-dev
+#gnuplot-x11
+
 
 # Drawing programs
 inkscape xfig xfig-doc transfig fig2ps
@@ -86,4 +88,3 @@ $ hg clone https://bitbucket.org/khinsen/scientificpython
 $ cd scientificpython
 $ sudo python setup.py install
 $ cd ../..
-

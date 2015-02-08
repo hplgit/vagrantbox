@@ -117,10 +117,10 @@ apt_install libpng-dev
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 #pip install numpy==1.8.2
-pip_install numpy
-pip_install sympy
-pip_install cython
-pip_install numexpr
+pip_install numpy --upgrade
+pip_install sympy --upgrade
+pip_install cython --upgrade
+pip_install numexpr --upgrade
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
@@ -128,11 +128,11 @@ apt_install python-matplotlib
 pip_install ipython --upgrade
 pip_install tornado --upgrade
 pip_install pyzmq --upgrade
-pip_install scipy
+pip_install scipy --upgrade
 pip_install nose
 pip_install pytest
-pip_install sphinx
-pip_install flask
+pip_install sphinx --upgrade
+pip_install flask --upgrade
 pip_install django
 pip_install mako
 pip_install flake8
@@ -140,6 +140,9 @@ pip_install pylint
 pip_install dill
 apt_install pydb
 apt_install python-profiler
+pip_install psutil
+pip_install memory_profiler --upgrade
+pip_install line_profiler --upgrade
 apt_install python-dev
 apt_install spyder
 apt_install python-opengl
@@ -159,25 +162,29 @@ apt_install python-tagpy
 apt_install python-ply
 apt_install python-netcdf
 
-# Gnuplot
-# (Note that gnuplot in Debian is no longer compiled with xwWidgets)
+# Gnuplot (use qt backend)
 apt_install gnuplot
 apt_install gnuplot-doc
-apt_install gnuplot-x11
-apt_install gnuplot-tex
+apt_install gnuplot-qt
 apt_install python-gnuplot
 apt_install python-wxgtk2.8
 apt_install libwxgtk2.8-dev
 apt_install liblualib50-dev
+#gnuplot-x11
+
+# Pytave
+#$ add-apt-repository ppa:johannr/test-ppa
+#$ apt-get update
+#python-pytave
 
 # Plotting and visualization programs
 apt_install grace
 apt_install dx
 apt_install dx-doc
-apt_install mayavi2
 apt_install tcl-vtk
 apt_install python-vtk
 apt_install libvtk5-dev
+pip_install mayavi --upgrade
 
 # "Matlab"
 apt_install octave

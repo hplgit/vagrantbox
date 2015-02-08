@@ -98,8 +98,11 @@ system('sudo apt-get -y install spyder')
 # Gnuplot
 system('sudo apt-get -y install gnuplot')
 system('sudo apt-get -y install gnuplot-doc')
-system('sudo apt-get -y install gnuplot-x11')
+system('sudo apt-get -y install gnuplot-qt')
+system('sudo apt-get -y install python-gnuplot')
 system('sudo apt-get -y install liblualib50-dev')
+#gnuplot-x11
+
 
 # Drawing programs
 system('sudo apt-get -y install inkscape')
@@ -142,6 +145,5 @@ system('sudo apt-get -y install wdiff')
 system('sudo apt-get -y install language-pack-nb-base')
 
 # SciTools must be installed from source
-
 
 print 'Everything is successfully installed!'

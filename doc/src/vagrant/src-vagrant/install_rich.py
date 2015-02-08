@@ -125,10 +125,10 @@ system('sudo apt-get -y install libpng-dev')
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 #pip install numpy==1.8.2
-system('sudo pip install numpy')
-system('sudo pip install sympy')
-system('sudo pip install cython')
-system('sudo pip install numexpr')
+system('sudo pip install numpy --upgrade')
+system('sudo pip install sympy --upgrade')
+system('sudo pip install cython --upgrade')
+system('sudo pip install numexpr  --upgrade')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
@@ -136,11 +136,11 @@ system('sudo apt-get -y install python-matplotlib')
 system('sudo pip install ipython --upgrade')
 system('sudo pip install tornado --upgrade')
 system('sudo pip install pyzmq --upgrade')
-system('sudo pip install scipy')
+system('sudo pip install scipy --upgrade')
 system('sudo pip install nose')
 system('sudo pip install pytest')
-system('sudo pip install sphinx')
-system('sudo pip install flask')
+system('sudo pip install sphinx --upgrade')
+system('sudo pip install flask --upgrade')
 system('sudo pip install django')
 system('sudo pip install mako')
 system('sudo pip install flake8')
@@ -148,6 +148,9 @@ system('sudo pip install pylint')
 system('sudo pip install dill')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
+system('sudo pip install psutil')
+system('sudo pip install memory_profiler --upgrade')
+system('sudo pip install line_profiler --upgrade')
 system('sudo apt-get -y install python-dev')
 system('sudo apt-get -y install spyder')
 system('sudo apt-get -y install python-opengl')
@@ -167,25 +170,29 @@ system('sudo apt-get -y install python-tagpy')
 system('sudo apt-get -y install python-ply')
 system('sudo apt-get -y install python-netcdf')
 
-# Gnuplot
-# (Note that gnuplot in Debian is no longer compiled with xwWidgets)
+# Gnuplot (use qt backend)
 system('sudo apt-get -y install gnuplot')
 system('sudo apt-get -y install gnuplot-doc')
-system('sudo apt-get -y install gnuplot-x11')
-system('sudo apt-get -y install gnuplot-tex')
+system('sudo apt-get -y install gnuplot-qt')
 system('sudo apt-get -y install python-gnuplot')
 system('sudo apt-get -y install python-wxgtk2.8')
 system('sudo apt-get -y install libwxgtk2.8-dev')
 system('sudo apt-get -y install liblualib50-dev')
+#gnuplot-x11
+
+# Pytave
+#$ add-apt-repository ppa:johannr/test-ppa
+#$ apt-get update
+#python-pytave
 
 # Plotting and visualization programs
 system('sudo apt-get -y install grace')
 system('sudo apt-get -y install dx')
 system('sudo apt-get -y install dx-doc')
-system('sudo apt-get -y install mayavi2')
 system('sudo apt-get -y install tcl-vtk')
 system('sudo apt-get -y install python-vtk')
 system('sudo apt-get -y install libvtk5-dev')
+system('sudo pip install mayavi --upgrade')
 
 # "Matlab"
 system('sudo apt-get -y install octave')
