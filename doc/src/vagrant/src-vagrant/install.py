@@ -191,11 +191,11 @@ if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 
 cd srclib
-hg clone http://code.google.com/p/scitools
+git clone https://github.com/hplgit/scitools.git
 cd scitools
 sudo python setup.py install
 cd ../..
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+# Alternative: pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 
 """
 system(cmd)

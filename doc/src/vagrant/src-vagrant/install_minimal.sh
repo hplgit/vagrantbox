@@ -140,13 +140,7 @@ apt_install wdiff
 # Support for Norwegian
 apt_install language-pack-nb-base
 
-# SciTools must be installed from source
-cd srclib
-hg clone http://code.google.com/p/scitools
-cd scitools
-sudo python setup.py install
-cd ../..
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+pip_install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
 # Do manual install instead

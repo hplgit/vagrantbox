@@ -133,6 +133,7 @@ pip_install nose
 pip_install pytest
 pip_install sphinx --upgrade
 pip_install flask --upgrade
+pip_install Flask-WTF --upgrade
 pip_install django
 pip_install mako
 pip_install flake8
@@ -292,11 +293,11 @@ apt_install language-pack-nb-base
 
 # SciTools must be installed from source
 cd srclib
-hg clone http://code.google.com/p/scitools
+git clone https://github.com/hplgit/scitools.git
 cd scitools
 sudo python setup.py install
 cd ../..
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+# Alternative: pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 
 pip_install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 

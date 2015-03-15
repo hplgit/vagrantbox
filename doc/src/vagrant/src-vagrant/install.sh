@@ -185,11 +185,11 @@ apt_install language-pack-nb-base
 if [ ! -d srclib ]; then mkdir srclib; fi
 # SciTools must be installed from source
 cd srclib
-hg clone http://code.google.com/p/scitools
+git clone https://github.com/hplgit/scitools.git
 cd scitools
 sudo python setup.py install
 cd ../..
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+# Alternative: pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 
 pip_install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython

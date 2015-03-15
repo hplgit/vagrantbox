@@ -144,6 +144,8 @@ system('sudo apt-get -y install wdiff')
 # Support for Norwegian
 system('sudo apt-get -y install language-pack-nb-base')
 
-# SciTools must be installed from source
+system('sudo pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools')
 
+# Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
+# Do manual install instead
 print 'Everything is successfully installed!'

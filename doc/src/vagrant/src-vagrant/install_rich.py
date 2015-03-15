@@ -141,6 +141,7 @@ system('sudo pip install nose')
 system('sudo pip install pytest')
 system('sudo pip install sphinx --upgrade')
 system('sudo pip install flask --upgrade')
+system('sudo pip install Flask-WTF --upgrade')
 system('sudo pip install django')
 system('sudo pip install mako')
 system('sudo pip install flake8')
@@ -302,11 +303,11 @@ system('sudo apt-get -y install language-pack-nb-base')
 
 cmd = """
 cd srclib
-hg clone http://code.google.com/p/scitools
+git clone https://github.com/hplgit/scitools.git
 cd scitools
 sudo python setup.py install
 cd ../..
-# Alternative: pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+# Alternative: pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 
 """
 system(cmd)
