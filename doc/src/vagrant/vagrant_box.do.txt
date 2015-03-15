@@ -736,7 +736,7 @@ tools for setting up complete software environments are "Chef":
 
 In addition to ready-made Debian packages we can also install
 from source code. Let us start with the SciTools package, which
-can be downloaded from URL: "http://code.google.com/p/scitools".
+can be downloaded from URL: "https://github.com/hplgit/scitools".
 Click on *Source* to see how we can get
 the latest development version residing in a Mercurial
 repository:

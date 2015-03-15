@@ -149,8 +149,6 @@ is also possible (if a `setup.py` resides in the root directory):
 
 !bc sys
 (venv)Terminal> pip install -e \
-                hg+https://code.google.com/p/scitools#egg=scitools
-(venv)Terminal> pip install -e \
                 git+https://github.com/hplgit/odespy.git#egg=odespy
 !ec
 The syntax is `pip install -e vcs+URL#egg=packaname`, where `vcs` is
@@ -314,14 +312,13 @@ $apt libsqlite3-dev
 
 packages="numpy sympy matplotlib scipy ipython nose"
 for p in packages; do pip install $p; done
-pip install -e \
-git+https://github.com/hplgit/odespy.git#egg=odespy
+pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 !ec
 
 Other packages can be added to the script as well:
 
 !bc shpro
-pip install -e hg+https://code.google.com/p/scitools#egg=scitools
+pip install -e git+https://github.com/hplgit/scitools.git#egg=scitools
 # Do manual install of Scientific Python
 if [ ! -d srclib ]; then mkdir scrlib; fi
 cd srclib
