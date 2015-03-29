@@ -324,6 +324,7 @@ if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
 
 # Install DocOnce dependencies not covered above
 pip_install paver
+pip_install cogapp
 pip_install sphinxcontrib-paverutils
 pip_install diff_match_patch
 pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess

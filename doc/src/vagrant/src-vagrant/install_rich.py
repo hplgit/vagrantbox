@@ -347,6 +347,7 @@ if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
 """
 system(cmd)
 system('sudo pip install paver')
+system('sudo pip install cogapp')
 system('sudo pip install sphinxcontrib-paverutils')
 system('sudo pip install diff_match_patch')
 system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
