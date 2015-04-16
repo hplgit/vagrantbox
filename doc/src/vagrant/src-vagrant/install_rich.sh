@@ -128,6 +128,7 @@ apt_install python-matplotlib
 pip_install ipython --upgrade
 pip_install tornado --upgrade
 pip_install pyzmq --upgrade
+pip_install jsonschema
 pip_install scipy --upgrade
 pip_install nose
 pip_install pytest
@@ -135,6 +136,7 @@ pip_install sphinx --upgrade
 pip_install flask --upgrade
 pip_install Flask-WTF --upgrade
 pip_install django
+pip_install progressbar
 pip_install mako
 pip_install flake8
 pip_install pylint
