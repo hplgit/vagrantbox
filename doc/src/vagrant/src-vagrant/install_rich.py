@@ -242,15 +242,15 @@ system('sudo apt-get -y install texlive-humanities')
 system('sudo apt-get -y install latexdiff')
 system('sudo apt-get -y install auctex')
 
-# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+# For making animations
+system('sudo apt-get -y install ffmpeg')
 system('sudo apt-get -y install libav-tools')
-#ffmpeg
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
 # do sudo apt-cache search libavcodec-extra to see the current number
 system('sudo apt-get -y install libavcodec-extra-56')
 system('sudo apt-get -y install libx264-dev')
-#x264 h264enc
-# Animations: players
+
+# Players
 system('sudo apt-get -y install mplayer')
 system('sudo apt-get -y install gnome-mplayer')
 #mencoder # not in Ubuntu any longer
@@ -263,7 +263,6 @@ system('sudo apt-get -y install gxine')
 system('sudo apt-get -y install xine-plugin')
 system('sudo apt-get -y install libxine2-dev')
 system('sudo apt-get -y install libxine2-all-plugins')
-#python-pyxine
 system('sudo apt-get -y install gxineplugin')
 system('sudo apt-get -y install libxine2-ffmpeg')
 system('sudo apt-get -y install swfdec-gnome')

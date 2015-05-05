@@ -145,21 +145,20 @@ texlive-humanities
 latexdiff
 auctex
 
-# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+# For making animations
+ffmpeg
 libav-tools
-#ffmpeg
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
 # do sudo apt-cache search libavcodec-extra to see the current number
 libavcodec-extra-56
 libx264-dev
-#x264 h264enc
-# Animations: players
+
+# Players
 mplayer gnome-mplayer
 #mencoder # not in Ubuntu any longer
 totem totem-plugins totem-mozilla
 vlc browser-plugin-vlc
 gxine xine-plugin libxine2-dev libxine2-all-plugins
-#python-pyxine
 gxineplugin libxine2-ffmpeg
 swfdec-gnome
 # FIXME: this package requires multiverse to be enabled in sources.list

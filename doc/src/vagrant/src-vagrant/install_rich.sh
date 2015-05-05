@@ -234,15 +234,15 @@ apt_install texlive-humanities
 apt_install latexdiff
 apt_install auctex
 
-# Animations: avconv and ffmpeg (ffmpeg is no longer in Debian)
+# For making animations
+apt_install ffmpeg
 apt_install libav-tools
-#ffmpeg
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
 # do sudo apt-cache search libavcodec-extra to see the current number
 apt_install libavcodec-extra-56
 apt_install libx264-dev
-#x264 h264enc
-# Animations: players
+
+# Players
 apt_install mplayer
 apt_install gnome-mplayer
 #mencoder # not in Ubuntu any longer
@@ -255,7 +255,6 @@ apt_install gxine
 apt_install xine-plugin
 apt_install libxine2-dev
 apt_install libxine2-all-plugins
-#python-pyxine
 apt_install gxineplugin
 apt_install libxine2-ffmpeg
 apt_install swfdec-gnome
