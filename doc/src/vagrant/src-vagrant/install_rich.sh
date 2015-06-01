@@ -124,6 +124,8 @@ pip_install numexpr --upgrade
 #pip install pyparsing
 #pip install matplotlib
 apt_install python-matplotlib
+pip_install redis
+pip_install bokeh
 #ipython-notebook  # too old version in debian
 pip_install ipython --upgrade
 pip_install tornado --upgrade
@@ -141,6 +143,7 @@ pip_install mako
 pip_install flake8
 pip_install pylint
 pip_install dill
+pip_install numpydoc
 apt_install pydb
 apt_install python-profiler
 pip_install psutil
@@ -257,6 +260,7 @@ apt_install libxine2-dev
 apt_install libxine2-all-plugins
 apt_install gxineplugin
 apt_install libxine2-ffmpeg
+apt_install gstreamer1.0-libav
 apt_install swfdec-gnome
 # FIXME: this package requires multiverse to be enabled in sources.list
 #flashplugin-installer
@@ -331,6 +335,7 @@ pip_install diff_match_patch
 pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
 
+pip_install sphinx_rtd_theme --upgrade
 pip_install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
 pip_install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
 pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized

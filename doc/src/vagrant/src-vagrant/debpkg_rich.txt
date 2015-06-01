@@ -68,6 +68,8 @@ pip install numexpr  --upgrade
 #pip install pyparsing
 #pip install matplotlib
 python-matplotlib
+pip install redis  # needed for bokeh
+pip install bokeh
 #ipython-notebook  # too old version in debian
 pip install ipython --upgrade  # ensure latest version if already installed
 pip install tornado --upgrade

@@ -132,6 +132,8 @@ system('sudo pip install numexpr  --upgrade')
 #pip install pyparsing
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
+system('sudo pip install redis')
+system('sudo pip install bokeh')
 #ipython-notebook  # too old version in debian
 system('sudo pip install ipython --upgrade')
 system('sudo pip install tornado --upgrade')
@@ -149,6 +151,7 @@ system('sudo pip install mako')
 system('sudo pip install flake8')
 system('sudo pip install pylint')
 system('sudo pip install dill')
+system('sudo pip install numpydoc')
 system('sudo apt-get -y install pydb')
 system('sudo apt-get -y install python-profiler')
 system('sudo pip install psutil')
@@ -265,6 +268,7 @@ system('sudo apt-get -y install libxine2-dev')
 system('sudo apt-get -y install libxine2-all-plugins')
 system('sudo apt-get -y install gxineplugin')
 system('sudo apt-get -y install libxine2-ffmpeg')
+system('sudo apt-get -y install gstreamer1.0-libav')
 system('sudo apt-get -y install swfdec-gnome')
 # FIXME: this package requires multiverse to be enabled in sources.list
 #flashplugin-installer
@@ -354,6 +358,7 @@ system('sudo pip install diff_match_patch')
 system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
 system('sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish')
 
+system('sudo pip install sphinx_rtd_theme --upgrade')
 system('sudo pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme')
 system('sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme')
 system('sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized')
