@@ -92,6 +92,7 @@ pydb python-profiler
 pip install psutil
 pip install memory_profiler --upgrade
 pip install line_profiler --upgrade
+pip install networkx
 python-dev
 spyder
 python-opengl python-pygame
@@ -227,7 +228,10 @@ pip install cogapp
 pip install sphinxcontrib-paverutils
 pip install diff_match_patch
 pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+
 pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
+pip install python-Levenshtein
+pip install future
 
 pip install sphinx_rtd_theme --upgrade
 pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
