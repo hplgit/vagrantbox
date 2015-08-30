@@ -25,7 +25,7 @@ pdflatex -shell-escape $name2
 
 theme=cbc
 #theme=agni
-system doconce sphinx_dir theme=cbc dirname=sphinx-rootdir-$theme author="Anders E. Johansen and Hans Petter Langtangen" $name2
+system doconce sphinx_dir theme=cbc dirname=sphinx-rootdir-$theme copyright="Anders E. Johansen and Hans Petter Langtangen" $name2
 system python automake_sphinx.py $opts
 
 dest=../../pub
