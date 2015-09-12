@@ -15,6 +15,8 @@ Readings:
 
 ======= Instructions from OpenDreamKit =======
 
+"Slides": "https://github.com/OpenDreamKit/OpenDreamKit.github.io/blob/master/meetings/2015-09-02-Kickoff/docker.md"
+
 !bc
 On ubuntu, as root (docker wants to be root initially)
 

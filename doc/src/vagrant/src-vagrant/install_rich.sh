@@ -130,6 +130,8 @@ pip_install bokeh
 pip_install ipython --upgrade
 pip_install tornado --upgrade
 pip_install pyzmq --upgrade
+pip_install traitlets --upgrade
+pip_install pickleshare --upgrade
 pip_install jsonschema
 pip_install scipy --upgrade
 pip_install nose
@@ -340,10 +342,12 @@ pip_install python-Levenshtein
 pip_install future
 
 pip_install sphinx_rtd_theme --upgrade
-pip_install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
-pip_install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
-pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+pip_install alabaster --upgrade
+pip_install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme --upgrade
+pip_install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade
+pip_install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized --upgrade
+pip_install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs --upgrade
+pip_install tinkerer -- upgrade
 
 pip_install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
 pip_install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
