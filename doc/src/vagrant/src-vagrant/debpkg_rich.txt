@@ -51,6 +51,8 @@ subversion mercurial cvs git gitk bzr
 idle
 python-pip
 python-setuptools
+# upgrade
+pip install setuptools --upgrade
 python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -65,9 +67,11 @@ pip install numpy --upgrade
 pip install sympy --upgrade
 pip install cython --upgrade
 pip install numexpr  --upgrade
-#pip install pyparsing
-#pip install matplotlib
-python-matplotlib
+pip install pyparsing --upgrade
+pip install matplotlib --upgrade
+# fallback:
+#python-matplotlib
+
 pip install redis  # needed for bokeh
 pip install bokeh
 #ipython-notebook  # too old version in debian

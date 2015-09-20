@@ -114,6 +114,8 @@ system('sudo apt-get -y install bzr')
 system('sudo apt-get -y install idle')
 system('sudo apt-get -y install python-pip')
 system('sudo apt-get -y install python-setuptools')
+# upgrade
+system('sudo pip install setuptools --upgrade')
 system('sudo apt-get -y install python-dev')
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -129,9 +131,11 @@ system('sudo pip install numpy --upgrade')
 system('sudo pip install sympy --upgrade')
 system('sudo pip install cython --upgrade')
 system('sudo pip install numexpr  --upgrade')
-#pip install pyparsing
-#pip install matplotlib
-system('sudo apt-get -y install python-matplotlib')
+system('sudo pip install pyparsing --upgrade')
+system('sudo pip install matplotlib --upgrade')
+# fallback:
+#python-matplotlib
+
 system('sudo pip install redis')
 system('sudo pip install bokeh')
 #ipython-notebook  # too old version in debian
