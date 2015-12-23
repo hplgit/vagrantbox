@@ -52,7 +52,7 @@ idle
 python-pip
 python-setuptools
 # upgrade
-pip install setuptools --upgrade
+pip install setuptool
 python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -63,30 +63,30 @@ libfreetype6-dev libpng-dev
 # ScientificPython needs numpy 1.8
 # Alternative: patch newer numpy with the oldnumeric and numarray modules
 #pip install numpy==1.8.2
-pip install numpy --upgrade
-pip install sympy --upgrade
-pip install cython --upgrade
-pip install numexpr  --upgrade
-pip install pyparsing --upgrade
-pip install matplotlib --upgrade
+pip install numpy
+pip install sympy
+pip install cython
+pip install numexpr
+pip install pyparsing
+pip install matplotlib
 # fallback:
 #python-matplotlib
 
 pip install redis  # needed for bokeh
 pip install bokeh
 #ipython-notebook  # too old version in debian
-pip install ipython --upgrade  # ensure latest version if already installed
-pip install tornado --upgrade
-pip install pyzmq --upgrade
-pip install traitlets --upgrade
-pip install pickleshare --upgrade
+pip install ipython
+pip install tornado
+pip install pyzmq
+pip install traitlets
+pip install pickleshare
 pip install jsonschema
-pip install scipy --upgrade
+pip install scipy
 pip install nose
 pip install pytest
-pip install sphinx --upgrade  # installs pygments and docutils too
-pip install flask --upgrade
-pip install Flask-WTF --upgrade
+pip install sphinx
+pip install flask
+pip install Flask-WTF
 pip install django
 pip install progressbar
 pip install mako
@@ -96,8 +96,8 @@ pip install dill
 pip install numpydoc
 pydb python-profiler
 pip install psutil
-pip install memory_profiler --upgrade
-pip install line_profiler --upgrade
+pip install memory_profiler
+pip install line_profiler
 pip install networkx
 python-dev
 spyder
@@ -112,7 +112,7 @@ python-ply
 python-netcdf
 
 # Gnuplot (use qt backend)
-gnuplot gnuplot-doc gnuplot-qt python-gnuplot python-wxgtk2.8 libwxgtk2.8-dev liblualib50-dev
+gnuplot gnuplot-doc gnuplot-qt python-gnuplot liblualib50-dev
 #gnuplot-x11
 
 # Pytave
@@ -122,7 +122,7 @@ gnuplot gnuplot-doc gnuplot-qt python-gnuplot python-wxgtk2.8 libwxgtk2.8-dev li
 
 # Plotting and visualization programs
 grace dx dx-doc tcl-vtk python-vtk libvtk5-dev
-pip install mayavi --upgrade
+pip install mayavi
 
 # "Matlab"
 octave octave-splines octave-symbolic octave-specfun octave-optim octave-odepkg octave-audio
@@ -208,12 +208,12 @@ $ cd ../..
 pip install -e git+https://github.com/hplgit/odespy.git#egg=odespy
 
 # Does not work: pip install -e hg+https://bitbucket.org/khinsen/scientificpython#egg=scientificpython
-# Do manual install instead
-$ cd srclib
-$ hg clone https://bitbucket.org/khinsen/scientificpython
-$ cd scientificpython
-$ sudo python setup.py install
-$ cd ../..
+# Do manual install instead (does not work with numpy v1.9 and beyond!)
+#$ cd srclib
+#$ hg clone https://bitbucket.org/khinsen/scientificpython
+#$ cd scientificpython
+#$ sudo python setup.py install
+#$ cd ../..
 
 #$ cd srclib
 #$ curl -O https://github.com/hplgit/hplgit.github.com/raw/master/software/gnuplot-py-1.8.tar.gz
@@ -239,30 +239,18 @@ pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
 pip install python-Levenshtein
 pip install future
 
-pip install sphinx_rtd_theme --upgrade
-pip install alabaster --upgrade
-pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme --upgrade
-pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade
-pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized --upgrade
-pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs --upgrade
-pip install tinkerer -- upgrade
+pip install sphinx_rtd_theme
+pip install alabaster
+pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+pip install tinkerer
 
 pip install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
 pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
 #pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
 pip install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
-
-# Ptex2tex
-$ cd srclib
-$ svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
-$ cd ptex2tex
-$ sudo python setup.py install
-$ cd latex
-$ sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
-$ cd ../../..
-$ cd ~/texmf
-$ mktexlsr .  # update database for tex packages
-$ cd -
 
 # mdframed.sty (in texlive, but is often needed in the newest version)
 $ git clone https://github.com/marcodaniel/mdframed
@@ -288,5 +276,4 @@ $ sudo apt-get clean
 $ sudo apt-get autoclean
 $ sudo apt-get -y autoremove
 
-# Install FEniCS manually via apt-get, run fenics_apt.sh,
-# or via full compile with Dorsal, run fenics_dorsal.sh
+# Install FEniCS manually via apt-get, run fenics_apt.sh

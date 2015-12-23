@@ -79,10 +79,11 @@ apt_install swig
 #pip install matplotlib
 apt_install python-matplotlib
 pip_install scipy
+pip_install mayavi
 #ipython-notebook  # too old version in debian
-pip_install ipython --upgrade
-pip_install tornado --upgrade
-pip_install pyzmq --upgrade
+pip_install ipython
+pip_install tornado
+pip_install pyzmq
 pip_install nose
 pip_install pytest
 pip_install sphinx
