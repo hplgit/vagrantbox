@@ -1,3 +1,5 @@
+virtualenvwrapper
+Virtualenvwrapper
 tarball
 GitHub
 tarballs
@@ -5,6 +7,6 @@ ScientificPython
 app
 Django
 PyPi
-Virtualenv
-Ubuntu
 virtualenv
+Ubuntu
+Virtualenv

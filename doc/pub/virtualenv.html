@@ -1,35 +1,10 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
 <link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
-
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -41,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 <body>
 
-<title> Installing a scientific computing environment </title>
+<title>Motivation</title>
 
 <div class="container">
  <div class="row Header with-border">
@@ -67,18 +42,11 @@ h1, h2, h3, h4, h5, h6 {
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
-          <!-- vagrant nav toc: " Motivation " --> <li class="active">  <a href="._virtualenv000.html#___sec0"> Motivation </a>
-     <!-- vagrant nav toc: " Creating an isolated environment with Virtualenv " --> <li>  <a href="._virtualenv001.html#___sec1"> Creating an isolated environment with Virtualenv </a>
-     <!-- vagrant nav toc: " Creating a slightly different environment " --> <li>  <a href="._virtualenv002.html#___sec2"> Creating a slightly different environment </a>
-     <!-- vagrant nav toc: " Copying an environment " --> <li>  <a href="._virtualenv003.html#___sec3"> Copying an environment </a>
-     <!-- vagrant nav toc: " Installing a scientific computing environment " --> <li>  <a href="._virtualenv004.html#___sec4"> Installing a scientific computing environment </a>
+          <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Motivation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv001.html#___sec1" style="font-size: 80%;"><b>Creating an isolated environment with Virtualenv</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv002.html#___sec2" style="font-size: 80%;"><b>Creating a slightly different environment</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv003.html#___sec3" style="font-size: 80%;"><b>Copying an environment</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv004.html#___sec4" style="font-size: 80%;"><b>Installing a scientific computing environment</b></a></li>
 
     </ul>
    </div>
@@ -89,17 +57,17 @@ h1, h2, h3, h4, h5, h6 {
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [(' Motivation ', 2, None, '___sec0'),
-              (' Creating an isolated environment with Virtualenv ',
+ 'sections': [('Motivation', 2, None, '___sec0'),
+              ('Creating an isolated environment with Virtualenv',
                2,
                None,
                '___sec1'),
-              (' Creating a slightly different environment ',
+              ('Creating a slightly different environment',
                2,
                None,
                '___sec2'),
-              (' Copying an environment ', 2, None, '___sec3'),
-              (' Installing a scientific computing environment ',
+              ('Copying an environment', 2, None, '___sec3'),
+              ('Installing a scientific computing environment',
                2,
                None,
                '___sec4')]}
@@ -109,19 +77,18 @@ end of tocinfo -->
 <a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
-<h3>Motivation  <a name="___sec0"></a></h3>
+<h2 id="___sec0">Motivation </h2>
 
 <p>
-The most difficult aspect of installing a particular software package is
-usually to get all the dependencies right. That is, the package
+The most difficult aspect of installing a particular software package
+is usually to get all the dependencies right. That is, the package
 requires the existence of a lot of other packages on the computer
-system. These packages also have their dependencies. In addition,
-some packages only work with certain versions of other packages.
-Getting dependencies and software versions right quickly becomes
-a challenging problem. Even more critical is the fact that
-installing a new set of packages brings in other versions of
-some software that affect the behavior of previously installed
-software on the computer system.
+system. These packages also have their dependencies. In addition, some
+packages only work with certain versions of other packages.  Getting
+dependencies and software versions right quickly becomes a challenging
+problem. Even more critical is the fact that installing a new set of
+packages brings in other versions of some software that affect the
+behavior of previously installed software on the computer system.
 
 <p>
 To be specific, think of package <code>a</code> that depends on packages <code>b</code> and
@@ -141,29 +108,14 @@ needed.
 
 <p>
 <p>
-<!-- ------------------- end of main content --------------- -->
-
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-<p>
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
+<!-- navigation buttons at the bottom of the page -->
 <ul class="pager">
-
   <li class="next">
     <a href="._virtualenv001.html">Next &rarr;</a>
   </li>
-
 </ul>
+<!-- ------------------- end of main content --------------- -->
+
 
  </div>
 
@@ -175,6 +127,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 

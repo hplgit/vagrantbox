@@ -1,16 +1,15 @@
 
 ===== Motivation =====
 
-The most difficult aspect of installing a particular software package is
-usually to get all the dependencies right. That is, the package
+The most difficult aspect of installing a particular software package
+is usually to get all the dependencies right. That is, the package
 requires the existence of a lot of other packages on the computer
-system. These packages also have their dependencies. In addition,
-some packages only work with certain versions of other packages.
-Getting dependencies and software versions right quickly becomes
-a challenging problem. Even more critical is the fact that
-installing a new set of packages brings in other versions of
-some software that affect the behavior of previously installed
-software on the computer system.
+system. These packages also have their dependencies. In addition, some
+packages only work with certain versions of other packages.  Getting
+dependencies and software versions right quickly becomes a challenging
+problem. Even more critical is the fact that installing a new set of
+packages brings in other versions of some software that affect the
+behavior of previously installed software on the computer system.
 
 To be specific, think of package `a` that depends on packages `b` and
 `c` in their respective versions 1.0 and 1.2 or newer.  Then we
@@ -28,6 +27,13 @@ needed.
 
 !split
 ===== Creating an isolated environment with Virtualenv =====
+
+!bnotice Use virtualenvwrapper!
+Since these notes were written, Virtualenvwrapper has a emerged as
+a tool that simplifies the user of Virtualenv.
+Check out its "documentation":
+"https://virtualenvwrapper.readthedocs.org/en/latest/".
+!enotice
 
 Virtualenv is a tool that creates isolated Python environments. More
 precisely, it allows creating virtual environments that have different

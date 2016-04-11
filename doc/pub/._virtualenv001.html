@@ -1,35 +1,10 @@
 <html>
 <head>
-<!--
-This style is adopted from the (now old) vagrant 1.0 web
-pages. The style builds on the Twitter Bootstrap style.
-Modifications by Hans Petter Langtangen, hpl@simula.no.
-
-This style file should be copied and the following
-elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end:
-
- Here goes a footer, if desired, maybe with a Copyright &copy;
-
--->
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
 <link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
-
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -41,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 <body>
 
-<title> Installing a scientific computing environment </title>
+<title>Motivation</title>
 
 <div class="container">
  <div class="row Header with-border">
@@ -67,18 +42,11 @@ h1, h2, h3, h4, h5, h6 {
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-     <!-- Syntax:
-     <li> <a href="...">Section 1</a></li>
-     <li class="active"> <a href="...">Section 2</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
-     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
-     -->
-     <!-- Doconce automatically fills in the table of contents -->
-          <!-- vagrant nav toc: " Motivation " --> <li>  <a href="._virtualenv000.html#___sec0"> Motivation </a>
-     <!-- vagrant nav toc: " Creating an isolated environment with Virtualenv " --> <li class="active">  <a href="._virtualenv001.html#___sec1"> Creating an isolated environment with Virtualenv </a>
-     <!-- vagrant nav toc: " Creating a slightly different environment " --> <li>  <a href="._virtualenv002.html#___sec2"> Creating a slightly different environment </a>
-     <!-- vagrant nav toc: " Copying an environment " --> <li>  <a href="._virtualenv003.html#___sec3"> Copying an environment </a>
-     <!-- vagrant nav toc: " Installing a scientific computing environment " --> <li>  <a href="._virtualenv004.html#___sec4"> Installing a scientific computing environment </a>
+          <!-- navigation toc: --> <li><a href="._virtualenv000.html#___sec0" style="font-size: 80%;"><b>Motivation</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;"><b>Creating an isolated environment with Virtualenv</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv002.html#___sec2" style="font-size: 80%;"><b>Creating a slightly different environment</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv003.html#___sec3" style="font-size: 80%;"><b>Copying an environment</b></a></li>
+     <!-- navigation toc: --> <li><a href="._virtualenv004.html#___sec4" style="font-size: 80%;"><b>Installing a scientific computing environment</b></a></li>
 
     </ul>
    </div>
@@ -89,17 +57,17 @@ h1, h2, h3, h4, h5, h6 {
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [(' Motivation ', 2, None, '___sec0'),
-              (' Creating an isolated environment with Virtualenv ',
+ 'sections': [('Motivation', 2, None, '___sec0'),
+              ('Creating an isolated environment with Virtualenv',
                2,
                None,
                '___sec1'),
-              (' Creating a slightly different environment ',
+              ('Creating a slightly different environment',
                2,
                None,
                '___sec2'),
-              (' Copying an environment ', 2, None, '___sec3'),
-              (' Installing a scientific computing environment ',
+              ('Copying an environment', 2, None, '___sec3'),
+              ('Installing a scientific computing environment',
                2,
                None,
                '___sec4')]}
@@ -109,7 +77,15 @@ end of tocinfo -->
 <a name="part0001"></a>
 <!-- !split -->
 
-<h3>Creating an isolated environment with Virtualenv  <a name="___sec1"></a></h3>
+<h2 id="___sec1">Creating an isolated environment with Virtualenv </h2>
+
+<p>
+<div class="alert alert-block alert-success alert-text-normal"><b>Use virtualenvwrapper!</b>
+Since these notes were written, Virtualenvwrapper has a emerged as
+a tool that simplifies the user of Virtualenv.
+Check out its <a href="https://virtualenvwrapper.readthedocs.org/en/latest/" target="_self">documentation</a>.
+</div>
+
 
 <p>
 Virtualenv is a tool that creates isolated Python environments. More
@@ -136,8 +112,8 @@ using <a href="https://pypi.python.org/pypi/pip" target="_self"><tt>pip</tt></a>
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; sudo pip install virtualenv</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; sudo pip install virtualenv
 </pre></div>
 <p>
 The <code>pip</code> tool itself can be installed from <a href="https://pypi.python.org/pypi/pip" target="_self">pure Python source</a> via the standard <code>sudo python setup.py install</code> command.
@@ -148,8 +124,8 @@ The <code>virtualenv</code> script creates a new virtual environment in a destin
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv venv</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv venv
 </pre></div>
 <p>
 By default, virtualenv will symlink to the system&#8217;s site-packages if
@@ -160,8 +136,8 @@ creating the environment:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv --no-site-packages venv</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv --no-site-packages venv
 </pre></div>
 <p>
 One can apply the <code>-p</code> flag to specify which Python executable to use
@@ -169,8 +145,8 @@ as the <code>python</code> program in the environment:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; virtualenv -p /usr/bin/python2.6</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; virtualenv -p /usr/bin/python2.6
 </pre></div>
 <p>
 The next step is to activate the virtual environment. To do this, we
@@ -179,9 +155,9 @@ created <code>venv</code> directory:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; cd venv/</span>
-<span style="color: #888888">Terminal&gt; source bin/activate</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; cd venv/
+Terminal&gt; source bin/activate
 </pre></div>
 <p>
 Successful execution of the <code>activate</code> script changes the prompt
@@ -191,9 +167,9 @@ one is using:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Terminal&gt; source bin/activate</span>
-<span style="color: #888888">(venv)Terminal&gt;</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; source bin/activate
+(venv)Terminal&gt;
 </pre></div>
 <p>
 Packages we install will now be installed in the
@@ -204,9 +180,9 @@ Python packages:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install yolk</span>
-<span style="color: #888888">(venv)Terminal&gt; yolk -l</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; pip install yolk
+(venv)Terminal&gt; yolk -l
 </pre></div>
 <p>
 The latter command lists all Python packages installed in the current
@@ -218,17 +194,17 @@ Let us also install the Python web framework Django:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install Django</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; pip install Django
 </pre></div>
 <p>
 Using yolk we see that the Django version we installed is 1.5.1:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; yolk -l | grep Django</span>
-<span style="color: #888888">Django          - 1.5.1        - active</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; yolk -l | grep Django
+Django          - 1.5.1        - active
 </pre></div>
 <p>
 Within a Virtualenv environment, the local <code>python</code>
@@ -236,11 +212,11 @@ interpreter and local packages are always used:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; which python</span>
-<span style="color: #888888">/some/path/to/venv/bin/python</span>
-<span style="color: #888888">(venv)Terminal&gt; python -c &#39;import django as m; print m&#39;</span>
-<span style="color: #888888">&lt;module &#39;django&#39; from &#39;/some/path/to/venv/local/lib/...&#39;&gt;</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; which python
+/some/path/to/venv/bin/python
+(venv)Terminal&gt; python -c &#39;import django as m; print m&#39;
+&lt;module &#39;django&#39; from &#39;/some/path/to/venv/local/lib/...&#39;&gt;
 </pre></div>
 <p>
 What can be installed by <code>pip install</code>? The above examples have installed
@@ -251,9 +227,9 @@ tarball contains a <code>setup.py</code> file to do the installation:
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install ../some/dir/package.tar.gz</span>
-<span style="color: #888888">(venv)Terminal&gt; pip install http://some.net/dir/package.tar.gz</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; pip install ../some/dir/package.tar.gz
+(venv)Terminal&gt; pip install http://some.net/dir/package.tar.gz
 </pre></div>
 <p>
 Installation directly from the source in a version control system
@@ -261,11 +237,9 @@ is also possible (if a <code>setup.py</code> resides in the root directory):
 
 <p>
 
-<!-- code=console (from !bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">(venv)Terminal&gt; pip install -e \</span>
-<span style="color: #888888">                hg+https://code.google.com/p/scitools#egg=scitools</span>
-<span style="color: #888888">(venv)Terminal&gt; pip install -e \</span>
-<span style="color: #888888">                git+https://github.com/hplgit/odespy.git#egg=odespy</span>
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">(venv)Terminal&gt; pip install -e \
+                git+https://github.com/hplgit/odespy.git#egg=odespy
 </pre></div>
 <p>
 The syntax is <code>pip install -e vcs+URL#egg=packaname</code>, where <code>vcs</code> is
@@ -274,32 +248,17 @@ the name of the version control system (<code>hg</code>, <code>git</code>, <code
 
 <p>
 <p>
-<!-- ------------------- end of main content --------------- -->
-
-
-<!--
-Preliminary examples/discussion on vagrant style syntax
-
-<div class='alert alert-block alert-notice'>
-  <h3>What about PHP? Python? Java?</h3>
-<p>
-bla-bla.
-</div>
-
-<p>
-While the <div class="deep-blue">rest of the</div> getting started
--->
-
+<!-- navigation buttons at the bottom of the page -->
 <ul class="pager">
   <li class="previous">
     <a href="._virtualenv000.html">&larr; Prev</a>
   </li>
-
   <li class="next">
     <a href="._virtualenv002.html">Next &rarr;</a>
   </li>
-
 </ul>
+<!-- ------------------- end of main content --------------- -->
+
 
  </div>
 
@@ -311,6 +270,4 @@ While the <div class="deep-blue">rest of the</div> getting started
 </div>
 </body>
 </html>
-
-
 
