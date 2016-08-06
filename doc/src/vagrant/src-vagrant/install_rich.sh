@@ -107,7 +107,7 @@ apt_install idle
 apt_install python-pip
 apt_install python-setuptools
 # upgrade
-pip_install setuptool
+pip_install setuptools
 apt_install python-dev
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -204,7 +204,7 @@ apt_install octave-symbolic
 apt_install octave-specfun
 apt_install octave-optim
 apt_install octave-odepkg
-apt_install octave-audio
+#octave-audio
 
 # Databases
 apt_install libsqlite3-dev
@@ -247,7 +247,8 @@ apt_install ffmpeg
 apt_install libav-tools
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
 # do sudo apt-cache search libavcodec-extra to see the current number
-apt_install libavcodec-extra-56
+#libavcodec-extra-56
+apt_install libavcodec-ffmpeg-extra56
 apt_install libx264-dev
 
 # Players
@@ -256,7 +257,7 @@ apt_install gnome-mplayer
 #mencoder # not in Ubuntu any longer
 apt_install totem
 apt_install totem-plugins
-apt_install totem-mozilla
+#totem-mozilla
 apt_install vlc
 apt_install browser-plugin-vlc
 apt_install gxine
@@ -293,7 +294,7 @@ apt_install fldiff
 apt_install diffpdf
 apt_install kdiff3
 #preprocess
-pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+pip_install -e git+https://github.com/hplgit/preprocess.git#egg=preprocess
 
 # Support for Norwegian
 apt_install language-pack-nb-base
@@ -337,9 +338,8 @@ pip_install paver
 pip_install cogapp
 pip_install sphinxcontrib-paverutils
 pip_install diff_match_patch
-pip_install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
 
-pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
+pip_install -e hg+https://bitbucket.org/logg/publish#egg=publish
 pip_install python-Levenshtein
 pip_install future
 

@@ -115,7 +115,7 @@ system('sudo apt-get -y install idle')
 system('sudo apt-get -y install python-pip')
 system('sudo apt-get -y install python-setuptools')
 # upgrade
-system('sudo pip install setuptool')
+system('sudo pip install setuptools')
 system('sudo apt-get -y install python-dev')
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -212,7 +212,7 @@ system('sudo apt-get -y install octave-symbolic')
 system('sudo apt-get -y install octave-specfun')
 system('sudo apt-get -y install octave-optim')
 system('sudo apt-get -y install octave-odepkg')
-system('sudo apt-get -y install octave-audio')
+#octave-audio
 
 # Databases
 system('sudo apt-get -y install libsqlite3-dev')
@@ -255,7 +255,8 @@ system('sudo apt-get -y install ffmpeg')
 system('sudo apt-get -y install libav-tools')
 # libavcodec-extra has extension 54 or 55, etc., depending on the Ubuntu version
 # do sudo apt-cache search libavcodec-extra to see the current number
-system('sudo apt-get -y install libavcodec-extra-56')
+#libavcodec-extra-56
+system('sudo apt-get -y install libavcodec-ffmpeg-extra56')
 system('sudo apt-get -y install libx264-dev')
 
 # Players
@@ -264,7 +265,7 @@ system('sudo apt-get -y install gnome-mplayer')
 #mencoder # not in Ubuntu any longer
 system('sudo apt-get -y install totem')
 system('sudo apt-get -y install totem-plugins')
-system('sudo apt-get -y install totem-mozilla')
+#totem-mozilla
 system('sudo apt-get -y install vlc')
 system('sudo apt-get -y install browser-plugin-vlc')
 system('sudo apt-get -y install gxine')
@@ -301,7 +302,7 @@ system('sudo apt-get -y install fldiff')
 system('sudo apt-get -y install diffpdf')
 system('sudo apt-get -y install kdiff3')
 #preprocess
-system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
+system('sudo pip install -e git+https://github.com/hplgit/preprocess.git#egg=preprocess')
 
 # Support for Norwegian
 system('sudo apt-get -y install language-pack-nb-base')
@@ -353,9 +354,8 @@ system('sudo pip install paver')
 system('sudo pip install cogapp')
 system('sudo pip install sphinxcontrib-paverutils')
 system('sudo pip install diff_match_patch')
-system('sudo pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess')
 
-system('sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish')
+system('sudo pip install -e hg+https://bitbucket.org/logg/publish#egg=publish')
 system('sudo pip install python-Levenshtein')
 system('sudo pip install future')
 
