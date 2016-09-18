@@ -83,7 +83,7 @@ system('sudo apt-get -y install swig')
 #pip install matplotlib
 system('sudo apt-get -y install python-matplotlib')
 system('sudo pip install scipy')
-system('sudo pip install mayavi')
+#system('sudo pip install mayavi') doesn't work on ubuntu 16, 64 bits 
 #ipython-notebook  # too old version in debian
 system('sudo pip install ipython')
 system('sudo pip install tornado')
